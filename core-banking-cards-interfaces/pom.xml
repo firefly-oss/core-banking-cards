@@ -18,6 +18,13 @@
     </properties>
 
     <dependencies>
+        <!-- Internal -->
+        <dependency>
+            <groupId>com.catalis</groupId>
+            <artifactId>lib-common-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!-- Validation -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
