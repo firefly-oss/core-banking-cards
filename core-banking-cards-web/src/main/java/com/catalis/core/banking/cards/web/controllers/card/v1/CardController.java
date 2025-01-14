@@ -1,12 +1,6 @@
 package com.catalis.core.banking.cards.web.controllers.card.v1;
 
-import com.catalis.common.core.queries.PaginationRequest;
-import com.catalis.common.core.queries.PaginationResponse;
-import com.catalis.common.web.error.models.ErrorResponse;
-import com.catalis.core.banking.cards.core.services.card.v1.CardCreateService;
-import com.catalis.core.banking.cards.core.services.card.v1.CardDeleteService;
-import com.catalis.core.banking.cards.core.services.card.v1.CardGetService;
-import com.catalis.core.banking.cards.core.services.card.v1.CardUpdateService;
+import com.catalis.core.banking.cards.core.services.card.v1.CardServiceImpl;
 import com.catalis.core.banking.cards.interfaces.dtos.card.v1.CardDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -15,221 +9,104 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
-@Tag(name = "Cards", description = "Manage Cards")
+@Tag(name = "Cards", description = "APIs for managing card records within the banking system")
 @RestController
 @RequestMapping("/api/v1/cards")
 public class CardController {
 
     @Autowired
-    private CardCreateService cardCreateService;
-
-    @Autowired
-    private CardGetService cardGetService;
-
-    @Autowired
-    private CardUpdateService cardUpdateService;
-
-    @Autowired
-    private CardDeleteService cardDeleteService;
+    private CardServiceImpl service;
 
     @Operation(
-            summary = "Create a new Card",
-            description = "Create a new card resource with the provided details."
+            summary = "Create Card",
+            description = "Create a new card record in the banking system."
     )
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode = "201",
-                    description = "Card successfully created",
-                    content = @Content(schema = @Schema(implementation = CardDTO.class))
-            ),
-            @ApiResponse(
-                    responseCode = "400",
-                    description = "Invalid request data",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            ),
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "Internal server error",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Card created successfully",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CardDTO.class))),
+            @ApiResponse(responseCode = "400", description = "Invalid card data provided",
+                    content = @Content)
     })
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardDTO>> createCard(
-            @Parameter(
-                    name = "cardDetails",
-                    description = "Card details required to create a new card",
-                    required = true
-            )
-            @RequestBody CardDTO cardDetails
+            @Parameter(description = "Data for the new card", required = true,
+                    schema = @Schema(implementation = CardDTO.class))
+            @RequestBody CardDTO cardDTO
     ) {
-        return cardCreateService.createCard(cardDetails)
-                .map(createdCard -> ResponseEntity.status(HttpStatus.CREATED).body(createdCard));
+        return service.createCard(cardDTO)
+                .map(createdCard -> ResponseEntity.status(201).body(createdCard))
+                .defaultIfEmpty(ResponseEntity.badRequest().build());
     }
 
     @Operation(
-            summary = "Retrieve Card by ID",
-            description = "Fetch a card's details by its unique identifier."
+            summary = "Get Card by ID",
+            description = "Retrieve an existing card record by its unique identifier."
     )
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Card found and returned",
-                    content = @Content(schema = @Schema(implementation = CardDTO.class))
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Card not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            ),
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "Internal server error",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved the card",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CardDTO.class))),
+            @ApiResponse(responseCode = "404", description = "Card not found",
+                    content = @Content)
     })
-    @GetMapping("/details/{cardId}")
-    public Mono<ResponseEntity<CardDTO>> getCardById(
-            @Parameter(
-                    name = "cardId",
-                    description = "Unique identifier of the card to retrieve",
-                    required = true
-            )
-            @PathVariable("cardId") Long cardId
+    @GetMapping(value = "/{cardId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ResponseEntity<CardDTO>> getCard(
+            @Parameter(description = "Unique identifier of the card", required = true)
+            @PathVariable Long cardId
     ) {
-        return cardGetService.getCardById(cardId)
+        return service.getCard(cardId)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @Operation(
-            summary = "Retrieve Cards by Account ID",
-            description = "Fetch all cards associated with a specific account by its unique identifier."
+            summary = "Update Card",
+            description = "Update an existing card record by its unique identifier."
     )
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Cards successfully retrieved",
-                    content = @Content(schema = @Schema(implementation = PaginationResponse.class))
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "No cards found for the given account ID",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            ),
-            @ApiResponse(
-                    responseCode = "400",
-                    description = "Invalid account ID or request parameters",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            ),
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "Internal server error",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Card updated successfully",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CardDTO.class))),
+            @ApiResponse(responseCode = "404", description = "Card not found",
+                    content = @Content)
     })
-    @GetMapping("/by-account/{accountId}")
-    public Mono<ResponseEntity<PaginationResponse<CardDTO>>> getCardByAccountId(
-            @Parameter(
-                    name = "accountId",
-                    description = "Unique identifier of the account to fetch cards for",
-                    required = true
-            )
-            @PathVariable("accountId") Long accountId,
-            @Parameter(
-                    name = "paginationRequest",
-                    description = "Pagination and sorting parameters",
-                    required = false
-            )
-            @ParameterObject @ModelAttribute PaginationRequest paginationRequest
-    ) {
-        return cardGetService.getAllCardsByAccountId(accountId, paginationRequest)
-                .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
-    }
-
-    @Operation(
-            summary = "Update a Card",
-            description = "Update an existing card's details by its unique identifier."
-    )
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Card successfully updated",
-                    content = @Content(schema = @Schema(implementation = CardDTO.class))
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Card not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            ),
-            @ApiResponse(
-                    responseCode = "400",
-                    description = "Invalid request data",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            ),
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "Internal server error",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            )
-    })
-    @PutMapping("/{cardId}")
+    @PutMapping(value = "/{cardId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardDTO>> updateCard(
-            @Parameter(
-                    name = "cardId",
-                    description = "Unique identifier of the card to update",
-                    required = true
-            )
-            @PathVariable("cardId") Long cardId,
-            @Parameter(
-                    name = "updatedCardDetails",
-                    description = "New details for updating the card",
-                    required = true
-            )
-            @RequestBody CardDTO updatedCardDetails
+            @Parameter(description = "Unique identifier of the card to update", required = true)
+            @PathVariable Long cardId,
+
+            @Parameter(description = "Updated card data", required = true,
+                    schema = @Schema(implementation = CardDTO.class))
+            @RequestBody CardDTO cardDTO
     ) {
-        return cardUpdateService.updateCard(cardId, updatedCardDetails)
+        return service.updateCard(cardId, cardDTO)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @Operation(
-            summary = "Delete a Card",
-            description = "Delete an existing card by its unique identifier."
+            summary = "Delete Card",
+            description = "Remove an existing card record by its unique identifier."
     )
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode = "204",
-                    description = "Card successfully deleted"
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Card not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            ),
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "Internal server error",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Card deleted successfully",
+                    content = @Content),
+            @ApiResponse(responseCode = "404", description = "Card not found",
+                    content = @Content)
     })
-    @DeleteMapping("/{cardId}")
+    @DeleteMapping(value = "/{cardId}")
     public Mono<ResponseEntity<Void>> deleteCard(
-            @Parameter(
-                    name = "cardId",
-                    description = "Unique identifier of the card to delete",
-                    required = true
-            )
-            @PathVariable("cardId") Long cardId
+            @Parameter(description = "Unique identifier of the card to delete", required = true)
+            @PathVariable Long cardId
     ) {
-        return cardDeleteService.deleteCard(cardId)
-                .thenReturn(ResponseEntity.noContent().build());
+        return service.deleteCard(cardId)
+                .then(Mono.just(ResponseEntity.noContent().build()));
     }
 }

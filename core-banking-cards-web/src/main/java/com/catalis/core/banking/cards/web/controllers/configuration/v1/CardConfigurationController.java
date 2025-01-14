@@ -1,12 +1,8 @@
-package com.catalis.core.banking.cards.web.controllers.configuration.v1;
+package com.catalis.core.banking.cards.web.controllers;
 
 import com.catalis.common.core.queries.PaginationRequest;
 import com.catalis.common.core.queries.PaginationResponse;
-import com.catalis.common.web.error.models.ErrorResponse;
-import com.catalis.core.banking.cards.core.services.configuration.v1.CardConfigurationCreateService;
-import com.catalis.core.banking.cards.core.services.configuration.v1.CardConfigurationDeleteService;
-import com.catalis.core.banking.cards.core.services.configuration.v1.CardConfigurationGetService;
-import com.catalis.core.banking.cards.core.services.configuration.v1.CardConfigurationUpdateService;
+import com.catalis.core.banking.cards.core.services.configuration.v1.CardConfigurationServiceImpl;
 import com.catalis.core.banking.cards.interfaces.dtos.configuration.v1.CardConfigurationDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -17,249 +13,139 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
-@Tag(name = "Card Configurations", description = "Manage configuration settings for a specific Card")
+@Tag(name = "Card Configurations", description = "APIs for managing configuration records associated with a specific card")
 @RestController
 @RequestMapping("/api/v1/cards/{cardId}/configurations")
 public class CardConfigurationController {
 
     @Autowired
-    private CardConfigurationCreateService createService;
-
-    @Autowired
-    private CardConfigurationGetService getService;
-
-    @Autowired
-    private CardConfigurationUpdateService updateService;
-
-    @Autowired
-    private CardConfigurationDeleteService deleteService;
-
+    private CardConfigurationServiceImpl service;
 
     @Operation(
-            summary = "Create CardConfiguration",
-            description = "Creates new configuration settings for a Card."
+            summary = "List Card Configurations",
+            description = "Retrieve a paginated list of configuration records associated with the specified card."
     )
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode = "201",
-                    description = "CardConfiguration successfully created",
-                    content = @Content(schema = @Schema(implementation = CardConfigurationDTO.class))
-            ),
-            @ApiResponse(
-                    responseCode = "400",
-                    description = "Invalid request data",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            ),
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "Internal server error",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved the card configurations",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = PaginationResponse.class))),
+            @ApiResponse(responseCode = "404", description = "No card configurations found for the specified card",
+                    content = @Content)
     })
-    @PostMapping
-    public Mono<ResponseEntity<CardConfigurationDTO>> createCardConfiguration(
-            @Parameter(
-                    name = "cardId",
-                    description = "Unique identifier of the parent Card",
-                    required = true
-            )
-            @PathVariable(name = "cardId") Long cardId,
-            @Parameter(
-                    name = "dto",
-                    description = "Details of the CardConfiguration to create",
-                    required = true
-            )
-            @RequestBody CardConfigurationDTO dto
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ResponseEntity<PaginationResponse<CardConfigurationDTO>>> getAllConfigurations(
+            @Parameter(description = "Unique identifier of the card", required = true)
+            @PathVariable Long cardId,
+
+            @ParameterObject
+            @ModelAttribute PaginationRequest paginationRequest
     ) {
-        dto.setCardId(cardId);
-        return createService.createCardConfiguration(dto)
-                .map(createdConfig -> ResponseEntity.status(HttpStatus.CREATED).body(createdConfig));
-    }
-
-
-    @Operation(
-            summary = "Get CardConfigurations by Card ID (paginated)",
-            description = "Retrieve all configuration settings for a Card, using pagination."
-    )
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Paginated list of CardConfigurations returned",
-                    content = @Content(schema = @Schema(implementation = PaginationResponse.class))
-            ),
-            @ApiResponse(
-                    responseCode = "400",
-                    description = "Invalid pagination parameters",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Card not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            ),
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "Internal server error",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            )
-    })
-    @GetMapping("/")
-    public Mono<ResponseEntity<PaginationResponse<CardConfigurationDTO>>> getCardConfigurationsByCardId(
-            @Parameter(
-                    name = "cardId",
-                    description = "Unique identifier of the parent Card",
-                    required = true
-            )
-            @PathVariable(name = "cardId") Long cardId,
-            @Parameter(
-                    name = "paginationRequest",
-                    description = "Pagination parameters (pageNumber, pageSize, sortBy, sortDirection).",
-                    required = false
-            )
-            @ParameterObject @ModelAttribute PaginationRequest paginationRequest
-    ) {
-        return getService.getCardConfigurationsByCardId(cardId, paginationRequest)
-                .map(ResponseEntity::ok);
-    }
-
-
-    @Operation(
-            summary = "Get a CardConfiguration by ID",
-            description = "Retrieve a specific configuration setting."
-    )
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "CardConfiguration found and returned",
-                    content = @Content(schema = @Schema(implementation = CardConfigurationDTO.class))
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "CardConfiguration not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            ),
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "Internal server error",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            )
-    })
-    @GetMapping("/{cardConfigurationId}")
-    public Mono<ResponseEntity<CardConfigurationDTO>> getCardConfigurationById(
-            @Parameter(
-                    name = "cardId",
-                    description = "Unique identifier of the parent Card",
-                    required = true
-            )
-            @PathVariable(name = "cardId") Long cardId,
-            @Parameter(
-                    name = "cardConfigurationId",
-                    description = "Unique identifier of the CardConfiguration to retrieve",
-                    required = true
-            )
-            @PathVariable(name = "cardConfigurationId") Long cardConfigurationId
-    ) {
-        return getService.getCardConfigurationById(cardConfigurationId)
+        return service.listConfigurations(cardId, paginationRequest)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
+    @Operation(
+            summary = "Create Card Configuration",
+            description = "Create a new configuration record and associate it with the specified card."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Card configuration created successfully",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CardConfigurationDTO.class))),
+            @ApiResponse(responseCode = "400", description = "Invalid configuration data provided",
+                    content = @Content)
+    })
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ResponseEntity<CardConfigurationDTO>> createConfiguration(
+            @Parameter(description = "Unique identifier of the card", required = true)
+            @PathVariable Long cardId,
+
+            @Parameter(description = "Data for the new card configuration record", required = true,
+                    schema = @Schema(implementation = CardConfigurationDTO.class))
+            @RequestBody CardConfigurationDTO configDTO
+    ) {
+        return service.createConfiguration(cardId, configDTO)
+                .map(createdConfig -> ResponseEntity.status(201).body(createdConfig))
+                .defaultIfEmpty(ResponseEntity.badRequest().build());
+    }
 
     @Operation(
-            summary = "Update CardConfiguration",
-            description = "Updates an existing CardConfiguration resource."
+            summary = "Get Card Configuration by ID",
+            description = "Retrieve a specific card configuration record by its unique identifier, ensuring it belongs to the specified card."
     )
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "CardConfiguration successfully updated",
-                    content = @Content(schema = @Schema(implementation = CardConfigurationDTO.class))
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "CardConfiguration not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            ),
-            @ApiResponse(
-                    responseCode = "400",
-                    description = "Invalid request data",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            ),
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "Internal server error",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved the card configuration",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CardConfigurationDTO.class))),
+            @ApiResponse(responseCode = "404", description = "Card configuration not found",
+                    content = @Content)
     })
-    @PutMapping("/{cardConfigurationId}")
-    public Mono<ResponseEntity<CardConfigurationDTO>> updateCardConfiguration(
-            @Parameter(
-                    name = "cardId",
-                    description = "Unique identifier of the parent Card",
-                    required = true
-            )
-            @PathVariable(name = "cardId") Long cardId,
-            @Parameter(
-                    name = "cardConfigurationId",
-                    description = "Unique identifier of the CardConfiguration to update",
-                    required = true
-            )
-            @PathVariable(name = "cardConfigurationId") Long cardConfigurationId,
-            @Parameter(
-                    name = "dto",
-                    description = "Updated details for the CardConfiguration",
-                    required = true
-            )
-            @RequestBody CardConfigurationDTO dto
+    @GetMapping(value = "/{configId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ResponseEntity<CardConfigurationDTO>> getConfiguration(
+            @Parameter(description = "Unique identifier of the card", required = true)
+            @PathVariable Long cardId,
+
+            @Parameter(description = "Unique identifier of the card configuration record", required = true)
+            @PathVariable Long configId
     ) {
-        dto.setCardId(cardId);
-        return updateService.updateCardConfiguration(cardConfigurationId, dto)
+        return service.getConfiguration(cardId, configId)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
+    @Operation(
+            summary = "Update Card Configuration",
+            description = "Update an existing configuration record associated with the specified card."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Card configuration updated successfully",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = CardConfigurationDTO.class))),
+            @ApiResponse(responseCode = "404", description = "Card configuration record not found",
+                    content = @Content)
+    })
+    @PutMapping(value = "/{configId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ResponseEntity<CardConfigurationDTO>> updateConfiguration(
+            @Parameter(description = "Unique identifier of the card", required = true)
+            @PathVariable Long cardId,
+
+            @Parameter(description = "Unique identifier of the card configuration record to update", required = true)
+            @PathVariable Long configId,
+
+            @Parameter(description = "Updated configuration data", required = true,
+                    schema = @Schema(implementation = CardConfigurationDTO.class))
+            @RequestBody CardConfigurationDTO configDTO
+    ) {
+        return service.updateConfiguration(cardId, configId, configDTO)
+                .map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
 
     @Operation(
-            summary = "Delete CardConfiguration",
-            description = "Removes a CardConfiguration resource by its ID."
+            summary = "Delete Card Configuration",
+            description = "Remove an existing card configuration record by its unique identifier."
     )
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode = "204",
-                    description = "CardConfiguration successfully deleted"
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "CardConfiguration not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            ),
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "Internal server error",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
-            )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Card configuration record deleted successfully",
+                    content = @Content),
+            @ApiResponse(responseCode = "404", description = "Card configuration record not found",
+                    content = @Content)
     })
-    @DeleteMapping("/{cardConfigurationId}")
-    public Mono<ResponseEntity<Void>> deleteCardConfiguration(
-            @Parameter(
-                    name = "cardId",
-                    description = "Unique identifier of the parent Card",
-                    required = true
-            )
-            @PathVariable(name = "cardId") Long cardId,
-            @Parameter(
-                    name = "cardConfigurationId",
-                    description = "Unique identifier of the CardConfiguration to delete",
-                    required = true
-            )
-            @PathVariable(name = "cardConfigurationId") Long cardConfigurationId
+    @DeleteMapping(value = "/{configId}")
+    public Mono<ResponseEntity<Void>> deleteConfiguration(
+            @Parameter(description = "Unique identifier of the card", required = true)
+            @PathVariable Long cardId,
+
+            @Parameter(description = "Unique identifier of the card configuration record to delete", required = true)
+            @PathVariable Long configId
     ) {
-        return deleteService.deleteCardConfiguration(cardConfigurationId)
-                .thenReturn(ResponseEntity.noContent().build());
+        return service.deleteConfiguration(cardId, configId)
+                .then(Mono.just(ResponseEntity.noContent().build()));
     }
 }
