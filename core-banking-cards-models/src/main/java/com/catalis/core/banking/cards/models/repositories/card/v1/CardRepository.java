@@ -11,11 +11,4 @@ import reactor.core.publisher.Mono;
 @Repository
 public interface CardRepository extends BaseRepository<Card, Long> {
     Mono<Card> findByCardId(Long cardId);
-
-    Flux<Card> findByAccountId(Long accountId, Pageable pageable);
-    Mono<Long> countByAccountId(Long accountId);
-
-    Flux<Card> findByContractId(Long contractId, Pageable pageable);
-    Mono<Long> countByContractId(Long contractId);
-
 }

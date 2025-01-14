@@ -13,9 +13,4 @@ public interface PhysicalCardRepository extends BaseRepository<PhysicalCard, Lon
 
     Flux<PhysicalCard> findByCardId(Long cardId, Pageable pageable);
     Mono<Long> countByCardId(Long cardId);
-
-    Mono<PhysicalCard> findByCardNumber(String cardNumber);
-
-    Flux<PhysicalCard> findByCardHolderName(String cardHolderName, Pageable pageable);
-    Mono<Long> countByCardHolderName(String cardHolderName);
 }

@@ -13,7 +13,4 @@ public interface VirtualCardRepository extends BaseRepository<VirtualCard, Long>
 
     Flux<VirtualCard> findByCardId(Long cardId, Pageable pageable);
     Mono<Long> countByCardId(Long cardId);
-
-    Flux<VirtualCard> findByDeviceId(String deviceId, Pageable pageable);
-    Mono<Long> countByDeviceId(String deviceId);
 }
