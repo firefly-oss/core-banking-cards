@@ -1,5 +1,6 @@
 package com.catalis.core.banking.cards.interfaces.dtos.limit.v1;
 
+import com.catalis.common.core.filters.FilterableId;
 import com.catalis.core.banking.cards.interfaces.dtos.BaseDTO;
 import com.catalis.core.banking.cards.interfaces.enums.limit.v1.LimitTypeEnum;
 import com.catalis.core.banking.cards.interfaces.enums.limit.v1.ResetPeriodEnum;
@@ -20,7 +21,9 @@ public class CardLimitDTO extends BaseDTO {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long cardLimitId;
 
+    @FilterableId
     private Long cardId;
+
     private LimitTypeEnum limitType;
     private BigDecimal limitAmount;
     private BigDecimal currentUsage;

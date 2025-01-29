@@ -1,5 +1,6 @@
 package com.catalis.core.banking.cards.interfaces.dtos.configuration.v1;
 
+import com.catalis.common.core.filters.FilterableId;
 import com.catalis.core.banking.cards.interfaces.dtos.BaseDTO;
 import com.catalis.core.banking.cards.interfaces.enums.configuration.v1.ConfigTypeEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,8 +18,9 @@ public class CardConfigurationDTO extends BaseDTO {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long cardConfigurationId;
 
+    @FilterableId
     private Long cardId;
+
     private ConfigTypeEnum configType;
     private boolean configValue;
 }
-

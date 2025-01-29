@@ -1,5 +1,6 @@
 package com.catalis.core.banking.cards.interfaces.dtos.provider.v1;
 
+import com.catalis.common.core.filters.FilterableId;
 import com.catalis.core.banking.cards.interfaces.dtos.BaseDTO;
 import com.catalis.core.banking.cards.interfaces.enums.provider.v1.ProviderStatusEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,7 +18,9 @@ public class CardProviderDTO extends BaseDTO {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long cardProviderId;
 
+    @FilterableId
     private Long cardId;
+    
     private String providerName;
     private String externalReference;
     private ProviderStatusEnum status;

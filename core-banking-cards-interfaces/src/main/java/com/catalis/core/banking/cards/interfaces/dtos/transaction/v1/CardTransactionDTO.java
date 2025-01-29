@@ -19,7 +19,10 @@ public class CardTransactionDTO extends BaseDTO {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long cardTransactionId;
+
+    @FilterableId
     private Long cardId;
+
     private TransactionTypeEnum transactionType;
     private String merchantInfo;
     private TransactionStatusEnum transactionStatus;
