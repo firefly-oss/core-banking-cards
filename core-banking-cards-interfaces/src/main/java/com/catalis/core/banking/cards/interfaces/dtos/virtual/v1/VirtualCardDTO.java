@@ -1,8 +1,8 @@
 package com.catalis.core.banking.cards.interfaces.dtos.virtual.v1;
 
-import com.catalis.common.core.filters.FilterableId;
 import com.catalis.core.banking.cards.interfaces.dtos.BaseDTO;
 import com.catalis.core.banking.cards.interfaces.enums.virtual.v1.VirtualCardStatusEnum;
+import com.catalis.core.utils.annotations.FilterableId;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
