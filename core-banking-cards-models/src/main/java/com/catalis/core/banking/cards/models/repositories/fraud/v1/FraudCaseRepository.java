@@ -1,0 +1,164 @@
+package com.catalis.core.banking.cards.models.repositories.fraud.v1;
+
+import com.catalis.core.banking.cards.models.entities.fraud.v1.FraudCase;
+import com.catalis.core.banking.cards.models.repositories.BaseRepository;
+import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+import java.time.LocalDateTime;
+
+/**
+ * Repository for managing FraudCase entities.
+ */
+@Repository
+public interface FraudCaseRepository extends BaseRepository<FraudCase, Long> {
+    /**
+     * Find a FraudCase by its ID.
+     *
+     * @param fraudCaseId the ID of the FraudCase to find
+     * @return a Mono emitting the FraudCase if found, or empty if not found
+     */
+    Mono<FraudCase> findByFraudCaseId(Long fraudCaseId);
+    
+    /**
+     * Find a FraudCase by its reference.
+     *
+     * @param caseReference the reference of the FraudCase to find
+     * @return a Mono emitting the FraudCase if found, or empty if not found
+     */
+    Mono<FraudCase> findByCaseReference(String caseReference);
+    
+    /**
+     * Find FraudCases by card ID.
+     *
+     * @param cardId the card ID to search for
+     * @return a Flux emitting the FraudCases for the specified card
+     */
+    Flux<FraudCase> findByCardId(Long cardId);
+    
+    /**
+     * Find FraudCases by transaction ID.
+     *
+     * @param transactionId the transaction ID to search for
+     * @return a Flux emitting the FraudCases for the specified transaction
+     */
+    Flux<FraudCase> findByTransactionId(Long transactionId);
+    
+    /**
+     * Find FraudCases by customer ID.
+     *
+     * @param customerId the customer ID to search for
+     * @return a Flux emitting the FraudCases for the specified customer
+     */
+    Flux<FraudCase> findByCustomerId(Long customerId);
+    
+    /**
+     * Find FraudCases by account ID.
+     *
+     * @param accountId the account ID to search for
+     * @return a Flux emitting the FraudCases for the specified account
+     */
+    Flux<FraudCase> findByAccountId(Long accountId);
+    
+    /**
+     * Find FraudCases by provider reference.
+     *
+     * @param providerReference the provider reference to search for
+     * @return a Flux emitting the FraudCases with the specified provider reference
+     */
+    Flux<FraudCase> findByProviderReference(String providerReference);
+    
+    /**
+     * Find FraudCases by network reference.
+     *
+     * @param networkReference the network reference to search for
+     * @return a Flux emitting the FraudCases with the specified network reference
+     */
+    Flux<FraudCase> findByNetworkReference(String networkReference);
+    
+    /**
+     * Find FraudCases by fraud type.
+     *
+     * @param fraudType the fraud type to search for
+     * @return a Flux emitting the FraudCases of the specified type
+     */
+    Flux<FraudCase> findByFraudType(String fraudType);
+    
+    /**
+     * Find FraudCases by fraud reason code.
+     *
+     * @param fraudReasonCode the fraud reason code to search for
+     * @return a Flux emitting the FraudCases with the specified reason code
+     */
+    Flux<FraudCase> findByFraudReasonCode(String fraudReasonCode);
+    
+    /**
+     * Find FraudCases by fraud status.
+     *
+     * @param fraudStatus the fraud status to search for
+     * @return a Flux emitting the FraudCases with the specified status
+     */
+    Flux<FraudCase> findByFraudStatus(String fraudStatus);
+    
+    /**
+     * Find FraudCases by risk level.
+     *
+     * @param riskLevel the risk level to search for
+     * @return a Flux emitting the FraudCases with the specified risk level
+     */
+    Flux<FraudCase> findByRiskLevel(String riskLevel);
+    
+    /**
+     * Find FraudCases by detection source.
+     *
+     * @param detectionSource the detection source to search for
+     * @return a Flux emitting the FraudCases with the specified detection source
+     */
+    Flux<FraudCase> findByDetectionSource(String detectionSource);
+    
+    /**
+     * Find FraudCases by detection timestamp range.
+     *
+     * @param startDate the start date of the range
+     * @param endDate the end date of the range
+     * @return a Flux emitting the FraudCases within the specified detection date range
+     */
+    Flux<FraudCase> findByDetectionTimestampBetween(LocalDateTime startDate, LocalDateTime endDate);
+    
+    /**
+     * Find FraudCases reported by customer.
+     *
+     * @return a Flux emitting all FraudCases reported by customers
+     */
+    Flux<FraudCase> findByReportedByCustomerTrue();
+    
+    /**
+     * Find FraudCases where the card has been blocked.
+     *
+     * @return a Flux emitting all FraudCases where the card has been blocked
+     */
+    Flux<FraudCase> findByIsCardBlockedTrue();
+    
+    /**
+     * Find FraudCases where the customer has been notified.
+     *
+     * @return a Flux emitting all FraudCases where the customer has been notified
+     */
+    Flux<FraudCase> findByIsCustomerNotifiedTrue();
+    
+    /**
+     * Find FraudCases where the cardholder has been credited.
+     *
+     * @return a Flux emitting all FraudCases where the cardholder has been credited
+     */
+    Flux<FraudCase> findByIsCardholderCreditedTrue();
+    
+    /**
+     * Find FraudCases by assigned agent ID.
+     *
+     * @param assignedAgentId the assigned agent ID to search for
+     * @return a Flux emitting the FraudCases assigned to the specified agent
+     */
+    Flux<FraudCase> findByAssignedAgentId(Long assignedAgentId);
+}
