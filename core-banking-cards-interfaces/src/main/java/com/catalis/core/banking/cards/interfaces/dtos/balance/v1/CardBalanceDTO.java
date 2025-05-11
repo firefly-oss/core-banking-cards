@@ -24,109 +24,109 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper=false)
 public class CardBalanceDTO extends BaseDTO {
-    
+
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long balanceId;
-    
+
     @FilterableId
     private Long cardId;
-    
+
     @FilterableId
-    private Long customerId;
-    
+    private Long partyId;
+
     @FilterableId
     private Long accountId;
-    
+
     @FilterableId
     private Long statementId;
-    
+
     private String balanceType;
-    
+
     private String balanceCategory;
-    
+
     private String balanceDescription;
-    
+
     private BigDecimal balanceAmount;
-    
+
     private BigDecimal availableAmount;
-    
+
     private BigDecimal reservedAmount;
-    
+
     private BigDecimal pendingAmount;
-    
+
     private String currencyCode;
-    
+
     private LocalDateTime asOfDate;
-    
+
     @FilterableId
     private Long lastTransactionId;
-    
+
     private LocalDateTime lastTransactionTimestamp;
-    
+
     @FilterableId
     private Long lastPaymentId;
-    
+
     private LocalDateTime lastPaymentTimestamp;
-    
+
     @FilterableId
     private Long lastStatementId;
-    
+
     private LocalDateTime lastStatementDate;
-    
+
     private Boolean isPromotionalRate;
-    
+
     @FilterableId
     private Long promotionId;
-    
+
     private LocalDateTime promotionEndDate;
-    
+
     private BigDecimal interestRate;
-    
+
     private BigDecimal annualPercentageRate;
-    
+
     private BigDecimal accruedInterest;
-    
+
     private LocalDateTime lastInterestAccrualDate;
-    
+
     private LocalDateTime nextInterestAccrualDate;
-    
+
     private Boolean isInGracePeriod;
-    
+
     private LocalDateTime gracePeriodEndDate;
-    
+
     private BigDecimal minimumPaymentDue;
-    
+
     private LocalDateTime minimumPaymentDueDate;
-    
+
     private Integer daysPastDue;
-    
+
     private Boolean isDelinquent;
-    
+
     private LocalDateTime delinquencyStartDate;
-    
+
     private Integer delinquencyDays;
-    
+
     private String delinquencyStage;
-    
+
     private Boolean isChargedOff;
-    
+
     private LocalDateTime chargeOffDate;
-    
+
     private BigDecimal chargeOffAmount;
-    
+
     private Boolean isWrittenOff;
-    
+
     private LocalDateTime writeOffDate;
-    
+
     private BigDecimal writeOffAmount;
-    
+
     private Boolean isInCollection;
-    
+
     private LocalDateTime collectionStartDate;
-    
+
     private String collectionAgencyId;
-    
+
     private String collectionReference;
-    
+
     private String collectionStatus;
 }

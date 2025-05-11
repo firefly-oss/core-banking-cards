@@ -23,87 +23,87 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper=false)
 public class FraudCaseDTO extends BaseDTO {
-    
+
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long fraudCaseId;
-    
+
     @FilterableId
     private Long cardId;
-    
+
     @FilterableId
     private Long transactionId;
-    
+
     @FilterableId
-    private Long customerId;
-    
+    private Long partyId;
+
     @FilterableId
     private Long accountId;
-    
+
     private String caseReference;
-    
+
     private String providerReference;
-    
+
     private String networkReference;
-    
+
     private String fraudType;
-    
+
     private String fraudReasonCode;
-    
+
     private String fraudReasonDescription;
-    
+
     private String fraudStatus;
-    
+
     private Integer fraudScore;
-    
+
     private String riskLevel;
-    
+
     private String detectionSource;
-    
+
     private LocalDateTime detectionTimestamp;
-    
-    private Boolean reportedByCustomer;
-    
+
+    private Boolean reportedByParty;
+
     private LocalDateTime reportedTimestamp;
-    
+
     private BigDecimal affectedAmount;
-    
+
     private String affectedCurrency;
-    
+
     private Boolean isCardBlocked;
-    
+
     private LocalDateTime blockTimestamp;
-    
-    private Boolean isCustomerNotified;
-    
+
+    private Boolean isPartyNotified;
+
     private LocalDateTime notificationTimestamp;
-    
+
     private String notificationMethod;
-    
+
     private Boolean isCardholderCredited;
-    
+
     private LocalDateTime creditTimestamp;
-    
+
     private BigDecimal creditAmount;
-    
+
     private String creditCurrency;
-    
+
     private LocalDateTime resolutionTimestamp;
-    
+
     private String resolutionCode;
-    
+
     private String resolutionDescription;
-    
+
     private Boolean isPoliceReportFiled;
-    
+
     private String policeReportNumber;
-    
+
     private LocalDateTime policeReportDate;
-    
+
     private String evidenceDocuments;
-    
+
     private Long assignedAgentId;
-    
+
     private String assignedAgentName;
-    
+
     private LocalDateTime lastUpdatedTimestamp;
 }

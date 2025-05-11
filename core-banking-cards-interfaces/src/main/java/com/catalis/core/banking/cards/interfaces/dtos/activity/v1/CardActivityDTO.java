@@ -31,7 +31,7 @@ public class CardActivityDTO extends BaseDTO {
     private Long cardId;
 
     @FilterableId
-    private Long customerId;
+    private Long partyId;
 
     @FilterableId
     private Long accountId;
@@ -78,7 +78,7 @@ public class CardActivityDTO extends BaseDTO {
 
     private String geolocation;
 
-    private Boolean isCustomerInitiated;
+    private Boolean isPartyInitiated;
 
     private Boolean isSystemInitiated;
 

@@ -47,7 +47,7 @@ public class CardConfigurationDTO extends BaseDTO {
 
     private Boolean isProgramDefault;
 
-    private Boolean isCustomerConfigurable;
+    private Boolean isPartyConfigurable;
 
     private String allowedValues;
 

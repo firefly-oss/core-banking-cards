@@ -34,7 +34,7 @@ public class CardDisputeDTO extends BaseDTO {
     private Long transactionId;
 
     @FilterableId
-    private Long customerId;
+    private Long partyId;
 
     @FilterableId
     private Long accountId;

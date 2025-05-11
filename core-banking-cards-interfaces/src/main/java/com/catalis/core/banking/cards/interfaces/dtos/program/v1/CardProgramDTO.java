@@ -22,74 +22,74 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper=false)
 public class CardProgramDTO extends BaseDTO {
-    
+
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long programId;
-    
+
     private String programName;
-    
+
     private String programCode;
-    
+
     @FilterableId
     private Long issuerId;
-    
+
     @FilterableId
     private Long binId;
-    
+
     @FilterableId
     private Long cardTypeId;
-    
+
     @FilterableId
     private Long cardNetworkId;
-    
+
     @FilterableId
     private Long defaultDesignId;
-    
+
     private LocalDateTime startDate;
-    
+
     private LocalDateTime endDate;
-    
+
     private Boolean isActive;
-    
-    private Integer maxCardsPerCustomer;
-    
+
+    private Integer maxCardsPerParty;
+
     private Double defaultDailyLimit;
-    
+
     private Double defaultMonthlyLimit;
-    
+
     private Double defaultCreditLimit;
-    
+
     private Integer defaultCardValidityYears;
-    
+
     private Boolean supportsPhysicalCards;
-    
+
     private Boolean supportsVirtualCards;
-    
+
     private Boolean supportsContactless;
-    
+
     private Boolean supportsInternational;
-    
+
     private Boolean supportsAtmWithdrawal;
-    
+
     private Boolean supportsOnlineTransactions;
-    
+
     private Boolean supportsRecurringPayments;
-    
+
     private Boolean supportsApplePay;
-    
+
     private Boolean supportsGooglePay;
-    
+
     private Boolean supportsSamsungPay;
-    
+
     private Boolean requiresPin;
-    
+
     private Boolean requiresActivation;
-    
+
     private String currencyCode;
-    
+
     private String countryCode;
-    
+
     private String termsAndConditionsUrl;
-    
+
     private String description;
 }

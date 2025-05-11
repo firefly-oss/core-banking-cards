@@ -31,7 +31,7 @@ public class CardStatementDTO extends BaseDTO {
     private Long cardId;
 
     @FilterableId
-    private Long customerId;
+    private Long partyId;
 
     @FilterableId
     private Long accountId;

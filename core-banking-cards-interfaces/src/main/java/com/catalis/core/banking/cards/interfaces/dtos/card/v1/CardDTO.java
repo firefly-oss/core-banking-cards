@@ -44,7 +44,7 @@ public class CardDTO extends BaseDTO {
     private Long accountId;
 
     @FilterableId
-    private Long customerId;
+    private Long partyId;
 
     private CardStatusEnum cardStatus;
 

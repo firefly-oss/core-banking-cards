@@ -23,79 +23,79 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper=false)
 public class CardAlertDTO extends BaseDTO {
-    
+
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long alertId;
-    
+
     @FilterableId
     private Long cardId;
-    
+
     @FilterableId
     private Long transactionId;
-    
+
     @FilterableId
-    private Long customerId;
-    
+    private Long partyId;
+
     @FilterableId
     private Long accountId;
-    
+
     private String alertReference;
-    
+
     private String alertType;
-    
+
     private String alertCategory;
-    
+
     private String alertSeverity;
-    
+
     private String alertStatus;
-    
+
     private String alertTitle;
-    
+
     private String alertMessage;
-    
+
     private String alertDetails;
-    
+
     private String triggerEvent;
-    
+
     private LocalDateTime triggerTimestamp;
-    
+
     private BigDecimal triggerAmount;
-    
+
     private String triggerCurrency;
-    
+
     private String triggerLocation;
-    
+
     private String triggerMerchant;
-    
+
     private String triggerMerchantCategory;
-    
-    private Boolean isCustomerConfigurable;
-    
+
+    private Boolean isPartyConfigurable;
+
     private Boolean isSystemGenerated;
-    
+
     private Boolean isRead;
-    
+
     private LocalDateTime readTimestamp;
-    
+
     private String deliveryChannel;
-    
+
     private String deliveryStatus;
-    
+
     private LocalDateTime deliveryTimestamp;
-    
+
     private String deliveryRecipient;
-    
+
     private String deliveryDetails;
-    
+
     private LocalDateTime expirationTimestamp;
-    
+
     private Boolean actionRequired;
-    
+
     private String actionType;
-    
+
     private String actionTaken;
-    
+
     private LocalDateTime actionTimestamp;
-    
+
     private String actionBy;
 }
