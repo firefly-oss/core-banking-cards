@@ -47,24 +47,25 @@ public class CardDisputeServiceTest {
     @BeforeEach
     void setUp() {
         // Initialize test data
+        LocalDateTime now = LocalDateTime.now();
         disputeDTO = CardDisputeDTO.builder()
                 .disputeId(disputeId)
                 .cardId(cardId)
                 .transactionId(transactionId)
-                .disputeReason("UNAUTHORIZED_TRANSACTION")
+                .disputeReasonCode("UNAUTHORIZED_TRANSACTION")
                 .disputeAmount(new BigDecimal("125.50"))
-                .disputeDate(LocalDateTime.now())
-                .status("PENDING")
+                .filingTimestamp(now)
+                .disputeStatus("PENDING")
                 .build();
 
         disputeEntity = new CardDispute();
         disputeEntity.setDisputeId(disputeId);
         disputeEntity.setCardId(cardId);
         disputeEntity.setTransactionId(transactionId);
-        disputeEntity.setDisputeReason("UNAUTHORIZED_TRANSACTION");
+        disputeEntity.setDisputeReasonCode("UNAUTHORIZED_TRANSACTION");
         disputeEntity.setDisputeAmount(new BigDecimal("125.50"));
-        disputeEntity.setDisputeDate(LocalDateTime.now());
-        disputeEntity.setStatus("PENDING");
+        disputeEntity.setFilingTimestamp(now);
+        disputeEntity.setDisputeStatus("PENDING");
     }
 
     @Test

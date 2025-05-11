@@ -45,15 +45,15 @@ public class IssuerServiceTest {
         // Initialize test data
         issuerDTO = IssuerDTO.builder()
                 .issuerId(issuerId)
-                .name("Test Issuer")
-                .code("TST")
+                .issuerName("Test Issuer")
+                .issuerCode("TST")
                 .description("Test Issuer Description")
                 .build();
 
         issuerEntity = new Issuer();
         issuerEntity.setIssuerId(issuerId);
-        issuerEntity.setName("Test Issuer");
-        issuerEntity.setCode("TST");
+        issuerEntity.setIssuerName("Test Issuer");
+        issuerEntity.setIssuerCode("TST");
         issuerEntity.setDescription("Test Issuer Description");
     }
 

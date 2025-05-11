@@ -47,22 +47,23 @@ public class CardBalanceServiceTest {
     @BeforeEach
     void setUp() {
         // Initialize test data
+        LocalDateTime now = LocalDateTime.now();
         balanceDTO = CardBalanceDTO.builder()
                 .balanceId(balanceId)
                 .cardId(cardId)
                 .balanceType("AVAILABLE")
-                .amount(new BigDecimal("1000.00"))
+                .balanceAmount(new BigDecimal("1000.00"))
                 .currencyCode("USD")
-                .lastUpdated(LocalDateTime.now())
+                .asOfDate(now)
                 .build();
 
         balanceEntity = new CardBalance();
         balanceEntity.setBalanceId(balanceId);
         balanceEntity.setCardId(cardId);
         balanceEntity.setBalanceType("AVAILABLE");
-        balanceEntity.setAmount(new BigDecimal("1000.00"));
+        balanceEntity.setBalanceAmount(new BigDecimal("1000.00"));
         balanceEntity.setCurrencyCode("USD");
-        balanceEntity.setLastUpdated(LocalDateTime.now());
+        balanceEntity.setAsOfDate(now);
     }
 
     @Test

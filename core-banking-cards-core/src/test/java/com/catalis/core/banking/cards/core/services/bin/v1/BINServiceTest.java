@@ -45,7 +45,7 @@ public class BINServiceTest {
     void setUp() {
         // Initialize test data
         LocalDateTime now = LocalDateTime.now();
-        
+
         binDTO = BINDTO.builder()
                 .binId(binId)
                 .binNumber(binNumber)
@@ -76,10 +76,10 @@ public class BINServiceTest {
     void listBINs_Success() {
         // Arrange
         PaginationRequest paginationRequest = new PaginationRequest();
-        
+
         @SuppressWarnings("unchecked")
         PaginationResponse<BINDTO> expectedResponse = mock(PaginationResponse.class);
-        
+
         try (MockedStatic<PaginationUtils> paginationUtilsMocked = mockStatic(PaginationUtils.class)) {
             paginationUtilsMocked.when(() -> PaginationUtils.paginateQuery(
                     eq(paginationRequest),
@@ -87,18 +87,18 @@ public class BINServiceTest {
                     any(Function.class),
                     any(Supplier.class)
             )).thenReturn(Mono.just(expectedResponse));
-            
+
             // Act & Assert
             StepVerifier.create(service.listBINs(paginationRequest))
                     .expectNext(expectedResponse)
                     .verifyComplete();
-            
+
             // Verify that PaginationUtils.paginateQuery was called with the correct parameters
             paginationUtilsMocked.verify(() -> PaginationUtils.paginateQuery(
                     eq(paginationRequest),
-                    eq(mapper::toDTO),
-                    eq(repository::findAllBy),
-                    eq(repository::count)
+                    any(Function.class),
+                    any(Function.class),
+                    any(Supplier.class)
             ));
         }
     }

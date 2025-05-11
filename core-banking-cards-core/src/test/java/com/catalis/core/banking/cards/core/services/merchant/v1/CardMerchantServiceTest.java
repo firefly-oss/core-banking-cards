@@ -45,18 +45,18 @@ public class CardMerchantServiceTest {
         // Initialize test data
         merchantDTO = CardMerchantDTO.builder()
                 .merchantId(merchantId)
-                .name("Test Merchant")
-                .category("Retail")
-                .mcc("5411")
-                .description("Test Merchant Description")
+                .merchantName("Test Merchant")
+                .merchantType("Retail")
+                .merchantCategoryCode("5411")
+                .merchantDescription("Test Merchant Description")
                 .build();
 
         merchantEntity = new CardMerchant();
         merchantEntity.setMerchantId(merchantId);
-        merchantEntity.setName("Test Merchant");
-        merchantEntity.setCategory("Retail");
-        merchantEntity.setMcc("5411");
-        merchantEntity.setDescription("Test Merchant Description");
+        merchantEntity.setMerchantName("Test Merchant");
+        merchantEntity.setMerchantType("Retail");
+        merchantEntity.setMerchantCategoryCode("5411");
+        merchantEntity.setMerchantDescription("Test Merchant Description");
     }
 
     @Test

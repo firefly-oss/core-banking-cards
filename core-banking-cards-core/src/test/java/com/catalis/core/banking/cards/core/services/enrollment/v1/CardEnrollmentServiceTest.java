@@ -45,20 +45,21 @@ public class CardEnrollmentServiceTest {
     @BeforeEach
     void setUp() {
         // Initialize test data
+        LocalDateTime now = LocalDateTime.now();
         enrollmentDTO = CardEnrollmentDTO.builder()
                 .enrollmentId(enrollmentId)
                 .cardId(cardId)
-                .programName("Rewards Program")
-                .enrollmentDate(LocalDateTime.now())
-                .status("ACTIVE")
+                .featureName("Rewards Program")
+                .enrollmentTimestamp(now)
+                .enrollmentStatus("ACTIVE")
                 .build();
 
         enrollmentEntity = new CardEnrollment();
         enrollmentEntity.setEnrollmentId(enrollmentId);
         enrollmentEntity.setCardId(cardId);
-        enrollmentEntity.setProgramName("Rewards Program");
-        enrollmentEntity.setEnrollmentDate(LocalDateTime.now());
-        enrollmentEntity.setStatus("ACTIVE");
+        enrollmentEntity.setFeatureName("Rewards Program");
+        enrollmentEntity.setEnrollmentTimestamp(now);
+        enrollmentEntity.setEnrollmentStatus("ACTIVE");
     }
 
     @Test

@@ -46,22 +46,23 @@ public class CardPaymentServiceTest {
     @BeforeEach
     void setUp() {
         // Initialize test data
+        LocalDateTime now = LocalDateTime.now();
         paymentDTO = CardPaymentDTO.builder()
                 .paymentId(paymentId)
                 .cardId(cardId)
                 .paymentAmount(new BigDecimal("250.00"))
-                .paymentDate(LocalDateTime.now())
+                .paymentTimestamp(now)
                 .paymentMethod("BANK_TRANSFER")
-                .status("COMPLETED")
+                .paymentStatus("COMPLETED")
                 .build();
 
         paymentEntity = new CardPayment();
         paymentEntity.setPaymentId(paymentId);
         paymentEntity.setCardId(cardId);
         paymentEntity.setPaymentAmount(new BigDecimal("250.00"));
-        paymentEntity.setPaymentDate(LocalDateTime.now());
+        paymentEntity.setPaymentTimestamp(now);
         paymentEntity.setPaymentMethod("BANK_TRANSFER");
-        paymentEntity.setStatus("COMPLETED");
+        paymentEntity.setPaymentStatus("COMPLETED");
     }
 
     @Test

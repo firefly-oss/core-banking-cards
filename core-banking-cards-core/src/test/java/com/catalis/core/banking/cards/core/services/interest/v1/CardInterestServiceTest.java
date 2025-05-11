@@ -46,22 +46,23 @@ public class CardInterestServiceTest {
     @BeforeEach
     void setUp() {
         // Initialize test data
+        LocalDateTime now = LocalDateTime.now();
         interestDTO = CardInterestDTO.builder()
                 .interestId(interestId)
                 .cardId(cardId)
                 .interestType("PURCHASE")
-                .rate(new BigDecimal("18.99"))
+                .interestRate(new BigDecimal("18.99"))
                 .calculationMethod("DAILY")
-                .effectiveDate(LocalDateTime.now())
+                .accrualStartDate(now)
                 .build();
 
         interestEntity = new CardInterest();
         interestEntity.setInterestId(interestId);
         interestEntity.setCardId(cardId);
         interestEntity.setInterestType("PURCHASE");
-        interestEntity.setRate(new BigDecimal("18.99"));
+        interestEntity.setInterestRate(new BigDecimal("18.99"));
         interestEntity.setCalculationMethod("DAILY");
-        interestEntity.setEffectiveDate(LocalDateTime.now());
+        interestEntity.setAccrualStartDate(now);
     }
 
     @Test

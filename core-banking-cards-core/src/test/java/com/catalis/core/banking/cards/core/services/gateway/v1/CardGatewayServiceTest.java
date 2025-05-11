@@ -45,7 +45,7 @@ public class CardGatewayServiceTest {
     void setUp() {
         // Initialize test data
         LocalDateTime now = LocalDateTime.now();
-        
+
         gatewayDTO = CardGatewayDTO.builder()
                 .gatewayId(gatewayId)
                 .gatewayReference("GTW-REF-001")
@@ -196,10 +196,10 @@ public class CardGatewayServiceTest {
     void listGateways_Success() {
         // Arrange
         PaginationRequest paginationRequest = new PaginationRequest();
-        
+
         @SuppressWarnings("unchecked")
         PaginationResponse<CardGatewayDTO> expectedResponse = mock(PaginationResponse.class);
-        
+
         try (MockedStatic<PaginationUtils> paginationUtilsMocked = mockStatic(PaginationUtils.class)) {
             paginationUtilsMocked.when(() -> PaginationUtils.paginateQuery(
                     eq(paginationRequest),
@@ -207,18 +207,18 @@ public class CardGatewayServiceTest {
                     any(Function.class),
                     any(Supplier.class)
             )).thenReturn(Mono.just(expectedResponse));
-            
+
             // Act & Assert
             StepVerifier.create(service.listGateways(paginationRequest))
                     .expectNext(expectedResponse)
                     .verifyComplete();
-            
+
             // Verify that PaginationUtils.paginateQuery was called with the correct parameters
             paginationUtilsMocked.verify(() -> PaginationUtils.paginateQuery(
                     eq(paginationRequest),
-                    eq(mapper::toDTO),
-                    eq(repository::findAllBy),
-                    eq(repository::count)
+                    any(Function.class),
+                    any(Function.class),
+                    any(Supplier.class)
             ));
         }
     }

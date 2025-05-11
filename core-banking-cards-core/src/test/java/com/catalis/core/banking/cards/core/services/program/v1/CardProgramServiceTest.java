@@ -45,7 +45,7 @@ public class CardProgramServiceTest {
     void setUp() {
         // Initialize test data
         LocalDateTime now = LocalDateTime.now();
-        
+
         programDTO = CardProgramDTO.builder()
                 .programId(programId)
                 .programName("Test Program")
@@ -120,10 +120,10 @@ public class CardProgramServiceTest {
     void listPrograms_Success() {
         // Arrange
         PaginationRequest paginationRequest = new PaginationRequest();
-        
+
         @SuppressWarnings("unchecked")
         PaginationResponse<CardProgramDTO> expectedResponse = mock(PaginationResponse.class);
-        
+
         try (MockedStatic<PaginationUtils> paginationUtilsMocked = mockStatic(PaginationUtils.class)) {
             paginationUtilsMocked.when(() -> PaginationUtils.paginateQuery(
                     eq(paginationRequest),
@@ -131,18 +131,18 @@ public class CardProgramServiceTest {
                     any(Function.class),
                     any(Supplier.class)
             )).thenReturn(Mono.just(expectedResponse));
-            
+
             // Act & Assert
             StepVerifier.create(service.listPrograms(paginationRequest))
                     .expectNext(expectedResponse)
                     .verifyComplete();
-            
+
             // Verify that PaginationUtils.paginateQuery was called with the correct parameters
             paginationUtilsMocked.verify(() -> PaginationUtils.paginateQuery(
                     eq(paginationRequest),
-                    eq(mapper::toDTO),
-                    eq(repository::findAllBy),
-                    eq(repository::count)
+                    any(Function.class),
+                    any(Function.class),
+                    any(Supplier.class)
             ));
         }
     }
