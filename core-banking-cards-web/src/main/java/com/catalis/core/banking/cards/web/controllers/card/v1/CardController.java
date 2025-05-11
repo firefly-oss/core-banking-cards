@@ -26,9 +26,27 @@ public class CardController {
     @Operation(
             summary = "Create Card",
             description = "Create a new card record in the banking system.\n\n" +
+                    "## Description\n" +
                     "This endpoint allows the creation of new payment cards. Cards are the central entity in the system " +
                     "and are associated with specific card programs, issuers, networks, and account holders. " +
-                    "The created card can be either physical, virtual, or both, depending on the configuration."
+                    "The created card can be either physical, virtual, or both, depending on the configuration.\n\n" +
+                    "## Required Fields\n" +
+                    "* `cardTypeId` - Type of card (credit, debit, prepaid)\n" +
+                    "* `cardNetworkId` - Card network (Visa, Mastercard, etc.)\n" +
+                    "* `issuerId` - Financial institution issuing the card\n" +
+                    "* `binId` - Bank Identification Number\n" +
+                    "* `partyId` - Account holder identifier\n" +
+                    "* `cardHolderName` - Name to appear on the card\n\n" +
+                    "## Optional Fields\n" +
+                    "* `isPhysical` - Whether to issue a physical card\n" +
+                    "* `isVirtual` - Whether to issue a virtual card\n" +
+                    "* `designId` - Card design template\n" +
+                    "* `dailyLimit` - Maximum daily transaction amount\n" +
+                    "* `monthlyLimit` - Maximum monthly transaction amount\n" +
+                    "* `creditLimit` - Credit limit (for credit cards)\n\n" +
+                    "## Security Considerations\n" +
+                    "Sensitive card data like the full card number, CVV, and PIN are generated securely by the system. " +
+                    "These values are stored encrypted and are never returned in full through the API."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Card created successfully",
@@ -51,9 +69,25 @@ public class CardController {
     @Operation(
             summary = "Get Card by ID",
             description = "Retrieve an existing card record by its unique identifier.\n\n" +
+                    "## Description\n" +
                     "This endpoint returns comprehensive information about a card, including its status, " +
-                    "associated accounts, limits, and key attributes. Sensitive information like the full card number, " +
-                    "CVV, and PIN are masked or excluded from the response for security reasons."
+                    "associated accounts, limits, and key attributes. It provides all the details needed for " +
+                    "card management and transaction processing.\n\n" +
+                    "## Response Details\n" +
+                    "The response includes:\n" +
+                    "* Basic card information (masked number, expiration date, status)\n" +
+                    "* Associated entities (issuer, network, program)\n" +
+                    "* Account details (account ID, party ID)\n" +
+                    "* Card limits and restrictions\n" +
+                    "* Card features and capabilities\n\n" +
+                    "## Security Considerations\n" +
+                    "Sensitive information like the full card number, CVV, and PIN are masked or excluded from " +
+                    "the response for security reasons. The card number is partially masked (e.g., '411111******1111') " +
+                    "to allow identification while protecting sensitive data.\n\n" +
+                    "## Common Use Cases\n" +
+                    "* Retrieving card details for display in customer portals\n" +
+                    "* Checking card status before processing transactions\n" +
+                    "* Verifying card limits and restrictions"
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved the card",
@@ -75,9 +109,32 @@ public class CardController {
     @Operation(
             summary = "Update Card",
             description = "Update an existing card record by its unique identifier.\n\n" +
+                    "## Description\n" +
                     "This endpoint allows modification of card attributes such as status, limits, and expiration details. " +
-                    "Note that certain sensitive fields and core attributes (like card number or BIN) cannot be modified " +
-                    "after card creation. For such changes, a new card must be issued."
+                    "It enables financial institutions to manage card lifecycle events and adjust card parameters " +
+                    "based on customer needs or risk assessments.\n\n" +
+                    "## Updatable Fields\n" +
+                    "* `cardStatus` - Current status (ACTIVE, INACTIVE, BLOCKED, etc.)\n" +
+                    "* `cardHolderName` - Name displayed on the card\n" +
+                    "* `dailyLimit` - Maximum daily transaction amount\n" +
+                    "* `monthlyLimit` - Maximum monthly transaction amount\n" +
+                    "* `creditLimit` - Credit limit (for credit cards)\n" +
+                    "* `expirationDate` - Card expiration date (for extensions)\n" +
+                    "* `isActive` - Whether the card is active\n" +
+                    "* `isLocked` - Whether the card is temporarily locked\n\n" +
+                    "## Immutable Fields\n" +
+                    "Note that certain sensitive fields and core attributes cannot be modified after card creation:\n" +
+                    "* Card number\n" +
+                    "* BIN\n" +
+                    "* Card type\n" +
+                    "* Card network\n" +
+                    "* Issuer\n\n" +
+                    "For changes to these immutable attributes, a new card must be issued.\n\n" +
+                    "## Common Use Cases\n" +
+                    "* Activating a newly issued card\n" +
+                    "* Blocking a card due to suspected fraud\n" +
+                    "* Adjusting card limits based on customer request\n" +
+                    "* Updating cardholder information"
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Card updated successfully",
@@ -103,9 +160,26 @@ public class CardController {
     @Operation(
             summary = "Delete Card",
             description = "Remove an existing card record by its unique identifier.\n\n" +
-                    "This endpoint permanently removes a card from the system. This operation should be used with extreme caution, " +
-                    "especially for cards that have transaction history. In most production scenarios, cards should be deactivated " +
-                    "or blocked rather than deleted to preserve transaction history and audit trails."
+                    "## Description\n" +
+                    "This endpoint permanently removes a card from the system. It completely erases the card record " +
+                    "and all its associated data from the database.\n\n" +
+                    "## Warning\n" +
+                    "⚠️ **This operation should be used with extreme caution!**\n\n" +
+                    "Deleting a card has several important implications:\n" +
+                    "* All transaction history associated with the card will be orphaned\n" +
+                    "* Audit trails will be incomplete\n" +
+                    "* Regulatory compliance may be compromised\n" +
+                    "* Customer service inquiries about the card cannot be addressed\n\n" +
+                    "## Recommended Alternative\n" +
+                    "In most production scenarios, cards should be **deactivated** or **blocked** rather than deleted. " +
+                    "This preserves the card record and its history while preventing any new transactions.\n\n" +
+                    "## Appropriate Use Cases\n" +
+                    "Card deletion should be limited to:\n" +
+                    "* Test cards in non-production environments\n" +
+                    "* Cards created in error that have never been activated\n" +
+                    "* Specific regulatory requirements that mandate complete removal\n\n" +
+                    "## Required Permissions\n" +
+                    "This operation typically requires elevated administrative privileges."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Card deleted successfully",
