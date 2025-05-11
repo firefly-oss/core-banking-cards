@@ -25,7 +25,10 @@ public class CardController {
 
     @Operation(
             summary = "Create Card",
-            description = "Create a new card record in the banking system."
+            description = "Create a new card record in the banking system.\n\n" +
+                    "This endpoint allows the creation of new payment cards. Cards are the central entity in the system " +
+                    "and are associated with specific card programs, issuers, networks, and account holders. " +
+                    "The created card can be either physical, virtual, or both, depending on the configuration."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Card created successfully",
@@ -47,7 +50,10 @@ public class CardController {
 
     @Operation(
             summary = "Get Card by ID",
-            description = "Retrieve an existing card record by its unique identifier."
+            description = "Retrieve an existing card record by its unique identifier.\n\n" +
+                    "This endpoint returns comprehensive information about a card, including its status, " +
+                    "associated accounts, limits, and key attributes. Sensitive information like the full card number, " +
+                    "CVV, and PIN are masked or excluded from the response for security reasons."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved the card",
@@ -68,7 +74,10 @@ public class CardController {
 
     @Operation(
             summary = "Update Card",
-            description = "Update an existing card record by its unique identifier."
+            description = "Update an existing card record by its unique identifier.\n\n" +
+                    "This endpoint allows modification of card attributes such as status, limits, and expiration details. " +
+                    "Note that certain sensitive fields and core attributes (like card number or BIN) cannot be modified " +
+                    "after card creation. For such changes, a new card must be issued."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Card updated successfully",
@@ -93,7 +102,10 @@ public class CardController {
 
     @Operation(
             summary = "Delete Card",
-            description = "Remove an existing card record by its unique identifier."
+            description = "Remove an existing card record by its unique identifier.\n\n" +
+                    "This endpoint permanently removes a card from the system. This operation should be used with extreme caution, " +
+                    "especially for cards that have transaction history. In most production scenarios, cards should be deactivated " +
+                    "or blocked rather than deleted to preserve transaction history and audit trails."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Card deleted successfully",

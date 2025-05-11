@@ -20,7 +20,7 @@ import reactor.core.publisher.Mono;
 
 @Tag(name = "Card Acquirers", description = "APIs for managing card acquirer records")
 @RestController
-@RequestMapping("/api/v1/card-acquirers")
+@RequestMapping("/api/v1/acquirers")
 public class CardAcquirerController {
 
     @Autowired
@@ -28,7 +28,11 @@ public class CardAcquirerController {
 
     @Operation(
             summary = "List Card Acquirers",
-            description = "Retrieve a paginated list of all card acquirer records."
+            description = "Retrieve a paginated list of all card acquirer records.\n\n" +
+                    "Card acquirers are financial institutions that process card payments on behalf of merchants. " +
+                    "This endpoint returns information about all acquirers registered in the system.\n\n" +
+                    "The response includes acquirer details such as name, code, region coverage, supported card networks, " +
+                    "and integration information. Results can be filtered and sorted using the pagination parameters."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved card acquirers",
@@ -49,7 +53,11 @@ public class CardAcquirerController {
 
     @Operation(
             summary = "Create Card Acquirer",
-            description = "Create a new card acquirer record."
+            description = "Create a new card acquirer record.\n\n" +
+                    "This endpoint allows adding a new card acquirer to the system. Acquirers are financial institutions " +
+                    "that maintain merchant accounts and process card transactions on behalf of merchants.\n\n" +
+                    "Required information includes the acquirer name, code, and region coverage. Additional details like " +
+                    "supported card networks, settlement information, and integration parameters can also be provided."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Card acquirer created successfully",
@@ -71,7 +79,11 @@ public class CardAcquirerController {
 
     @Operation(
             summary = "Get Card Acquirer by ID",
-            description = "Retrieve a specific card acquirer record by its unique identifier."
+            description = "Retrieve a specific card acquirer record by its unique identifier.\n\n" +
+                    "This endpoint returns detailed information about a specific card acquirer, including its " +
+                    "configuration, supported card networks, integration details, and settlement information. " +
+                    "This information is used when configuring merchant accounts and processing transactions.\n\n" +
+                    "The acquirer ID is a unique identifier assigned to each card acquirer in the system."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved the card acquirer",
@@ -92,7 +104,12 @@ public class CardAcquirerController {
 
     @Operation(
             summary = "Update Card Acquirer",
-            description = "Update an existing card acquirer record by its unique identifier."
+            description = "Update an existing card acquirer record by its unique identifier.\n\n" +
+                    "This endpoint allows modification of acquirer attributes such as contact information, " +
+                    "supported card networks, settlement details, and integration parameters. The core acquirer " +
+                    "identity (name and code) should generally remain stable.\n\n" +
+                    "Updates to acquirer configuration may affect transaction processing and settlement, so changes " +
+                    "should be carefully tested before being applied to production environments."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Card acquirer updated successfully",
@@ -119,7 +136,12 @@ public class CardAcquirerController {
 
     @Operation(
             summary = "Delete Card Acquirer",
-            description = "Delete a card acquirer record by its unique identifier."
+            description = "Delete a card acquirer record by its unique identifier.\n\n" +
+                    "This endpoint permanently removes a card acquirer from the system. This operation should be used " +
+                    "with extreme caution, as it may impact transaction processing and settlement for merchants " +
+                    "associated with this acquirer.\n\n" +
+                    "Before deletion, ensure that no active merchants are using this acquirer. In most cases, " +
+                    "deactivating an acquirer rather than deleting it is the safer approach to maintain historical records."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Card acquirer deleted successfully",

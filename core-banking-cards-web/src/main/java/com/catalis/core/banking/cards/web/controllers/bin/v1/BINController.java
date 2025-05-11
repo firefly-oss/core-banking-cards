@@ -28,7 +28,9 @@ public class BINController {
 
     @Operation(
             summary = "List BINs",
-            description = "Retrieve a paginated list of all BIN records."
+            description = "Retrieve a paginated list of all Bank Identification Number (BIN) records.\n\n" +
+                    "BINs are the first 6 to 8 digits of a payment card number that identify the card issuer, " +
+                    "card type, and other key attributes. This endpoint supports filtering and sorting capabilities."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved BINs",
@@ -49,7 +51,10 @@ public class BINController {
 
     @Operation(
             summary = "Create BIN",
-            description = "Create a new BIN record."
+            description = "Create a new Bank Identification Number (BIN) record.\n\n" +
+                    "This endpoint allows financial institutions to register new BINs in the system. " +
+                    "The BIN is associated with a specific issuer, card network, and card type, and is used to identify " +
+                    "the origin of payment cards."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "BIN created successfully",
@@ -71,7 +76,9 @@ public class BINController {
 
     @Operation(
             summary = "Get BIN by ID",
-            description = "Retrieve a specific BIN record by its unique identifier."
+            description = "Retrieve a specific Bank Identification Number (BIN) record by its unique identifier.\n\n" +
+                    "This endpoint returns detailed information about a BIN, including its associated issuer, " +
+                    "card network, and card type. This information is essential for card issuance and transaction processing."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved the BIN",
@@ -92,7 +99,9 @@ public class BINController {
 
     @Operation(
             summary = "Get BIN by Number",
-            description = "Retrieve a specific BIN record by its BIN number."
+            description = "Retrieve a specific Bank Identification Number (BIN) record by its BIN number.\n\n" +
+                    "This endpoint allows looking up BIN information using the actual BIN number (first 6-8 digits of a card), " +
+                    "which is useful during transaction processing and card validation workflows."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved the BIN",
@@ -101,10 +110,10 @@ public class BINController {
             @ApiResponse(responseCode = "404", description = "BIN not found",
                     content = @Content)
     })
-    @GetMapping(value = "/number/{binNumber}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(params = "number", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<BINDTO>> getBINByNumber(
             @Parameter(description = "BIN number", required = true)
-            @PathVariable String binNumber
+            @RequestParam("number") String binNumber
     ) {
         return service.getBINByNumber(binNumber)
                 .map(ResponseEntity::ok)
@@ -113,7 +122,10 @@ public class BINController {
 
     @Operation(
             summary = "Update BIN",
-            description = "Update an existing BIN record by its unique identifier."
+            description = "Update an existing Bank Identification Number (BIN) record by its unique identifier.\n\n" +
+                    "This endpoint allows modification of BIN attributes such as associated card type, network, " +
+                    "country code, currency code, and activation status. Note that the BIN number itself should " +
+                    "typically not be changed as it is a standardized identifier."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "BIN updated successfully",
@@ -140,7 +152,10 @@ public class BINController {
 
     @Operation(
             summary = "Delete BIN",
-            description = "Delete a BIN record by its unique identifier."
+            description = "Delete a Bank Identification Number (BIN) record by its unique identifier.\n\n" +
+                    "This endpoint permanently removes a BIN from the system. This operation should be used with caution, " +
+                    "especially if there are cards already issued with this BIN. Consider deactivating the BIN instead " +
+                    "of deleting it if it has been used in production."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "BIN deleted successfully",
