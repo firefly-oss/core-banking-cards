@@ -48,24 +48,24 @@ public class CardServiceTest {
                 .cardId(cardId)
                 .contractId(contractId)
                 .accountId(accountId)
-                .cardType(CardTypeEnum.CREDIT)
+                .cardTypeId(1L)
                 .cardStatus(CardStatusEnum.ACTIVE)
-                .issuingBank("Test Bank")
+                .issuerId(1L)
                 .issuanceDate(now)
                 .expirationDate(expirationDate)
-                .physicalFlag(true)
+                .isPhysical(true)
                 .build();
 
         card = new Card();
         card.setCardId(cardId);
         card.setContractId(contractId);
         card.setAccountId(accountId);
-        card.setCardType(CardTypeEnum.CREDIT);
+        card.setCardTypeId(1L);
         card.setCardStatus(CardStatusEnum.ACTIVE);
-        card.setIssuingBank("Test Bank");
+        card.setIssuerId(1L);
         card.setIssuanceDate(now);
         card.setExpirationDate(expirationDate);
-        card.setPhysicalFlag(true);
+        card.setIsPhysical(true);
     }
 
     @Test

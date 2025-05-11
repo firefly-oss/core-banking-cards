@@ -52,35 +52,71 @@ public class PhysicalCardServiceTest {
         physicalCardDTO = PhysicalCardDTO.builder()
                 .physicalCardId(physicalCardId)
                 .cardId(cardId)
-                .cardNumber("1234567890123456")
-                .cardCvv("123")
-                .cardHolderName("John Doe")
-                .cardNetwork("Visa")
-                .cardDesign("Standard")
+                .embossedName("John Doe")
+                .plasticId("P12345")
+                .designId(1L)
+                .isContactless(true)
+                .isChip(true)
+                .isMagstripe(true)
+                .manufacturingStatus("COMPLETED")
+                .manufacturingDate(now.minusDays(10))
+                .shippingAddress("123 Main St")
+                .shippingCity("New York")
+                .shippingState("NY")
+                .shippingCountry("USA")
+                .shippingPostalCode("10001")
+                .shippingMethod("Express")
+                .shippingTrackingNumber("TRK123456")
+                .shippingCarrier("FedEx")
                 .shipmentDate(now)
-                .deliveryDate(now.plusDays(5))
+                .estimatedDeliveryDate(now.plusDays(3))
+                .actualDeliveryDate(now.plusDays(5))
+                .activationMethod("ONLINE")
+                .activationDate(now.plusDays(6))
+                .isActivated(true)
+                .replacementReason(null)
+                .previousCardId(null)
+                .notes("Test card")
                 .build();
 
         physicalCardEntity = new PhysicalCard();
         physicalCardEntity.setPhysicalCardId(physicalCardId);
         physicalCardEntity.setCardId(cardId);
-        physicalCardEntity.setCardNumber("1234567890123456");
-        physicalCardEntity.setCardCvv("123");
-        physicalCardEntity.setCardHolderName("John Doe");
-        physicalCardEntity.setCardNetwork("Visa");
-        physicalCardEntity.setCardDesign("Standard");
+        physicalCardEntity.setEmbossedName("John Doe");
+        physicalCardEntity.setPlasticId("P12345");
+        physicalCardEntity.setDesignId(1L);
+        physicalCardEntity.setIsContactless(true);
+        physicalCardEntity.setIsChip(true);
+        physicalCardEntity.setIsMagstripe(true);
+        physicalCardEntity.setManufacturingStatus("COMPLETED");
+        physicalCardEntity.setManufacturingDate(now.minusDays(10));
+        physicalCardEntity.setShippingAddress("123 Main St");
+        physicalCardEntity.setShippingCity("New York");
+        physicalCardEntity.setShippingState("NY");
+        physicalCardEntity.setShippingCountry("USA");
+        physicalCardEntity.setShippingPostalCode("10001");
+        physicalCardEntity.setShippingMethod("Express");
+        physicalCardEntity.setShippingTrackingNumber("TRK123456");
+        physicalCardEntity.setShippingCarrier("FedEx");
         physicalCardEntity.setShipmentDate(now);
-        physicalCardEntity.setDeliveryDate(now.plusDays(5));
+        physicalCardEntity.setEstimatedDeliveryDate(now.plusDays(3));
+        physicalCardEntity.setActualDeliveryDate(now.plusDays(5));
+        physicalCardEntity.setActivationMethod("ONLINE");
+        physicalCardEntity.setActivationDate(now.plusDays(6));
+        physicalCardEntity.setIsActivated(true);
+        physicalCardEntity.setReplacementReason(null);
+        physicalCardEntity.setPreviousCardId(null);
+        physicalCardEntity.setNotes("Test card");
     }
 
     @Test
     void listPhysicalCards_Success() {
         // Arrange
         PaginationRequest paginationRequest = new PaginationRequest();
-        
+
         @SuppressWarnings("unchecked")
         PaginationResponse<PhysicalCardDTO> expectedResponse = mock(PaginationResponse.class);
-        
+
         try (MockedStatic<PaginationUtils> paginationUtilsMocked = mockStatic(PaginationUtils.class)) {
             paginationUtilsMocked.when(() -> PaginationUtils.paginateQuery(
                     eq(paginationRequest),
@@ -154,7 +190,7 @@ public class PhysicalCardServiceTest {
         PhysicalCard wrongCardPhysicalCard = new PhysicalCard();
         wrongCardPhysicalCard.setPhysicalCardId(physicalCardId);
         wrongCardPhysicalCard.setCardId(999L); // Different card ID
-        
+
         when(repository.findByPhysicalCardId(physicalCardId)).thenReturn(Mono.just(wrongCardPhysicalCard));
 
         // Act & Assert
@@ -205,7 +241,7 @@ public class PhysicalCardServiceTest {
         PhysicalCard wrongCardPhysicalCard = new PhysicalCard();
         wrongCardPhysicalCard.setPhysicalCardId(physicalCardId);
         wrongCardPhysicalCard.setCardId(999L); // Different card ID
-        
+
         when(repository.findByPhysicalCardId(physicalCardId)).thenReturn(Mono.just(wrongCardPhysicalCard));
 
         // Act & Assert
@@ -251,7 +287,7 @@ public class PhysicalCardServiceTest {
         PhysicalCard wrongCardPhysicalCard = new PhysicalCard();
         wrongCardPhysicalCard.setPhysicalCardId(physicalCardId);
         wrongCardPhysicalCard.setCardId(999L); // Different card ID
-        
+
         when(repository.findByPhysicalCardId(physicalCardId)).thenReturn(Mono.just(wrongCardPhysicalCard));
 
         // Act & Assert

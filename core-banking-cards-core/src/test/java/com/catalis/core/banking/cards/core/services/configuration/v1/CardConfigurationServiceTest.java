@@ -20,6 +20,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -48,18 +49,43 @@ public class CardConfigurationServiceTest {
     @BeforeEach
     void setUp() {
         // Initialize test data
+        LocalDateTime now = LocalDateTime.now();
         configDTO = CardConfigurationDTO.builder()
                 .cardConfigurationId(configId)
                 .cardId(cardId)
-                .configType(ConfigTypeEnum.CONTACTLESS_ENABLED)
-                .configValue(true)
+                .programId(3L)
+                .configKey("CONTACTLESS")
+                .configValue("true")
+                .configType("BOOLEAN")
+                .isActive(true)
+                .activationDate(now.minusDays(30))
+                .expirationDate(now.plusYears(1))
+                .isSystemDefault(false)
+                .isProgramDefault(true)
+                .isCustomerConfigurable(true)
+                .allowedValues("true,false")
+                .minValue(null)
+                .maxValue(null)
+                .description("Enable or disable contactless payments")
                 .build();
 
         configEntity = new CardConfiguration();
         configEntity.setCardConfigurationId(configId);
         configEntity.setCardId(cardId);
-        configEntity.setConfigType(ConfigTypeEnum.CONTACTLESS_ENABLED);
-        configEntity.setConfigValue(true);
+        configEntity.setProgramId(3L);
+        configEntity.setConfigKey("CONTACTLESS");
+        configEntity.setConfigValue("true");
+        configEntity.setConfigType("BOOLEAN");
+        configEntity.setIsActive(true);
+        configEntity.setActivationDate(now.minusDays(30));
+        configEntity.setExpirationDate(now.plusYears(1));
+        configEntity.setIsSystemDefault(false);
+        configEntity.setIsProgramDefault(true);
+        configEntity.setIsCustomerConfigurable(true);
+        configEntity.setAllowedValues("true,false");
+        configEntity.setMinValue(null);
+        configEntity.setMaxValue(null);
+        configEntity.setDescription("Enable or disable contactless payments");
     }
 
     @Test

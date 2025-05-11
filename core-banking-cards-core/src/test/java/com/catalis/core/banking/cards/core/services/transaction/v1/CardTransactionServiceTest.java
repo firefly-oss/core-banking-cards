@@ -77,22 +77,25 @@ public class CardTransactionServiceTest {
         transactionEntity.setCardTransactionId(transactionId);
         transactionEntity.setCardId(cardId);
         transactionEntity.setTransactionType(TransactionTypeEnum.PURCHASE);
-        transactionEntity.setMerchantInfo("Test Merchant Info");
         transactionEntity.setTransactionStatus(TransactionStatusEnum.COMPLETED);
-        transactionEntity.setCardAuthCode("AUTH123");
-        transactionEntity.setCardMerchantCategoryCode("5411");
-        transactionEntity.setCardMerchantName("Test Merchant");
-        transactionEntity.setCardPosEntryMode("CHIP");
-        transactionEntity.setCardTransactionReference("REF123");
-        transactionEntity.setCardTerminalId("TERM123");
-        transactionEntity.setCardHolderCountry("US");
-        transactionEntity.setCardPresentFlag(true);
-        transactionEntity.setCardTransactionTimestamp(now);
-        transactionEntity.setCardFraudFlag(false);
-        transactionEntity.setCardCurrencyConversionRate(new BigDecimal("1.0"));
-        transactionEntity.setCardFeeAmount(new BigDecimal("5.0"));
-        transactionEntity.setCardFeeCurrency("USD");
-        transactionEntity.setCardInstallmentPlan("NONE");
+        transactionEntity.setTransactionTimestamp(now);
+        transactionEntity.setAuthorizationCode("AUTH123");
+        transactionEntity.setTransactionReference("REF123");
+        transactionEntity.setTransactionAmount(new BigDecimal("100.0"));
+        transactionEntity.setTransactionCurrency("USD");
+        transactionEntity.setMerchantId("MERCH123");
+        transactionEntity.setMerchantName("Test Merchant");
+        transactionEntity.setMerchantCategoryCode("5411");
+        transactionEntity.setMerchantCity("New York");
+        transactionEntity.setMerchantCountry("US");
+        transactionEntity.setTerminalId("TERM123");
+        transactionEntity.setEntryMode("CHIP");
+        transactionEntity.setIsCardPresent(true);
+        transactionEntity.setIsFraudSuspected(false);
+        transactionEntity.setExchangeRate(new BigDecimal("1.0"));
+        transactionEntity.setFeeAmount(new BigDecimal("5.0"));
+        transactionEntity.setFeeCurrency("USD");
+        transactionEntity.setInstallmentPlan("NONE");
     }
 
     @Test

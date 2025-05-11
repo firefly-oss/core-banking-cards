@@ -20,6 +20,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -48,30 +49,87 @@ public class CardProviderServiceTest {
     @BeforeEach
     void setUp() {
         // Initialize test data
+        LocalDateTime now = LocalDateTime.now();
         providerDTO = CardProviderDTO.builder()
                 .cardProviderId(providerId)
                 .cardId(cardId)
                 .providerName("Test Provider")
-                .externalReference("EXT-REF-123")
+                .providerCode("TEST")
+                .providerType("PROCESSOR")
+                .apiBaseUrl("https://api.testprovider.com")
+                .apiVersion("v1")
+                .apiKey("api-key-123")
+                .apiSecret("api-secret-456")
+                .apiUsername("testuser")
+                .apiPassword("testpass")
+                .apiCertificate("cert-data")
+                .webhookUrl("https://webhook.testprovider.com")
+                .webhookSecret("webhook-secret")
+                .supportsPhysicalCards(true)
+                .supportsVirtualCards(true)
+                .supportsTokenization(true)
+                .supports3dSecure(true)
+                .supportsApplePay(true)
+                .supportsGooglePay(true)
+                .supportsSamsungPay(true)
+                .contactName("John Contact")
+                .contactEmail("john@testprovider.com")
+                .contactPhone("+1234567890")
+                .supportUrl("https://support.testprovider.com")
+                .supportEmail("support@testprovider.com")
+                .supportPhone("+1987654321")
+                .contractStartDate(now.minusMonths(6))
+                .contractEndDate(now.plusYears(2))
                 .status(ProviderStatusEnum.ACTIVE)
+                .lastConnectionDate(now.minusDays(1))
+                .lastConnectionStatus("SUCCESS")
+                .description("Test provider description")
                 .build();
 
         providerEntity = new CardProvider();
         providerEntity.setCardProviderId(providerId);
         providerEntity.setCardId(cardId);
         providerEntity.setProviderName("Test Provider");
-        providerEntity.setExternalReference("EXT-REF-123");
+        providerEntity.setProviderCode("TEST");
+        providerEntity.setProviderType("PROCESSOR");
+        providerEntity.setApiBaseUrl("https://api.testprovider.com");
+        providerEntity.setApiVersion("v1");
+        providerEntity.setApiKey("api-key-123");
+        providerEntity.setApiSecret("api-secret-456");
+        providerEntity.setApiUsername("testuser");
+        providerEntity.setApiPassword("testpass");
+        providerEntity.setApiCertificate("cert-data");
+        providerEntity.setWebhookUrl("https://webhook.testprovider.com");
+        providerEntity.setWebhookSecret("webhook-secret");
+        providerEntity.setSupportsPhysicalCards(true);
+        providerEntity.setSupportsVirtualCards(true);
+        providerEntity.setSupportsTokenization(true);
+        providerEntity.setSupports3dSecure(true);
+        providerEntity.setSupportsApplePay(true);
+        providerEntity.setSupportsGooglePay(true);
+        providerEntity.setSupportsSamsungPay(true);
+        providerEntity.setContactName("John Contact");
+        providerEntity.setContactEmail("john@testprovider.com");
+        providerEntity.setContactPhone("+1234567890");
+        providerEntity.setSupportUrl("https://support.testprovider.com");
+        providerEntity.setSupportEmail("support@testprovider.com");
+        providerEntity.setSupportPhone("+1987654321");
+        providerEntity.setContractStartDate(now.minusMonths(6));
+        providerEntity.setContractEndDate(now.plusYears(2));
         providerEntity.setStatus(ProviderStatusEnum.ACTIVE);
+        providerEntity.setLastConnectionDate(now.minusDays(1));
+        providerEntity.setLastConnectionStatus("SUCCESS");
+        providerEntity.setDescription("Test provider description");
     }
 
     @Test
     void listProviders_Success() {
         // Arrange
         PaginationRequest paginationRequest = new PaginationRequest();
-        
+
         @SuppressWarnings("unchecked")
         PaginationResponse<CardProviderDTO> expectedResponse = mock(PaginationResponse.class);
-        
+
         try (MockedStatic<PaginationUtils> paginationUtilsMocked = mockStatic(PaginationUtils.class)) {
             paginationUtilsMocked.when(() -> PaginationUtils.paginateQuery(
                     eq(paginationRequest),
@@ -145,7 +203,7 @@ public class CardProviderServiceTest {
         CardProvider wrongCardProvider = new CardProvider();
         wrongCardProvider.setCardProviderId(providerId);
         wrongCardProvider.setCardId(999L); // Different card ID
-        
+
         when(repository.findById(providerId)).thenReturn(Mono.just(wrongCardProvider));
 
         // Act & Assert
@@ -196,7 +254,7 @@ public class CardProviderServiceTest {
         CardProvider wrongCardProvider = new CardProvider();
         wrongCardProvider.setCardProviderId(providerId);
         wrongCardProvider.setCardId(999L); // Different card ID
-        
+
         when(repository.findById(providerId)).thenReturn(Mono.just(wrongCardProvider));
 
         // Act & Assert
@@ -242,7 +300,7 @@ public class CardProviderServiceTest {
         CardProvider wrongCardProvider = new CardProvider();
         wrongCardProvider.setCardProviderId(providerId);
         wrongCardProvider.setCardId(999L); // Different card ID
-        
+
         when(repository.findById(providerId)).thenReturn(Mono.just(wrongCardProvider));
 
         // Act & Assert

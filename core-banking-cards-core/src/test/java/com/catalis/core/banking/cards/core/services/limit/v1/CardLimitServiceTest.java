@@ -62,10 +62,10 @@ public class CardLimitServiceTest {
         limitEntity = new CardLimit();
         limitEntity.setCardLimitId(limitId);
         limitEntity.setCardId(cardId);
-        limitEntity.setLimitType(LimitTypeEnum.DAILY_SPENDING);
+        limitEntity.setLimitType(LimitTypeEnum.DAILY_SPENDING.name());
         limitEntity.setLimitAmount(new BigDecimal("1000.00"));
         limitEntity.setCurrentUsage(new BigDecimal("500.00"));
-        limitEntity.setResetPeriod(ResetPeriodEnum.DAILY);
+        limitEntity.setResetPeriod(ResetPeriodEnum.DAILY.name());
     }
 
     @Test

@@ -19,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
+import java.time.LocalDateTime;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -47,6 +48,7 @@ public class CardSecurityServiceTest {
     @BeforeEach
     void setUp() {
         // Initialize test data
+        LocalDateTime now = LocalDateTime.now();
         securityDTO = CardSecurityDTO.builder()
                 .cardSecurityId(securityId)
                 .cardId(cardId)
@@ -57,18 +59,27 @@ public class CardSecurityServiceTest {
         securityEntity = new CardSecurity();
         securityEntity.setCardSecurityId(securityId);
         securityEntity.setCardId(cardId);
-        securityEntity.setSecurityFeature(SecurityFeatureEnum.PIN_ENABLED);
-        securityEntity.setSecurityStatus(true);
+        securityEntity.setSecurityFeatureName("PIN_ENABLED");
+        securityEntity.setSecurityFeatureCode("PIN");
+        securityEntity.setIsEnabled(true);
+        securityEntity.setIsMandatory(true);
+        securityEntity.setActivationDate(now);
+        securityEntity.setExpirationDate(now.plusYears(1));
+        securityEntity.setLastUpdatedDate(now);
+        securityEntity.setIsSystemDefault(true);
+        securityEntity.setIsProgramDefault(true);
+        securityEntity.setIsCustomerConfigurable(true);
+        securityEntity.setSupportsPin(true);
     }
 
     @Test
     void listSecuritySettings_Success() {
         // Arrange
         PaginationRequest paginationRequest = new PaginationRequest();
-        
+
         @SuppressWarnings("unchecked")
         PaginationResponse<CardSecurityDTO> expectedResponse = mock(PaginationResponse.class);
-        
+
         try (MockedStatic<PaginationUtils> paginationUtilsMocked = mockStatic(PaginationUtils.class)) {
             paginationUtilsMocked.when(() -> PaginationUtils.paginateQuery(
                     eq(paginationRequest),
@@ -116,8 +127,8 @@ public class CardSecurityServiceTest {
 
         // Act & Assert
         StepVerifier.create(service.createSecuritySetting(cardId, securityDTO))
-                .expectErrorMatches(throwable -> 
-                    throwable instanceof RuntimeException && 
+                .expectErrorMatches(throwable ->
+                    throwable instanceof RuntimeException &&
                     throwable.getMessage().contains("Error saving CardSecurity"))
                 .verify();
 
@@ -157,18 +168,28 @@ public class CardSecurityServiceTest {
     @Test
     void getSecuritySetting_WrongCard() {
         // Arrange
+        LocalDateTime now = LocalDateTime.now();
         CardSecurity wrongCardSecurity = new CardSecurity();
         wrongCardSecurity.setCardSecurityId(securityId);
         wrongCardSecurity.setCardId(wrongCardId);
-        wrongCardSecurity.setSecurityFeature(SecurityFeatureEnum.PIN_ENABLED);
-        wrongCardSecurity.setSecurityStatus(true);
-        
+        wrongCardSecurity.setSecurityFeatureName("PIN_ENABLED");
+        wrongCardSecurity.setSecurityFeatureCode("PIN");
+        wrongCardSecurity.setIsEnabled(true);
+        wrongCardSecurity.setIsMandatory(true);
+        wrongCardSecurity.setActivationDate(now);
+        wrongCardSecurity.setExpirationDate(now.plusYears(1));
+        wrongCardSecurity.setLastUpdatedDate(now);
+        wrongCardSecurity.setIsSystemDefault(true);
+        wrongCardSecurity.setIsProgramDefault(true);
+        wrongCardSecurity.setIsCustomerConfigurable(true);
+        wrongCardSecurity.setSupportsPin(true);
+
         when(repository.findByCardSecurityId(securityId)).thenReturn(Mono.just(wrongCardSecurity));
 
         // Act & Assert
         StepVerifier.create(service.getSecuritySetting(cardId, securityId))
-                .expectErrorMatches(throwable -> 
-                    throwable instanceof RuntimeException && 
+                .expectErrorMatches(throwable ->
+                    throwable instanceof RuntimeException &&
                     throwable.getMessage().equals("CardSecurity not found for the specified card."))
                 .verify();
 
@@ -213,18 +234,28 @@ public class CardSecurityServiceTest {
     @Test
     void updateSecuritySetting_WrongCard() {
         // Arrange
+        LocalDateTime now = LocalDateTime.now();
         CardSecurity wrongCardSecurity = new CardSecurity();
         wrongCardSecurity.setCardSecurityId(securityId);
         wrongCardSecurity.setCardId(wrongCardId);
-        wrongCardSecurity.setSecurityFeature(SecurityFeatureEnum.PIN_ENABLED);
-        wrongCardSecurity.setSecurityStatus(true);
-        
+        wrongCardSecurity.setSecurityFeatureName("PIN_ENABLED");
+        wrongCardSecurity.setSecurityFeatureCode("PIN");
+        wrongCardSecurity.setIsEnabled(true);
+        wrongCardSecurity.setIsMandatory(true);
+        wrongCardSecurity.setActivationDate(now);
+        wrongCardSecurity.setExpirationDate(now.plusYears(1));
+        wrongCardSecurity.setLastUpdatedDate(now);
+        wrongCardSecurity.setIsSystemDefault(true);
+        wrongCardSecurity.setIsProgramDefault(true);
+        wrongCardSecurity.setIsCustomerConfigurable(true);
+        wrongCardSecurity.setSupportsPin(true);
+
         when(repository.findByCardSecurityId(securityId)).thenReturn(Mono.just(wrongCardSecurity));
 
         // Act & Assert
         StepVerifier.create(service.updateSecuritySetting(cardId, securityId, securityDTO))
-                .expectErrorMatches(throwable -> 
-                    throwable instanceof RuntimeException && 
+                .expectErrorMatches(throwable ->
+                    throwable instanceof RuntimeException &&
                     throwable.getMessage().equals("CardSecurity not found for the specified card."))
                 .verify();
 
@@ -264,18 +295,28 @@ public class CardSecurityServiceTest {
     @Test
     void deleteSecuritySetting_WrongCard() {
         // Arrange
+        LocalDateTime now = LocalDateTime.now();
         CardSecurity wrongCardSecurity = new CardSecurity();
         wrongCardSecurity.setCardSecurityId(securityId);
         wrongCardSecurity.setCardId(wrongCardId);
-        wrongCardSecurity.setSecurityFeature(SecurityFeatureEnum.PIN_ENABLED);
-        wrongCardSecurity.setSecurityStatus(true);
-        
+        wrongCardSecurity.setSecurityFeatureName("PIN_ENABLED");
+        wrongCardSecurity.setSecurityFeatureCode("PIN");
+        wrongCardSecurity.setIsEnabled(true);
+        wrongCardSecurity.setIsMandatory(true);
+        wrongCardSecurity.setActivationDate(now);
+        wrongCardSecurity.setExpirationDate(now.plusYears(1));
+        wrongCardSecurity.setLastUpdatedDate(now);
+        wrongCardSecurity.setIsSystemDefault(true);
+        wrongCardSecurity.setIsProgramDefault(true);
+        wrongCardSecurity.setIsCustomerConfigurable(true);
+        wrongCardSecurity.setSupportsPin(true);
+
         when(repository.findByCardSecurityId(securityId)).thenReturn(Mono.just(wrongCardSecurity));
 
         // Act & Assert
         StepVerifier.create(service.deleteSecuritySetting(cardId, securityId))
-                .expectErrorMatches(throwable -> 
-                    throwable instanceof RuntimeException && 
+                .expectErrorMatches(throwable ->
+                    throwable instanceof RuntimeException &&
                     throwable.getMessage().equals("CardSecurity not found for the specified card."))
                 .verify();
 
