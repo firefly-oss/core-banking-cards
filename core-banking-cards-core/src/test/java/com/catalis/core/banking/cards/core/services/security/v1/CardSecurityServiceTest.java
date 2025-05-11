@@ -68,7 +68,7 @@ public class CardSecurityServiceTest {
         securityEntity.setLastUpdatedDate(now);
         securityEntity.setIsSystemDefault(true);
         securityEntity.setIsProgramDefault(true);
-        securityEntity.setIsCustomerConfigurable(true);
+        securityEntity.setIsPartyConfigurable(true);
         securityEntity.setSupportsPin(true);
     }
 
@@ -181,7 +181,7 @@ public class CardSecurityServiceTest {
         wrongCardSecurity.setLastUpdatedDate(now);
         wrongCardSecurity.setIsSystemDefault(true);
         wrongCardSecurity.setIsProgramDefault(true);
-        wrongCardSecurity.setIsCustomerConfigurable(true);
+        wrongCardSecurity.setIsPartyConfigurable(true);
         wrongCardSecurity.setSupportsPin(true);
 
         when(repository.findByCardSecurityId(securityId)).thenReturn(Mono.just(wrongCardSecurity));
@@ -247,7 +247,7 @@ public class CardSecurityServiceTest {
         wrongCardSecurity.setLastUpdatedDate(now);
         wrongCardSecurity.setIsSystemDefault(true);
         wrongCardSecurity.setIsProgramDefault(true);
-        wrongCardSecurity.setIsCustomerConfigurable(true);
+        wrongCardSecurity.setIsPartyConfigurable(true);
         wrongCardSecurity.setSupportsPin(true);
 
         when(repository.findByCardSecurityId(securityId)).thenReturn(Mono.just(wrongCardSecurity));
@@ -308,7 +308,7 @@ public class CardSecurityServiceTest {
         wrongCardSecurity.setLastUpdatedDate(now);
         wrongCardSecurity.setIsSystemDefault(true);
         wrongCardSecurity.setIsProgramDefault(true);
-        wrongCardSecurity.setIsCustomerConfigurable(true);
+        wrongCardSecurity.setIsPartyConfigurable(true);
         wrongCardSecurity.setSupportsPin(true);
 
         when(repository.findByCardSecurityId(securityId)).thenReturn(Mono.just(wrongCardSecurity));
