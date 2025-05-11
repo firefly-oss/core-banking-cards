@@ -1,124 +1,815 @@
-# Core Banking Cards Service
+# Firefly Core Banking Cards Service
 
-## Overview
-The Core Banking Cards Service is a microservice component of the Firefly platform that manages banking cards and related operations. This service provides comprehensive functionality for managing both physical and virtual cards, including card issuance, configuration, limits, and integration with card providers.
+## 📋 Overview
 
-## Features
-- Card management (creation, update, retrieval, deletion)
-- Physical card management (issuance, tracking, activation)
-- Virtual card management (creation, activation, deactivation)
-- Card configuration settings
-- Card spending limits
-- Card provider integration
+The Core Banking Cards Service is a comprehensive microservice for the Firefly banking platform that provides end-to-end management of payment cards. This service enables financial institutions to issue, manage, and process transactions for both physical and virtual payment cards across multiple card networks and payment processors.
 
-## Architecture
-The service follows a modular architecture with the following components:
+For detailed documentation on the main use cases, please refer to the [documentation](docs/index.md).
 
-### Modules
-- **core-banking-cards-interfaces**: Contains DTOs, enums, and API interfaces
-- **core-banking-cards-models**: Contains data models and repositories
-- **core-banking-cards-core**: Contains business logic and service implementations
-- **core-banking-cards-web**: Contains web controllers, configuration, and application entry point
+### ✨ Key Features
 
-### Technologies
-- Java 21
-- Spring Boot
-- Spring WebFlux (reactive programming)
-- R2DBC (reactive database connectivity)
-- Maven
-- Docker
+- **Card Program Management**: Define and manage card programs with specific rules, limits, and features
+- **Card Issuance**: Issue physical and virtual cards to customers
+- **Transaction Processing**: Authorize, process, and monitor card transactions
+- **Dispute Handling**: Process and resolve transaction disputes
+- **Card Security**: Implement fraud detection and prevention measures
+- **Reporting and Analytics**: Generate comprehensive reports on card usage and performance
 
-## Getting Started
+### 💼 Business Value
+
+- **Increased Revenue**: Enable financial institutions to offer diverse card products and monetize transactions
+- **Operational Efficiency**: Streamline card management processes and reduce manual intervention
+- **Enhanced Customer Experience**: Provide seamless card issuance, activation, and usage experience
+- **Reduced Fraud**: Implement robust security measures to detect and prevent fraudulent activities
+- **Regulatory Compliance**: Ensure adherence to industry standards and regulatory requirements
+- **Market Agility**: Quickly launch new card products and adapt to changing market demands
+
+## 🏗️ Architecture
+
+The Core Banking Cards Service follows a microservice architecture pattern, designed to be independently deployable, scalable, and maintainable. The service is built using a reactive programming model to handle high throughput with minimal resource consumption.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                      API Gateway / Load Balancer                │
+└───────────────────────────────┬─────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    Core Banking Cards Service                   │
+│                                                                 │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  │
+│  │   Web Layer     │  │  Service Layer  │  │    Data Layer   │  │
+│  │  (Controllers)  │──▶│   (Services)   │──▶│ (Repositories) │  │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘  │
+│                                                                 │
+└───────────────────────────────┬─────────────────────────────────┘
+                                │
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                          Database                               │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+The service communicates with other microservices through synchronous REST APIs and asynchronous event-driven messaging. It integrates with external payment processors and card networks through dedicated adapters and gateways.
+
+### 📦 Module Structure
+
+The service is organized into the following modules:
+
+| Module | Description |
+|--------|-------------|
+| **core-banking-cards-interfaces** | DTOs, enums, and API interfaces that define the service contract |
+| **core-banking-cards-models** | Domain entities, database repositories, and data access logic |
+| **core-banking-cards-core** | Business logic, service implementations, and domain-specific rules |
+| **core-banking-cards-web** | REST controllers, API configuration, security settings, and application entry point |
+
+### 🛠️ Technology Stack
+
+| Category | Technologies |
+|----------|--------------|
+| **Language & Framework** | Java 21 (with Virtual Threads), Spring Boot 3.2 |
+| **API Layer** | Spring WebFlux (reactive programming) |
+| **Data Access** | Spring Data R2DBC (reactive database connectivity) |
+| **Database** | PostgreSQL, Flyway (migrations) |
+| **Build & Deployment** | Maven, Docker |
+| **Documentation** | SpringDoc OpenAPI |
+| **Testing** | JUnit 5, Mockito, TestContainers |
+| **Monitoring** | Micrometer, Prometheus |
+
+### 🧩 Design Patterns
+
+- **Hexagonal Architecture**: Separates core business logic from external concerns
+- **Repository Pattern**: Abstracts data access logic
+- **Mapper Pattern**: Converts between domain entities and DTOs
+- **Factory Pattern**: Creates complex objects
+- **Strategy Pattern**: Implements different algorithms for card processing
+- **Observer Pattern**: Implements event-driven communication
+- **Circuit Breaker Pattern**: Handles failures in external service calls
+
+## 📊 Data Model
+
+The Core Banking Cards Service has a comprehensive data model that supports the full lifecycle of card management. The model is designed to handle various card types, transaction processing, and customer interactions.
+
+### Detailed Entity Relationship Diagram
+
+```mermaid
+erDiagram
+    CARD_NETWORK {
+        Long card_network_id PK
+        String network_name
+        String network_code
+        String network_logo_url
+        String support_contact
+        String api_endpoint
+        Boolean is_active
+    }
+
+    CARD_TYPE {
+        Long card_type_id PK
+        String type_name
+        String type_code
+        Boolean is_credit
+        Boolean is_debit
+        Boolean is_prepaid
+        Boolean is_virtual
+        Boolean is_commercial
+        Boolean is_gift
+        Double default_credit_limit
+        Double default_daily_limit
+        Boolean is_active
+    }
+
+    ISSUER {
+        Long issuer_id PK
+        String issuer_name
+        String issuer_code
+        String country_code
+        String contact_email
+        String contact_phone
+        Boolean is_active
+    }
+
+    BIN {
+        Long bin_id PK
+        String bin_number
+        Integer bin_length
+        Long issuer_id FK
+        Long card_network_id FK
+        Long card_type_id FK
+        String country_code
+        String currency_code
+        Boolean is_active
+    }
+
+    CARD_DESIGN {
+        Long design_id PK
+        String design_name
+        String design_code
+        String front_image_url
+        String back_image_url
+        Long card_type_id FK
+        Long issuer_id FK
+        Long card_network_id FK
+        Boolean is_customizable
+        Boolean is_default
+        Boolean is_active
+    }
+
+    CARD_PROGRAM {
+        Long program_id PK
+        String program_name
+        String program_code
+        Long issuer_id FK
+        Long bin_id FK
+        Long card_type_id FK
+        Long card_network_id FK
+        Long default_design_id FK
+        DateTime start_date
+        DateTime end_date
+        Boolean is_active
+        Integer max_cards_per_customer
+        Double default_daily_limit
+        Double default_monthly_limit
+        Double default_credit_limit
+        Boolean supports_physical_cards
+        Boolean supports_virtual_cards
+        String currency_code
+    }
+
+    CARD {
+        Long card_id PK
+        String card_number
+        String masked_card_number
+        String card_sequence_number
+        Long bin_id FK
+        Long card_type_id FK
+        Long card_network_id FK
+        Long issuer_id FK
+        Long contract_id
+        Long account_id
+        Long customer_id
+        CardStatusEnum card_status
+        String card_holder_name
+        String card_holder_id
+        Integer expiration_month
+        Integer expiration_year
+        String cvv
+        String pin
+        DateTime activation_date
+        DateTime issuance_date
+        DateTime expiration_date
+        Boolean is_physical
+        Boolean is_virtual
+        Boolean is_primary
+        Boolean is_active
+        Boolean is_locked
+        Double daily_limit
+        Double monthly_limit
+        Double credit_limit
+        Double available_balance
+        String currency_code
+        Long design_id FK
+    }
+
+    PHYSICAL_CARD {
+        Long physical_card_id PK
+        Long card_id FK
+        String embossed_name
+        String plastic_id
+        Long design_id FK
+        Boolean is_contactless
+        Boolean is_chip
+        Boolean is_magstripe
+        ManufacturingStatusEnum manufacturing_status
+        DateTime manufacturing_date
+        String shipping_address
+        String shipping_city
+        String shipping_country
+        ShippingMethodEnum shipping_method
+        String shipping_tracking_number
+        DateTime shipment_date
+        DateTime estimated_delivery_date
+        ActivationMethodEnum activation_method
+        DateTime activation_date
+        Boolean is_activated
+        String replacement_reason
+        Long previous_card_id FK
+    }
+
+    VIRTUAL_CARD {
+        Long virtual_card_id PK
+        Long card_id FK
+        String device_id
+        String device_type
+        String device_model
+        String device_os
+        String wallet_provider
+        String wallet_account_id
+        String tokenization_provider
+        String token_id
+        DateTime token_expiry_date
+        String token_status
+        String virtual_card_number
+        VirtualCardStatusEnum virtual_card_status
+        Boolean is_default_for_device
+        Boolean is_default_for_wallet
+        Boolean is_provisioned
+        DateTime provisioning_date
+        DateTime deactivation_date
+        String deactivation_reason
+    }
+
+    CARD_BALANCE {
+        Long balance_id PK
+        Long card_id FK
+        Double available_balance
+        Double ledger_balance
+        Double pending_authorizations
+        Double credit_limit
+        Double available_credit
+        String currency_code
+        DateTime last_update_timestamp
+    }
+
+    CARD_TRANSACTION {
+        Long transaction_id PK
+        Long card_id FK
+        String transaction_reference
+        String external_reference
+        Double amount
+        String currency_code
+        DateTime transaction_timestamp
+        DateTime authorization_timestamp
+        DateTime settlement_timestamp
+        TransactionTypeEnum transaction_type
+        TransactionStatusEnum transaction_status
+        String merchant_name
+        String merchant_category_code
+        String merchant_id
+        String terminal_id
+        Boolean is_international
+        Boolean is_recurring
+        Boolean is_atm_withdrawal
+        Boolean is_online
+        Boolean is_contactless
+        String response_code
+        String authorization_code
+    }
+
+    CARD_MERCHANT {
+        Long merchant_id PK
+        String merchant_reference
+        String merchant_name
+        String merchant_legal_name
+        String merchant_category_code
+        String merchant_category_name
+        MerchantTypeEnum merchant_type
+        MerchantStatusEnum merchant_status
+        Boolean is_active
+        String tax_id
+        String website_url
+        String logo_url
+        String address_line1
+        String city
+        String country
+        String phone
+        String email
+        Boolean is_online
+        Boolean is_physical
+        Boolean is_international
+        RiskRatingEnum risk_rating
+        Integer risk_score
+    }
+
+    CARD_TERMINAL {
+        Long terminal_id PK
+        String terminal_reference
+        String terminal_serial_number
+        String terminal_name
+        TerminalTypeEnum terminal_type
+        String terminal_model
+        String terminal_manufacturer
+        TerminalStatusEnum terminal_status
+        Boolean is_active
+        Long merchant_id FK
+        String merchant_name
+        String address_line1
+        String city
+        String country
+        String acquirer_id
+        String acquirer_name
+        String processor_id
+        Boolean is_contactless
+        Boolean is_chip
+        Boolean is_magstripe
+        Boolean is_pin_supported
+    }
+
+    CARD_DISPUTE {
+        Long dispute_id PK
+        Long card_id FK
+        Long transaction_id FK
+        Long customer_id
+        Long account_id
+        String dispute_reference
+        String provider_reference
+        String network_reference
+        String dispute_reason_code
+        DisputeStatusEnum dispute_status
+        DisputeStageEnum dispute_stage
+        Double dispute_amount
+        String dispute_currency
+        DateTime filing_timestamp
+        DateTime resolution_timestamp
+        String resolution_code
+        Boolean is_cardholder_credited
+        DateTime credit_timestamp
+        Double credit_amount
+        String cardholder_statement
+        String merchant_response
+    }
+
+    CARD_STATEMENT {
+        Long statement_id PK
+        Long card_id FK
+        Long customer_id
+        Long account_id
+        String statement_reference
+        DateTime statement_date
+        DateTime statement_period_start
+        DateTime statement_period_end
+        DateTime due_date
+        Decimal closing_balance
+        Decimal opening_balance
+        Decimal minimum_payment_due
+        Decimal total_payment_due
+        String currency_code
+        Decimal total_purchases
+        Decimal total_cash_advances
+        Decimal total_fees
+        Decimal total_interest
+        PaymentStatusEnum payment_status
+        Boolean is_generated
+        DeliveryMethodEnum delivery_method
+    }
+
+    CARD_PAYMENT {
+        Long payment_id PK
+        Long card_id FK
+        Long customer_id
+        Long account_id
+        Long statement_id FK
+        String payment_reference
+        String external_reference
+        Decimal payment_amount
+        String currency_code
+        PaymentMethodEnum payment_method
+        PaymentChannelEnum payment_channel
+        PaymentStatusEnum payment_status
+        DateTime payment_timestamp
+        DateTime posting_timestamp
+        Boolean is_auto_payment
+        Boolean is_minimum_payment
+        Boolean is_full_payment
+    }
+
+    CARD_CUSTOMER {
+        Long customer_id PK
+        String customer_reference
+        String first_name
+        String last_name
+        String email
+        String phone
+        DateTime date_of_birth
+        String address_line1
+        String city
+        String country
+        String postal_code
+        CustomerStatusEnum customer_status
+        Boolean is_active
+        DateTime onboarding_date
+        String identification_type
+        String identification_number
+    }
+
+    CARD_ACTIVITY {
+        Long activity_id PK
+        Long card_id FK
+        Long customer_id
+        Long account_id
+        String activity_reference
+        ActivityTypeEnum activity_type
+        String activity_category
+        String activity_description
+        DateTime activity_timestamp
+        String activity_channel
+        ActivityStatusEnum activity_status
+        String activity_result
+        String previous_value
+        String new_value
+        String change_reason
+        Boolean is_customer_initiated
+        Boolean is_system_initiated
+        Boolean is_successful
+    }
+
+    CARD_LIMIT {
+        Long limit_id PK
+        Long card_id FK
+        Long customer_id
+        String limit_type
+        Double limit_value
+        String currency_code
+        Boolean is_active
+        DateTime effective_from
+        DateTime effective_to
+        String frequency
+        Boolean is_default
+        String channel
+        String transaction_type
+    }
+
+    CARD_FEE {
+        Long fee_id PK
+        Long card_id FK
+        Long program_id FK
+        String fee_type
+        String fee_name
+        Double fee_amount
+        String currency_code
+        String frequency
+        Boolean is_active
+        DateTime effective_from
+        DateTime effective_to
+        Boolean is_waived
+        String waiver_reason
+    }
+
+    CARD_INTEREST {
+        Long interest_id PK
+        Long card_id FK
+        Long program_id FK
+        String interest_type
+        Double interest_rate
+        Double annual_percentage_rate
+        String calculation_method
+        String application_frequency
+        Boolean is_active
+        DateTime effective_from
+        DateTime effective_to
+    }
+
+    CARD_REWARD {
+        Long reward_id PK
+        Long card_id FK
+        Long program_id FK
+        String reward_type
+        String reward_name
+        Double reward_points
+        Double reward_value
+        String currency_code
+        DateTime earning_date
+        DateTime expiry_date
+        Boolean is_redeemed
+        DateTime redemption_date
+    }
+
+    CARD_PROMOTION {
+        Long promotion_id PK
+        Long card_id FK
+        Long program_id FK
+        String promotion_code
+        String promotion_name
+        String promotion_description
+        DateTime start_date
+        DateTime end_date
+        Boolean is_active
+        String promotion_type
+        Double discount_percentage
+        Double discount_amount
+        String currency_code
+    }
+
+    BIN ||--o{ CARD : "has"
+    CARD_TYPE ||--o{ CARD : "has"
+    CARD_NETWORK ||--o{ CARD : "has"
+    ISSUER ||--o{ CARD : "has"
+    CARD_DESIGN ||--o{ CARD : "has"
+
+    CARD_NETWORK ||--o{ BIN : "has"
+    CARD_TYPE ||--o{ BIN : "has"
+    ISSUER ||--o{ BIN : "has"
+
+    CARD_TYPE ||--o{ CARD_DESIGN : "has"
+    ISSUER ||--o{ CARD_DESIGN : "has"
+    CARD_NETWORK ||--o{ CARD_DESIGN : "has"
+
+    ISSUER ||--o{ CARD_PROGRAM : "has"
+    BIN ||--o{ CARD_PROGRAM : "has"
+    CARD_TYPE ||--o{ CARD_PROGRAM : "has"
+    CARD_NETWORK ||--o{ CARD_PROGRAM : "has"
+    CARD_DESIGN ||--o{ CARD_PROGRAM : "has"
+
+    CARD ||--o{ PHYSICAL_CARD : "has"
+    CARD_DESIGN ||--o{ PHYSICAL_CARD : "has"
+    PHYSICAL_CARD ||--o{ PHYSICAL_CARD : "replaces"
+
+    CARD ||--o{ VIRTUAL_CARD : "has"
+
+    CARD ||--o{ CARD_BALANCE : "has"
+
+    CARD ||--o{ CARD_TRANSACTION : "has"
+
+    CARD_MERCHANT ||--o{ CARD_TRANSACTION : "processes"
+
+    CARD_TERMINAL ||--o{ CARD_TRANSACTION : "processes"
+    CARD_MERCHANT ||--o{ CARD_TERMINAL : "has"
+
+    CARD ||--o{ CARD_DISPUTE : "has"
+    CARD_TRANSACTION ||--o{ CARD_DISPUTE : "has"
+
+    CARD ||--o{ CARD_STATEMENT : "has"
+
+    CARD ||--o{ CARD_PAYMENT : "has"
+    CARD_STATEMENT ||--o{ CARD_PAYMENT : "has"
+
+    CARD ||--o{ CARD_ACTIVITY : "has"
+
+    CARD ||--o{ CARD_LIMIT : "has"
+
+    CARD ||--o{ CARD_FEE : "has"
+    CARD_PROGRAM ||--o{ CARD_FEE : "has"
+
+    CARD ||--o{ CARD_INTEREST : "has"
+    CARD_PROGRAM ||--o{ CARD_INTEREST : "has"
+
+    CARD ||--o{ CARD_REWARD : "has"
+    CARD_PROGRAM ||--o{ CARD_REWARD : "has"
+
+    CARD ||--o{ CARD_PROMOTION : "has"
+    CARD_PROGRAM ||--o{ CARD_PROMOTION : "has"
+```
+
+### Main Entity Categories
+
+#### 🏦 Core Entities
+- **Card Program**: Defines rules and configurations for a group of cards
+- **Card Type**: Specifies card characteristics (credit, debit, prepaid)
+- **Card Network**: Represents payment networks (Visa, Mastercard, etc.)
+- **Issuer**: Financial institutions that issue cards
+- **BIN**: Bank Identification Number that identifies issuer and card type
+
+#### 💳 Card Entities
+- **Card**: Central entity representing a payment card
+- **Physical Card**: Physical aspects including manufacturing and shipping details
+- **Virtual Card**: Digital version for online transactions and mobile wallets
+- **Card Configuration**: Settings for individual cards
+- **Card Balance**: Tracks available funds and balances
+
+#### 💰 Transaction Entities
+- **Card Transaction**: Records of financial transactions
+- **Card Statement**: Periodic statements of card activity
+- **Card Payment**: Payments made towards card balances
+- **Card Dispute**: Disputes filed against transactions
+
+#### 👥 Customer & Merchant Entities
+- **Card Customer**: Customer information for card services
+- **Card Merchant**: Businesses accepting card payments
+- **Card Terminal**: Payment terminals for processing transactions
+- **Card Acquirer**: Financial institutions processing merchant payments
+- **Card Processor**: Entities processing transactions between parties
+
+## 🔌 API Reference
+
+The Core Banking Cards Service exposes RESTful endpoints for managing cards and related entities. All endpoints follow REST principles and use standard HTTP methods.
+
+### API Endpoints
+
+| Category | Endpoint | Method | Description |
+|----------|----------|--------|-------------|
+| **Card Management** | `/api/v1/cards` | GET | List all cards with pagination and filtering |
+| | `/api/v1/cards/{cardId}` | GET | Get card details by ID |
+| | `/api/v1/cards` | POST | Create a new card |
+| | `/api/v1/cards/{cardId}` | PUT | Update an existing card |
+| | `/api/v1/cards/{cardId}/activate` | POST | Activate a card |
+| | `/api/v1/cards/{cardId}/block` | POST | Block a card |
+| **Physical Cards** | `/api/v1/cards/physical` | GET | List all physical cards |
+| | `/api/v1/cards/physical` | POST | Request a new physical card |
+| | `/api/v1/cards/physical/{physicalCardId}/activate` | POST | Activate a physical card |
+| **Virtual Cards** | `/api/v1/cards/virtual` | GET | List all virtual cards |
+| | `/api/v1/cards/virtual` | POST | Create a new virtual card |
+| | `/api/v1/cards/virtual/{virtualCardId}` | DELETE | Delete a virtual card |
+| **Transactions** | `/api/v1/cards/{cardId}/transactions` | GET | List transactions for a card |
+| | `/api/v1/cards/transactions` | POST | Record a new transaction |
+| **Disputes** | `/api/v1/cards/{cardId}/disputes` | GET | List disputes for a card |
+| | `/api/v1/cards/disputes` | POST | File a new dispute |
+
+### Example: Creating a New Card
+
+```http
+POST /api/v1/cards
+Content-Type: application/json
+
+{
+  "cardTypeId": 1,
+  "cardNetworkId": 1,
+  "issuerId": 1,
+  "binId": 1,
+  "accountId": 12345,
+  "customerId": 67890,
+  "cardHolderName": "John Doe",
+  "isPhysical": true,
+  "designId": 1
+}
+```
+
+Full API documentation is available at `/swagger-ui.html` when the service is running.
+
+## 🚀 Getting Started
 
 ### Prerequisites
-- JDK 21
-- Maven 3.8+
-- Docker (optional, for containerization)
 
-### Building the Service
-```bash
-mvn clean install
-```
+- JDK 21 or later
+- Maven 3.8+ or later
+- PostgreSQL 14+ or Docker
+- Git
 
-### Running the Service
-```bash
-# Run with Maven
-mvn spring-boot:run -pl core-banking-cards-web
+### Quick Start
 
-# Run with Java
-java -jar core-banking-cards-web/target/core-banking-cards-web.jar
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/firefly-oss/core-banking-cards.git
+   cd core-banking-cards
+   ```
 
-# Run with Docker
-docker build -t core-banking-cards .
-docker run -p 8080:8080 core-banking-cards
-```
+2. **Set up the database**
+   ```bash
+   docker run --name postgres-cards -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=cards -p 5432:5432 -d postgres:14
+   ```
+
+3. **Build and run the service**
+   ```bash
+   mvn clean install
+   mvn spring-boot:run -pl core-banking-cards-web
+   ```
+
+4. **Access the API documentation**
+   ```
+   http://localhost:8080/swagger-ui.html
+   ```
 
 ### Configuration
-The service can be configured through application properties. Key configuration options include:
 
-- Database connection settings
-- Logging levels
-- API security settings
-- External service endpoints
+The service uses Spring Boot's configuration system with the main configuration file at `core-banking-cards-web/src/main/resources/application.yaml`.
 
-## API Documentation
-The service provides a RESTful API with OpenAPI documentation. When the service is running, you can access the API documentation at:
+```yaml
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:cards}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
 
+server:
+  port: ${SERVER_PORT:8080}
 ```
-http://localhost:8080/swagger-ui.html
-```
 
-### Key Endpoints
-- `/api/v1/cards` - Card management
-- `/api/v1/cards/physical` - Physical card management
-- `/api/v1/cards/virtual` - Virtual card management
-- `/api/v1/cards/configuration` - Card configuration
-- `/api/v1/cards/limits` - Card limits
-- `/api/v1/cards/providers` - Card provider integration
-
-## Development
+## 💻 Development
 
 ### Project Structure
+
 ```
 core-banking-cards/
-├── core-banking-cards-core/       # Business logic
-├── core-banking-cards-interfaces/ # DTOs and interfaces
-├── core-banking-cards-models/     # Data models
-├── core-banking-cards-web/        # Web layer
-├── Dockerfile                     # Docker configuration
-└── pom.xml                        # Maven parent configuration
+├── core-banking-cards-interfaces/  # DTOs, enums, API interfaces
+├── core-banking-cards-models/      # Domain entities, repositories
+├── core-banking-cards-core/        # Business logic, services
+├── core-banking-cards-web/         # Controllers, configuration
+├── Dockerfile                      # Docker configuration
+└── pom.xml                         # Maven parent configuration
 ```
 
-### Coding Standards
-- Follow Java coding conventions
-- Use meaningful names for classes, methods, and variables
-- Write unit tests for all new functionality
-- Document public APIs with Javadoc
+### Build Commands
 
-### Testing
-```bash
-# Run all tests
-mvn test
+| Command | Description |
+|---------|-------------|
+| `mvn clean compile` | Clean and compile the project |
+| `mvn test` | Run all tests |
+| `mvn test -pl core-banking-cards-core` | Run tests for a specific module |
+| `mvn package -DskipTests` | Package without running tests |
+| `mvn spring-boot:run -pl core-banking-cards-web` | Run the application |
 
-# Run specific test
-mvn test -Dtest=CardServiceTest
-```
+### Testing Strategy
 
-## Deployment
-The service can be deployed as a standalone JAR or as a Docker container. For production environments, it's recommended to use container orchestration platforms like Kubernetes.
+The project implements a comprehensive testing approach:
+
+- **Unit Tests**: Test individual components in isolation
+- **Integration Tests**: Test component interactions
+- **API Tests**: Test REST endpoints
+- **Performance Tests**: Test system under load
+
+## 🔄 Deployment
 
 ### Docker Deployment
+
 ```bash
 # Build Docker image
 docker build -t core-banking-cards:latest .
 
 # Run Docker container
-docker run -p 8080:8080 core-banking-cards:latest
+docker run -p 8080:8080 \
+  -e DB_HOST=host.docker.internal \
+  -e DB_PORT=5432 \
+  -e DB_NAME=cards \
+  -e DB_USERNAME=postgres \
+  -e DB_PASSWORD=postgres \
+  core-banking-cards:latest
 ```
 
-## Contributing
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+### Environment Profiles
+
+The service supports different environments through Spring profiles:
+- **dev**: Development environment with detailed logging
+- **test**: Testing environment with in-memory database
+- **prod**: Production environment with optimized settings
+
+```bash
+java -jar app.jar --spring.profiles.active=dev
+```
+
+## 📊 Monitoring
+
+### Health & Metrics
+
+| Endpoint | Description |
+|----------|-------------|
+| `/actuator/health` | Overall health status |
+| `/actuator/health/liveness` | Liveness check |
+| `/actuator/health/readiness` | Readiness check |
+| `/actuator/prometheus` | Prometheus metrics |
+
+Key metrics include request count and latency, JVM memory usage, database connection pool statistics, and custom business metrics.
+
+## 🔒 Security
+
+- **Authentication**: JWT-based authentication
+- **Authorization**: Role-based access control
+- **Data Protection**: Encryption of sensitive data (card numbers, CVV, PINs)
+- **Communication**: TLS for all API communications
+
+## 👥 Contributing
+
+We welcome contributions to the Core Banking Cards Service! Here's how you can help:
+
+1. 🍴 **Fork the repository**
+2. 🌿 **Create a feature branch** (`git checkout -b feature/amazing-feature`)
+3. 💾 **Commit your changes** (`git commit -m 'Add some amazing feature'`)
+4. 📤 **Push to the branch** (`git push origin feature/amazing-feature`)
+5. 🔄 **Open a Pull Request**
+
+Please make sure your code follows our coding standards and includes appropriate tests.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
