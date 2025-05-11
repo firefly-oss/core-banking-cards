@@ -30,8 +30,8 @@ public class CardReward extends BaseEntity {
     @Column("transaction_id")
     private Long transactionId;
 
-    @Column("customer_id")
-    private Long customerId;
+    @Column("party_id")
+    private Long partyId;
 
     @Column("account_id")
     private Long accountId;
@@ -147,11 +147,11 @@ public class CardReward extends BaseEntity {
     @Column("is_transferable")
     private Boolean isTransferable;
 
-    @Column("transfer_to_customer_id")
-    private Long transferToCustomerId;
+    @Column("transfer_to_party_id")
+    private Long transferToPartyId;
 
-    @Column("transfer_from_customer_id")
-    private Long transferFromCustomerId;
+    @Column("transfer_from_party_id")
+    private Long transferFromPartyId;
 
     @Column("transfer_date")
     private LocalDateTime transferDate;

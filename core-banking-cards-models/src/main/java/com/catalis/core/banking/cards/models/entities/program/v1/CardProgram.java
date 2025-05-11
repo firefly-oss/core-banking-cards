@@ -53,8 +53,8 @@ public class CardProgram extends BaseEntity {
     @Column("is_active")
     private Boolean isActive;
 
-    @Column("max_cards_per_customer")
-    private Integer maxCardsPerCustomer;
+    @Column("max_cards_per_party")
+    private Integer maxCardsPerParty;
 
     @Column("default_daily_limit")
     private Double defaultDailyLimit;

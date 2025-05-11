@@ -27,8 +27,8 @@ public class CardInterest extends BaseEntity {
     @Column("card_id")
     private Long cardId;
 
-    @Column("customer_id")
-    private Long customerId;
+    @Column("party_id")
+    private Long partyId;
 
     @Column("account_id")
     private Long accountId;

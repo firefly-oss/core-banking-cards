@@ -30,8 +30,8 @@ public class CardDispute extends BaseEntity {
     @Column("transaction_id")
     private Long transactionId;
 
-    @Column("customer_id")
-    private Long customerId;
+    @Column("party_id")
+    private Long partyId;
 
     @Column("account_id")
     private Long accountId;

@@ -27,8 +27,8 @@ public class CardActivity extends BaseEntity {
     @Column("card_id")
     private Long cardId;
 
-    @Column("customer_id")
-    private Long customerId;
+    @Column("party_id")
+    private Long partyId;
 
     @Column("account_id")
     private Long accountId;
@@ -96,8 +96,8 @@ public class CardActivity extends BaseEntity {
     @Column("geolocation")
     private String geolocation;
 
-    @Column("is_customer_initiated")
-    private Boolean isCustomerInitiated;
+    @Column("is_party_initiated")
+    private Boolean isPartyInitiated;
 
     @Column("is_system_initiated")
     private Boolean isSystemInitiated;

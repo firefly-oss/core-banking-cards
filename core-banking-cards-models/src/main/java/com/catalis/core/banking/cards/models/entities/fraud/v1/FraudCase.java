@@ -30,8 +30,8 @@ public class FraudCase extends BaseEntity {
     @Column("transaction_id")
     private Long transactionId;
 
-    @Column("customer_id")
-    private Long customerId;
+    @Column("party_id")
+    private Long partyId;
 
     @Column("account_id")
     private Long accountId;
@@ -69,8 +69,8 @@ public class FraudCase extends BaseEntity {
     @Column("detection_timestamp")
     private LocalDateTime detectionTimestamp;
 
-    @Column("reported_by_customer")
-    private Boolean reportedByCustomer;
+    @Column("reported_by_party")
+    private Boolean reportedByParty;
 
     @Column("reported_timestamp")
     private LocalDateTime reportedTimestamp;
@@ -87,8 +87,8 @@ public class FraudCase extends BaseEntity {
     @Column("block_timestamp")
     private LocalDateTime blockTimestamp;
 
-    @Column("is_customer_notified")
-    private Boolean isCustomerNotified;
+    @Column("is_party_notified")
+    private Boolean isPartyNotified;
 
     @Column("notification_timestamp")
     private LocalDateTime notificationTimestamp;

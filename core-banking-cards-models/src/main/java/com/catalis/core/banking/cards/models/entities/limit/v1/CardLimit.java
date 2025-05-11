@@ -93,8 +93,8 @@ public class CardLimit extends BaseEntity {
     @Column("is_program_default")
     private Boolean isProgramDefault;
 
-    @Column("is_customer_configurable")
-    private Boolean isCustomerConfigurable;
+    @Column("is_party_configurable")
+    private Boolean isPartyConfigurable;
 
     @Column("min_limit")
     private BigDecimal minLimit;

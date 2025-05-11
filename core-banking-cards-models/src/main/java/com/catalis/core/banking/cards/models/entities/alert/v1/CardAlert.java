@@ -30,8 +30,8 @@ public class CardAlert extends BaseEntity {
     @Column("transaction_id")
     private Long transactionId;
 
-    @Column("customer_id")
-    private Long customerId;
+    @Column("party_id")
+    private Long partyId;
 
     @Column("account_id")
     private Long accountId;
@@ -81,8 +81,8 @@ public class CardAlert extends BaseEntity {
     @Column("trigger_merchant_category")
     private String triggerMerchantCategory;
 
-    @Column("is_customer_configurable")
-    private Boolean isCustomerConfigurable;
+    @Column("is_party_configurable")
+    private Boolean isPartyConfigurable;
 
     @Column("is_system_generated")
     private Boolean isSystemGenerated;

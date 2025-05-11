@@ -32,8 +32,8 @@ public class CardTransaction extends BaseEntity {
     @Column("account_id")
     private Long accountId;
 
-    @Column("customer_id")
-    private Long customerId;
+    @Column("party_id")
+    private Long partyId;
 
     @Column("transaction_reference")
     private String transactionReference;
