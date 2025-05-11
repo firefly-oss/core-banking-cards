@@ -20,7 +20,7 @@ public interface FraudCaseRepository extends BaseRepository<FraudCase, Long> {
      * @return a Mono emitting the FraudCase if found, or empty if not found
      */
     Mono<FraudCase> findByFraudCaseId(Long fraudCaseId);
-    
+
     /**
      * Find a FraudCase by its reference.
      *
@@ -28,7 +28,7 @@ public interface FraudCaseRepository extends BaseRepository<FraudCase, Long> {
      * @return a Mono emitting the FraudCase if found, or empty if not found
      */
     Mono<FraudCase> findByCaseReference(String caseReference);
-    
+
     /**
      * Find FraudCases by card ID.
      *
@@ -36,7 +36,7 @@ public interface FraudCaseRepository extends BaseRepository<FraudCase, Long> {
      * @return a Flux emitting the FraudCases for the specified card
      */
     Flux<FraudCase> findByCardId(Long cardId);
-    
+
     /**
      * Find FraudCases by transaction ID.
      *
@@ -44,15 +44,15 @@ public interface FraudCaseRepository extends BaseRepository<FraudCase, Long> {
      * @return a Flux emitting the FraudCases for the specified transaction
      */
     Flux<FraudCase> findByTransactionId(Long transactionId);
-    
+
     /**
-     * Find FraudCases by customer ID.
+     * Find FraudCases by party ID.
      *
-     * @param customerId the customer ID to search for
-     * @return a Flux emitting the FraudCases for the specified customer
+     * @param partyId the party ID to search for
+     * @return a Flux emitting the FraudCases for the specified party
      */
-    Flux<FraudCase> findByCustomerId(Long customerId);
-    
+    Flux<FraudCase> findByPartyId(Long partyId);
+
     /**
      * Find FraudCases by account ID.
      *
@@ -60,7 +60,7 @@ public interface FraudCaseRepository extends BaseRepository<FraudCase, Long> {
      * @return a Flux emitting the FraudCases for the specified account
      */
     Flux<FraudCase> findByAccountId(Long accountId);
-    
+
     /**
      * Find FraudCases by provider reference.
      *
@@ -68,7 +68,7 @@ public interface FraudCaseRepository extends BaseRepository<FraudCase, Long> {
      * @return a Flux emitting the FraudCases with the specified provider reference
      */
     Flux<FraudCase> findByProviderReference(String providerReference);
-    
+
     /**
      * Find FraudCases by network reference.
      *
@@ -76,7 +76,7 @@ public interface FraudCaseRepository extends BaseRepository<FraudCase, Long> {
      * @return a Flux emitting the FraudCases with the specified network reference
      */
     Flux<FraudCase> findByNetworkReference(String networkReference);
-    
+
     /**
      * Find FraudCases by fraud type.
      *
@@ -84,7 +84,7 @@ public interface FraudCaseRepository extends BaseRepository<FraudCase, Long> {
      * @return a Flux emitting the FraudCases of the specified type
      */
     Flux<FraudCase> findByFraudType(String fraudType);
-    
+
     /**
      * Find FraudCases by fraud reason code.
      *
@@ -92,7 +92,7 @@ public interface FraudCaseRepository extends BaseRepository<FraudCase, Long> {
      * @return a Flux emitting the FraudCases with the specified reason code
      */
     Flux<FraudCase> findByFraudReasonCode(String fraudReasonCode);
-    
+
     /**
      * Find FraudCases by fraud status.
      *
@@ -100,7 +100,7 @@ public interface FraudCaseRepository extends BaseRepository<FraudCase, Long> {
      * @return a Flux emitting the FraudCases with the specified status
      */
     Flux<FraudCase> findByFraudStatus(String fraudStatus);
-    
+
     /**
      * Find FraudCases by risk level.
      *
@@ -108,7 +108,7 @@ public interface FraudCaseRepository extends BaseRepository<FraudCase, Long> {
      * @return a Flux emitting the FraudCases with the specified risk level
      */
     Flux<FraudCase> findByRiskLevel(String riskLevel);
-    
+
     /**
      * Find FraudCases by detection source.
      *
@@ -116,7 +116,7 @@ public interface FraudCaseRepository extends BaseRepository<FraudCase, Long> {
      * @return a Flux emitting the FraudCases with the specified detection source
      */
     Flux<FraudCase> findByDetectionSource(String detectionSource);
-    
+
     /**
      * Find FraudCases by detection timestamp range.
      *
@@ -125,35 +125,35 @@ public interface FraudCaseRepository extends BaseRepository<FraudCase, Long> {
      * @return a Flux emitting the FraudCases within the specified detection date range
      */
     Flux<FraudCase> findByDetectionTimestampBetween(LocalDateTime startDate, LocalDateTime endDate);
-    
+
     /**
-     * Find FraudCases reported by customer.
+     * Find FraudCases reported by party.
      *
-     * @return a Flux emitting all FraudCases reported by customers
+     * @return a Flux emitting all FraudCases reported by parties
      */
-    Flux<FraudCase> findByReportedByCustomerTrue();
-    
+    Flux<FraudCase> findByReportedByPartyTrue();
+
     /**
      * Find FraudCases where the card has been blocked.
      *
      * @return a Flux emitting all FraudCases where the card has been blocked
      */
     Flux<FraudCase> findByIsCardBlockedTrue();
-    
+
     /**
-     * Find FraudCases where the customer has been notified.
+     * Find FraudCases where the party has been notified.
      *
-     * @return a Flux emitting all FraudCases where the customer has been notified
+     * @return a Flux emitting all FraudCases where the party has been notified
      */
-    Flux<FraudCase> findByIsCustomerNotifiedTrue();
-    
+    Flux<FraudCase> findByIsPartyNotifiedTrue();
+
     /**
      * Find FraudCases where the cardholder has been credited.
      *
      * @return a Flux emitting all FraudCases where the cardholder has been credited
      */
     Flux<FraudCase> findByIsCardholderCreditedTrue();
-    
+
     /**
      * Find FraudCases by assigned agent ID.
      *

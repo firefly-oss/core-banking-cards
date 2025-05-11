@@ -48,12 +48,12 @@ public interface CardBalanceRepository extends BaseRepository<CardBalance, Long>
     Mono<Long> countByCardId(Long cardId);
 
     /**
-     * Find CardBalances by customer ID.
+     * Find CardBalances by party ID.
      *
-     * @param customerId the customer ID to search for
-     * @return a Flux emitting the CardBalances for the specified customer
+     * @param partyId the party ID to search for
+     * @return a Flux emitting the CardBalances for the specified party
      */
-    Flux<CardBalance> findByCustomerId(Long customerId);
+    Flux<CardBalance> findByPartyId(Long partyId);
 
     /**
      * Find CardBalances by account ID.

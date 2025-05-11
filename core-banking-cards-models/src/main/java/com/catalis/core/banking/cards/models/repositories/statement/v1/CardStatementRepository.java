@@ -20,7 +20,7 @@ public interface CardStatementRepository extends BaseRepository<CardStatement, L
      * @return a Mono emitting the CardStatement if found, or empty if not found
      */
     Mono<CardStatement> findByStatementId(Long statementId);
-    
+
     /**
      * Find a CardStatement by its reference.
      *
@@ -28,7 +28,7 @@ public interface CardStatementRepository extends BaseRepository<CardStatement, L
      * @return a Mono emitting the CardStatement if found, or empty if not found
      */
     Mono<CardStatement> findByStatementReference(String statementReference);
-    
+
     /**
      * Find CardStatements by card ID.
      *
@@ -36,15 +36,15 @@ public interface CardStatementRepository extends BaseRepository<CardStatement, L
      * @return a Flux emitting the CardStatements for the specified card
      */
     Flux<CardStatement> findByCardId(Long cardId);
-    
+
     /**
-     * Find CardStatements by customer ID.
+     * Find CardStatements by party ID.
      *
-     * @param customerId the customer ID to search for
-     * @return a Flux emitting the CardStatements for the specified customer
+     * @param partyId the party ID to search for
+     * @return a Flux emitting the CardStatements for the specified party
      */
-    Flux<CardStatement> findByCustomerId(Long customerId);
-    
+    Flux<CardStatement> findByPartyId(Long partyId);
+
     /**
      * Find CardStatements by account ID.
      *
@@ -52,7 +52,7 @@ public interface CardStatementRepository extends BaseRepository<CardStatement, L
      * @return a Flux emitting the CardStatements for the specified account
      */
     Flux<CardStatement> findByAccountId(Long accountId);
-    
+
     /**
      * Find CardStatements by statement date range.
      *
@@ -61,7 +61,7 @@ public interface CardStatementRepository extends BaseRepository<CardStatement, L
      * @return a Flux emitting the CardStatements within the specified date range
      */
     Flux<CardStatement> findByStatementDateBetween(LocalDateTime startDate, LocalDateTime endDate);
-    
+
     /**
      * Find CardStatements by due date range.
      *
@@ -70,7 +70,7 @@ public interface CardStatementRepository extends BaseRepository<CardStatement, L
      * @return a Flux emitting the CardStatements within the specified due date range
      */
     Flux<CardStatement> findByDueDateBetween(LocalDateTime startDate, LocalDateTime endDate);
-    
+
     /**
      * Find CardStatements by payment status.
      *
@@ -78,28 +78,28 @@ public interface CardStatementRepository extends BaseRepository<CardStatement, L
      * @return a Flux emitting the CardStatements with the specified payment status
      */
     Flux<CardStatement> findByPaymentStatus(String paymentStatus);
-    
+
     /**
      * Find generated CardStatements.
      *
      * @return a Flux emitting all generated CardStatements
      */
     Flux<CardStatement> findByIsGeneratedTrue();
-    
+
     /**
      * Find delivered CardStatements.
      *
      * @return a Flux emitting all delivered CardStatements
      */
     Flux<CardStatement> findByIsDeliveredTrue();
-    
+
     /**
      * Find viewed CardStatements.
      *
      * @return a Flux emitting all viewed CardStatements
      */
     Flux<CardStatement> findByIsViewedTrue();
-    
+
     /**
      * Find CardStatements by delivery method.
      *

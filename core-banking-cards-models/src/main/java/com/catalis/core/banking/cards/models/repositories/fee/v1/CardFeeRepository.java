@@ -20,7 +20,7 @@ public interface CardFeeRepository extends BaseRepository<CardFee, Long> {
      * @return a Mono emitting the CardFee if found, or empty if not found
      */
     Mono<CardFee> findByFeeId(Long feeId);
-    
+
     /**
      * Find a CardFee by its reference.
      *
@@ -28,7 +28,7 @@ public interface CardFeeRepository extends BaseRepository<CardFee, Long> {
      * @return a Mono emitting the CardFee if found, or empty if not found
      */
     Mono<CardFee> findByFeeReference(String feeReference);
-    
+
     /**
      * Find CardFees by card ID.
      *
@@ -36,15 +36,15 @@ public interface CardFeeRepository extends BaseRepository<CardFee, Long> {
      * @return a Flux emitting the CardFees for the specified card
      */
     Flux<CardFee> findByCardId(Long cardId);
-    
+
     /**
-     * Find CardFees by customer ID.
+     * Find CardFees by party ID.
      *
-     * @param customerId the customer ID to search for
-     * @return a Flux emitting the CardFees for the specified customer
+     * @param partyId the party ID to search for
+     * @return a Flux emitting the CardFees for the specified party
      */
-    Flux<CardFee> findByCustomerId(Long customerId);
-    
+    Flux<CardFee> findByPartyId(Long partyId);
+
     /**
      * Find CardFees by account ID.
      *
@@ -52,7 +52,7 @@ public interface CardFeeRepository extends BaseRepository<CardFee, Long> {
      * @return a Flux emitting the CardFees for the specified account
      */
     Flux<CardFee> findByAccountId(Long accountId);
-    
+
     /**
      * Find CardFees by transaction ID.
      *
@@ -60,7 +60,7 @@ public interface CardFeeRepository extends BaseRepository<CardFee, Long> {
      * @return a Flux emitting the CardFees for the specified transaction
      */
     Flux<CardFee> findByTransactionId(Long transactionId);
-    
+
     /**
      * Find CardFees by statement ID.
      *
@@ -68,7 +68,7 @@ public interface CardFeeRepository extends BaseRepository<CardFee, Long> {
      * @return a Flux emitting the CardFees for the specified statement
      */
     Flux<CardFee> findByStatementId(Long statementId);
-    
+
     /**
      * Find CardFees by program ID.
      *
@@ -76,7 +76,7 @@ public interface CardFeeRepository extends BaseRepository<CardFee, Long> {
      * @return a Flux emitting the CardFees for the specified program
      */
     Flux<CardFee> findByProgramId(Long programId);
-    
+
     /**
      * Find CardFees by fee type.
      *
@@ -84,7 +84,7 @@ public interface CardFeeRepository extends BaseRepository<CardFee, Long> {
      * @return a Flux emitting the CardFees of the specified type
      */
     Flux<CardFee> findByFeeType(String feeType);
-    
+
     /**
      * Find CardFees by fee status.
      *
@@ -92,42 +92,42 @@ public interface CardFeeRepository extends BaseRepository<CardFee, Long> {
      * @return a Flux emitting the CardFees with the specified status
      */
     Flux<CardFee> findByFeeStatus(String feeStatus);
-    
+
     /**
      * Find recurring CardFees.
      *
      * @return a Flux emitting all recurring CardFees
      */
     Flux<CardFee> findByIsRecurringTrue();
-    
+
     /**
      * Find waived CardFees.
      *
      * @return a Flux emitting all waived CardFees
      */
     Flux<CardFee> findByIsWaivedTrue();
-    
+
     /**
      * Find refunded CardFees.
      *
      * @return a Flux emitting all refunded CardFees
      */
     Flux<CardFee> findByIsRefundedTrue();
-    
+
     /**
      * Find billed CardFees.
      *
      * @return a Flux emitting all billed CardFees
      */
     Flux<CardFee> findByIsBilledTrue();
-    
+
     /**
      * Find paid CardFees.
      *
      * @return a Flux emitting all paid CardFees
      */
     Flux<CardFee> findByIsPaidTrue();
-    
+
     /**
      * Find CardFees by charge timestamp range.
      *
@@ -136,7 +136,7 @@ public interface CardFeeRepository extends BaseRepository<CardFee, Long> {
      * @return a Flux emitting the CardFees within the specified date range
      */
     Flux<CardFee> findByChargeTimestampBetween(LocalDateTime startDate, LocalDateTime endDate);
-    
+
     /**
      * Find CardFees with next recurrence date before a specific date.
      *

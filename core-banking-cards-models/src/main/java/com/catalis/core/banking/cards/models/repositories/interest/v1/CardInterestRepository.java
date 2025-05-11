@@ -56,12 +56,12 @@ public interface CardInterestRepository extends BaseRepository<CardInterest, Lon
     Mono<Long> countByCardId(Long cardId);
 
     /**
-     * Find CardInterests by customer ID.
+     * Find CardInterests by party ID.
      *
-     * @param customerId the customer ID to search for
-     * @return a Flux emitting the CardInterests for the specified customer
+     * @param partyId the party ID to search for
+     * @return a Flux emitting the CardInterests for the specified party
      */
-    Flux<CardInterest> findByCustomerId(Long customerId);
+    Flux<CardInterest> findByPartyId(Long partyId);
 
     /**
      * Find CardInterests by account ID.

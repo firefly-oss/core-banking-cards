@@ -20,7 +20,7 @@ public interface CardAlertRepository extends BaseRepository<CardAlert, Long> {
      * @return a Mono emitting the CardAlert if found, or empty if not found
      */
     Mono<CardAlert> findByAlertId(Long alertId);
-    
+
     /**
      * Find a CardAlert by its reference.
      *
@@ -28,7 +28,7 @@ public interface CardAlertRepository extends BaseRepository<CardAlert, Long> {
      * @return a Mono emitting the CardAlert if found, or empty if not found
      */
     Mono<CardAlert> findByAlertReference(String alertReference);
-    
+
     /**
      * Find CardAlerts by card ID.
      *
@@ -36,7 +36,7 @@ public interface CardAlertRepository extends BaseRepository<CardAlert, Long> {
      * @return a Flux emitting the CardAlerts for the specified card
      */
     Flux<CardAlert> findByCardId(Long cardId);
-    
+
     /**
      * Find CardAlerts by transaction ID.
      *
@@ -44,15 +44,15 @@ public interface CardAlertRepository extends BaseRepository<CardAlert, Long> {
      * @return a Flux emitting the CardAlerts for the specified transaction
      */
     Flux<CardAlert> findByTransactionId(Long transactionId);
-    
+
     /**
-     * Find CardAlerts by customer ID.
+     * Find CardAlerts by party ID.
      *
-     * @param customerId the customer ID to search for
-     * @return a Flux emitting the CardAlerts for the specified customer
+     * @param partyId the party ID to search for
+     * @return a Flux emitting the CardAlerts for the specified party
      */
-    Flux<CardAlert> findByCustomerId(Long customerId);
-    
+    Flux<CardAlert> findByPartyId(Long partyId);
+
     /**
      * Find CardAlerts by account ID.
      *
@@ -60,7 +60,7 @@ public interface CardAlertRepository extends BaseRepository<CardAlert, Long> {
      * @return a Flux emitting the CardAlerts for the specified account
      */
     Flux<CardAlert> findByAccountId(Long accountId);
-    
+
     /**
      * Find CardAlerts by alert type.
      *
@@ -68,7 +68,7 @@ public interface CardAlertRepository extends BaseRepository<CardAlert, Long> {
      * @return a Flux emitting the CardAlerts of the specified type
      */
     Flux<CardAlert> findByAlertType(String alertType);
-    
+
     /**
      * Find CardAlerts by alert category.
      *
@@ -76,7 +76,7 @@ public interface CardAlertRepository extends BaseRepository<CardAlert, Long> {
      * @return a Flux emitting the CardAlerts of the specified category
      */
     Flux<CardAlert> findByAlertCategory(String alertCategory);
-    
+
     /**
      * Find CardAlerts by alert severity.
      *
@@ -84,7 +84,7 @@ public interface CardAlertRepository extends BaseRepository<CardAlert, Long> {
      * @return a Flux emitting the CardAlerts with the specified severity
      */
     Flux<CardAlert> findByAlertSeverity(String alertSeverity);
-    
+
     /**
      * Find CardAlerts by alert status.
      *
@@ -92,7 +92,7 @@ public interface CardAlertRepository extends BaseRepository<CardAlert, Long> {
      * @return a Flux emitting the CardAlerts with the specified status
      */
     Flux<CardAlert> findByAlertStatus(String alertStatus);
-    
+
     /**
      * Find CardAlerts by trigger event.
      *
@@ -100,7 +100,7 @@ public interface CardAlertRepository extends BaseRepository<CardAlert, Long> {
      * @return a Flux emitting the CardAlerts with the specified trigger event
      */
     Flux<CardAlert> findByTriggerEvent(String triggerEvent);
-    
+
     /**
      * Find CardAlerts by trigger timestamp range.
      *
@@ -109,35 +109,35 @@ public interface CardAlertRepository extends BaseRepository<CardAlert, Long> {
      * @return a Flux emitting the CardAlerts within the specified trigger date range
      */
     Flux<CardAlert> findByTriggerTimestampBetween(LocalDateTime startDate, LocalDateTime endDate);
-    
+
     /**
-     * Find customer configurable CardAlerts.
+     * Find party configurable CardAlerts.
      *
-     * @return a Flux emitting all customer configurable CardAlerts
+     * @return a Flux emitting all party configurable CardAlerts
      */
-    Flux<CardAlert> findByIsCustomerConfigurableTrue();
-    
+    Flux<CardAlert> findByIsPartyConfigurableTrue();
+
     /**
      * Find system generated CardAlerts.
      *
      * @return a Flux emitting all system generated CardAlerts
      */
     Flux<CardAlert> findByIsSystemGeneratedTrue();
-    
+
     /**
      * Find read CardAlerts.
      *
      * @return a Flux emitting all read CardAlerts
      */
     Flux<CardAlert> findByIsReadTrue();
-    
+
     /**
      * Find unread CardAlerts.
      *
      * @return a Flux emitting all unread CardAlerts
      */
     Flux<CardAlert> findByIsReadFalse();
-    
+
     /**
      * Find CardAlerts by delivery channel.
      *
@@ -145,7 +145,7 @@ public interface CardAlertRepository extends BaseRepository<CardAlert, Long> {
      * @return a Flux emitting the CardAlerts with the specified delivery channel
      */
     Flux<CardAlert> findByDeliveryChannel(String deliveryChannel);
-    
+
     /**
      * Find CardAlerts by delivery status.
      *
@@ -153,14 +153,14 @@ public interface CardAlertRepository extends BaseRepository<CardAlert, Long> {
      * @return a Flux emitting the CardAlerts with the specified delivery status
      */
     Flux<CardAlert> findByDeliveryStatus(String deliveryStatus);
-    
+
     /**
      * Find CardAlerts requiring action.
      *
      * @return a Flux emitting all CardAlerts requiring action
      */
     Flux<CardAlert> findByActionRequiredTrue();
-    
+
     /**
      * Find CardAlerts by action type.
      *

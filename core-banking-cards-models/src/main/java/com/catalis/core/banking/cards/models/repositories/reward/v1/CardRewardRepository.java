@@ -56,12 +56,12 @@ public interface CardRewardRepository extends BaseRepository<CardReward, Long> {
     Flux<CardReward> findByTransactionId(Long transactionId);
 
     /**
-     * Find CardRewards by customer ID.
+     * Find CardRewards by party ID.
      *
-     * @param customerId the customer ID to search for
-     * @return a Flux emitting the CardRewards for the specified customer
+     * @param partyId the party ID to search for
+     * @return a Flux emitting the CardRewards for the specified party
      */
-    Flux<CardReward> findByCustomerId(Long customerId);
+    Flux<CardReward> findByPartyId(Long partyId);
 
     /**
      * Find CardRewards by account ID.

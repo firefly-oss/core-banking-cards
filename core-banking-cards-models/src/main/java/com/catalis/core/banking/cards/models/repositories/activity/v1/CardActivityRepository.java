@@ -56,12 +56,12 @@ public interface CardActivityRepository extends BaseRepository<CardActivity, Lon
     Mono<Long> countByCardId(Long cardId);
 
     /**
-     * Find CardActivities by customer ID.
+     * Find CardActivities by party ID.
      *
-     * @param customerId the customer ID to search for
-     * @return a Flux emitting the CardActivities for the specified customer
+     * @param partyId the party ID to search for
+     * @return a Flux emitting the CardActivities for the specified party
      */
-    Flux<CardActivity> findByCustomerId(Long customerId);
+    Flux<CardActivity> findByPartyId(Long partyId);
 
     /**
      * Find CardActivities by account ID.
@@ -129,11 +129,11 @@ public interface CardActivityRepository extends BaseRepository<CardActivity, Lon
     Flux<CardActivity> findByActivitySource(String activitySource);
 
     /**
-     * Find CardActivities initiated by customers.
+     * Find CardActivities initiated by parties.
      *
-     * @return a Flux emitting all CardActivities initiated by customers
+     * @return a Flux emitting all CardActivities initiated by parties
      */
-    Flux<CardActivity> findByIsCustomerInitiatedTrue();
+    Flux<CardActivity> findByIsPartyInitiatedTrue();
 
     /**
      * Find CardActivities initiated by the system.

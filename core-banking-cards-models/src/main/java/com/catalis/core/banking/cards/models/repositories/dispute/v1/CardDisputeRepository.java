@@ -64,12 +64,12 @@ public interface CardDisputeRepository extends BaseRepository<CardDispute, Long>
     Flux<CardDispute> findByTransactionId(Long transactionId);
 
     /**
-     * Find CardDisputes by customer ID.
+     * Find CardDisputes by party ID.
      *
-     * @param customerId the customer ID to search for
-     * @return a Flux emitting the CardDisputes for the specified customer
+     * @param partyId the party ID to search for
+     * @return a Flux emitting the CardDisputes for the specified party
      */
-    Flux<CardDispute> findByCustomerId(Long customerId);
+    Flux<CardDispute> findByPartyId(Long partyId);
 
     /**
      * Find CardDisputes by account ID.

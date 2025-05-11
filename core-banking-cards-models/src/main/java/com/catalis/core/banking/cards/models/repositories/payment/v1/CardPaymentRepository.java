@@ -64,12 +64,12 @@ public interface CardPaymentRepository extends BaseRepository<CardPayment, Long>
     Mono<Long> countByCardId(Long cardId);
 
     /**
-     * Find CardPayments by customer ID.
+     * Find CardPayments by party ID.
      *
-     * @param customerId the customer ID to search for
-     * @return a Flux emitting the CardPayments for the specified customer
+     * @param partyId the party ID to search for
+     * @return a Flux emitting the CardPayments for the specified party
      */
-    Flux<CardPayment> findByCustomerId(Long customerId);
+    Flux<CardPayment> findByPartyId(Long partyId);
 
     /**
      * Find CardPayments by account ID.

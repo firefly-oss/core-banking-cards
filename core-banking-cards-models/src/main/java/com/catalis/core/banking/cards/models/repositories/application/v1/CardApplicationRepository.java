@@ -20,7 +20,7 @@ public interface CardApplicationRepository extends BaseRepository<CardApplicatio
      * @return a Mono emitting the CardApplication if found, or empty if not found
      */
     Mono<CardApplication> findByApplicationId(Long applicationId);
-    
+
     /**
      * Find a CardApplication by its reference.
      *
@@ -28,15 +28,15 @@ public interface CardApplicationRepository extends BaseRepository<CardApplicatio
      * @return a Mono emitting the CardApplication if found, or empty if not found
      */
     Mono<CardApplication> findByApplicationReference(String applicationReference);
-    
+
     /**
-     * Find CardApplications by customer ID.
+     * Find CardApplications by party ID.
      *
-     * @param customerId the customer ID to search for
-     * @return a Flux emitting the CardApplications for the specified customer
+     * @param partyId the party ID to search for
+     * @return a Flux emitting the CardApplications for the specified party
      */
-    Flux<CardApplication> findByCustomerId(Long customerId);
-    
+    Flux<CardApplication> findByPartyId(Long partyId);
+
     /**
      * Find CardApplications by account ID.
      *
@@ -44,7 +44,7 @@ public interface CardApplicationRepository extends BaseRepository<CardApplicatio
      * @return a Flux emitting the CardApplications for the specified account
      */
     Flux<CardApplication> findByAccountId(Long accountId);
-    
+
     /**
      * Find CardApplications by application type.
      *
@@ -52,7 +52,7 @@ public interface CardApplicationRepository extends BaseRepository<CardApplicatio
      * @return a Flux emitting the CardApplications of the specified type
      */
     Flux<CardApplication> findByApplicationType(String applicationType);
-    
+
     /**
      * Find CardApplications by card type ID.
      *
@@ -60,7 +60,7 @@ public interface CardApplicationRepository extends BaseRepository<CardApplicatio
      * @return a Flux emitting the CardApplications for the specified card type
      */
     Flux<CardApplication> findByCardTypeId(Long cardTypeId);
-    
+
     /**
      * Find CardApplications by program ID.
      *
@@ -68,7 +68,7 @@ public interface CardApplicationRepository extends BaseRepository<CardApplicatio
      * @return a Flux emitting the CardApplications for the specified program
      */
     Flux<CardApplication> findByProgramId(Long programId);
-    
+
     /**
      * Find CardApplications by design ID.
      *
@@ -76,7 +76,7 @@ public interface CardApplicationRepository extends BaseRepository<CardApplicatio
      * @return a Flux emitting the CardApplications for the specified design
      */
     Flux<CardApplication> findByDesignId(Long designId);
-    
+
     /**
      * Find CardApplications by application status.
      *
@@ -84,7 +84,7 @@ public interface CardApplicationRepository extends BaseRepository<CardApplicatio
      * @return a Flux emitting the CardApplications with the specified status
      */
     Flux<CardApplication> findByApplicationStatus(String applicationStatus);
-    
+
     /**
      * Find CardApplications by application stage.
      *
@@ -92,7 +92,7 @@ public interface CardApplicationRepository extends BaseRepository<CardApplicatio
      * @return a Flux emitting the CardApplications at the specified stage
      */
     Flux<CardApplication> findByApplicationStage(String applicationStage);
-    
+
     /**
      * Find CardApplications by application channel.
      *
@@ -100,7 +100,7 @@ public interface CardApplicationRepository extends BaseRepository<CardApplicatio
      * @return a Flux emitting the CardApplications from the specified channel
      */
     Flux<CardApplication> findByApplicationChannel(String applicationChannel);
-    
+
     /**
      * Find CardApplications by application timestamp range.
      *
@@ -109,35 +109,35 @@ public interface CardApplicationRepository extends BaseRepository<CardApplicatio
      * @return a Flux emitting the CardApplications within the specified date range
      */
     Flux<CardApplication> findByApplicationTimestampBetween(LocalDateTime startDate, LocalDateTime endDate);
-    
+
     /**
      * Find pre-approved CardApplications.
      *
      * @return a Flux emitting all pre-approved CardApplications
      */
     Flux<CardApplication> findByIsPreApprovedTrue();
-    
+
     /**
      * Find instant issuance CardApplications.
      *
      * @return a Flux emitting all instant issuance CardApplications
      */
     Flux<CardApplication> findByIsInstantIssuanceTrue();
-    
+
     /**
      * Find digital-only CardApplications.
      *
      * @return a Flux emitting all digital-only CardApplications
      */
     Flux<CardApplication> findByIsDigitalOnlyTrue();
-    
+
     /**
      * Find CardApplications requiring physical cards.
      *
      * @return a Flux emitting all CardApplications requiring physical cards
      */
     Flux<CardApplication> findByRequiresPhysicalCardTrue();
-    
+
     /**
      * Find CardApplications by KYC status.
      *
@@ -145,7 +145,7 @@ public interface CardApplicationRepository extends BaseRepository<CardApplicatio
      * @return a Flux emitting the CardApplications with the specified KYC status
      */
     Flux<CardApplication> findByKycStatus(String kycStatus);
-    
+
     /**
      * Find CardApplications by AML status.
      *
@@ -153,7 +153,7 @@ public interface CardApplicationRepository extends BaseRepository<CardApplicatio
      * @return a Flux emitting the CardApplications with the specified AML status
      */
     Flux<CardApplication> findByAmlStatus(String amlStatus);
-    
+
     /**
      * Find CardApplications by card ID.
      *
@@ -161,7 +161,7 @@ public interface CardApplicationRepository extends BaseRepository<CardApplicatio
      * @return a Flux emitting the CardApplications for the specified card
      */
     Flux<CardApplication> findByCardId(Long cardId);
-    
+
     /**
      * Find CardApplications with accepted terms.
      *

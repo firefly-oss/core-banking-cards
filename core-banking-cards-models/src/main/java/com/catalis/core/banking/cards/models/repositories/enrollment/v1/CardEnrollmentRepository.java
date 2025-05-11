@@ -56,12 +56,12 @@ public interface CardEnrollmentRepository extends BaseRepository<CardEnrollment,
     Mono<Long> countByCardId(Long cardId);
 
     /**
-     * Find CardEnrollments by customer ID.
+     * Find CardEnrollments by party ID.
      *
-     * @param customerId the customer ID to search for
-     * @return a Flux emitting the CardEnrollments for the specified customer
+     * @param partyId the party ID to search for
+     * @return a Flux emitting the CardEnrollments for the specified party
      */
-    Flux<CardEnrollment> findByCustomerId(Long customerId);
+    Flux<CardEnrollment> findByPartyId(Long partyId);
 
     /**
      * Find CardEnrollments by account ID.
