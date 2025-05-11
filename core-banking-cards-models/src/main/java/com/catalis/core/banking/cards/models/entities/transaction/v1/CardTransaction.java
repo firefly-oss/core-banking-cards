@@ -11,6 +11,10 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+/**
+ * Card Transaction entity.
+ * Represents a financial transaction performed with a payment card.
+ */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,54 +29,171 @@ public class CardTransaction extends BaseEntity {
     @Column("card_id")
     private Long cardId;
 
+    @Column("account_id")
+    private Long accountId;
+
+    @Column("customer_id")
+    private Long customerId;
+
+    @Column("transaction_reference")
+    private String transactionReference;
+
+    @Column("provider_reference")
+    private String providerReference;
+
+    @Column("network_reference")
+    private String networkReference;
+
     @Column("transaction_type")
     private TransactionTypeEnum transactionType;
-
-    @Column("merchant_info")
-    private String merchantInfo;
 
     @Column("transaction_status")
     private TransactionStatusEnum transactionStatus;
 
-    @Column("card_auth_code")
-    private String cardAuthCode;
+    @Column("transaction_timestamp")
+    private LocalDateTime transactionTimestamp;
 
-    @Column("card_merchant_category_code")
-    private String cardMerchantCategoryCode;
+    @Column("settlement_timestamp")
+    private LocalDateTime settlementTimestamp;
 
-    @Column("card_merchant_name")
-    private String cardMerchantName;
+    @Column("authorization_code")
+    private String authorizationCode;
 
-    @Column("card_pos_entry_mode")
-    private String cardPosEntryMode;
+    @Column("response_code")
+    private String responseCode;
 
-    @Column("card_transaction_reference")
-    private String cardTransactionReference;
+    @Column("response_message")
+    private String responseMessage;
 
-    @Column("card_terminal_id")
-    private String cardTerminalId;
+    @Column("transaction_amount")
+    private BigDecimal transactionAmount;
 
-    @Column("card_holder_country")
-    private String cardHolderCountry;  // ISO-2
+    @Column("transaction_currency")
+    private String transactionCurrency;
 
-    @Column("card_present_flag")
-    private boolean cardPresentFlag;
+    @Column("billing_amount")
+    private BigDecimal billingAmount;
 
-    @Column("card_transaction_timestamp")
-    private LocalDateTime cardTransactionTimestamp;
+    @Column("billing_currency")
+    private String billingCurrency;
 
-    @Column("card_fraud_flag")
-    private boolean cardFraudFlag;
+    @Column("exchange_rate")
+    private BigDecimal exchangeRate;
 
-    @Column("card_currency_conversion_rate")
-    private BigDecimal cardCurrencyConversionRate;
+    @Column("fee_amount")
+    private BigDecimal feeAmount;
 
-    @Column("card_fee_amount")
-    private BigDecimal cardFeeAmount;
+    @Column("fee_currency")
+    private String feeCurrency;
 
-    @Column("card_fee_currency")
-    private String cardFeeCurrency;  // ISO-3
+    @Column("tax_amount")
+    private BigDecimal taxAmount;
 
-    @Column("card_installment_plan")
-    private String cardInstallmentPlan;
+    @Column("tax_currency")
+    private String taxCurrency;
+
+    @Column("merchant_id")
+    private String merchantId;
+
+    @Column("merchant_name")
+    private String merchantName;
+
+    @Column("merchant_category_code")
+    private String merchantCategoryCode;
+
+    @Column("merchant_category_name")
+    private String merchantCategoryName;
+
+    @Column("merchant_city")
+    private String merchantCity;
+
+    @Column("merchant_state")
+    private String merchantState;
+
+    @Column("merchant_country")
+    private String merchantCountry;
+
+    @Column("merchant_postal_code")
+    private String merchantPostalCode;
+
+    @Column("terminal_id")
+    private String terminalId;
+
+    @Column("terminal_type")
+    private String terminalType;
+
+    @Column("entry_mode")
+    private String entryMode;
+
+    @Column("channel_type")
+    private String channelType;
+
+    @Column("is_card_present")
+    private Boolean isCardPresent;
+
+    @Column("is_pin_verified")
+    private Boolean isPinVerified;
+
+    @Column("is_signature_verified")
+    private Boolean isSignatureVerified;
+
+    @Column("is_3d_secure")
+    private Boolean is3dSecure;
+
+    @Column("is_tokenized")
+    private Boolean isTokenized;
+
+    @Column("is_recurring")
+    private Boolean isRecurring;
+
+    @Column("is_installment")
+    private Boolean isInstallment;
+
+    @Column("installment_plan")
+    private String installmentPlan;
+
+    @Column("installment_number")
+    private Integer installmentNumber;
+
+    @Column("total_installments")
+    private Integer totalInstallments;
+
+    @Column("is_international")
+    private Boolean isInternational;
+
+    @Column("is_disputed")
+    private Boolean isDisputed;
+
+    @Column("dispute_reason")
+    private String disputeReason;
+
+    @Column("dispute_status")
+    private String disputeStatus;
+
+    @Column("dispute_timestamp")
+    private LocalDateTime disputeTimestamp;
+
+    @Column("is_fraud_suspected")
+    private Boolean isFraudSuspected;
+
+    @Column("fraud_reason")
+    private String fraudReason;
+
+    @Column("fraud_score")
+    private Integer fraudScore;
+
+    @Column("device_id")
+    private String deviceId;
+
+    @Column("ip_address")
+    private String ipAddress;
+
+    @Column("user_agent")
+    private String userAgent;
+
+    @Column("geolocation")
+    private String geolocation;
+
+    @Column("notes")
+    private String notes;
 }
