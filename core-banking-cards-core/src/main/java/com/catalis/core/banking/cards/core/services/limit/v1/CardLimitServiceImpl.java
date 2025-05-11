@@ -53,10 +53,10 @@ public class CardLimitServiceImpl implements CardLimitService {
         return repository.findByCardLimitId(limitId)
                 .filter(cardLimit -> cardLimit.getCardId().equals(cardId))
                 .flatMap(existingEntity -> {
-                    existingEntity.setLimitType(limitDTO.getLimitType());
+                    existingEntity.setLimitType(limitDTO.getLimitType().name());
                     existingEntity.setLimitAmount(limitDTO.getLimitAmount());
                     existingEntity.setCurrentUsage(limitDTO.getCurrentUsage());
-                    existingEntity.setResetPeriod(limitDTO.getResetPeriod());
+                    existingEntity.setResetPeriod(limitDTO.getResetPeriod().name());
                     return repository.save(existingEntity);
                 })
                 .map(mapper::toDTO);

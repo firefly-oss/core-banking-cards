@@ -53,7 +53,7 @@ public class CardConfigurationServiceImpl implements CardConfigurationService {
                 .filter(config -> config.getCardId().equals(cardId))
                 .flatMap(existingConfig -> {
                     existingConfig.setConfigType(configDTO.getConfigType());
-                    existingConfig.setConfigValue(configDTO.isConfigValue());
+                    existingConfig.setConfigValue(configDTO.getConfigValue());
                     return repository.save(existingConfig);
                 })
                 .map(mapper::toDTO);
