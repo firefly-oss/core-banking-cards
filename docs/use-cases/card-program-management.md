@@ -2,7 +2,7 @@
 
 ## Overview
 
-Card Program Management is a core functionality of the Core Banking Cards Service that allows financial institutions to define and manage card programs with specific rules, limits, and features. A card program serves as a template for issuing cards to customers, ensuring consistency in card features, limits, and behavior.
+Card Program Management is a core functionality of the Core Banking Cards Service that allows financial institutions to define and manage card programs with specific rules, limits, and features. A card program serves as a template for issuing cards to parties, ensuring consistency in card features, limits, and behavior.
 
 ## Key Capabilities
 
@@ -127,9 +127,9 @@ Content-Type: application/json
 ## Best Practices
 
 1. **Naming Conventions**: Use clear, consistent naming for card programs
-2. **Default Limits**: Set appropriate default limits based on card type and target customer segment
+2. **Default Limits**: Set appropriate default limits based on card type and target party segment
 3. **Program Codes**: Use structured program codes that include information about the card type and target segment
 4. **Documentation**: Maintain comprehensive documentation for each card program
-5. **Testing**: Test card program configurations thoroughly before making them available to customers
+5. **Testing**: Test card program configurations thoroughly before making them available to parties
 6. **Monitoring**: Regularly monitor card program performance and usage metrics
 7. **Compliance**: Ensure card programs comply with relevant regulations and network rules

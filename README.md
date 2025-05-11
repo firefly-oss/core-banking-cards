@@ -9,7 +9,7 @@ For detailed documentation on the main use cases, please refer to the [documenta
 ### ✨ Key Features
 
 - **Card Program Management**: Define and manage card programs with specific rules, limits, and features
-- **Card Issuance**: Issue physical and virtual cards to customers
+- **Card Issuance**: Issue physical and virtual cards to parties
 - **Transaction Processing**: Authorize, process, and monitor card transactions
 - **Dispute Handling**: Process and resolve transaction disputes
 - **Card Security**: Implement fraud detection and prevention measures
@@ -19,7 +19,7 @@ For detailed documentation on the main use cases, please refer to the [documenta
 
 - **Increased Revenue**: Enable financial institutions to offer diverse card products and monetize transactions
 - **Operational Efficiency**: Streamline card management processes and reduce manual intervention
-- **Enhanced Customer Experience**: Provide seamless card issuance, activation, and usage experience
+- **Enhanced Party Experience**: Provide seamless card issuance, activation, and usage experience
 - **Reduced Fraud**: Implement robust security measures to detect and prevent fraudulent activities
 - **Regulatory Compliance**: Ensure adherence to industry standards and regulatory requirements
 - **Market Agility**: Quickly launch new card products and adapt to changing market demands
@@ -88,7 +88,7 @@ The service is organized into the following modules:
 
 ## 📊 Data Model
 
-The Core Banking Cards Service has a comprehensive data model that supports the full lifecycle of card management. The model is designed to handle various card types, transaction processing, and customer interactions.
+The Core Banking Cards Service has a comprehensive data model that supports the full lifecycle of card management. The model is designed to handle various card types, transaction processing, and party interactions.
 
 ### Detailed Entity Relationship Diagram
 
@@ -167,7 +167,7 @@ erDiagram
         DateTime start_date
         DateTime end_date
         Boolean is_active
-        Integer max_cards_per_customer
+        Integer max_cards_per_party
         Double default_daily_limit
         Double default_monthly_limit
         Double default_credit_limit
@@ -198,17 +198,20 @@ erDiagram
         DateTime activation_date
         DateTime issuance_date
         DateTime expiration_date
+        DateTime last_used_date
         Boolean is_physical
         Boolean is_virtual
         Boolean is_primary
         Boolean is_active
         Boolean is_locked
+        String lock_reason
         Double daily_limit
         Double monthly_limit
         Double credit_limit
         Double available_balance
         String currency_code
         Long design_id FK
+        String notes
     }
 
     PHYSICAL_CARD {
@@ -224,16 +227,21 @@ erDiagram
         DateTime manufacturing_date
         String shipping_address
         String shipping_city
+        String shipping_state
         String shipping_country
+        String shipping_postal_code
         ShippingMethodEnum shipping_method
         String shipping_tracking_number
+        String shipping_carrier
         DateTime shipment_date
         DateTime estimated_delivery_date
+        DateTime actual_delivery_date
         ActivationMethodEnum activation_method
         DateTime activation_date
         Boolean is_activated
         String replacement_reason
         Long previous_card_id FK
+        String notes
     }
 
     VIRTUAL_CARD {
@@ -243,6 +251,7 @@ erDiagram
         String device_type
         String device_model
         String device_os
+        String device_os_version
         String wallet_provider
         String wallet_account_id
         String tokenization_provider
@@ -255,8 +264,12 @@ erDiagram
         Boolean is_default_for_wallet
         Boolean is_provisioned
         DateTime provisioning_date
+        DateTime last_used_date
+        DateTime creation_timestamp
+        DateTime update_timestamp
         DateTime deactivation_date
         String deactivation_reason
+        String notes
     }
 
     CARD_BALANCE {
@@ -431,7 +444,7 @@ erDiagram
         String previous_value
         String new_value
         String change_reason
-        Boolean is_customer_initiated
+        Boolean is_party_initiated
         Boolean is_system_initiated
         Boolean is_successful
     }
@@ -485,16 +498,52 @@ erDiagram
     CARD_REWARD {
         Long reward_id PK
         Long card_id FK
+        Long transaction_id FK
+        Long party_id
+        Long account_id
         Long program_id FK
+        String reward_reference
         String reward_type
-        String reward_name
-        Double reward_points
-        Double reward_value
+        String reward_category
+        String reward_description
+        String reward_status
+        Boolean is_earning
+        Boolean is_redemption
+        Boolean is_adjustment
+        Boolean is_expiration
+        Decimal points_earned
+        Decimal points_redeemed
+        Decimal points_adjusted
+        Decimal points_expired
+        Decimal points_balance
+        Decimal cash_value
         String currency_code
-        DateTime earning_date
-        DateTime expiry_date
+        Decimal earning_rate
+        Decimal earning_multiplier
+        String earning_reason
+        String redemption_type
+        String redemption_description
+        Decimal redemption_value
+        String adjustment_reason
+        String adjustment_description
+        String merchant_id
+        String merchant_name
+        String merchant_category
+        Decimal transaction_amount
+        String transaction_currency
+        DateTime transaction_date
+        DateTime posting_date
+        DateTime expiration_date
+        Boolean is_promotional
+        Long promotion_id FK
+        String promotion_name
+        Boolean is_transferable
+        Long transfer_to_party_id
+        Long transfer_from_party_id
+        DateTime transfer_date
         Boolean is_redeemed
         DateTime redemption_date
+        String notes
     }
 
     CARD_PROMOTION {

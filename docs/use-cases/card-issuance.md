@@ -2,7 +2,7 @@
 
 ## Overview
 
-Card Issuance is a fundamental capability of the Core Banking Cards Service that enables financial institutions to issue both physical and virtual payment cards to customers. The service manages the entire lifecycle of card issuance, from application processing to card activation.
+Card Issuance is a fundamental capability of the Core Banking Cards Service that enables financial institutions to issue both physical and virtual payment cards to parties. The service manages the entire lifecycle of card issuance, from application processing to card activation.
 
 ## Key Capabilities
 
@@ -19,12 +19,12 @@ Card Issuance is a fundamental capability of the Core Banking Cards Service that
 
 ### Physical Card Issuance
 
-Physical card issuance involves creating a tangible payment card that is manufactured, personalized, and delivered to the customer. The process includes:
+Physical card issuance involves creating a tangible payment card that is manufactured, personalized, and delivered to the party. The process includes:
 
 1. Application processing and approval
 2. Card data generation
 3. Card manufacturing with personalization
-4. Secure delivery to the customer
+4. Secure delivery to the party
 5. Card activation
 
 ### Virtual Card Issuance
@@ -213,10 +213,10 @@ Content-Type: application/json
 ## Best Practices
 
 1. **Security**: Implement robust security measures for card data protection
-2. **Validation**: Perform thorough validation of customer information before card issuance
+2. **Validation**: Perform thorough validation of party information before card issuance
 3. **Monitoring**: Monitor card issuance processes for fraud detection
 4. **Compliance**: Ensure compliance with PCI-DSS and network regulations
 5. **User Experience**: Provide clear instructions for card activation and usage
 6. **Testing**: Test card issuance processes thoroughly in a sandbox environment
 7. **Logging**: Maintain detailed logs of all card issuance activities
-8. **Notifications**: Send timely notifications to customers about card status
+8. **Notifications**: Send timely notifications to parties about card status

@@ -2,13 +2,13 @@
 
 ## Overview
 
-Reporting and Analytics is a powerful capability of the Core Banking Cards Service that provides comprehensive insights into card usage, transaction patterns, and business performance. The service offers a wide range of reports and analytics tools to help financial institutions monitor card operations, analyze customer behavior, identify trends, and make data-driven decisions.
+Reporting and Analytics is a powerful capability of the Core Banking Cards Service that provides comprehensive insights into card usage, transaction patterns, and business performance. The service offers a wide range of reports and analytics tools to help financial institutions monitor card operations, analyze party behavior, identify trends, and make data-driven decisions.
 
 ## Key Capabilities
 
 - Generate standard and custom reports on card operations
 - Provide real-time dashboards for monitoring key metrics
-- Analyze transaction patterns and customer behavior
+- Analyze transaction patterns and party behavior
 - Track card program performance and profitability
 - Monitor fraud patterns and security metrics
 - Generate regulatory and compliance reports
@@ -26,9 +26,9 @@ Day-to-day operational reports that provide insights into card issuance, activat
 
 Reports focused on financial aspects such as revenue, costs, fees, and profitability of card programs.
 
-### 3. Customer Analytics
+### 3. Party Analytics
 
-Analysis of customer behavior, preferences, spending patterns, and engagement with card products.
+Analysis of party behavior, preferences, spending patterns, and engagement with card products.
 
 ### 4. Risk and Fraud Reports
 
@@ -40,7 +40,7 @@ Reports required for regulatory compliance and internal auditing purposes.
 
 ### 6. Performance Analytics
 
-Analysis of card program performance, including adoption rates, usage metrics, and customer satisfaction.
+Analysis of card program performance, including adoption rates, usage metrics, and party satisfaction.
 
 ## Entities Involved
 
