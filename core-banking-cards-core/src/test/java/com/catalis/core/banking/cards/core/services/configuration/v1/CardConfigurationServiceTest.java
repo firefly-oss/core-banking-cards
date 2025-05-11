@@ -62,7 +62,7 @@ public class CardConfigurationServiceTest {
                 .expirationDate(now.plusYears(1))
                 .isSystemDefault(false)
                 .isProgramDefault(true)
-                .isCustomerConfigurable(true)
+                .isPartyConfigurable(true)
                 .allowedValues("true,false")
                 .minValue(null)
                 .maxValue(null)
@@ -81,7 +81,7 @@ public class CardConfigurationServiceTest {
         configEntity.setExpirationDate(now.plusYears(1));
         configEntity.setIsSystemDefault(false);
         configEntity.setIsProgramDefault(true);
-        configEntity.setIsCustomerConfigurable(true);
+        configEntity.setIsPartyConfigurable(true);
         configEntity.setAllowedValues("true,false");
         configEntity.setMinValue(null);
         configEntity.setMaxValue(null);

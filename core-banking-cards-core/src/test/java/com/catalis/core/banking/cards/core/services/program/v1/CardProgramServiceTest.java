@@ -58,7 +58,7 @@ public class CardProgramServiceTest {
                 .startDate(now)
                 .endDate(now.plusYears(5))
                 .isActive(true)
-                .maxCardsPerCustomer(5)
+                .maxCardsPerParty(5)
                 .defaultDailyLimit(1000.0)
                 .defaultMonthlyLimit(10000.0)
                 .defaultCreditLimit(5000.0)
@@ -93,7 +93,7 @@ public class CardProgramServiceTest {
         programEntity.setStartDate(now);
         programEntity.setEndDate(now.plusYears(5));
         programEntity.setIsActive(true);
-        programEntity.setMaxCardsPerCustomer(5);
+        programEntity.setMaxCardsPerParty(5);
         programEntity.setDefaultDailyLimit(1000.0);
         programEntity.setDefaultMonthlyLimit(10000.0);
         programEntity.setDefaultCreditLimit(5000.0);

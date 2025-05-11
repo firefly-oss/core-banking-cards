@@ -56,7 +56,7 @@ public class CardTerminalController {
             summary = "Create Card Terminal",
             description = "Create a new card terminal record.\n\n" +
                     "This endpoint allows registering a new payment terminal in the system. Terminals are the physical " +
-                    "or virtual devices that merchants use to accept card payments from customers.\n\n" +
+                    "or virtual devices that merchants use to accept card payments from parties.\n\n" +
                     "Required information includes the terminal reference, serial number, type, model, and associated " +
                     "merchant. Additional details like location, capabilities (contactless, chip, magstripe), and " +
                     "processor information can also be provided."

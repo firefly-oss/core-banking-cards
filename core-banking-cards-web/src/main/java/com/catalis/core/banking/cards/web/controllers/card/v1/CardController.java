@@ -85,7 +85,7 @@ public class CardController {
                     "the response for security reasons. The card number is partially masked (e.g., '411111******1111') " +
                     "to allow identification while protecting sensitive data.\n\n" +
                     "## Common Use Cases\n" +
-                    "* Retrieving card details for display in customer portals\n" +
+                    "* Retrieving card details for display in party portals\n" +
                     "* Checking card status before processing transactions\n" +
                     "* Verifying card limits and restrictions"
     )
@@ -112,7 +112,7 @@ public class CardController {
                     "## Description\n" +
                     "This endpoint allows modification of card attributes such as status, limits, and expiration details. " +
                     "It enables financial institutions to manage card lifecycle events and adjust card parameters " +
-                    "based on customer needs or risk assessments.\n\n" +
+                    "based on party needs or risk assessments.\n\n" +
                     "## Updatable Fields\n" +
                     "* `cardStatus` - Current status (ACTIVE, INACTIVE, BLOCKED, etc.)\n" +
                     "* `cardHolderName` - Name displayed on the card\n" +
@@ -133,7 +133,7 @@ public class CardController {
                     "## Common Use Cases\n" +
                     "* Activating a newly issued card\n" +
                     "* Blocking a card due to suspected fraud\n" +
-                    "* Adjusting card limits based on customer request\n" +
+                    "* Adjusting card limits based on party request\n" +
                     "* Updating cardholder information"
     )
     @ApiResponses(value = {
