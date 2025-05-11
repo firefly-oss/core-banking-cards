@@ -4,7 +4,7 @@
 
 The Core Banking Cards Service is a comprehensive microservice for the Firefly banking platform that provides end-to-end management of payment cards. This service enables financial institutions to issue, manage, and process transactions for both physical and virtual payment cards across multiple card networks and payment processors.
 
-For detailed documentation on the main use cases, please refer to the [documentation](docs/index.md).
+For detailed documentation on the main use cases, please refer to the [documentation](docs/index.md). For information about the API design principles and patterns, see the [API Design Guide](docs/api-design.md).
 
 ### ✨ Key Features
 
@@ -187,7 +187,7 @@ erDiagram
         Long issuer_id FK
         Long contract_id
         Long account_id
-        Long customer_id
+        Long party_id
         CardStatusEnum card_status
         String card_holder_name
         String card_holder_id
@@ -349,7 +349,7 @@ erDiagram
         Long dispute_id PK
         Long card_id FK
         Long transaction_id FK
-        Long customer_id
+        Long party_id
         Long account_id
         String dispute_reference
         String provider_reference
@@ -372,7 +372,7 @@ erDiagram
     CARD_STATEMENT {
         Long statement_id PK
         Long card_id FK
-        Long customer_id
+        Long party_id
         Long account_id
         String statement_reference
         DateTime statement_date
@@ -396,7 +396,7 @@ erDiagram
     CARD_PAYMENT {
         Long payment_id PK
         Long card_id FK
-        Long customer_id
+        Long party_id
         Long account_id
         Long statement_id FK
         String payment_reference
@@ -413,29 +413,12 @@ erDiagram
         Boolean is_full_payment
     }
 
-    CARD_CUSTOMER {
-        Long customer_id PK
-        String customer_reference
-        String first_name
-        String last_name
-        String email
-        String phone
-        DateTime date_of_birth
-        String address_line1
-        String city
-        String country
-        String postal_code
-        CustomerStatusEnum customer_status
-        Boolean is_active
-        DateTime onboarding_date
-        String identification_type
-        String identification_number
-    }
+
 
     CARD_ACTIVITY {
         Long activity_id PK
         Long card_id FK
-        Long customer_id
+        Long party_id
         Long account_id
         String activity_reference
         ActivityTypeEnum activity_type
@@ -456,7 +439,7 @@ erDiagram
     CARD_LIMIT {
         Long limit_id PK
         Long card_id FK
-        Long customer_id
+        Long party_id
         String limit_type
         Double limit_value
         String currency_code
@@ -612,8 +595,7 @@ erDiagram
 - **Card Payment**: Payments made towards card balances
 - **Card Dispute**: Disputes filed against transactions
 
-#### 👥 Customer & Merchant Entities
-- **Card Customer**: Customer information for card services
+#### 👥 Merchant Entities
 - **Card Merchant**: Businesses accepting card payments
 - **Card Terminal**: Payment terminals for processing transactions
 - **Card Acquirer**: Financial institutions processing merchant payments
@@ -623,26 +605,16 @@ erDiagram
 
 The Core Banking Cards Service exposes RESTful endpoints for managing cards and related entities. All endpoints follow REST principles and use standard HTTP methods.
 
-### API Endpoints
+### API Categories
 
-| Category | Endpoint | Method | Description |
-|----------|----------|--------|-------------|
-| **Card Management** | `/api/v1/cards` | GET | List all cards with pagination and filtering |
-| | `/api/v1/cards/{cardId}` | GET | Get card details by ID |
-| | `/api/v1/cards` | POST | Create a new card |
-| | `/api/v1/cards/{cardId}` | PUT | Update an existing card |
-| | `/api/v1/cards/{cardId}/activate` | POST | Activate a card |
-| | `/api/v1/cards/{cardId}/block` | POST | Block a card |
-| **Physical Cards** | `/api/v1/cards/physical` | GET | List all physical cards |
-| | `/api/v1/cards/physical` | POST | Request a new physical card |
-| | `/api/v1/cards/physical/{physicalCardId}/activate` | POST | Activate a physical card |
-| **Virtual Cards** | `/api/v1/cards/virtual` | GET | List all virtual cards |
-| | `/api/v1/cards/virtual` | POST | Create a new virtual card |
-| | `/api/v1/cards/virtual/{virtualCardId}` | DELETE | Delete a virtual card |
-| **Transactions** | `/api/v1/cards/{cardId}/transactions` | GET | List transactions for a card |
-| | `/api/v1/cards/transactions` | POST | Record a new transaction |
-| **Disputes** | `/api/v1/cards/{cardId}/disputes` | GET | List disputes for a card |
-| | `/api/v1/cards/disputes` | POST | File a new dispute |
+| Category | Description |
+|----------|-------------|
+| **BIN Management** | APIs for managing Bank Identification Number (BIN) records |
+| **Card Program Management** | APIs for managing card program records |
+| **Card Management** | APIs for managing card records |
+| **Merchant Management** | APIs for managing merchant records |
+| **Transaction Management** | APIs for managing transaction records |
+| **Dispute Management** | APIs for managing dispute records |
 
 ### Example: Creating a New Card
 
@@ -651,19 +623,36 @@ POST /api/v1/cards
 Content-Type: application/json
 
 {
+  "cardNumber": "4111111111111111",
+  "maskedCardNumber": "411111******1111",
+  "cardSequenceNumber": "001",
+  "binId": 1,
   "cardTypeId": 1,
   "cardNetworkId": 1,
   "issuerId": 1,
-  "binId": 1,
-  "accountId": 12345,
-  "customerId": 67890,
+  "contractId": 12345,
+  "accountId": 67890,
+  "partyId": 54321,
+  "cardStatus": "ACTIVE",
   "cardHolderName": "John Doe",
+  "cardHolderId": "ID12345",
+  "expirationMonth": 12,
+  "expirationYear": 2028,
+  "cvv": "123",
+  "pin": "1234",
   "isPhysical": true,
+  "isVirtual": false,
+  "isPrimary": true,
+  "isActive": true,
+  "dailyLimit": 5000.00,
+  "monthlyLimit": 20000.00,
+  "creditLimit": 10000.00,
+  "currencyCode": "USD",
   "designId": 1
 }
 ```
 
-Full API documentation is available at `/swagger-ui.html` when the service is running.
+Detailed API documentation is available in the [API Reference](docs/api-reference.md) document and at `/swagger-ui.html` when the service is running.
 
 ## 🚀 Getting Started
 
@@ -812,4 +801,4 @@ Please make sure your code follows our coding standards and includes appropriate
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.

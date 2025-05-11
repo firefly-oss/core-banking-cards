@@ -47,7 +47,7 @@ The dispute is resolved with a final decision, and the appropriate party is cred
 - **CARD_DISPUTE**: Central entity for dispute management
 - **CARD_TRANSACTION**: The transaction being disputed
 - **CARD**: The payment card used for the transaction
-- **CARD_CUSTOMER**: The cardholder raising the dispute
+
 - **CARD_MERCHANT**: The merchant involved in the disputed transaction
 
 ## Process Flow: Dispute Handling
@@ -66,21 +66,21 @@ sequenceDiagram
     S->>D: Create Dispute Record
     S->>P: Submit Dispute to Processor
     P->>N: Forward Dispute to Network
-    
+
     alt Provisional Credit
         S->>D: Issue Provisional Credit
         S->>C: Notify of Provisional Credit
     end
-    
+
     N->>M: Notify Merchant of Dispute
-    
+
     M->>N: Submit Evidence/Response
     N->>P: Forward Evidence
     P->>S: Provide Merchant Response
     S->>D: Update Dispute Record
-    
+
     S->>S: Evaluate Evidence
-    
+
     alt Dispute Resolved in Favor of Cardholder
         S->>D: Finalize Chargeback
         S->>C: Notify of Resolution
@@ -88,7 +88,7 @@ sequenceDiagram
         S->>D: Reverse Provisional Credit
         S->>C: Notify of Resolution
     end
-    
+
     S->>D: Close Dispute Case
 ```
 
@@ -115,7 +115,7 @@ The Core Banking Cards Service supports standard dispute reason codes defined by
 | `/api/v1/disputes/{disputeId}/notes` | POST | Add notes to a dispute |
 | `/api/v1/disputes/{disputeId}/timeline` | GET | Get dispute timeline events |
 | `/api/v1/cards/{cardId}/disputes` | GET | Get disputes for a specific card |
-| `/api/v1/customers/{customerId}/disputes` | GET | Get disputes for a specific customer |
+| `/api/v1/parties/{partyId}/disputes` | GET | Get disputes for a specific party |
 
 ## Example: Filing a Dispute
 
@@ -130,7 +130,7 @@ Content-Type: application/json
 {
   "cardId": 9876,
   "transactionId": 54321,
-  "customerId": 12345,
+  "partyId": 12345,
   "disputeReasonCode": "FRAUD_UNAUTHORIZED_TRANSACTION",
   "disputeAmount": 125.50,
   "disputeCurrency": "USD",
@@ -154,7 +154,7 @@ Content-Type: application/json
   "disputeReference": "DISP20230620123456",
   "cardId": 9876,
   "transactionId": 54321,
-  "customerId": 12345,
+  "partyId": 12345,
   "disputeReasonCode": "FRAUD_UNAUTHORIZED_TRANSACTION",
   "disputeAmount": 125.50,
   "disputeCurrency": "USD",

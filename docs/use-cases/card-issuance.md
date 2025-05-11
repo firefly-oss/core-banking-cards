@@ -44,7 +44,7 @@ Virtual card issuance creates a digital payment card that can be used immediatel
 - **VIRTUAL_CARD**: Digital version for online transactions and mobile wallets
 - **CARD_PROGRAM**: Defines rules and configurations for a group of cards
 - **CARD_DESIGN**: Visual design templates for cards
-- **CARD_CUSTOMER**: Customer information for card services
+
 
 ## Process Flow: Physical Card Issuance
 
@@ -96,7 +96,7 @@ sequenceDiagram
     P-->>S: Card Data Response
     S->>D: Store Card Data
     S-->>C: Provide Virtual Card Details
-    
+
     opt Add to Digital Wallet
         C->>W: Add Card to Wallet
         W->>S: Verify Card
@@ -132,7 +132,7 @@ Content-Type: application/json
 
 ```json
 {
-  "customerId": 12345,
+  "partyId": 12345,
   "accountId": 67890,
   "programId": 101,
   "cardHolderName": "JOHN Q PUBLIC",
@@ -179,7 +179,7 @@ Content-Type: application/json
 
 ```json
 {
-  "customerId": 12345,
+  "partyId": 12345,
   "accountId": 67890,
   "programId": 102,
   "cardHolderName": "JOHN Q PUBLIC",

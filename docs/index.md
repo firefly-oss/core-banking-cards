@@ -26,9 +26,15 @@ The Core Banking Cards Service supports the following main use cases:
 
 For detailed information about each use case, click on the corresponding link.
 
-## API Reference
+## API Documentation
 
-For detailed API documentation, please refer to the [API Reference](api-reference.md) document.
+### API Design
+
+The Core Banking Cards Service follows a consistent and well-structured API design. For information about the API design principles and patterns, please refer to the [API Design Guide](api-design.md).
+
+### API Reference
+
+For detailed API documentation, please refer to the [API Reference](api-reference.md) document. The API reference includes comprehensive information about all available endpoints, request/response formats, and examples for each operation.
 
 ## Deployment Guide
 

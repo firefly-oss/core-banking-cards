@@ -44,7 +44,7 @@ Implements rapid response mechanisms to address security incidents and minimize 
 - **CARD_ACTIVITY**: Records of security-related activities
 - **CARD_TRANSACTION**: Transactions monitored for fraud
 - **CARD_LIMIT**: Security limits applied to transactions
-- **CARD_CUSTOMER**: Customer information for authentication
+
 
 ## Process Flow: Fraud Detection and Prevention
 
@@ -61,7 +61,7 @@ sequenceDiagram
     S->>F: Evaluate Transaction Risk
     F->>F: Apply Fraud Rules
     F->>F: Calculate Risk Score
-    
+
     alt High Risk Transaction
         F-->>S: High Risk Alert
         S->>S: Apply Additional Security Measures
@@ -70,7 +70,7 @@ sequenceDiagram
         S->>F: Re-evaluate with Authentication
         F-->>S: Updated Risk Assessment
     end
-    
+
     alt Transaction Approved
         S->>D: Log Transaction
         S->>M: Send Approval
@@ -99,7 +99,7 @@ sequenceDiagram
     P-->>S: Block Confirmation
     S->>A: Generate Status Change Alert
     A->>C: Send Status Change Notification
-    
+
     alt Temporary Block
         C->>S: Request Card Unblock
         S->>S: Verify Cardholder Identity

@@ -46,7 +46,7 @@ Analysis of card program performance, including adoption rates, usage metrics, a
 
 - **CARD**: Card data for issuance and status reporting
 - **CARD_TRANSACTION**: Transaction data for financial and behavioral analysis
-- **CARD_CUSTOMER**: Customer data for demographic and behavioral analysis
+
 - **CARD_PROGRAM**: Program data for performance analysis
 - **CARD_DISPUTE**: Dispute data for risk and service quality analysis
 - **CARD_MERCHANT**: Merchant data for spending pattern analysis
@@ -99,7 +99,7 @@ sequenceDiagram
 | `/api/v1/reports/{reportId}` | GET | Get a specific report |
 | `/api/v1/analytics/dashboard` | GET | Get dashboard metrics |
 | `/api/v1/analytics/transactions` | GET | Get transaction analytics |
-| `/api/v1/analytics/customers` | GET | Get customer analytics |
+| `/api/v1/analytics/parties` | GET | Get party analytics |
 | `/api/v1/analytics/fraud` | GET | Get fraud analytics |
 
 ## Example: Generating a Transaction Report
