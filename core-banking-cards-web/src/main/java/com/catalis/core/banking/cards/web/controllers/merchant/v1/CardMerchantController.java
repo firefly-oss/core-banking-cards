@@ -29,9 +29,29 @@ public class CardMerchantController {
     @Operation(
             summary = "List Card Merchants",
             description = "Retrieve a paginated list of all card merchant records.\n\n" +
-                    "Card merchants represent businesses that accept card payments. This endpoint returns " +
-                    "detailed information about merchants including their categories, risk ratings, and " +
-                    "supported payment methods. This endpoint supports filtering and sorting capabilities."
+                    "## Description\n" +
+                    "Card merchants represent businesses that accept card payments. They are essential entities " +
+                    "in the payment ecosystem, connecting cardholders with goods and services providers. " +
+                    "This endpoint provides a comprehensive view of all merchants in the system.\n\n" +
+                    "## Response Details\n" +
+                    "The response includes a paginated list of merchant records with the following information for each merchant:\n" +
+                    "* Merchant identification (ID, reference, name)\n" +
+                    "* Business details (legal name, category, type)\n" +
+                    "* Contact information (address, phone, email)\n" +
+                    "* Payment capabilities (supported networks, payment methods)\n" +
+                    "* Risk assessment (risk rating, score, fraud indicators)\n" +
+                    "* Settlement information (bank details, frequency)\n" +
+                    "* Status and activation details\n\n" +
+                    "## Filtering and Sorting\n" +
+                    "This endpoint supports filtering and sorting capabilities through the following parameters:\n" +
+                    "* `page` - Page number (zero-based)\n" +
+                    "* `size` - Number of items per page\n" +
+                    "* `sort` - Sort field and direction (e.g., `merchantName,asc`)\n\n" +
+                    "## Common Use Cases\n" +
+                    "* Retrieving all active merchants\n" +
+                    "* Listing merchants by category or risk rating\n" +
+                    "* Finding merchants that support specific payment methods\n" +
+                    "* Generating merchant reports for compliance or business analysis"
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved card merchants",
@@ -53,9 +73,30 @@ public class CardMerchantController {
     @Operation(
             summary = "Create Card Merchant",
             description = "Create a new card merchant record.\n\n" +
+                    "## Description\n" +
                     "This endpoint allows adding new merchants to the system. Merchants are essential for " +
                     "transaction processing and reporting. The merchant record includes details about the " +
-                    "business, contact information, supported payment methods, and risk assessment data."
+                    "business, contact information, supported payment methods, and risk assessment data.\n\n" +
+                    "## Required Fields\n" +
+                    "* `merchantReference` - Unique reference code for the merchant\n" +
+                    "* `merchantName` - Display name of the merchant\n" +
+                    "* `merchantLegalName` - Legal business name\n" +
+                    "* `merchantCategoryCode` - Standard MCC (Merchant Category Code)\n" +
+                    "* `merchantType` - Type of business (RETAIL, ONLINE, etc.)\n" +
+                    "* `merchantStatus` - Current status (ACTIVE, PENDING, etc.)\n" +
+                    "* `country` - Country of operation\n\n" +
+                    "## Optional Fields\n" +
+                    "* Contact information (address, phone, email)\n" +
+                    "* Business details (tax ID, registration number, website)\n" +
+                    "* Payment capabilities (supported networks, payment methods)\n" +
+                    "* Risk assessment (risk rating, score)\n" +
+                    "* Settlement information (bank details, frequency)\n\n" +
+                    "## Business Rules\n" +
+                    "When creating a merchant, consider the following business rules:\n" +
+                    "* Merchant references must be unique across the system\n" +
+                    "* Merchant category codes should follow the ISO standard\n" +
+                    "* Risk assessment should be performed before activating high-volume merchants\n" +
+                    "* Settlement information is required for merchants that will process real transactions"
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Card merchant created successfully",
@@ -78,9 +119,26 @@ public class CardMerchantController {
     @Operation(
             summary = "Get Card Merchant by ID",
             description = "Retrieve a specific card merchant record by its unique identifier.\n\n" +
+                    "## Description\n" +
                     "This endpoint returns comprehensive information about a merchant, including its " +
                     "business details, category codes, risk assessment, and settlement information. " +
-                    "This data is useful for transaction analysis and merchant management."
+                    "This data is useful for transaction analysis and merchant management.\n\n" +
+                    "## Response Details\n" +
+                    "The response includes detailed information about the requested merchant:\n" +
+                    "* Merchant identification (ID, reference, name)\n" +
+                    "* Business details (legal name, category, type)\n" +
+                    "* Contact information (address, phone, email)\n" +
+                    "* Payment capabilities (supported networks, payment methods)\n" +
+                    "* Risk assessment (risk rating, score, fraud indicators)\n" +
+                    "* Settlement information (bank details, frequency)\n" +
+                    "* Status and activation details\n\n" +
+                    "## Path Parameters\n" +
+                    "* `merchantId` - The unique identifier of the merchant in the system\n\n" +
+                    "## Common Use Cases\n" +
+                    "* Retrieving merchant details for transaction verification\n" +
+                    "* Checking merchant status during payment processing\n" +
+                    "* Verifying merchant risk rating for fraud prevention\n" +
+                    "* Accessing settlement information for financial reconciliation"
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved the card merchant",
@@ -102,9 +160,35 @@ public class CardMerchantController {
     @Operation(
             summary = "Update Card Merchant",
             description = "Update an existing card merchant record by its unique identifier.\n\n" +
+                    "## Description\n" +
                     "This endpoint allows modification of merchant attributes such as contact information, " +
                     "business details, risk ratings, and settlement information. Keeping merchant information " +
-                    "up-to-date is essential for accurate transaction processing and reporting."
+                    "up-to-date is essential for accurate transaction processing and reporting.\n\n" +
+                    "## Updatable Fields\n" +
+                    "* `merchantName` - Display name of the merchant\n" +
+                    "* `merchantDisplayName` - Name shown on statements\n" +
+                    "* `merchantDescription` - Description of the business\n" +
+                    "* `merchantStatus` - Current status (ACTIVE, SUSPENDED, etc.)\n" +
+                    "* `isActive` - Whether the merchant is active\n" +
+                    "* Contact information (address, phone, email)\n" +
+                    "* Business details (website, logo URL)\n" +
+                    "* Payment capabilities (supported networks, payment methods)\n" +
+                    "* Risk assessment (risk rating, score)\n" +
+                    "* Settlement information (bank details, frequency)\n\n" +
+                    "## Important Note\n" +
+                    "⚠️ Some core merchant attributes should generally remain stable:\n" +
+                    "* Merchant reference\n" +
+                    "* Merchant legal name\n" +
+                    "* Merchant category code\n" +
+                    "* Tax ID and registration number\n\n" +
+                    "Changes to these core attributes may require additional verification or approval processes.\n\n" +
+                    "## Path Parameters\n" +
+                    "* `merchantId` - The unique identifier of the merchant to update\n\n" +
+                    "## Common Use Cases\n" +
+                    "* Updating merchant contact information\n" +
+                    "* Changing merchant status (activating, suspending)\n" +
+                    "* Updating risk assessment after periodic review\n" +
+                    "* Modifying settlement details after bank account changes"
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Card merchant updated successfully",
@@ -132,9 +216,32 @@ public class CardMerchantController {
     @Operation(
             summary = "Delete Card Merchant",
             description = "Delete a card merchant record by its unique identifier.\n\n" +
-                    "This endpoint permanently removes a merchant from the system. This operation should be used " +
-                    "with caution, especially if there are transactions associated with this merchant. Consider " +
-                    "deactivating the merchant instead of deleting it if it has transaction history."
+                    "## Description\n" +
+                    "This endpoint permanently removes a merchant from the system. It completely erases the merchant record " +
+                    "from the database.\n\n" +
+                    "## Warning\n" +
+                    "⚠️ **This operation should be used with extreme caution!**\n\n" +
+                    "Deleting a merchant has several important implications:\n" +
+                    "* All transaction history associated with this merchant will be orphaned\n" +
+                    "* Reporting and analytics will be affected\n" +
+                    "* Chargeback and dispute processing may be compromised\n" +
+                    "* Regulatory compliance and audit trails may be impacted\n\n" +
+                    "## Recommended Alternative\n" +
+                    "In most production scenarios, merchants should be **deactivated** rather than deleted if they are no longer active. " +
+                    "This preserves the merchant record for historical purposes while preventing new transactions from being " +
+                    "processed for this merchant.\n\n" +
+                    "To deactivate a merchant, use the Update endpoint to set:\n" +
+                    "* `merchantStatus` to `INACTIVE`\n" +
+                    "* `isActive` to `false`\n\n" +
+                    "## Appropriate Use Cases\n" +
+                    "Merchant deletion should be limited to:\n" +
+                    "* Test merchants in non-production environments\n" +
+                    "* Merchants created in error that have never processed transactions\n" +
+                    "* Specific regulatory requirements that mandate complete removal\n\n" +
+                    "## Path Parameters\n" +
+                    "* `merchantId` - The unique identifier of the merchant to delete\n\n" +
+                    "## Required Permissions\n" +
+                    "This operation typically requires elevated administrative privileges."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Card merchant deleted successfully",
