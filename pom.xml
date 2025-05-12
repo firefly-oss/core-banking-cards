@@ -18,6 +18,8 @@
         <module>core-banking-cards-interfaces</module>
         <module>core-banking-cards-models</module>
         <module>core-banking-cards-web</module>
+        <module>core-banking-cards-sdk</module>
+
     </modules>
 
     <properties>
@@ -47,6 +49,11 @@
             <dependency>
                 <groupId>com.catalis</groupId>
                 <artifactId>core-banking-cards-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.catalis</groupId>
+                <artifactId>core-banking-cards-sdk</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

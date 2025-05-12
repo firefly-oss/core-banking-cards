@@ -1,5 +1,38 @@
 # Firefly Core Banking Cards Service
 
+## 📑 Table of Contents
+
+- [Overview](#-overview)
+- [Key Features](#-key-features)
+- [Business Value](#-business-value)
+- [Architecture](#-architecture)
+  - [Module Structure](#-module-structure)
+  - [Technology Stack](#-technology-stack)
+  - [Design Patterns](#-design-patterns)
+- [Data Model](#-data-model)
+  - [Entity Relationship Diagram](#detailed-entity-relationship-diagram)
+  - [Main Entity Categories](#main-entity-categories)
+- [API Reference](#-api-reference)
+- [Getting Started](#-getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Quick Start](#quick-start)
+  - [Configuration](#configuration)
+- [SDK Generation](#-sdk-generation)
+  - [SDK Features](#sdk-features)
+  - [How to Generate the SDK](#how-to-generate-the-sdk)
+  - [Using the SDK](#using-the-sdk)
+- [Development](#-development)
+  - [Project Structure](#project-structure)
+  - [Build Commands](#build-commands)
+  - [Testing Strategy](#testing-strategy)
+- [Deployment](#-deployment)
+  - [Docker Deployment](#docker-deployment)
+  - [Environment Profiles](#environment-profiles)
+- [Monitoring](#-monitoring)
+- [Security](#-security)
+- [Contributing](#-contributing)
+- [License](#-license)
+
 ## 📋 Overview
 
 The Core Banking Cards Service is a comprehensive microservice for the Firefly banking platform that provides end-to-end management of payment cards. This service enables financial institutions to issue, manage, and process transactions for both physical and virtual payment cards across multiple card networks and payment processors.
@@ -62,6 +95,7 @@ The service is organized into the following modules:
 | **core-banking-cards-models** | Domain entities, database repositories, and data access logic |
 | **core-banking-cards-core** | Business logic, service implementations, and domain-specific rules |
 | **core-banking-cards-web** | REST controllers, API configuration, security settings, and application entry point |
+| **core-banking-cards-sdk** | Client SDK generated from OpenAPI specification for easy integration with the service |
 
 ### 🛠️ Technology Stack
 
@@ -753,6 +787,115 @@ spring:
 server:
   port: ${SERVER_PORT:8080}
 ```
+
+## 🔧 SDK Generation
+
+The Core Banking Cards Service provides a client SDK that can be used to integrate with the service. The SDK is generated automatically from the OpenAPI specification using the OpenAPI Generator Maven Plugin.
+
+### How it Works
+
+1. The SDK generation is integrated into the Maven build process.
+2. During the build, the OpenAPI Generator Maven plugin fetches the OpenAPI specification from the running web application.
+3. The plugin then generates Java client code based on this specification.
+4. The generated code is included in the build and packaged with the module.
+
+### SDK Features
+
+- **Auto-generated Client**: The SDK provides a fully functional client for all API endpoints
+- **Type-safe Models**: All DTOs are generated as type-safe Java classes
+- **Reactive Support**: Uses WebClient for reactive API calls
+- **Error Handling**: Comprehensive error handling and response mapping
+- **Authentication**: Built-in support for authentication mechanisms
+
+### Prerequisites
+
+Before generating the SDK, ensure that:
+
+1. The `core-banking-cards-web` application is running on `http://localhost:8080`.
+2. The OpenAPI specification is available at `http://localhost:8080/v3/api-docs`.
+
+### How to Generate the SDK
+
+The SDK is generated during the build process. To generate the SDK:
+
+1. Start the Core Banking Cards Service locally:
+   ```bash
+   mvn spring-boot:run -pl core-banking-cards-web
+   ```
+
+2. In a separate terminal, generate the SDK:
+   ```bash
+   mvn clean install -pl core-banking-cards-sdk
+   ```
+
+The generated SDK code will be available in the `core-banking-cards-sdk/target/generated-sources` directory.
+
+### Using the SDK
+
+To use the SDK in your project, add the following dependency to your pom.xml:
+
+```xml
+<dependency>
+    <groupId>com.catalis</groupId>
+    <artifactId>core-banking-cards-sdk</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+</dependency>
+```
+
+Example usage:
+
+```java
+// Create an instance of the API client
+ApiClient apiClient = new ApiClient();
+apiClient.setBasePath("http://localhost:8080");
+
+// Create an instance of the Cards API
+CardsApi cardsApi = new CardsApi(apiClient);
+
+// Call an API method
+cardsApi.getCardById(cardId)
+    .subscribe(
+        card -> System.out.println("Card: " + card),
+        error -> System.err.println("Error: " + error)
+    );
+```
+
+Another example with CardAcquirersApi:
+
+```java
+import com.catalis.core.banking.cards.sdk.api.CardAcquirersApi;
+import com.catalis.core.banking.cards.sdk.invoker.ApiClient;
+import com.catalis.core.banking.cards.sdk.model.CardAcquirerDTO;
+import com.catalis.core.banking.cards.sdk.model.PaginationResponse;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient apiClient = new ApiClient();
+        apiClient.setBasePath("http://your-api-base-url");
+
+        CardAcquirersApi api = new CardAcquirersApi(apiClient);
+
+        try {
+            // Get all acquirers
+            PaginationResponse<CardAcquirerDTO> response = api.getAllAcquirers(null);
+            System.out.println("Total acquirers: " + response.getTotalElements());
+
+            // Process the acquirers
+            for (CardAcquirerDTO acquirer : response.getContent()) {
+                System.out.println("Acquirer: " + acquirer.getName());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Customizing the SDK Generation
+
+The SDK generation is configured in the `pom.xml` file. You can customize various aspects of the generation process by modifying the configuration of the `openapi-generator-maven-plugin`.
+
+For more information on available configuration options, refer to the [OpenAPI Generator documentation](https://github.com/OpenAPITools/openapi-generator).
 
 ## 💻 Development
 
