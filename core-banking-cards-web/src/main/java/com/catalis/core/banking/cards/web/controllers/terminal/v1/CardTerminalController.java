@@ -44,8 +44,7 @@ public class CardTerminalController {
     })
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<CardTerminalDTO>>> getAllTerminals(
-            @ParameterObject
-            @ModelAttribute PaginationRequest paginationRequest
+            @RequestBody PaginationRequest paginationRequest
     ) {
         return service.listTerminals(paginationRequest)
                 .map(ResponseEntity::ok)

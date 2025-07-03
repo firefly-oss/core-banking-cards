@@ -93,6 +93,7 @@
 
     <build>
         <plugins>
+
             <!-- OpenAPI Generator Maven Plugin -->
             <plugin>
                 <groupId>org.openapitools</groupId>
@@ -100,14 +101,13 @@
                 <version>${openapi-generator.version}</version>
                 <executions>
                     <execution>
-                        <id>generate-card-sdk</id>
+                        <id>core-banking-cards-sdk</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
                             <!-- Use the OpenAPI spec from the running web application -->
-                            <inputSpec>http://localhost:8084/v3/api-docs</inputSpec>
-
+                            <inputSpec>${project.basedir}/src/main/resources/api-spec/openapi.yml</inputSpec>
                             <generatorName>java</generatorName>
                             <library>webclient</library>
                             <output>${generated-sources-dir}</output>

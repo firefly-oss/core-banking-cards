@@ -59,8 +59,7 @@ public class BINController {
     })
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<BINDTO>>> getAllBINs(
-            @ParameterObject
-            @ModelAttribute PaginationRequest paginationRequest
+            @RequestBody PaginationRequest paginationRequest
     ) {
         return service.listBINs(paginationRequest)
                 .map(ResponseEntity::ok)

@@ -44,8 +44,7 @@ public class CardNetworkController {
     })
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<CardNetworkDTO>>> getAllNetworks(
-            @ParameterObject
-            @ModelAttribute PaginationRequest paginationRequest
+            @RequestBody PaginationRequest paginationRequest
     ) {
         return service.listNetworks(paginationRequest)
                 .map(ResponseEntity::ok)

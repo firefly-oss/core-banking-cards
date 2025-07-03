@@ -47,9 +47,7 @@ public class CardTransactionController {
     public Mono<ResponseEntity<PaginationResponse<CardTransactionDTO>>> getAllTransactions(
             @Parameter(description = "Unique identifier of the card", required = true)
             @PathVariable Long cardId,
-
-            @ParameterObject
-            @ModelAttribute PaginationRequest paginationRequest
+            @RequestBody PaginationRequest paginationRequest
     ) {
         return service.listTransactions(cardId, paginationRequest)
                 .map(ResponseEntity::ok)
@@ -76,9 +74,7 @@ public class CardTransactionController {
     public Mono<ResponseEntity<PaginationResponse<CardTransactionDTO>>> filterProducts(
             @Parameter(description = "Unique identifier of the card", required = true)
             @PathVariable Long cardId,
-
-            @ParameterObject
-            @ModelAttribute FilterRequest<CardTransactionDTO> filterRequest
+            @RequestBody FilterRequest<CardTransactionDTO> filterRequest
     ) {
         filterRequest.getFilters().setCardId(cardId);
         return service.findFiltered(filterRequest)

@@ -61,8 +61,7 @@ public class CardProgramController {
     })
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<CardProgramDTO>>> getAllPrograms(
-            @ParameterObject
-            @ModelAttribute PaginationRequest paginationRequest
+            @RequestBody PaginationRequest paginationRequest
     ) {
         return service.listPrograms(paginationRequest)
                 .map(ResponseEntity::ok)

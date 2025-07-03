@@ -1,5 +1,7 @@
 package com.catalis.core.banking.cards.web.controllers.card.v1;
 
+import com.catalis.common.core.filters.FilterRequest;
+import com.catalis.common.core.queries.PaginationResponse;
 import com.catalis.core.banking.cards.core.services.card.v1.CardServiceImpl;
 import com.catalis.core.banking.cards.interfaces.dtos.card.v1.CardDTO;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,6 +24,19 @@ public class CardController {
 
     @Autowired
     private CardServiceImpl service;
+
+    @Operation(
+            summary = "Filter Cards",
+            description = "Retrieve a paginated list of all bank cards based on filter criteria."
+    )
+    @PostMapping(value = "/filter", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ResponseEntity<PaginationResponse<CardDTO>>> filterCards(
+            @RequestBody FilterRequest<CardDTO> filterRequest
+    ) {
+        return service.filterCards(filterRequest)
+                .map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
 
     @Operation(
             summary = "Create Card",

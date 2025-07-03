@@ -62,8 +62,7 @@ public class CardMerchantController {
     })
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<CardMerchantDTO>>> getAllMerchants(
-            @ParameterObject
-            @ModelAttribute PaginationRequest paginationRequest
+            @RequestBody PaginationRequest paginationRequest
     ) {
         return service.listMerchants(paginationRequest)
                 .map(ResponseEntity::ok)

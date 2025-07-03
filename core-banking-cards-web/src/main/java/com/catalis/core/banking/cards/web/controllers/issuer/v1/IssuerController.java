@@ -43,8 +43,7 @@ public class IssuerController {
     })
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<IssuerDTO>>> getAllIssuers(
-            @ParameterObject
-            @ModelAttribute PaginationRequest paginationRequest
+            @RequestBody PaginationRequest paginationRequest
     ) {
         return service.listIssuers(paginationRequest)
                 .map(ResponseEntity::ok)

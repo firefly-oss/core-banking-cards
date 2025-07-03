@@ -46,9 +46,7 @@ public class CardPaymentController {
     public Mono<ResponseEntity<PaginationResponse<CardPaymentDTO>>> getAllPayments(
             @Parameter(description = "Unique identifier of the card", required = true)
             @PathVariable Long cardId,
-
-            @ParameterObject
-            @ModelAttribute PaginationRequest paginationRequest
+            @RequestBody PaginationRequest paginationRequest
     ) {
         return service.listPayments(cardId, paginationRequest)
                 .map(ResponseEntity::ok)

@@ -1,5 +1,8 @@
 package com.catalis.core.banking.cards.core.services.card.v1;
 
+import com.catalis.common.core.filters.FilterRequest;
+import com.catalis.common.core.filters.FilterUtils;
+import com.catalis.common.core.queries.PaginationResponse;
 import com.catalis.core.banking.cards.core.mappers.card.v1.CardMapper;
 import com.catalis.core.banking.cards.interfaces.dtos.card.v1.CardDTO;
 import com.catalis.core.banking.cards.models.entities.card.v1.Card;
@@ -18,6 +21,16 @@ public class CardServiceImpl implements CardService {
 
     @Autowired
     private CardMapper mapper;
+
+    @Override
+    public Mono<PaginationResponse<CardDTO>> filterCards(FilterRequest<CardDTO> filterRequest) {
+        return FilterUtils
+                .createFilter(
+                        Card.class,
+                        mapper::toDTO
+                )
+                .filter(filterRequest);
+    }
 
     @Override
     public Mono<CardDTO> createCard(CardDTO cardDTO) {

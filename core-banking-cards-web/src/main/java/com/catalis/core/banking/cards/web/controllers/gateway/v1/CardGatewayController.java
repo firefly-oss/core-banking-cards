@@ -44,8 +44,7 @@ public class CardGatewayController {
     })
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<CardGatewayDTO>>> getAllGateways(
-            @ParameterObject
-            @ModelAttribute PaginationRequest paginationRequest
+            @RequestBody PaginationRequest paginationRequest
     ) {
         return service.listGateways(paginationRequest)
                 .map(ResponseEntity::ok)
