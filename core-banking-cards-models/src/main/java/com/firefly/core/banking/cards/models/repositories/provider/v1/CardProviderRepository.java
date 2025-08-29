@@ -1,0 +1,14 @@
+package com.firefly.core.banking.cards.models.repositories.provider.v1;
+
+import com.firefly.core.banking.cards.models.entities.provider.v1.CardProvider;
+import com.firefly.core.banking.cards.models.repositories.BaseRepository;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+@Repository
+public interface CardProviderRepository extends BaseRepository<CardProvider, Long> {
+    Flux<CardProvider> findByCardId(Long cardId, Pageable pageable);
+    Mono<Long> countByCardId(Long cardId);
+}

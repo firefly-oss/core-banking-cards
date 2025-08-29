@@ -1,0 +1,191 @@
+package com.firefly.core.banking.cards.models.entities.interest.v1;
+
+import com.firefly.core.banking.cards.models.entities.BaseEntity;
+import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+/**
+ * Card Interest entity.
+ * Represents interest charged on card balances, including rates, calculation methods, and accrual information.
+ */
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table("card_interest")
+public class CardInterest extends BaseEntity {
+
+    @Id
+    @Column("interest_id")
+    private Long interestId;
+
+    @Column("card_id")
+    private Long cardId;
+
+    @Column("party_id")
+    private Long partyId;
+
+    @Column("account_id")
+    private Long accountId;
+
+    @Column("statement_id")
+    private Long statementId;
+
+    @Column("program_id")
+    private Long programId;
+
+    @Column("interest_reference")
+    private String interestReference;
+
+    @Column("interest_type")
+    private String interestType;
+
+    @Column("interest_name")
+    private String interestName;
+
+    @Column("interest_description")
+    private String interestDescription;
+
+    @Column("interest_rate")
+    private BigDecimal interestRate;
+
+    @Column("annual_percentage_rate")
+    private BigDecimal annualPercentageRate;
+
+    @Column("is_variable_rate")
+    private Boolean isVariableRate;
+
+    @Column("base_rate")
+    private BigDecimal baseRate;
+
+    @Column("rate_margin")
+    private BigDecimal rateMargin;
+
+    @Column("rate_cap")
+    private BigDecimal rateCap;
+
+    @Column("rate_floor")
+    private BigDecimal rateFloor;
+
+    @Column("rate_change_frequency")
+    private String rateChangeFrequency;
+
+    @Column("next_rate_change_date")
+    private LocalDateTime nextRateChangeDate;
+
+    @Column("previous_rate")
+    private BigDecimal previousRate;
+
+    @Column("rate_change_timestamp")
+    private LocalDateTime rateChangeTimestamp;
+
+    @Column("calculation_method")
+    private String calculationMethod;
+
+    @Column("compounding_frequency")
+    private String compoundingFrequency;
+
+    @Column("accrual_frequency")
+    private String accrualFrequency;
+
+    @Column("balance_type")
+    private String balanceType;
+
+    @Column("balance_amount")
+    private BigDecimal balanceAmount;
+
+    @Column("interest_amount")
+    private BigDecimal interestAmount;
+
+    @Column("accrued_interest")
+    private BigDecimal accruedInterest;
+
+    @Column("currency_code")
+    private String currencyCode;
+
+    @Column("accrual_start_date")
+    private LocalDateTime accrualStartDate;
+
+    @Column("accrual_end_date")
+    private LocalDateTime accrualEndDate;
+
+    @Column("days_in_period")
+    private Integer daysInPeriod;
+
+    @Column("days_in_year")
+    private Integer daysInYear;
+
+    @Column("is_promotional_rate")
+    private Boolean isPromotionalRate;
+
+    @Column("promotion_id")
+    private Long promotionId;
+
+    @Column("promotion_start_date")
+    private LocalDateTime promotionStartDate;
+
+    @Column("promotion_end_date")
+    private LocalDateTime promotionEndDate;
+
+    @Column("post_promotion_rate")
+    private BigDecimal postPromotionRate;
+
+    @Column("is_grace_period")
+    private Boolean isGracePeriod;
+
+    @Column("grace_period_days")
+    private Integer gracePeriodDays;
+
+    @Column("grace_period_end_date")
+    private LocalDateTime gracePeriodEndDate;
+
+    @Column("is_charged")
+    private Boolean isCharged;
+
+    @Column("charge_timestamp")
+    private LocalDateTime chargeTimestamp;
+
+    @Column("posting_timestamp")
+    private LocalDateTime postingTimestamp;
+
+    @Column("value_date")
+    private LocalDateTime valueDate;
+
+    @Column("is_waived")
+    private Boolean isWaived;
+
+    @Column("waiver_reason")
+    private String waiverReason;
+
+    @Column("waiver_reference")
+    private String waiverReference;
+
+    @Column("waiver_timestamp")
+    private LocalDateTime waiverTimestamp;
+
+    @Column("waiver_authorized_by")
+    private String waiverAuthorizedBy;
+
+    @Column("is_billed")
+    private Boolean isBilled;
+
+    @Column("billing_timestamp")
+    private LocalDateTime billingTimestamp;
+
+    @Column("is_paid")
+    private Boolean isPaid;
+
+    @Column("payment_timestamp")
+    private LocalDateTime paymentTimestamp;
+
+    @Column("payment_reference")
+    private String paymentReference;
+
+    @Column("notes")
+    private String notes;
+}
