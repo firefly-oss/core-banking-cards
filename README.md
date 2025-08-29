@@ -836,7 +836,7 @@ To use the SDK in your project, add the following dependency to your pom.xml:
 
 ```xml
 <dependency>
-    <groupId>com.catalis</groupId>
+    <groupId>com.firefly</groupId>
     <artifactId>core-banking-cards-sdk</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 </dependency>
@@ -863,10 +863,10 @@ cardsApi.getCardById(cardId)
 Another example with CardAcquirersApi:
 
 ```java
-import com.catalis.core.banking.cards.sdk.api.CardAcquirersApi;
-import com.catalis.core.banking.cards.sdk.invoker.ApiClient;
-import com.catalis.core.banking.cards.sdk.model.CardAcquirerDTO;
-import com.catalis.core.banking.cards.sdk.model.PaginationResponse;
+import com.firefly.core.banking.cards.sdk.api.CardAcquirersApi;
+import com.firefly.core.banking.cards.sdk.invoker.ApiClient;
+import com.firefly.core.banking.cards.sdk.model.CardAcquirerDTO;
+import com.firefly.core.banking.cards.sdk.model.PaginationResponse;
 
 public class Example {
     public static void main(String[] args) {
