@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class CardTerminalServiceImpl implements CardTerminalService {
@@ -40,13 +42,13 @@ public class CardTerminalServiceImpl implements CardTerminalService {
     }
 
     @Override
-    public Mono<CardTerminalDTO> getTerminal(Long terminalId) {
+    public Mono<CardTerminalDTO> getTerminal(UUID terminalId) {
         return repository.findByTerminalId(terminalId)
                 .map(mapper::toDTO);
     }
 
     @Override
-    public Mono<CardTerminalDTO> updateTerminal(Long terminalId, CardTerminalDTO terminalDTO) {
+    public Mono<CardTerminalDTO> updateTerminal(UUID terminalId, CardTerminalDTO terminalDTO) {
         return repository.findByTerminalId(terminalId)
                 .flatMap(existingTerminal -> {
                     CardTerminal updatedTerminal = mapper.toEntity(terminalDTO);
@@ -57,7 +59,7 @@ public class CardTerminalServiceImpl implements CardTerminalService {
     }
 
     @Override
-    public Mono<Void> deleteTerminal(Long terminalId) {
+    public Mono<Void> deleteTerminal(UUID terminalId) {
         return repository.findByTerminalId(terminalId)
                 .flatMap(repository::delete);
     }

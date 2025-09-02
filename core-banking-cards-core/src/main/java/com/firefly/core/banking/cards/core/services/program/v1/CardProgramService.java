@@ -5,6 +5,7 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.banking.cards.interfaces.dtos.program.v1.CardProgramDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 public interface CardProgramService {
 
     /**
@@ -20,15 +21,15 @@ public interface CardProgramService {
     /**
      * Retrieve a specific card program by ID.
      */
-    Mono<CardProgramDTO> getProgram(Long programId);
+    Mono<CardProgramDTO> getProgram(UUID programId);
 
     /**
      * Update an existing card program by ID.
      */
-    Mono<CardProgramDTO> updateProgram(Long programId, CardProgramDTO programDTO);
+    Mono<CardProgramDTO> updateProgram(UUID programId, CardProgramDTO programDTO);
 
     /**
      * Delete a card program by its unique ID.
      */
-    Mono<Void> deleteProgram(Long programId);
+    Mono<Void> deleteProgram(UUID programId);
 }

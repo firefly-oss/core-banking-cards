@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class BINServiceImpl implements BINService {
@@ -40,7 +42,7 @@ public class BINServiceImpl implements BINService {
     }
 
     @Override
-    public Mono<BINDTO> getBIN(Long binId) {
+    public Mono<BINDTO> getBIN(UUID binId) {
         return repository.findByBinId(binId)
                 .map(mapper::toDTO);
     }
@@ -52,7 +54,7 @@ public class BINServiceImpl implements BINService {
     }
 
     @Override
-    public Mono<BINDTO> updateBIN(Long binId, BINDTO binDTO) {
+    public Mono<BINDTO> updateBIN(UUID binId, BINDTO binDTO) {
         return repository.findByBinId(binId)
                 .flatMap(existingBIN -> {
                     BIN updatedBIN = mapper.toEntity(binDTO);
@@ -63,7 +65,7 @@ public class BINServiceImpl implements BINService {
     }
 
     @Override
-    public Mono<Void> deleteBIN(Long binId) {
+    public Mono<Void> deleteBIN(UUID binId) {
         return repository.findByBinId(binId)
                 .flatMap(repository::delete);
     }

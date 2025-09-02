@@ -5,6 +5,7 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.banking.cards.interfaces.dtos.merchant.v1.CardMerchantDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 public interface CardMerchantService {
 
     /**
@@ -20,15 +21,15 @@ public interface CardMerchantService {
     /**
      * Retrieve a specific card merchant by ID.
      */
-    Mono<CardMerchantDTO> getMerchant(Long merchantId);
+    Mono<CardMerchantDTO> getMerchant(UUID merchantId);
 
     /**
      * Update an existing card merchant by ID.
      */
-    Mono<CardMerchantDTO> updateMerchant(Long merchantId, CardMerchantDTO merchantDTO);
+    Mono<CardMerchantDTO> updateMerchant(UUID merchantId, CardMerchantDTO merchantDTO);
 
     /**
      * Delete a card merchant by its unique ID.
      */
-    Mono<Void> deleteMerchant(Long merchantId);
+    Mono<Void> deleteMerchant(UUID merchantId);
 }

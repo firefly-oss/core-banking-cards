@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class CardPaymentServiceImpl implements CardPaymentService {
@@ -23,7 +25,7 @@ public class CardPaymentServiceImpl implements CardPaymentService {
     private CardPaymentMapper mapper;
 
     @Override
-    public Mono<PaginationResponse<CardPaymentDTO>> listPayments(Long cardId, PaginationRequest paginationRequest) {
+    public Mono<PaginationResponse<CardPaymentDTO>> listPayments(UUID cardId, PaginationRequest paginationRequest) {
         return PaginationUtils.paginateQuery(
                 paginationRequest,
                 mapper::toDTO,
@@ -33,7 +35,7 @@ public class CardPaymentServiceImpl implements CardPaymentService {
     }
 
     @Override
-    public Mono<CardPaymentDTO> createPayment(Long cardId, CardPaymentDTO paymentDTO) {
+    public Mono<CardPaymentDTO> createPayment(UUID cardId, CardPaymentDTO paymentDTO) {
         paymentDTO.setCardId(cardId);
         CardPayment entity = mapper.toEntity(paymentDTO);
         return repository.save(entity)
@@ -41,7 +43,7 @@ public class CardPaymentServiceImpl implements CardPaymentService {
     }
 
     @Override
-    public Mono<CardPaymentDTO> getPayment(Long cardId, Long paymentId) {
+    public Mono<CardPaymentDTO> getPayment(UUID cardId, UUID paymentId) {
         return repository.findByPaymentId(paymentId)
                 .flatMap(entity -> {
                     if (!entity.getCardId().equals(cardId)) {
@@ -52,7 +54,7 @@ public class CardPaymentServiceImpl implements CardPaymentService {
     }
 
     @Override
-    public Mono<CardPaymentDTO> updatePayment(Long cardId, Long paymentId, CardPaymentDTO paymentDTO) {
+    public Mono<CardPaymentDTO> updatePayment(UUID cardId, UUID paymentId, CardPaymentDTO paymentDTO) {
         return repository.findByPaymentId(paymentId)
                 .flatMap(existingPayment -> {
                     if (!existingPayment.getCardId().equals(cardId)) {
@@ -69,7 +71,7 @@ public class CardPaymentServiceImpl implements CardPaymentService {
     }
 
     @Override
-    public Mono<Void> deletePayment(Long cardId, Long paymentId) {
+    public Mono<Void> deletePayment(UUID cardId, UUID paymentId) {
         return repository.findByPaymentId(paymentId)
                 .flatMap(payment -> {
                     if (!payment.getCardId().equals(cardId)) {

@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class VirtualCardServiceImpl implements VirtualCardService {
@@ -23,7 +25,7 @@ public class VirtualCardServiceImpl implements VirtualCardService {
     private VirtualCardMapper mapper;
 
     @Override
-    public Mono<PaginationResponse<VirtualCardDTO>> listVirtualCards(Long cardId, PaginationRequest paginationRequest) {
+    public Mono<PaginationResponse<VirtualCardDTO>> listVirtualCards(UUID cardId, PaginationRequest paginationRequest) {
         return PaginationUtils.paginateQuery(
                 paginationRequest,
                 mapper::toDTO,
@@ -33,7 +35,7 @@ public class VirtualCardServiceImpl implements VirtualCardService {
     }
 
     @Override
-    public Mono<VirtualCardDTO> createVirtualCard(Long cardId, VirtualCardDTO virtualCardDTO) {
+    public Mono<VirtualCardDTO> createVirtualCard(UUID cardId, VirtualCardDTO virtualCardDTO) {
         virtualCardDTO.setCardId(cardId);
         VirtualCard virtualCard = mapper.toEntity(virtualCardDTO);
         return repository.save(virtualCard)
@@ -41,14 +43,14 @@ public class VirtualCardServiceImpl implements VirtualCardService {
     }
 
     @Override
-    public Mono<VirtualCardDTO> getVirtualCard(Long cardId, Long virtualCardId) {
+    public Mono<VirtualCardDTO> getVirtualCard(UUID cardId, UUID virtualCardId) {
         return repository.findByVirtualCardId(virtualCardId)
                 .filter(virtualCard -> virtualCard.getCardId().equals(cardId))
                 .map(mapper::toDTO);
     }
 
     @Override
-    public Mono<VirtualCardDTO> updateVirtualCard(Long cardId, Long virtualCardId, VirtualCardDTO virtualCardDTO) {
+    public Mono<VirtualCardDTO> updateVirtualCard(UUID cardId, UUID virtualCardId, VirtualCardDTO virtualCardDTO) {
         return repository.findByVirtualCardId(virtualCardId)
                 .filter(existingCard -> existingCard.getCardId().equals(cardId))
                 .flatMap(existingCard -> {
@@ -61,7 +63,7 @@ public class VirtualCardServiceImpl implements VirtualCardService {
     }
 
     @Override
-    public Mono<Void> deleteVirtualCard(Long cardId, Long virtualCardId) {
+    public Mono<Void> deleteVirtualCard(UUID cardId, UUID virtualCardId) {
         return repository.findByVirtualCardId(virtualCardId)
                 .filter(virtualCard -> virtualCard.getCardId().equals(cardId))
                 .flatMap(repository::delete);

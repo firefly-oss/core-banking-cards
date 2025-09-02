@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class PhysicalCardServiceImpl implements PhysicalCardService {
@@ -23,7 +25,7 @@ public class PhysicalCardServiceImpl implements PhysicalCardService {
     private PhysicalCardMapper mapper;
 
     @Override
-    public Mono<PaginationResponse<PhysicalCardDTO>> listPhysicalCards(Long cardId, PaginationRequest paginationRequest) {
+    public Mono<PaginationResponse<PhysicalCardDTO>> listPhysicalCards(UUID cardId, PaginationRequest paginationRequest) {
         return PaginationUtils.paginateQuery(
                 paginationRequest,
                 mapper::toDTO,
@@ -33,7 +35,7 @@ public class PhysicalCardServiceImpl implements PhysicalCardService {
     }
 
     @Override
-    public Mono<PhysicalCardDTO> createPhysicalCard(Long cardId, PhysicalCardDTO physicalCardDTO) {
+    public Mono<PhysicalCardDTO> createPhysicalCard(UUID cardId, PhysicalCardDTO physicalCardDTO) {
         physicalCardDTO.setCardId(cardId);
         PhysicalCard entity = mapper.toEntity(physicalCardDTO);
         return repository.save(entity)
@@ -41,14 +43,14 @@ public class PhysicalCardServiceImpl implements PhysicalCardService {
     }
 
     @Override
-    public Mono<PhysicalCardDTO> getPhysicalCard(Long cardId, Long physicalCardId) {
+    public Mono<PhysicalCardDTO> getPhysicalCard(UUID cardId, UUID physicalCardId) {
         return repository.findByPhysicalCardId(physicalCardId)
                 .filter(physicalCard -> physicalCard.getCardId().equals(cardId))
                 .map(mapper::toDTO);
     }
 
     @Override
-    public Mono<PhysicalCardDTO> updatePhysicalCard(Long cardId, Long physicalCardId, PhysicalCardDTO physicalCardDTO) {
+    public Mono<PhysicalCardDTO> updatePhysicalCard(UUID cardId, UUID physicalCardId, PhysicalCardDTO physicalCardDTO) {
         return repository.findByPhysicalCardId(physicalCardId)
                 .filter(physicalCard -> physicalCard.getCardId().equals(cardId))
                 .flatMap(existing -> {
@@ -61,7 +63,7 @@ public class PhysicalCardServiceImpl implements PhysicalCardService {
     }
 
     @Override
-    public Mono<Void> deletePhysicalCard(Long cardId, Long physicalCardId) {
+    public Mono<Void> deletePhysicalCard(UUID cardId, UUID physicalCardId) {
         return repository.findByPhysicalCardId(physicalCardId)
                 .filter(physicalCard -> physicalCard.getCardId().equals(cardId))
                 .flatMap(repository::delete);

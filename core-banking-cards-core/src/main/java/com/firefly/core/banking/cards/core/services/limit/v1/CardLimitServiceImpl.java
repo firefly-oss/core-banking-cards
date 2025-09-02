@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class CardLimitServiceImpl implements CardLimitService {
@@ -23,7 +25,7 @@ public class CardLimitServiceImpl implements CardLimitService {
     private CardLimitMapper mapper;
 
     @Override
-    public Mono<PaginationResponse<CardLimitDTO>> listLimits(Long cardId, PaginationRequest paginationRequest) {
+    public Mono<PaginationResponse<CardLimitDTO>> listLimits(UUID cardId, PaginationRequest paginationRequest) {
         return PaginationUtils.paginateQuery(
                 paginationRequest,
                 mapper::toDTO,
@@ -33,7 +35,7 @@ public class CardLimitServiceImpl implements CardLimitService {
     }
 
     @Override
-    public Mono<CardLimitDTO> createLimit(Long cardId, CardLimitDTO limitDTO) {
+    public Mono<CardLimitDTO> createLimit(UUID cardId, CardLimitDTO limitDTO) {
         limitDTO.setCardId(cardId);
         CardLimit entity = mapper.toEntity(limitDTO);
         return Mono.just(entity)
@@ -42,14 +44,14 @@ public class CardLimitServiceImpl implements CardLimitService {
     }
 
     @Override
-    public Mono<CardLimitDTO> getLimit(Long cardId, Long limitId) {
+    public Mono<CardLimitDTO> getLimit(UUID cardId, UUID limitId) {
         return repository.findByCardLimitId(limitId)
                 .filter(cardLimit -> cardLimit.getCardId().equals(cardId))
                 .map(mapper::toDTO);
     }
 
     @Override
-    public Mono<CardLimitDTO> updateLimit(Long cardId, Long limitId, CardLimitDTO limitDTO) {
+    public Mono<CardLimitDTO> updateLimit(UUID cardId, UUID limitId, CardLimitDTO limitDTO) {
         return repository.findByCardLimitId(limitId)
                 .filter(cardLimit -> cardLimit.getCardId().equals(cardId))
                 .flatMap(existingEntity -> {
@@ -63,7 +65,7 @@ public class CardLimitServiceImpl implements CardLimitService {
     }
 
     @Override
-    public Mono<Void> deleteLimit(Long cardId, Long limitId) {
+    public Mono<Void> deleteLimit(UUID cardId, UUID limitId) {
         return repository.findByCardLimitId(limitId)
                 .filter(cardLimit -> cardLimit.getCardId().equals(cardId))
                 .flatMap(repository::delete)

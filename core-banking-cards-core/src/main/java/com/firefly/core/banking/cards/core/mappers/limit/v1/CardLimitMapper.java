@@ -1,12 +1,9 @@
 package com.firefly.core.banking.cards.core.mappers.limit.v1;
 
 import com.firefly.core.banking.cards.interfaces.dtos.limit.v1.CardLimitDTO;
-import com.firefly.core.banking.cards.interfaces.enums.limit.v1.LimitTypeEnum;
-import com.firefly.core.banking.cards.interfaces.enums.limit.v1.ResetPeriodEnum;
 import com.firefly.core.banking.cards.models.entities.limit.v1.CardLimit;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
-import org.mapstruct.Named;
 
 /**
  * Mapper for the CardLimit entity and its DTO.

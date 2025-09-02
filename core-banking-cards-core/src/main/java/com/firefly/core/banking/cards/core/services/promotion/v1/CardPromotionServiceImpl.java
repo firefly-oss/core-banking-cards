@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class CardPromotionServiceImpl implements CardPromotionService {
@@ -23,7 +25,7 @@ public class CardPromotionServiceImpl implements CardPromotionService {
     private CardPromotionMapper mapper;
 
     @Override
-    public Mono<PaginationResponse<CardPromotionDTO>> listPromotions(Long cardId, PaginationRequest paginationRequest) {
+    public Mono<PaginationResponse<CardPromotionDTO>> listPromotions(UUID cardId, PaginationRequest paginationRequest) {
         return PaginationUtils.paginateQuery(
                 paginationRequest,
                 mapper::toDTO,
@@ -33,7 +35,7 @@ public class CardPromotionServiceImpl implements CardPromotionService {
     }
 
     @Override
-    public Mono<CardPromotionDTO> createPromotion(Long cardId, CardPromotionDTO promotionDTO) {
+    public Mono<CardPromotionDTO> createPromotion(UUID cardId, CardPromotionDTO promotionDTO) {
         promotionDTO.setCardId(cardId);
         CardPromotion entity = mapper.toEntity(promotionDTO);
         return repository.save(entity)
@@ -41,7 +43,7 @@ public class CardPromotionServiceImpl implements CardPromotionService {
     }
 
     @Override
-    public Mono<CardPromotionDTO> getPromotion(Long cardId, Long promotionId) {
+    public Mono<CardPromotionDTO> getPromotion(UUID cardId, UUID promotionId) {
         return repository.findByPromotionId(promotionId)
                 .flatMap(entity -> {
                     if (!entity.getCardId().equals(cardId)) {
@@ -52,7 +54,7 @@ public class CardPromotionServiceImpl implements CardPromotionService {
     }
 
     @Override
-    public Mono<CardPromotionDTO> updatePromotion(Long cardId, Long promotionId, CardPromotionDTO promotionDTO) {
+    public Mono<CardPromotionDTO> updatePromotion(UUID cardId, UUID promotionId, CardPromotionDTO promotionDTO) {
         return repository.findByPromotionId(promotionId)
                 .flatMap(existingPromotion -> {
                     if (!existingPromotion.getCardId().equals(cardId)) {
@@ -69,7 +71,7 @@ public class CardPromotionServiceImpl implements CardPromotionService {
     }
 
     @Override
-    public Mono<Void> deletePromotion(Long cardId, Long promotionId) {
+    public Mono<Void> deletePromotion(UUID cardId, UUID promotionId) {
         return repository.findByPromotionId(promotionId)
                 .flatMap(promotion -> {
                     if (!promotion.getCardId().equals(cardId)) {

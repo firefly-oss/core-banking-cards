@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class CardAcquirerServiceImpl implements CardAcquirerService {
@@ -40,13 +42,13 @@ public class CardAcquirerServiceImpl implements CardAcquirerService {
     }
 
     @Override
-    public Mono<CardAcquirerDTO> getAcquirer(Long acquirerId) {
+    public Mono<CardAcquirerDTO> getAcquirer(UUID acquirerId) {
         return repository.findByAcquirerId(acquirerId)
                 .map(mapper::toDTO);
     }
 
     @Override
-    public Mono<CardAcquirerDTO> updateAcquirer(Long acquirerId, CardAcquirerDTO acquirerDTO) {
+    public Mono<CardAcquirerDTO> updateAcquirer(UUID acquirerId, CardAcquirerDTO acquirerDTO) {
         return repository.findByAcquirerId(acquirerId)
                 .flatMap(existingAcquirer -> {
                     CardAcquirer updatedAcquirer = mapper.toEntity(acquirerDTO);
@@ -57,7 +59,7 @@ public class CardAcquirerServiceImpl implements CardAcquirerService {
     }
 
     @Override
-    public Mono<Void> deleteAcquirer(Long acquirerId) {
+    public Mono<Void> deleteAcquirer(UUID acquirerId) {
         return repository.findByAcquirerId(acquirerId)
                 .flatMap(repository::delete);
     }

@@ -5,6 +5,7 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.banking.cards.interfaces.dtos.card.v1.CardDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 public interface CardService {
 
     /**
@@ -23,15 +24,15 @@ public interface CardService {
     /**
      * Retrieve a specific card by ID.
      */
-    Mono<CardDTO> getCard(Long cardId);
+    Mono<CardDTO> getCard(UUID cardId);
 
     /**
      * Update an existing card record by ID.
      */
-    Mono<CardDTO> updateCard(Long cardId, CardDTO cardDTO);
+    Mono<CardDTO> updateCard(UUID cardId, CardDTO cardDTO);
 
     /**
      * Delete a card by its unique ID.
      */
-    Mono<Void> deleteCard(Long cardId);
+    Mono<Void> deleteCard(UUID cardId);
 }

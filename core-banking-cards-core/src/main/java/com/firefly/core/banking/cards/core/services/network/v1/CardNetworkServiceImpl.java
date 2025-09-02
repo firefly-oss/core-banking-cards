@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class CardNetworkServiceImpl implements CardNetworkService {
@@ -40,13 +42,13 @@ public class CardNetworkServiceImpl implements CardNetworkService {
     }
 
     @Override
-    public Mono<CardNetworkDTO> getNetwork(Long networkId) {
+    public Mono<CardNetworkDTO> getNetwork(UUID networkId) {
         return repository.findByCardNetworkId(networkId)
                 .map(mapper::toDTO);
     }
 
     @Override
-    public Mono<CardNetworkDTO> updateNetwork(Long networkId, CardNetworkDTO networkDTO) {
+    public Mono<CardNetworkDTO> updateNetwork(UUID networkId, CardNetworkDTO networkDTO) {
         return repository.findByCardNetworkId(networkId)
                 .flatMap(existingNetwork -> {
                     CardNetwork updatedNetwork = mapper.toEntity(networkDTO);
@@ -57,7 +59,7 @@ public class CardNetworkServiceImpl implements CardNetworkService {
     }
 
     @Override
-    public Mono<Void> deleteNetwork(Long networkId) {
+    public Mono<Void> deleteNetwork(UUID networkId) {
         return repository.findByCardNetworkId(networkId)
                 .flatMap(repository::delete);
     }

@@ -5,30 +5,31 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.banking.cards.interfaces.dtos.virtual.v1.VirtualCardDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 public interface VirtualCardService {
 
     /**
      * Retrieve a paginated list of virtual cards for a specific card.
      */
-    Mono<PaginationResponse<VirtualCardDTO>> listVirtualCards(Long cardId, PaginationRequest paginationRequest);
+    Mono<PaginationResponse<VirtualCardDTO>> listVirtualCards(UUID cardId, PaginationRequest paginationRequest);
 
     /**
      * Create a new virtual card record for a specific card.
      */
-    Mono<VirtualCardDTO> createVirtualCard(Long cardId, VirtualCardDTO virtualCardDTO);
+    Mono<VirtualCardDTO> createVirtualCard(UUID cardId, VirtualCardDTO virtualCardDTO);
 
     /**
      * Retrieve a specific virtual card by its ID, ensuring it belongs to the specified card.
      */
-    Mono<VirtualCardDTO> getVirtualCard(Long cardId, Long virtualCardId);
+    Mono<VirtualCardDTO> getVirtualCard(UUID cardId, UUID virtualCardId);
 
     /**
      * Update an existing virtual card associated with the specified card.
      */
-    Mono<VirtualCardDTO> updateVirtualCard(Long cardId, Long virtualCardId, VirtualCardDTO virtualCardDTO);
+    Mono<VirtualCardDTO> updateVirtualCard(UUID cardId, UUID virtualCardId, VirtualCardDTO virtualCardDTO);
 
     /**
      * Delete a virtual card by its unique ID, ensuring it belongs to the specified card.
      */
-    Mono<Void> deleteVirtualCard(Long cardId, Long virtualCardId);
+    Mono<Void> deleteVirtualCard(UUID cardId, UUID virtualCardId);
 }

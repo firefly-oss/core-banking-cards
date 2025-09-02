@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class CardProgramServiceImpl implements CardProgramService {
@@ -40,13 +42,13 @@ public class CardProgramServiceImpl implements CardProgramService {
     }
 
     @Override
-    public Mono<CardProgramDTO> getProgram(Long programId) {
+    public Mono<CardProgramDTO> getProgram(UUID programId) {
         return repository.findByProgramId(programId)
                 .map(mapper::toDTO);
     }
 
     @Override
-    public Mono<CardProgramDTO> updateProgram(Long programId, CardProgramDTO programDTO) {
+    public Mono<CardProgramDTO> updateProgram(UUID programId, CardProgramDTO programDTO) {
         return repository.findByProgramId(programId)
                 .flatMap(existingProgram -> {
                     CardProgram updatedProgram = mapper.toEntity(programDTO);
@@ -57,7 +59,7 @@ public class CardProgramServiceImpl implements CardProgramService {
     }
 
     @Override
-    public Mono<Void> deleteProgram(Long programId) {
+    public Mono<Void> deleteProgram(UUID programId) {
         return repository.findByProgramId(programId)
                 .flatMap(repository::delete);
     }

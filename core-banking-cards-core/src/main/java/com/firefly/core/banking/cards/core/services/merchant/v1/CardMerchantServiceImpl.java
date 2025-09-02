@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class CardMerchantServiceImpl implements CardMerchantService {
@@ -40,13 +42,13 @@ public class CardMerchantServiceImpl implements CardMerchantService {
     }
 
     @Override
-    public Mono<CardMerchantDTO> getMerchant(Long merchantId) {
+    public Mono<CardMerchantDTO> getMerchant(UUID merchantId) {
         return repository.findByMerchantId(merchantId)
                 .map(mapper::toDTO);
     }
 
     @Override
-    public Mono<CardMerchantDTO> updateMerchant(Long merchantId, CardMerchantDTO merchantDTO) {
+    public Mono<CardMerchantDTO> updateMerchant(UUID merchantId, CardMerchantDTO merchantDTO) {
         return repository.findByMerchantId(merchantId)
                 .flatMap(existingMerchant -> {
                     CardMerchant updatedMerchant = mapper.toEntity(merchantDTO);
@@ -57,7 +59,7 @@ public class CardMerchantServiceImpl implements CardMerchantService {
     }
 
     @Override
-    public Mono<Void> deleteMerchant(Long merchantId) {
+    public Mono<Void> deleteMerchant(UUID merchantId) {
         return repository.findByMerchantId(merchantId)
                 .flatMap(repository::delete);
     }

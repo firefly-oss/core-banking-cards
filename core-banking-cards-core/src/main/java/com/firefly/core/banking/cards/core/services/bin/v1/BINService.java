@@ -5,6 +5,7 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.banking.cards.interfaces.dtos.bin.v1.BINDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 public interface BINService {
 
     /**
@@ -20,7 +21,7 @@ public interface BINService {
     /**
      * Retrieve a specific BIN by ID.
      */
-    Mono<BINDTO> getBIN(Long binId);
+    Mono<BINDTO> getBIN(UUID binId);
 
     /**
      * Retrieve a specific BIN by number.
@@ -30,10 +31,10 @@ public interface BINService {
     /**
      * Update an existing BIN by ID.
      */
-    Mono<BINDTO> updateBIN(Long binId, BINDTO binDTO);
+    Mono<BINDTO> updateBIN(UUID binId, BINDTO binDTO);
 
     /**
      * Delete a BIN by its unique ID.
      */
-    Mono<Void> deleteBIN(Long binId);
+    Mono<Void> deleteBIN(UUID binId);
 }

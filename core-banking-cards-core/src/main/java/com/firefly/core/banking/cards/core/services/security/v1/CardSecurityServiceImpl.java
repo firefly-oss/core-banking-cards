@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class CardSecurityServiceImpl implements CardSecurityService {
@@ -23,7 +25,7 @@ public class CardSecurityServiceImpl implements CardSecurityService {
     private CardSecurityMapper mapper;
 
     @Override
-    public Mono<PaginationResponse<CardSecurityDTO>> listSecuritySettings(Long cardId, PaginationRequest paginationRequest) {
+    public Mono<PaginationResponse<CardSecurityDTO>> listSecuritySettings(UUID cardId, PaginationRequest paginationRequest) {
         return PaginationUtils.paginateQuery(
                 paginationRequest,
                 mapper::toDTO,
@@ -33,7 +35,7 @@ public class CardSecurityServiceImpl implements CardSecurityService {
     }
 
     @Override
-    public Mono<CardSecurityDTO> createSecuritySetting(Long cardId, CardSecurityDTO securityDTO) {
+    public Mono<CardSecurityDTO> createSecuritySetting(UUID cardId, CardSecurityDTO securityDTO) {
         CardSecurity entity = mapper.toEntity(securityDTO);
         entity.setCardId(cardId);
 
@@ -43,7 +45,7 @@ public class CardSecurityServiceImpl implements CardSecurityService {
     }
 
     @Override
-    public Mono<CardSecurityDTO> getSecuritySetting(Long cardId, Long securityId) {
+    public Mono<CardSecurityDTO> getSecuritySetting(UUID cardId, UUID securityId) {
         return repository.findByCardSecurityId(securityId)
                 .flatMap(entity -> {
                     if (!entity.getCardId().equals(cardId)) {
@@ -54,7 +56,7 @@ public class CardSecurityServiceImpl implements CardSecurityService {
     }
 
     @Override
-    public Mono<CardSecurityDTO> updateSecuritySetting(Long cardId, Long securityId, CardSecurityDTO securityDTO) {
+    public Mono<CardSecurityDTO> updateSecuritySetting(UUID cardId, UUID securityId, CardSecurityDTO securityDTO) {
         return repository.findByCardSecurityId(securityId)
                 .flatMap(existingEntity -> {
                     if (!existingEntity.getCardId().equals(cardId)) {
@@ -71,7 +73,7 @@ public class CardSecurityServiceImpl implements CardSecurityService {
     }
 
     @Override
-    public Mono<Void> deleteSecuritySetting(Long cardId, Long securityId) {
+    public Mono<Void> deleteSecuritySetting(UUID cardId, UUID securityId) {
         return repository.findByCardSecurityId(securityId)
                 .flatMap(existingEntity -> {
                     if (!existingEntity.getCardId().equals(cardId)) {

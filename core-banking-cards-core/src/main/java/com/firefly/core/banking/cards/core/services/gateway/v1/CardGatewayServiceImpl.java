@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class CardGatewayServiceImpl implements CardGatewayService {
@@ -40,13 +42,13 @@ public class CardGatewayServiceImpl implements CardGatewayService {
     }
 
     @Override
-    public Mono<CardGatewayDTO> getGateway(Long gatewayId) {
+    public Mono<CardGatewayDTO> getGateway(UUID gatewayId) {
         return repository.findByGatewayId(gatewayId)
                 .map(mapper::toDTO);
     }
 
     @Override
-    public Mono<CardGatewayDTO> updateGateway(Long gatewayId, CardGatewayDTO gatewayDTO) {
+    public Mono<CardGatewayDTO> updateGateway(UUID gatewayId, CardGatewayDTO gatewayDTO) {
         return repository.findByGatewayId(gatewayId)
                 .flatMap(existingGateway -> {
                     CardGateway updatedGateway = mapper.toEntity(gatewayDTO);
@@ -57,7 +59,7 @@ public class CardGatewayServiceImpl implements CardGatewayService {
     }
 
     @Override
-    public Mono<Void> deleteGateway(Long gatewayId) {
+    public Mono<Void> deleteGateway(UUID gatewayId) {
         return repository.findByGatewayId(gatewayId)
                 .flatMap(repository::delete);
     }

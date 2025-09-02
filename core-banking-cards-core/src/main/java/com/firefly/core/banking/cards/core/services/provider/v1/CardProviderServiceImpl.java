@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class CardProviderServiceImpl implements CardProviderService {
@@ -23,7 +25,7 @@ public class CardProviderServiceImpl implements CardProviderService {
     private CardProviderMapper mapper;
 
     @Override
-    public Mono<PaginationResponse<CardProviderDTO>> listProviders(Long cardId, PaginationRequest paginationRequest) {
+    public Mono<PaginationResponse<CardProviderDTO>> listProviders(UUID cardId, PaginationRequest paginationRequest) {
         return PaginationUtils.paginateQuery(
                 paginationRequest,
                 mapper::toDTO,
@@ -33,7 +35,7 @@ public class CardProviderServiceImpl implements CardProviderService {
     }
 
     @Override
-    public Mono<CardProviderDTO> createProvider(Long cardId, CardProviderDTO providerDTO) {
+    public Mono<CardProviderDTO> createProvider(UUID cardId, CardProviderDTO providerDTO) {
         CardProvider cardProvider = mapper.toEntity(providerDTO);
         cardProvider.setCardId(cardId);
         return repository.save(cardProvider)
@@ -41,14 +43,14 @@ public class CardProviderServiceImpl implements CardProviderService {
     }
 
     @Override
-    public Mono<CardProviderDTO> getProvider(Long cardId, Long providerId) {
+    public Mono<CardProviderDTO> getProvider(UUID cardId, UUID providerId) {
         return repository.findById(providerId)
                 .filter(provider -> provider.getCardId().equals(cardId))
                 .map(mapper::toDTO);
     }
 
     @Override
-    public Mono<CardProviderDTO> updateProvider(Long cardId, Long providerId, CardProviderDTO providerDTO) {
+    public Mono<CardProviderDTO> updateProvider(UUID cardId, UUID providerId, CardProviderDTO providerDTO) {
         return repository.findById(providerId)
                 .filter(provider -> provider.getCardId().equals(cardId))
                 .flatMap(existing -> {
@@ -61,7 +63,7 @@ public class CardProviderServiceImpl implements CardProviderService {
     }
 
     @Override
-    public Mono<Void> deleteProvider(Long cardId, Long providerId) {
+    public Mono<Void> deleteProvider(UUID cardId, UUID providerId) {
         return repository.findById(providerId)
                 .filter(provider -> provider.getCardId().equals(cardId))
                 .flatMap(repository::delete);

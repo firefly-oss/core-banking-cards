@@ -5,33 +5,34 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.banking.cards.interfaces.dtos.interest.v1.CardInterestDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 public interface CardInterestService {
 
     /**
      * List all interest records (paginated) for a specific card.
      */
     Mono<PaginationResponse<CardInterestDTO>> listInterests(
-            Long cardId,
+            UUID cardId,
             PaginationRequest paginationRequest
     );
 
     /**
      * Create a new interest record for a specific card.
      */
-    Mono<CardInterestDTO> createInterest(Long cardId, CardInterestDTO interestDTO);
+    Mono<CardInterestDTO> createInterest(UUID cardId, CardInterestDTO interestDTO);
 
     /**
      * Retrieve a specific interest record by its unique ID, ensuring it belongs to the card.
      */
-    Mono<CardInterestDTO> getInterest(Long cardId, Long interestId);
+    Mono<CardInterestDTO> getInterest(UUID cardId, UUID interestId);
 
     /**
      * Update an existing interest record for a specific card.
      */
-    Mono<CardInterestDTO> updateInterest(Long cardId, Long interestId, CardInterestDTO interestDTO);
+    Mono<CardInterestDTO> updateInterest(UUID cardId, UUID interestId, CardInterestDTO interestDTO);
 
     /**
      * Delete an interest record by its unique ID, ensuring it belongs to the card.
      */
-    Mono<Void> deleteInterest(Long cardId, Long interestId);
+    Mono<Void> deleteInterest(UUID cardId, UUID interestId);
 }

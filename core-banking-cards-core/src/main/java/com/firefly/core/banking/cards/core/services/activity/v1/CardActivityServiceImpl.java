@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class CardActivityServiceImpl implements CardActivityService {
@@ -23,7 +25,7 @@ public class CardActivityServiceImpl implements CardActivityService {
     private CardActivityMapper mapper;
 
     @Override
-    public Mono<PaginationResponse<CardActivityDTO>> listActivities(Long cardId, PaginationRequest paginationRequest) {
+    public Mono<PaginationResponse<CardActivityDTO>> listActivities(UUID cardId, PaginationRequest paginationRequest) {
         return PaginationUtils.paginateQuery(
                 paginationRequest,
                 mapper::toDTO,
@@ -33,7 +35,7 @@ public class CardActivityServiceImpl implements CardActivityService {
     }
 
     @Override
-    public Mono<CardActivityDTO> createActivity(Long cardId, CardActivityDTO activityDTO) {
+    public Mono<CardActivityDTO> createActivity(UUID cardId, CardActivityDTO activityDTO) {
         activityDTO.setCardId(cardId);
         CardActivity entity = mapper.toEntity(activityDTO);
         return repository.save(entity)
@@ -41,7 +43,7 @@ public class CardActivityServiceImpl implements CardActivityService {
     }
 
     @Override
-    public Mono<CardActivityDTO> getActivity(Long cardId, Long activityId) {
+    public Mono<CardActivityDTO> getActivity(UUID cardId, UUID activityId) {
         return repository.findByActivityId(activityId)
                 .flatMap(entity -> {
                     if (!entity.getCardId().equals(cardId)) {
@@ -52,7 +54,7 @@ public class CardActivityServiceImpl implements CardActivityService {
     }
 
     @Override
-    public Mono<CardActivityDTO> updateActivity(Long cardId, Long activityId, CardActivityDTO activityDTO) {
+    public Mono<CardActivityDTO> updateActivity(UUID cardId, UUID activityId, CardActivityDTO activityDTO) {
         return repository.findByActivityId(activityId)
                 .flatMap(existingActivity -> {
                     if (!existingActivity.getCardId().equals(cardId)) {
@@ -69,7 +71,7 @@ public class CardActivityServiceImpl implements CardActivityService {
     }
 
     @Override
-    public Mono<Void> deleteActivity(Long cardId, Long activityId) {
+    public Mono<Void> deleteActivity(UUID cardId, UUID activityId) {
         return repository.findByActivityId(activityId)
                 .flatMap(activity -> {
                     if (!activity.getCardId().equals(cardId)) {

@@ -5,6 +5,8 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.banking.cards.interfaces.dtos.acquirer.v1.CardAcquirerDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 public interface CardAcquirerService {
 
     /**
@@ -20,15 +22,15 @@ public interface CardAcquirerService {
     /**
      * Retrieve a specific card acquirer by ID.
      */
-    Mono<CardAcquirerDTO> getAcquirer(Long acquirerId);
+    Mono<CardAcquirerDTO> getAcquirer(UUID acquirerId);
 
     /**
      * Update an existing card acquirer by ID.
      */
-    Mono<CardAcquirerDTO> updateAcquirer(Long acquirerId, CardAcquirerDTO acquirerDTO);
+    Mono<CardAcquirerDTO> updateAcquirer(UUID acquirerId, CardAcquirerDTO acquirerDTO);
 
     /**
      * Delete a card acquirer by its unique ID.
      */
-    Mono<Void> deleteAcquirer(Long acquirerId);
+    Mono<Void> deleteAcquirer(UUID acquirerId);
 }

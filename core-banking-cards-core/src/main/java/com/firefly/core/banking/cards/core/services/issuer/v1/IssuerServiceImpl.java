@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class IssuerServiceImpl implements IssuerService {
@@ -40,13 +42,13 @@ public class IssuerServiceImpl implements IssuerService {
     }
 
     @Override
-    public Mono<IssuerDTO> getIssuer(Long issuerId) {
+    public Mono<IssuerDTO> getIssuer(UUID issuerId) {
         return repository.findByIssuerId(issuerId)
                 .map(mapper::toDTO);
     }
 
     @Override
-    public Mono<IssuerDTO> updateIssuer(Long issuerId, IssuerDTO issuerDTO) {
+    public Mono<IssuerDTO> updateIssuer(UUID issuerId, IssuerDTO issuerDTO) {
         return repository.findByIssuerId(issuerId)
                 .flatMap(existingIssuer -> {
                     Issuer updatedIssuer = mapper.toEntity(issuerDTO);
@@ -57,7 +59,7 @@ public class IssuerServiceImpl implements IssuerService {
     }
 
     @Override
-    public Mono<Void> deleteIssuer(Long issuerId) {
+    public Mono<Void> deleteIssuer(UUID issuerId) {
         return repository.findByIssuerId(issuerId)
                 .flatMap(repository::delete);
     }

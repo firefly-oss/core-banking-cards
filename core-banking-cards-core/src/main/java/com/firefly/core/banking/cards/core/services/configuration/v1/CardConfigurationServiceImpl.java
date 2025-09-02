@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class CardConfigurationServiceImpl implements CardConfigurationService {
@@ -23,7 +25,7 @@ public class CardConfigurationServiceImpl implements CardConfigurationService {
     private CardConfigurationMapper mapper;
 
     @Override
-    public Mono<PaginationResponse<CardConfigurationDTO>> listConfigurations(Long cardId, PaginationRequest paginationRequest) {
+    public Mono<PaginationResponse<CardConfigurationDTO>> listConfigurations(UUID cardId, PaginationRequest paginationRequest) {
         return PaginationUtils.paginateQuery(
                 paginationRequest,
                 mapper::toDTO,
@@ -33,7 +35,7 @@ public class CardConfigurationServiceImpl implements CardConfigurationService {
     }
 
     @Override
-    public Mono<CardConfigurationDTO> createConfiguration(Long cardId, CardConfigurationDTO configDTO) {
+    public Mono<CardConfigurationDTO> createConfiguration(UUID cardId, CardConfigurationDTO configDTO) {
         configDTO.setCardId(cardId);
         CardConfiguration entity = mapper.toEntity(configDTO);
         return repository.save(entity)
@@ -41,14 +43,14 @@ public class CardConfigurationServiceImpl implements CardConfigurationService {
     }
 
     @Override
-    public Mono<CardConfigurationDTO> getConfiguration(Long cardId, Long configId) {
+    public Mono<CardConfigurationDTO> getConfiguration(UUID cardId, UUID configId) {
         return repository.findByCardConfigurationId(configId)
                 .filter(config -> config.getCardId().equals(cardId))
                 .map(mapper::toDTO);
     }
 
     @Override
-    public Mono<CardConfigurationDTO> updateConfiguration(Long cardId, Long configId, CardConfigurationDTO configDTO) {
+    public Mono<CardConfigurationDTO> updateConfiguration(UUID cardId, UUID configId, CardConfigurationDTO configDTO) {
         return repository.findByCardConfigurationId(configId)
                 .filter(config -> config.getCardId().equals(cardId))
                 .flatMap(existingConfig -> {
@@ -60,7 +62,7 @@ public class CardConfigurationServiceImpl implements CardConfigurationService {
     }
 
     @Override
-    public Mono<Void> deleteConfiguration(Long cardId, Long configId) {
+    public Mono<Void> deleteConfiguration(UUID cardId, UUID configId) {
         return repository.findByCardConfigurationId(configId)
                 .filter(config -> config.getCardId().equals(cardId))
                 .flatMap(repository::delete);

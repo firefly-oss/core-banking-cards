@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class CardTransactionServiceImpl implements CardTransactionService {
@@ -25,7 +27,7 @@ public class CardTransactionServiceImpl implements CardTransactionService {
     private CardTransactionMapper mapper;
 
     @Override
-    public Mono<PaginationResponse<CardTransactionDTO>> listTransactions(Long cardId, PaginationRequest paginationRequest) {
+    public Mono<PaginationResponse<CardTransactionDTO>> listTransactions(UUID cardId, PaginationRequest paginationRequest) {
         return PaginationUtils.paginateQuery(
                 paginationRequest,
                 mapper::toDTO,
@@ -35,14 +37,14 @@ public class CardTransactionServiceImpl implements CardTransactionService {
     }
 
     @Override
-    public Mono<CardTransactionDTO> createTransaction(Long cardId, CardTransactionDTO transactionDTO) {
+    public Mono<CardTransactionDTO> createTransaction(UUID cardId, CardTransactionDTO transactionDTO) {
         transactionDTO.setCardId(cardId);
         return repository.save(mapper.toEntity(transactionDTO))
                 .map(mapper::toDTO);
     }
 
     @Override
-    public Mono<CardTransactionDTO> getTransaction(Long cardId, Long transactionId) {
+    public Mono<CardTransactionDTO> getTransaction(UUID cardId, UUID transactionId) {
         return repository.findByCardTransactionId(transactionId)
                 .filter(transaction -> cardId.equals(transaction.getCardId()))
                 .map(mapper::toDTO);
@@ -59,7 +61,7 @@ public class CardTransactionServiceImpl implements CardTransactionService {
     }
 
     @Override
-    public Mono<CardTransactionDTO> updateTransaction(Long cardId, Long transactionId, CardTransactionDTO transactionDTO) {
+    public Mono<CardTransactionDTO> updateTransaction(UUID cardId, UUID transactionId, CardTransactionDTO transactionDTO) {
         return repository.findByCardTransactionId(transactionId)
                 .filter(transaction -> cardId.equals(transaction.getCardId()))
                 .flatMap(existingTransaction -> {
@@ -72,7 +74,7 @@ public class CardTransactionServiceImpl implements CardTransactionService {
     }
 
     @Override
-    public Mono<Void> deleteTransaction(Long cardId, Long transactionId) {
+    public Mono<Void> deleteTransaction(UUID cardId, UUID transactionId) {
         return repository.findByCardTransactionId(transactionId)
                 .filter(transaction -> cardId.equals(transaction.getCardId()))
                 .flatMap(repository::delete);

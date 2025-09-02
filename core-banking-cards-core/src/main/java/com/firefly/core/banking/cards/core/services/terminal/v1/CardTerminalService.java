@@ -5,6 +5,7 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.banking.cards.interfaces.dtos.terminal.v1.CardTerminalDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 public interface CardTerminalService {
 
     /**
@@ -20,15 +21,15 @@ public interface CardTerminalService {
     /**
      * Retrieve a specific card terminal by ID.
      */
-    Mono<CardTerminalDTO> getTerminal(Long terminalId);
+    Mono<CardTerminalDTO> getTerminal(UUID terminalId);
 
     /**
      * Update an existing card terminal by ID.
      */
-    Mono<CardTerminalDTO> updateTerminal(Long terminalId, CardTerminalDTO terminalDTO);
+    Mono<CardTerminalDTO> updateTerminal(UUID terminalId, CardTerminalDTO terminalDTO);
 
     /**
      * Delete a card terminal by its unique ID.
      */
-    Mono<Void> deleteTerminal(Long terminalId);
+    Mono<Void> deleteTerminal(UUID terminalId);
 }

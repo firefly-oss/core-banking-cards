@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class CardEnrollmentServiceImpl implements CardEnrollmentService {
@@ -23,7 +25,7 @@ public class CardEnrollmentServiceImpl implements CardEnrollmentService {
     private CardEnrollmentMapper mapper;
 
     @Override
-    public Mono<PaginationResponse<CardEnrollmentDTO>> listEnrollments(Long cardId, PaginationRequest paginationRequest) {
+    public Mono<PaginationResponse<CardEnrollmentDTO>> listEnrollments(UUID cardId, PaginationRequest paginationRequest) {
         return PaginationUtils.paginateQuery(
                 paginationRequest,
                 mapper::toDTO,
@@ -33,7 +35,7 @@ public class CardEnrollmentServiceImpl implements CardEnrollmentService {
     }
 
     @Override
-    public Mono<CardEnrollmentDTO> createEnrollment(Long cardId, CardEnrollmentDTO enrollmentDTO) {
+    public Mono<CardEnrollmentDTO> createEnrollment(UUID cardId, CardEnrollmentDTO enrollmentDTO) {
         enrollmentDTO.setCardId(cardId);
         CardEnrollment entity = mapper.toEntity(enrollmentDTO);
         return repository.save(entity)
@@ -41,7 +43,7 @@ public class CardEnrollmentServiceImpl implements CardEnrollmentService {
     }
 
     @Override
-    public Mono<CardEnrollmentDTO> getEnrollment(Long cardId, Long enrollmentId) {
+    public Mono<CardEnrollmentDTO> getEnrollment(UUID cardId, UUID enrollmentId) {
         return repository.findByEnrollmentId(enrollmentId)
                 .flatMap(entity -> {
                     if (!entity.getCardId().equals(cardId)) {
@@ -52,7 +54,7 @@ public class CardEnrollmentServiceImpl implements CardEnrollmentService {
     }
 
     @Override
-    public Mono<CardEnrollmentDTO> updateEnrollment(Long cardId, Long enrollmentId, CardEnrollmentDTO enrollmentDTO) {
+    public Mono<CardEnrollmentDTO> updateEnrollment(UUID cardId, UUID enrollmentId, CardEnrollmentDTO enrollmentDTO) {
         return repository.findByEnrollmentId(enrollmentId)
                 .flatMap(existingEnrollment -> {
                     if (!existingEnrollment.getCardId().equals(cardId)) {
@@ -69,7 +71,7 @@ public class CardEnrollmentServiceImpl implements CardEnrollmentService {
     }
 
     @Override
-    public Mono<Void> deleteEnrollment(Long cardId, Long enrollmentId) {
+    public Mono<Void> deleteEnrollment(UUID cardId, UUID enrollmentId) {
         return repository.findByEnrollmentId(enrollmentId)
                 .flatMap(enrollment -> {
                     if (!enrollment.getCardId().equals(cardId)) {

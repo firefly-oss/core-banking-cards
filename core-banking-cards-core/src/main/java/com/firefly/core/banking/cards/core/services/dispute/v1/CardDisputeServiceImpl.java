@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class CardDisputeServiceImpl implements CardDisputeService {
@@ -23,7 +25,7 @@ public class CardDisputeServiceImpl implements CardDisputeService {
     private CardDisputeMapper mapper;
 
     @Override
-    public Mono<PaginationResponse<CardDisputeDTO>> listDisputes(Long cardId, PaginationRequest paginationRequest) {
+    public Mono<PaginationResponse<CardDisputeDTO>> listDisputes(UUID cardId, PaginationRequest paginationRequest) {
         return PaginationUtils.paginateQuery(
                 paginationRequest,
                 mapper::toDTO,
@@ -33,7 +35,7 @@ public class CardDisputeServiceImpl implements CardDisputeService {
     }
 
     @Override
-    public Mono<CardDisputeDTO> createDispute(Long cardId, CardDisputeDTO disputeDTO) {
+    public Mono<CardDisputeDTO> createDispute(UUID cardId, CardDisputeDTO disputeDTO) {
         disputeDTO.setCardId(cardId);
         CardDispute entity = mapper.toEntity(disputeDTO);
         return repository.save(entity)
@@ -41,7 +43,7 @@ public class CardDisputeServiceImpl implements CardDisputeService {
     }
 
     @Override
-    public Mono<CardDisputeDTO> getDispute(Long cardId, Long disputeId) {
+    public Mono<CardDisputeDTO> getDispute(UUID cardId, UUID disputeId) {
         return repository.findByDisputeId(disputeId)
                 .flatMap(entity -> {
                     if (!entity.getCardId().equals(cardId)) {
@@ -52,7 +54,7 @@ public class CardDisputeServiceImpl implements CardDisputeService {
     }
 
     @Override
-    public Mono<CardDisputeDTO> updateDispute(Long cardId, Long disputeId, CardDisputeDTO disputeDTO) {
+    public Mono<CardDisputeDTO> updateDispute(UUID cardId, UUID disputeId, CardDisputeDTO disputeDTO) {
         return repository.findByDisputeId(disputeId)
                 .flatMap(existingDispute -> {
                     if (!existingDispute.getCardId().equals(cardId)) {
@@ -69,7 +71,7 @@ public class CardDisputeServiceImpl implements CardDisputeService {
     }
 
     @Override
-    public Mono<Void> deleteDispute(Long cardId, Long disputeId) {
+    public Mono<Void> deleteDispute(UUID cardId, UUID disputeId) {
         return repository.findByDisputeId(disputeId)
                 .flatMap(dispute -> {
                     if (!dispute.getCardId().equals(cardId)) {

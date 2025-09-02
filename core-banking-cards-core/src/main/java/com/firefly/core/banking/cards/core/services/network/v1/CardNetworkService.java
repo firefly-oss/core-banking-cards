@@ -5,6 +5,7 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.banking.cards.interfaces.dtos.network.v1.CardNetworkDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 public interface CardNetworkService {
 
     /**
@@ -20,15 +21,15 @@ public interface CardNetworkService {
     /**
      * Retrieve a specific card network by ID.
      */
-    Mono<CardNetworkDTO> getNetwork(Long networkId);
+    Mono<CardNetworkDTO> getNetwork(UUID networkId);
 
     /**
      * Update an existing card network by ID.
      */
-    Mono<CardNetworkDTO> updateNetwork(Long networkId, CardNetworkDTO networkDTO);
+    Mono<CardNetworkDTO> updateNetwork(UUID networkId, CardNetworkDTO networkDTO);
 
     /**
      * Delete a card network by its unique ID.
      */
-    Mono<Void> deleteNetwork(Long networkId);
+    Mono<Void> deleteNetwork(UUID networkId);
 }

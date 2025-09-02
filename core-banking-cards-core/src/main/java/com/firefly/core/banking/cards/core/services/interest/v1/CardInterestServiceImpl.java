@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class CardInterestServiceImpl implements CardInterestService {
@@ -23,7 +25,7 @@ public class CardInterestServiceImpl implements CardInterestService {
     private CardInterestMapper mapper;
 
     @Override
-    public Mono<PaginationResponse<CardInterestDTO>> listInterests(Long cardId, PaginationRequest paginationRequest) {
+    public Mono<PaginationResponse<CardInterestDTO>> listInterests(UUID cardId, PaginationRequest paginationRequest) {
         return PaginationUtils.paginateQuery(
                 paginationRequest,
                 mapper::toDTO,
@@ -33,7 +35,7 @@ public class CardInterestServiceImpl implements CardInterestService {
     }
 
     @Override
-    public Mono<CardInterestDTO> createInterest(Long cardId, CardInterestDTO interestDTO) {
+    public Mono<CardInterestDTO> createInterest(UUID cardId, CardInterestDTO interestDTO) {
         interestDTO.setCardId(cardId);
         CardInterest entity = mapper.toEntity(interestDTO);
         return repository.save(entity)
@@ -41,7 +43,7 @@ public class CardInterestServiceImpl implements CardInterestService {
     }
 
     @Override
-    public Mono<CardInterestDTO> getInterest(Long cardId, Long interestId) {
+    public Mono<CardInterestDTO> getInterest(UUID cardId, UUID interestId) {
         return repository.findByInterestId(interestId)
                 .flatMap(entity -> {
                     if (!entity.getCardId().equals(cardId)) {
@@ -52,7 +54,7 @@ public class CardInterestServiceImpl implements CardInterestService {
     }
 
     @Override
-    public Mono<CardInterestDTO> updateInterest(Long cardId, Long interestId, CardInterestDTO interestDTO) {
+    public Mono<CardInterestDTO> updateInterest(UUID cardId, UUID interestId, CardInterestDTO interestDTO) {
         return repository.findByInterestId(interestId)
                 .flatMap(existingInterest -> {
                     if (!existingInterest.getCardId().equals(cardId)) {
@@ -69,7 +71,7 @@ public class CardInterestServiceImpl implements CardInterestService {
     }
 
     @Override
-    public Mono<Void> deleteInterest(Long cardId, Long interestId) {
+    public Mono<Void> deleteInterest(UUID cardId, UUID interestId) {
         return repository.findByInterestId(interestId)
                 .flatMap(interest -> {
                     if (!interest.getCardId().equals(cardId)) {
