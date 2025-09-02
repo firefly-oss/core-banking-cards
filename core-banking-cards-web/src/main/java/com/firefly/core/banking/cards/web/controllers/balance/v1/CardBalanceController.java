@@ -18,6 +18,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Tag(name = "Card Balances", description = "APIs for managing balance records associated with a specific card")
 @RestController
 @RequestMapping("/api/v1/cards/{cardId}/balances")
@@ -40,7 +42,7 @@ public class CardBalanceController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<CardBalanceDTO>>> getAllBalances(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @ParameterObject
             @ModelAttribute PaginationRequest paginationRequest
@@ -64,7 +66,7 @@ public class CardBalanceController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardBalanceDTO>> createBalance(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Data for the new card balance record", required = true,
                     schema = @Schema(implementation = CardBalanceDTO.class))
@@ -89,10 +91,10 @@ public class CardBalanceController {
     @GetMapping(value = "/{balanceId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardBalanceDTO>> getBalance(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the balance record", required = true)
-            @PathVariable Long balanceId
+            @PathVariable UUID balanceId
     ) {
         return service.getBalance(cardId, balanceId)
                 .map(ResponseEntity::ok)
@@ -115,10 +117,10 @@ public class CardBalanceController {
     @PutMapping(value = "/{balanceId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardBalanceDTO>> updateBalance(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the balance record to update", required = true)
-            @PathVariable Long balanceId,
+            @PathVariable UUID balanceId,
 
             @Parameter(description = "Updated data for the balance record", required = true,
                     schema = @Schema(implementation = CardBalanceDTO.class))
@@ -142,10 +144,10 @@ public class CardBalanceController {
     @DeleteMapping(value = "/{balanceId}")
     public Mono<ResponseEntity<Void>> deleteBalance(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the balance record to delete", required = true)
-            @PathVariable Long balanceId
+            @PathVariable UUID balanceId
     ) {
         return service.deleteBalance(cardId, balanceId)
                 .then(Mono.just(ResponseEntity.noContent().<Void>build()))

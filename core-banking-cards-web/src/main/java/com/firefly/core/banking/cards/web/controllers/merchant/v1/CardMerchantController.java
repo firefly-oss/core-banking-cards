@@ -11,13 +11,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "Card Merchants", description = "APIs for managing card merchant records")
 @RestController
 @RequestMapping("/api/v1/merchants")
@@ -149,7 +149,7 @@ public class CardMerchantController {
     @GetMapping(value = "/{merchantId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardMerchantDTO>> getMerchant(
             @Parameter(description = "Unique identifier of the card merchant", required = true)
-            @PathVariable Long merchantId
+            @PathVariable UUID merchantId
     ) {
         return service.getMerchant(merchantId)
                 .map(ResponseEntity::ok)
@@ -201,7 +201,7 @@ public class CardMerchantController {
     @PutMapping(value = "/{merchantId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardMerchantDTO>> updateMerchant(
             @Parameter(description = "Unique identifier of the card merchant to update", required = true)
-            @PathVariable Long merchantId,
+            @PathVariable UUID merchantId,
 
             @Parameter(description = "Updated data for the card merchant", required = true,
                     schema = @Schema(implementation = CardMerchantDTO.class))
@@ -251,7 +251,7 @@ public class CardMerchantController {
     @DeleteMapping(value = "/{merchantId}")
     public Mono<ResponseEntity<Void>> deleteMerchant(
             @Parameter(description = "Unique identifier of the card merchant to delete", required = true)
-            @PathVariable Long merchantId
+            @PathVariable UUID merchantId
     ) {
         return service.deleteMerchant(merchantId)
                 .then(Mono.just(ResponseEntity.noContent().<Void>build()))

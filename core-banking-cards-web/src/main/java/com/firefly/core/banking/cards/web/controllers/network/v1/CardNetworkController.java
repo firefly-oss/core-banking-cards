@@ -11,13 +11,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "Card Networks", description = "APIs for managing card network records (Visa, Mastercard, etc.)")
 @RestController
 @RequestMapping("/api/v1/networks")
@@ -96,7 +96,7 @@ public class CardNetworkController {
     @GetMapping(value = "/{networkId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardNetworkDTO>> getNetwork(
             @Parameter(description = "Unique identifier of the card network", required = true)
-            @PathVariable Long networkId
+            @PathVariable UUID networkId
     ) {
         return service.getNetwork(networkId)
                 .map(ResponseEntity::ok)
@@ -124,7 +124,7 @@ public class CardNetworkController {
     @PutMapping(value = "/{networkId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardNetworkDTO>> updateNetwork(
             @Parameter(description = "Unique identifier of the card network to update", required = true)
-            @PathVariable Long networkId,
+            @PathVariable UUID networkId,
 
             @Parameter(description = "Updated data for the card network", required = true,
                     schema = @Schema(implementation = CardNetworkDTO.class))
@@ -153,7 +153,7 @@ public class CardNetworkController {
     @DeleteMapping(value = "/{networkId}")
     public Mono<ResponseEntity<Void>> deleteNetwork(
             @Parameter(description = "Unique identifier of the card network to delete", required = true)
-            @PathVariable Long networkId
+            @PathVariable UUID networkId
     ) {
         return service.deleteNetwork(networkId)
                 .then(Mono.just(ResponseEntity.noContent().<Void>build()))

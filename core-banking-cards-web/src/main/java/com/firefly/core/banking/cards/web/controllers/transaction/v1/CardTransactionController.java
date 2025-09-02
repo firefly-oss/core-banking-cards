@@ -12,13 +12,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "Card Transactions", description = "APIs for managing transaction records associated with a specific card")
 @RestController
 @RequestMapping("/api/v1/cards/{cardId}/transactions")
@@ -46,7 +46,7 @@ public class CardTransactionController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<CardTransactionDTO>>> getAllTransactions(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
             @RequestBody PaginationRequest paginationRequest
     ) {
         return service.listTransactions(cardId, paginationRequest)
@@ -73,7 +73,7 @@ public class CardTransactionController {
     @GetMapping(params = "filter", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<CardTransactionDTO>>> filterProducts(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
             @RequestBody FilterRequest<CardTransactionDTO> filterRequest
     ) {
         filterRequest.getFilters().setCardId(cardId);
@@ -102,7 +102,7 @@ public class CardTransactionController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardTransactionDTO>> createTransaction(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Data for the new card transaction record", required = true,
                     schema = @Schema(implementation = CardTransactionDTO.class))
@@ -131,10 +131,10 @@ public class CardTransactionController {
     @GetMapping(value = "/{transactionId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardTransactionDTO>> getTransaction(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the transaction record", required = true)
-            @PathVariable Long transactionId
+            @PathVariable UUID transactionId
     ) {
         return service.getTransaction(cardId, transactionId)
                 .map(ResponseEntity::ok)
@@ -160,10 +160,10 @@ public class CardTransactionController {
     @PutMapping(value = "/{transactionId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardTransactionDTO>> updateTransaction(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the card transaction to update", required = true)
-            @PathVariable Long transactionId,
+            @PathVariable UUID transactionId,
 
             @Parameter(description = "Updated transaction data", required = true,
                     schema = @Schema(implementation = CardTransactionDTO.class))
@@ -192,10 +192,10 @@ public class CardTransactionController {
     @DeleteMapping(value = "/{transactionId}")
     public Mono<ResponseEntity<Void>> deleteTransaction(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the transaction record to delete", required = true)
-            @PathVariable Long transactionId
+            @PathVariable UUID transactionId
     ) {
         return service.deleteTransaction(cardId, transactionId)
                 .then(Mono.just(ResponseEntity.noContent().build()));

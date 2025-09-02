@@ -11,13 +11,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "Card Gateways", description = "APIs for managing card gateway records")
 @RestController
 @RequestMapping("/api/v1/gateways")
@@ -96,7 +96,7 @@ public class CardGatewayController {
     @GetMapping(value = "/{gatewayId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardGatewayDTO>> getGateway(
             @Parameter(description = "Unique identifier of the card gateway", required = true)
-            @PathVariable Long gatewayId
+            @PathVariable UUID gatewayId
     ) {
         return service.getGateway(gatewayId)
                 .map(ResponseEntity::ok)
@@ -124,7 +124,7 @@ public class CardGatewayController {
     @PutMapping(value = "/{gatewayId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardGatewayDTO>> updateGateway(
             @Parameter(description = "Unique identifier of the card gateway to update", required = true)
-            @PathVariable Long gatewayId,
+            @PathVariable UUID gatewayId,
 
             @Parameter(description = "Updated data for the card gateway", required = true,
                     schema = @Schema(implementation = CardGatewayDTO.class))
@@ -152,7 +152,7 @@ public class CardGatewayController {
     @DeleteMapping(value = "/{gatewayId}")
     public Mono<ResponseEntity<Void>> deleteGateway(
             @Parameter(description = "Unique identifier of the card gateway to delete", required = true)
-            @PathVariable Long gatewayId
+            @PathVariable UUID gatewayId
     ) {
         return service.deleteGateway(gatewayId)
                 .then(Mono.just(ResponseEntity.noContent().<Void>build()))

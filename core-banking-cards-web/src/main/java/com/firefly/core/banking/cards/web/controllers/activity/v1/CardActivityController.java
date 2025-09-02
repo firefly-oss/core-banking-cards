@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "Card Activities", description = "APIs for managing activity records associated with a specific card")
 @RestController
 @RequestMapping("/api/v1/cards/{cardId}/activities")
@@ -40,7 +41,7 @@ public class CardActivityController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<CardActivityDTO>>> getAllActivities(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @ParameterObject
             @ModelAttribute PaginationRequest paginationRequest
@@ -64,7 +65,7 @@ public class CardActivityController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardActivityDTO>> createActivity(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Data for the new card activity record", required = true,
                     schema = @Schema(implementation = CardActivityDTO.class))
@@ -89,10 +90,10 @@ public class CardActivityController {
     @GetMapping(value = "/{activityId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardActivityDTO>> getActivity(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the activity record", required = true)
-            @PathVariable Long activityId
+            @PathVariable UUID activityId
     ) {
         return service.getActivity(cardId, activityId)
                 .map(ResponseEntity::ok)
@@ -115,10 +116,10 @@ public class CardActivityController {
     @PutMapping(value = "/{activityId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardActivityDTO>> updateActivity(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the activity record to update", required = true)
-            @PathVariable Long activityId,
+            @PathVariable UUID activityId,
 
             @Parameter(description = "Updated data for the activity record", required = true,
                     schema = @Schema(implementation = CardActivityDTO.class))
@@ -142,10 +143,10 @@ public class CardActivityController {
     @DeleteMapping(value = "/{activityId}")
     public Mono<ResponseEntity<Void>> deleteActivity(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the activity record to delete", required = true)
-            @PathVariable Long activityId
+            @PathVariable UUID activityId
     ) {
         return service.deleteActivity(cardId, activityId)
                 .then(Mono.just(ResponseEntity.noContent().<Void>build()))

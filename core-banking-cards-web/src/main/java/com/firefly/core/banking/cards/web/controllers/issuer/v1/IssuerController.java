@@ -11,13 +11,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "Issuers", description = "APIs for managing card issuer records")
 @RestController
 @RequestMapping("/api/v1/issuers")
@@ -95,7 +96,7 @@ public class IssuerController {
     @GetMapping(value = "/{issuerId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<IssuerDTO>> getIssuer(
             @Parameter(description = "Unique identifier of the issuer", required = true)
-            @PathVariable Long issuerId
+            @PathVariable UUID issuerId
     ) {
         return service.getIssuer(issuerId)
                 .map(ResponseEntity::ok)
@@ -123,7 +124,7 @@ public class IssuerController {
     @PutMapping(value = "/{issuerId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<IssuerDTO>> updateIssuer(
             @Parameter(description = "Unique identifier of the issuer to update", required = true)
-            @PathVariable Long issuerId,
+            @PathVariable UUID issuerId,
 
             @Parameter(description = "Updated data for the issuer", required = true,
                     schema = @Schema(implementation = IssuerDTO.class))
@@ -152,7 +153,7 @@ public class IssuerController {
     @DeleteMapping(value = "/{issuerId}")
     public Mono<ResponseEntity<Void>> deleteIssuer(
             @Parameter(description = "Unique identifier of the issuer to delete", required = true)
-            @PathVariable Long issuerId
+            @PathVariable UUID issuerId
     ) {
         return service.deleteIssuer(issuerId)
                 .then(Mono.just(ResponseEntity.noContent().<Void>build()))

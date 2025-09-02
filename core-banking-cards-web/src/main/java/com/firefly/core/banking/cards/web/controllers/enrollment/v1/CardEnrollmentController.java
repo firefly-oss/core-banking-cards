@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "Card Enrollments", description = "APIs for managing enrollment records associated with a specific card")
 @RestController
 @RequestMapping("/api/v1/cards/{cardId}/enrollments")
@@ -40,7 +41,7 @@ public class CardEnrollmentController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<CardEnrollmentDTO>>> getAllEnrollments(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @ParameterObject
             @ModelAttribute PaginationRequest paginationRequest
@@ -64,7 +65,7 @@ public class CardEnrollmentController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardEnrollmentDTO>> createEnrollment(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Data for the new card enrollment record", required = true,
                     schema = @Schema(implementation = CardEnrollmentDTO.class))
@@ -89,10 +90,10 @@ public class CardEnrollmentController {
     @GetMapping(value = "/{enrollmentId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardEnrollmentDTO>> getEnrollment(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the enrollment record", required = true)
-            @PathVariable Long enrollmentId
+            @PathVariable UUID enrollmentId
     ) {
         return service.getEnrollment(cardId, enrollmentId)
                 .map(ResponseEntity::ok)
@@ -115,10 +116,10 @@ public class CardEnrollmentController {
     @PutMapping(value = "/{enrollmentId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardEnrollmentDTO>> updateEnrollment(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the enrollment record to update", required = true)
-            @PathVariable Long enrollmentId,
+            @PathVariable UUID enrollmentId,
 
             @Parameter(description = "Updated data for the enrollment record", required = true,
                     schema = @Schema(implementation = CardEnrollmentDTO.class))
@@ -142,10 +143,10 @@ public class CardEnrollmentController {
     @DeleteMapping(value = "/{enrollmentId}")
     public Mono<ResponseEntity<Void>> deleteEnrollment(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the enrollment record to delete", required = true)
-            @PathVariable Long enrollmentId
+            @PathVariable UUID enrollmentId
     ) {
         return service.deleteEnrollment(cardId, enrollmentId)
                 .then(Mono.just(ResponseEntity.noContent().<Void>build()))

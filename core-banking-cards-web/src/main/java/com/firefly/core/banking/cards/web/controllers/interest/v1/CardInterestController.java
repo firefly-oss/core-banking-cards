@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "Card Interests", description = "APIs for managing interest records associated with a specific card")
 @RestController
 @RequestMapping("/api/v1/cards/{cardId}/interests")
@@ -40,7 +41,7 @@ public class CardInterestController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<CardInterestDTO>>> getAllInterests(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @ParameterObject
             @ModelAttribute PaginationRequest paginationRequest
@@ -64,7 +65,7 @@ public class CardInterestController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardInterestDTO>> createInterest(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Data for the new card interest record", required = true,
                     schema = @Schema(implementation = CardInterestDTO.class))
@@ -89,10 +90,10 @@ public class CardInterestController {
     @GetMapping(value = "/{interestId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardInterestDTO>> getInterest(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the interest record", required = true)
-            @PathVariable Long interestId
+            @PathVariable UUID interestId
     ) {
         return service.getInterest(cardId, interestId)
                 .map(ResponseEntity::ok)
@@ -115,10 +116,10 @@ public class CardInterestController {
     @PutMapping(value = "/{interestId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardInterestDTO>> updateInterest(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the interest record to update", required = true)
-            @PathVariable Long interestId,
+            @PathVariable UUID interestId,
 
             @Parameter(description = "Updated data for the interest record", required = true,
                     schema = @Schema(implementation = CardInterestDTO.class))
@@ -142,10 +143,10 @@ public class CardInterestController {
     @DeleteMapping(value = "/{interestId}")
     public Mono<ResponseEntity<Void>> deleteInterest(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the interest record to delete", required = true)
-            @PathVariable Long interestId
+            @PathVariable UUID interestId
     ) {
         return service.deleteInterest(cardId, interestId)
                 .then(Mono.just(ResponseEntity.noContent().<Void>build()))

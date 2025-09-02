@@ -11,13 +11,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "BINs", description = "APIs for managing Bank Identification Number (BIN) records")
 @RestController
 @RequestMapping("/api/v1/bins")
@@ -100,7 +101,7 @@ public class BINController {
     public Mono<ResponseEntity<BINDTO>> createBIN(
             @Parameter(description = "Data for the new BIN", required = true,
                     schema = @Schema(implementation = BINDTO.class))
-            @RequestBody BINDTO binDTO
+            @Valid @RequestBody BINDTO binDTO
     ) {
         return service.createBIN(binDTO)
                 .map(createdBIN -> ResponseEntity.status(201).body(createdBIN))
@@ -138,7 +139,7 @@ public class BINController {
     @GetMapping(value = "/{binId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<BINDTO>> getBIN(
             @Parameter(description = "Unique identifier of the BIN", required = true)
-            @PathVariable Long binId
+            @PathVariable UUID binId
     ) {
         return service.getBIN(binId)
                 .map(ResponseEntity::ok)
@@ -215,7 +216,7 @@ public class BINController {
     @PutMapping(value = "/{binId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<BINDTO>> updateBIN(
             @Parameter(description = "Unique identifier of the BIN to update", required = true)
-            @PathVariable Long binId,
+            @PathVariable UUID binId,
 
             @Parameter(description = "Updated data for the BIN", required = true,
                     schema = @Schema(implementation = BINDTO.class))
@@ -260,7 +261,7 @@ public class BINController {
     @DeleteMapping(value = "/{binId}")
     public Mono<ResponseEntity<Void>> deleteBIN(
             @Parameter(description = "Unique identifier of the BIN to delete", required = true)
-            @PathVariable Long binId
+            @PathVariable UUID binId
     ) {
         return service.deleteBIN(binId)
                 .then(Mono.just(ResponseEntity.noContent().<Void>build()))

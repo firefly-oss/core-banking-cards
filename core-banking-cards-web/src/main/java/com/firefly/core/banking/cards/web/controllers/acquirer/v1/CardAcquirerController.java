@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "Card Acquirers", description = "APIs for managing card acquirer records")
 @RestController
 @RequestMapping("/api/v1/acquirers")
@@ -95,7 +96,7 @@ public class CardAcquirerController {
     @GetMapping(value = "/{acquirerId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardAcquirerDTO>> getAcquirer(
             @Parameter(description = "Unique identifier of the card acquirer", required = true)
-            @PathVariable Long acquirerId
+            @PathVariable UUID acquirerId
     ) {
         return service.getAcquirer(acquirerId)
                 .map(ResponseEntity::ok)
@@ -123,7 +124,7 @@ public class CardAcquirerController {
     @PutMapping(value = "/{acquirerId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardAcquirerDTO>> updateAcquirer(
             @Parameter(description = "Unique identifier of the card acquirer to update", required = true)
-            @PathVariable Long acquirerId,
+            @PathVariable UUID acquirerId,
 
             @Parameter(description = "Updated data for the card acquirer", required = true,
                     schema = @Schema(implementation = CardAcquirerDTO.class))
@@ -152,7 +153,7 @@ public class CardAcquirerController {
     @DeleteMapping(value = "/{acquirerId}")
     public Mono<ResponseEntity<Void>> deleteAcquirer(
             @Parameter(description = "Unique identifier of the card acquirer to delete", required = true)
-            @PathVariable Long acquirerId
+            @PathVariable UUID acquirerId
     ) {
         return service.deleteAcquirer(acquirerId)
                 .then(Mono.just(ResponseEntity.noContent().<Void>build()))

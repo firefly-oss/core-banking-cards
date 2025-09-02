@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "Card Security", description = "APIs for managing security settings associated with a specific card")
 @RestController
 @RequestMapping("/api/v1/cards/{cardId}/security")
@@ -40,7 +41,7 @@ public class CardSecurityController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<CardSecurityDTO>>> getAllSecuritySettings(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @ParameterObject
             @ModelAttribute PaginationRequest paginationRequest
@@ -64,7 +65,7 @@ public class CardSecurityController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardSecurityDTO>> createSecuritySetting(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Data for the new security setting record", required = true,
                     schema = @Schema(implementation = CardSecurityDTO.class))
@@ -89,10 +90,10 @@ public class CardSecurityController {
     @GetMapping(value = "/{securityId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardSecurityDTO>> getSecuritySetting(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the security setting", required = true)
-            @PathVariable Long securityId
+            @PathVariable UUID securityId
     ) {
         return service.getSecuritySetting(cardId, securityId)
                 .map(ResponseEntity::ok)
@@ -113,10 +114,10 @@ public class CardSecurityController {
     @PutMapping(value = "/{securityId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardSecurityDTO>> updateSecuritySetting(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the security setting to update", required = true)
-            @PathVariable Long securityId,
+            @PathVariable UUID securityId,
 
             @Parameter(description = "Updated security setting data", required = true,
                     schema = @Schema(implementation = CardSecurityDTO.class))
@@ -140,10 +141,10 @@ public class CardSecurityController {
     @DeleteMapping(value = "/{securityId}")
     public Mono<ResponseEntity<Void>> deleteSecuritySetting(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the security setting record to delete", required = true)
-            @PathVariable Long securityId
+            @PathVariable UUID securityId
     ) {
         return service.deleteSecuritySetting(cardId, securityId)
                 .then(Mono.just(ResponseEntity.noContent().build()));

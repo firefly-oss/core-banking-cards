@@ -11,13 +11,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "Card Payments", description = "APIs for managing payment records associated with a specific card")
 @RestController
 @RequestMapping("/api/v1/cards/{cardId}/payments")
@@ -45,7 +45,7 @@ public class CardPaymentController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<CardPaymentDTO>>> getAllPayments(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
             @RequestBody PaginationRequest paginationRequest
     ) {
         return service.listPayments(cardId, paginationRequest)
@@ -71,7 +71,7 @@ public class CardPaymentController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardPaymentDTO>> createPayment(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Data for the new card payment record", required = true,
                     schema = @Schema(implementation = CardPaymentDTO.class))
@@ -99,10 +99,10 @@ public class CardPaymentController {
     @GetMapping(value = "/{paymentId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardPaymentDTO>> getPayment(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the payment record", required = true)
-            @PathVariable Long paymentId
+            @PathVariable UUID paymentId
     ) {
         return service.getPayment(cardId, paymentId)
                 .map(ResponseEntity::ok)
@@ -130,10 +130,10 @@ public class CardPaymentController {
     @PutMapping(value = "/{paymentId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardPaymentDTO>> updatePayment(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the payment record to update", required = true)
-            @PathVariable Long paymentId,
+            @PathVariable UUID paymentId,
 
             @Parameter(description = "Updated data for the payment record", required = true,
                     schema = @Schema(implementation = CardPaymentDTO.class))
@@ -162,10 +162,10 @@ public class CardPaymentController {
     @DeleteMapping(value = "/{paymentId}")
     public Mono<ResponseEntity<Void>> deletePayment(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the payment record to delete", required = true)
-            @PathVariable Long paymentId
+            @PathVariable UUID paymentId
     ) {
         return service.deletePayment(cardId, paymentId)
                 .then(Mono.just(ResponseEntity.noContent().<Void>build()))

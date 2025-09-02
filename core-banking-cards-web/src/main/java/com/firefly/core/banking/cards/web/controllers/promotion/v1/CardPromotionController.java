@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "Card Promotions", description = "APIs for managing promotion records associated with a specific card")
 @RestController
 @RequestMapping("/api/v1/cards/{cardId}/promotions")
@@ -40,7 +41,7 @@ public class CardPromotionController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<CardPromotionDTO>>> getAllPromotions(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @ParameterObject
             @ModelAttribute PaginationRequest paginationRequest
@@ -64,7 +65,7 @@ public class CardPromotionController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardPromotionDTO>> createPromotion(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Data for the new card promotion record", required = true,
                     schema = @Schema(implementation = CardPromotionDTO.class))
@@ -89,10 +90,10 @@ public class CardPromotionController {
     @GetMapping(value = "/{promotionId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardPromotionDTO>> getPromotion(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the promotion record", required = true)
-            @PathVariable Long promotionId
+            @PathVariable UUID promotionId
     ) {
         return service.getPromotion(cardId, promotionId)
                 .map(ResponseEntity::ok)
@@ -115,10 +116,10 @@ public class CardPromotionController {
     @PutMapping(value = "/{promotionId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardPromotionDTO>> updatePromotion(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the promotion record to update", required = true)
-            @PathVariable Long promotionId,
+            @PathVariable UUID promotionId,
 
             @Parameter(description = "Updated data for the promotion record", required = true,
                     schema = @Schema(implementation = CardPromotionDTO.class))
@@ -142,10 +143,10 @@ public class CardPromotionController {
     @DeleteMapping(value = "/{promotionId}")
     public Mono<ResponseEntity<Void>> deletePromotion(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the promotion record to delete", required = true)
-            @PathVariable Long promotionId
+            @PathVariable UUID promotionId
     ) {
         return service.deletePromotion(cardId, promotionId)
                 .then(Mono.just(ResponseEntity.noContent().<Void>build()))

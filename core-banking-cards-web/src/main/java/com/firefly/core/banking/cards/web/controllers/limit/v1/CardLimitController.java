@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "Card Limits", description = "APIs for managing limit records associated with a specific card")
 @RestController
 @RequestMapping("/api/v1/cards/{cardId}/limits")
@@ -40,7 +41,7 @@ public class CardLimitController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<CardLimitDTO>>> getAllLimits(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @ParameterObject
             @ModelAttribute PaginationRequest paginationRequest
@@ -64,7 +65,7 @@ public class CardLimitController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardLimitDTO>> createLimit(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Data for the new card limit record", required = true,
                     schema = @Schema(implementation = CardLimitDTO.class))
@@ -89,10 +90,10 @@ public class CardLimitController {
     @GetMapping(value = "/{limitId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardLimitDTO>> getLimit(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the card limit record", required = true)
-            @PathVariable Long limitId
+            @PathVariable UUID limitId
     ) {
         return service.getLimit(cardId, limitId)
                 .map(ResponseEntity::ok)
@@ -113,10 +114,10 @@ public class CardLimitController {
     @PutMapping(value = "/{limitId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardLimitDTO>> updateLimit(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the card limit record to update", required = true)
-            @PathVariable Long limitId,
+            @PathVariable UUID limitId,
 
             @Parameter(description = "Updated card limit data", required = true,
                     schema = @Schema(implementation = CardLimitDTO.class))
@@ -140,10 +141,10 @@ public class CardLimitController {
     @DeleteMapping(value = "/{limitId}")
     public Mono<ResponseEntity<Void>> deleteLimit(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the card limit record to delete", required = true)
-            @PathVariable Long limitId
+            @PathVariable UUID limitId
     ) {
         return service.deleteLimit(cardId, limitId)
                 .then(Mono.just(ResponseEntity.noContent().build()));

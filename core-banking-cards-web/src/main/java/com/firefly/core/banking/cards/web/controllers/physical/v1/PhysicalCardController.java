@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "Physical Cards", description = "APIs for managing physical card records linked to a specific card")
 @RestController
 @RequestMapping("/api/v1/cards/{cardId}/physical-cards")
@@ -40,7 +41,7 @@ public class PhysicalCardController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<PhysicalCardDTO>>> getAllPhysicalCards(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @ParameterObject
             @ModelAttribute PaginationRequest paginationRequest
@@ -64,7 +65,7 @@ public class PhysicalCardController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PhysicalCardDTO>> createPhysicalCard(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Data for the new physical card record", required = true,
                     schema = @Schema(implementation = PhysicalCardDTO.class))
@@ -89,10 +90,10 @@ public class PhysicalCardController {
     @GetMapping(value = "/{physicalCardId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PhysicalCardDTO>> getPhysicalCard(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the physical card record", required = true)
-            @PathVariable Long physicalCardId
+            @PathVariable UUID physicalCardId
     ) {
         return service.getPhysicalCard(cardId, physicalCardId)
                 .map(ResponseEntity::ok)
@@ -113,10 +114,10 @@ public class PhysicalCardController {
     @PutMapping(value = "/{physicalCardId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PhysicalCardDTO>> updatePhysicalCard(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the physical card record to update", required = true)
-            @PathVariable Long physicalCardId,
+            @PathVariable UUID physicalCardId,
 
             @Parameter(description = "Updated data for the physical card record", required = true,
                     schema = @Schema(implementation = PhysicalCardDTO.class))
@@ -140,10 +141,10 @@ public class PhysicalCardController {
     @DeleteMapping(value = "/{physicalCardId}")
     public Mono<ResponseEntity<Void>> deletePhysicalCard(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the physical card record to delete", required = true)
-            @PathVariable Long physicalCardId
+            @PathVariable UUID physicalCardId
     ) {
         return service.deletePhysicalCard(cardId, physicalCardId)
                 .then(Mono.just(ResponseEntity.noContent().build()));

@@ -11,13 +11,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "Card Terminals", description = "APIs for managing card terminal records")
 @RestController
 @RequestMapping("/api/v1/terminals")
@@ -96,7 +96,7 @@ public class CardTerminalController {
     @GetMapping(value = "/{terminalId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardTerminalDTO>> getTerminal(
             @Parameter(description = "Unique identifier of the card terminal", required = true)
-            @PathVariable Long terminalId
+            @PathVariable UUID terminalId
     ) {
         return service.getTerminal(terminalId)
                 .map(ResponseEntity::ok)
@@ -124,7 +124,7 @@ public class CardTerminalController {
     @PutMapping(value = "/{terminalId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardTerminalDTO>> updateTerminal(
             @Parameter(description = "Unique identifier of the card terminal to update", required = true)
-            @PathVariable Long terminalId,
+            @PathVariable UUID terminalId,
 
             @Parameter(description = "Updated data for the card terminal", required = true,
                     schema = @Schema(implementation = CardTerminalDTO.class))
@@ -153,7 +153,7 @@ public class CardTerminalController {
     @DeleteMapping(value = "/{terminalId}")
     public Mono<ResponseEntity<Void>> deleteTerminal(
             @Parameter(description = "Unique identifier of the card terminal to delete", required = true)
-            @PathVariable Long terminalId
+            @PathVariable UUID terminalId
     ) {
         return service.deleteTerminal(terminalId)
                 .then(Mono.just(ResponseEntity.noContent().<Void>build()))

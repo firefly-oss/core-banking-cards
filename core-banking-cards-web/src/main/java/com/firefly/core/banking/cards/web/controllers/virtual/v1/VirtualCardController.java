@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "Virtual Cards", description = "APIs for managing virtual card records linked to a specific card")
 @RestController
 @RequestMapping("/api/v1/cards/{cardId}/virtual-cards")
@@ -40,7 +41,7 @@ public class VirtualCardController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<VirtualCardDTO>>> getAllVirtualCards(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @ParameterObject
             @ModelAttribute PaginationRequest paginationRequest
@@ -64,7 +65,7 @@ public class VirtualCardController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<VirtualCardDTO>> createVirtualCard(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Data for the new virtual card record", required = true,
                     schema = @Schema(implementation = VirtualCardDTO.class))
@@ -89,10 +90,10 @@ public class VirtualCardController {
     @GetMapping(value = "/{virtualCardId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<VirtualCardDTO>> getVirtualCard(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the virtual card record", required = true)
-            @PathVariable Long virtualCardId
+            @PathVariable UUID virtualCardId
     ) {
         return service.getVirtualCard(cardId, virtualCardId)
                 .map(ResponseEntity::ok)
@@ -113,10 +114,10 @@ public class VirtualCardController {
     @PutMapping(value = "/{virtualCardId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<VirtualCardDTO>> updateVirtualCard(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the virtual card record to update", required = true)
-            @PathVariable Long virtualCardId,
+            @PathVariable UUID virtualCardId,
 
             @Parameter(description = "Updated virtual card data", required = true,
                     schema = @Schema(implementation = VirtualCardDTO.class))
@@ -140,10 +141,10 @@ public class VirtualCardController {
     @DeleteMapping(value = "/{virtualCardId}")
     public Mono<ResponseEntity<Void>> deleteVirtualCard(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the virtual card record to delete", required = true)
-            @PathVariable Long virtualCardId
+            @PathVariable UUID virtualCardId
     ) {
         return service.deleteVirtualCard(cardId, virtualCardId)
                 .then(Mono.just(ResponseEntity.noContent().build()));

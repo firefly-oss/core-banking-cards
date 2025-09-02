@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "Card Configurations", description = "APIs for managing configuration records associated with a specific card")
 @RestController
 @RequestMapping("/api/v1/cards/{cardId}/configurations")
@@ -40,7 +41,7 @@ public class CardConfigurationController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<CardConfigurationDTO>>> getAllConfigurations(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @ParameterObject
             @ModelAttribute PaginationRequest paginationRequest
@@ -64,7 +65,7 @@ public class CardConfigurationController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardConfigurationDTO>> createConfiguration(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Data for the new card configuration record", required = true,
                     schema = @Schema(implementation = CardConfigurationDTO.class))
@@ -89,10 +90,10 @@ public class CardConfigurationController {
     @GetMapping(value = "/{configId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardConfigurationDTO>> getConfiguration(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the card configuration record", required = true)
-            @PathVariable Long configId
+            @PathVariable UUID configId
     ) {
         return service.getConfiguration(cardId, configId)
                 .map(ResponseEntity::ok)
@@ -113,10 +114,10 @@ public class CardConfigurationController {
     @PutMapping(value = "/{configId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardConfigurationDTO>> updateConfiguration(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the card configuration record to update", required = true)
-            @PathVariable Long configId,
+            @PathVariable UUID configId,
 
             @Parameter(description = "Updated configuration data", required = true,
                     schema = @Schema(implementation = CardConfigurationDTO.class))
@@ -140,10 +141,10 @@ public class CardConfigurationController {
     @DeleteMapping(value = "/{configId}")
     public Mono<ResponseEntity<Void>> deleteConfiguration(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the card configuration record to delete", required = true)
-            @PathVariable Long configId
+            @PathVariable UUID configId
     ) {
         return service.deleteConfiguration(cardId, configId)
                 .then(Mono.just(ResponseEntity.noContent().build()));

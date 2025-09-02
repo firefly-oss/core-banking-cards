@@ -11,13 +11,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "Card Programs", description = "APIs for managing card program records")
 @RestController
 @RequestMapping("/api/v1/programs")
@@ -148,7 +148,7 @@ public class CardProgramController {
     @GetMapping(value = "/{programId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardProgramDTO>> getProgram(
             @Parameter(description = "Unique identifier of the card program", required = true)
-            @PathVariable Long programId
+            @PathVariable UUID programId
     ) {
         return service.getProgram(programId)
                 .map(ResponseEntity::ok)
@@ -197,7 +197,7 @@ public class CardProgramController {
     @PutMapping(value = "/{programId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardProgramDTO>> updateProgram(
             @Parameter(description = "Unique identifier of the card program to update", required = true)
-            @PathVariable Long programId,
+            @PathVariable UUID programId,
 
             @Parameter(description = "Updated data for the card program", required = true,
                     schema = @Schema(implementation = CardProgramDTO.class))
@@ -243,7 +243,7 @@ public class CardProgramController {
     @DeleteMapping(value = "/{programId}")
     public Mono<ResponseEntity<Void>> deleteProgram(
             @Parameter(description = "Unique identifier of the card program to delete", required = true)
-            @PathVariable Long programId
+            @PathVariable UUID programId
     ) {
         return service.deleteProgram(programId)
                 .then(Mono.just(ResponseEntity.noContent().<Void>build()))

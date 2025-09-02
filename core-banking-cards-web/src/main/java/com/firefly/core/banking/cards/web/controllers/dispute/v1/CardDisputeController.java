@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "Card Disputes", description = "APIs for managing dispute records associated with a specific card")
 @RestController
 @RequestMapping("/api/v1/cards/{cardId}/disputes")
@@ -40,7 +41,7 @@ public class CardDisputeController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<CardDisputeDTO>>> getAllDisputes(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @ParameterObject
             @ModelAttribute PaginationRequest paginationRequest
@@ -64,7 +65,7 @@ public class CardDisputeController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardDisputeDTO>> createDispute(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Data for the new card dispute record", required = true,
                     schema = @Schema(implementation = CardDisputeDTO.class))
@@ -89,10 +90,10 @@ public class CardDisputeController {
     @GetMapping(value = "/{disputeId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardDisputeDTO>> getDispute(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the dispute record", required = true)
-            @PathVariable Long disputeId
+            @PathVariable UUID disputeId
     ) {
         return service.getDispute(cardId, disputeId)
                 .map(ResponseEntity::ok)
@@ -115,10 +116,10 @@ public class CardDisputeController {
     @PutMapping(value = "/{disputeId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardDisputeDTO>> updateDispute(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the dispute record to update", required = true)
-            @PathVariable Long disputeId,
+            @PathVariable UUID disputeId,
 
             @Parameter(description = "Updated data for the dispute record", required = true,
                     schema = @Schema(implementation = CardDisputeDTO.class))
@@ -142,10 +143,10 @@ public class CardDisputeController {
     @DeleteMapping(value = "/{disputeId}")
     public Mono<ResponseEntity<Void>> deleteDispute(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Unique identifier of the dispute record to delete", required = true)
-            @PathVariable Long disputeId
+            @PathVariable UUID disputeId
     ) {
         return service.deleteDispute(cardId, disputeId)
                 .then(Mono.just(ResponseEntity.noContent().<Void>build()))

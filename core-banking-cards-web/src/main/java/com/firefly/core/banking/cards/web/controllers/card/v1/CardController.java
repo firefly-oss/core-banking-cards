@@ -13,10 +13,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
 @Tag(name = "Cards", description = "APIs for managing card records within the banking system")
 @RestController
 @RequestMapping("/api/v1/cards")
@@ -31,7 +33,7 @@ public class CardController {
     )
     @PostMapping(value = "/filter", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<PaginationResponse<CardDTO>>> filterCards(
-            @RequestBody FilterRequest<CardDTO> filterRequest
+            @Valid @RequestBody FilterRequest<CardDTO> filterRequest
     ) {
         return service.filterCards(filterRequest)
                 .map(ResponseEntity::ok)
@@ -74,7 +76,7 @@ public class CardController {
     public Mono<ResponseEntity<CardDTO>> createCard(
             @Parameter(description = "Data for the new card", required = true,
                     schema = @Schema(implementation = CardDTO.class))
-            @RequestBody CardDTO cardDTO
+            @Valid @RequestBody CardDTO cardDTO
     ) {
         return service.createCard(cardDTO)
                 .map(createdCard -> ResponseEntity.status(201).body(createdCard))
@@ -114,7 +116,7 @@ public class CardController {
     @GetMapping(value = "/{cardId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardDTO>> getCard(
             @Parameter(description = "Unique identifier of the card", required = true)
-            @PathVariable Long cardId
+            @PathVariable UUID cardId
     ) {
         return service.getCard(cardId)
                 .map(ResponseEntity::ok)
@@ -161,7 +163,7 @@ public class CardController {
     @PutMapping(value = "/{cardId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ResponseEntity<CardDTO>> updateCard(
             @Parameter(description = "Unique identifier of the card to update", required = true)
-            @PathVariable Long cardId,
+            @PathVariable UUID cardId,
 
             @Parameter(description = "Updated card data", required = true,
                     schema = @Schema(implementation = CardDTO.class))
@@ -205,7 +207,7 @@ public class CardController {
     @DeleteMapping(value = "/{cardId}")
     public Mono<ResponseEntity<Void>> deleteCard(
             @Parameter(description = "Unique identifier of the card to delete", required = true)
-            @PathVariable Long cardId
+            @PathVariable UUID cardId
     ) {
         return service.deleteCard(cardId)
                 .then(Mono.just(ResponseEntity.noContent().build()));
