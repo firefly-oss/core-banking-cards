@@ -129,7 +129,7 @@ The Core Banking Cards Service has a comprehensive data model that supports the 
 ```mermaid
 erDiagram
     CARD_NETWORK {
-        Long card_network_id PK
+        UUID card_network_id PK
         String network_name
         String network_code
         String network_logo_url
@@ -139,7 +139,7 @@ erDiagram
     }
 
     CARD_TYPE {
-        Long card_type_id PK
+        UUID card_type_id PK
         String type_name
         String type_code
         Boolean is_credit
@@ -154,7 +154,7 @@ erDiagram
     }
 
     ISSUER {
-        Long issuer_id PK
+        UUID issuer_id PK
         String issuer_name
         String issuer_code
         String country_code
@@ -164,40 +164,40 @@ erDiagram
     }
 
     BIN {
-        Long bin_id PK
+        UUID bin_id PK
         String bin_number
         Integer bin_length
-        Long issuer_id FK
-        Long card_network_id FK
-        Long card_type_id FK
+        UUID issuer_id FK
+        UUID card_network_id FK
+        UUID card_type_id FK
         String country_code
         String currency_code
         Boolean is_active
     }
 
     CARD_DESIGN {
-        Long design_id PK
+        UUID design_id PK
         String design_name
         String design_code
         String front_image_url
         String back_image_url
-        Long card_type_id FK
-        Long issuer_id FK
-        Long card_network_id FK
+        UUID card_type_id FK
+        UUID issuer_id FK
+        UUID card_network_id FK
         Boolean is_customizable
         Boolean is_default
         Boolean is_active
     }
 
     CARD_PROGRAM {
-        Long program_id PK
+        UUID program_id PK
         String program_name
         String program_code
-        Long issuer_id FK
-        Long bin_id FK
-        Long card_type_id FK
-        Long card_network_id FK
-        Long default_design_id FK
+        UUID issuer_id FK
+        UUID bin_id FK
+        UUID card_type_id FK
+        UUID card_network_id FK
+        UUID default_design_id FK
         DateTime start_date
         DateTime end_date
         Boolean is_active
@@ -211,17 +211,17 @@ erDiagram
     }
 
     CARD {
-        Long card_id PK
+        UUID card_id PK
         String card_number
         String masked_card_number
         String card_sequence_number
-        Long bin_id FK
-        Long card_type_id FK
-        Long card_network_id FK
-        Long issuer_id FK
-        Long contract_id
-        Long account_id
-        Long party_id
+        UUID bin_id FK
+        UUID card_type_id FK
+        UUID card_network_id FK
+        UUID issuer_id FK
+        UUID contract_id
+        UUID account_id
+        UUID party_id
         CardStatusEnum card_status
         String card_holder_name
         String card_holder_id
@@ -244,16 +244,16 @@ erDiagram
         Double credit_limit
         Double available_balance
         String currency_code
-        Long design_id FK
+        UUID design_id FK
         String notes
     }
 
     PHYSICAL_CARD {
-        Long physical_card_id PK
-        Long card_id FK
+        UUID physical_card_id PK
+        UUID card_id FK
         String embossed_name
         String plastic_id
-        Long design_id FK
+        UUID design_id FK
         Boolean is_contactless
         Boolean is_chip
         Boolean is_magstripe
@@ -274,13 +274,13 @@ erDiagram
         DateTime activation_date
         Boolean is_activated
         String replacement_reason
-        Long previous_card_id FK
+        UUID previous_card_id FK
         String notes
     }
 
     VIRTUAL_CARD {
-        Long virtual_card_id PK
-        Long card_id FK
+        UUID virtual_card_id PK
+        UUID card_id FK
         String device_id
         String device_type
         String device_model
@@ -307,8 +307,8 @@ erDiagram
     }
 
     CARD_BALANCE {
-        Long balance_id PK
-        Long card_id FK
+        UUID balance_id PK
+        UUID card_id FK
         Double available_balance
         Double ledger_balance
         Double pending_authorizations
@@ -319,8 +319,8 @@ erDiagram
     }
 
     CARD_TRANSACTION {
-        Long transaction_id PK
-        Long card_id FK
+        UUID transaction_id PK
+        UUID card_id FK
         String transaction_reference
         String external_reference
         Double amount
@@ -344,7 +344,7 @@ erDiagram
     }
 
     CARD_MERCHANT {
-        Long merchant_id PK
+        UUID merchant_id PK
         String merchant_reference
         String merchant_name
         String merchant_legal_name
@@ -369,7 +369,7 @@ erDiagram
     }
 
     CARD_TERMINAL {
-        Long terminal_id PK
+        UUID terminal_id PK
         String terminal_reference
         String terminal_serial_number
         String terminal_name
@@ -378,7 +378,7 @@ erDiagram
         String terminal_manufacturer
         TerminalStatusEnum terminal_status
         Boolean is_active
-        Long merchant_id FK
+        UUID merchant_id FK
         String merchant_name
         String address_line1
         String city
@@ -393,11 +393,11 @@ erDiagram
     }
 
     CARD_DISPUTE {
-        Long dispute_id PK
-        Long card_id FK
-        Long transaction_id FK
-        Long party_id
-        Long account_id
+        UUID dispute_id PK
+        UUID card_id FK
+        UUID transaction_id FK
+        UUID party_id
+        UUID account_id
         String dispute_reference
         String provider_reference
         String network_reference
@@ -417,10 +417,10 @@ erDiagram
     }
 
     CARD_STATEMENT {
-        Long statement_id PK
-        Long card_id FK
-        Long party_id
-        Long account_id
+        UUID statement_id PK
+        UUID card_id FK
+        UUID party_id
+        UUID account_id
         String statement_reference
         DateTime statement_date
         DateTime statement_period_start
@@ -441,11 +441,11 @@ erDiagram
     }
 
     CARD_PAYMENT {
-        Long payment_id PK
-        Long card_id FK
-        Long party_id
-        Long account_id
-        Long statement_id FK
+        UUID payment_id PK
+        UUID card_id FK
+        UUID party_id
+        UUID account_id
+        UUID statement_id FK
         String payment_reference
         String external_reference
         Decimal payment_amount
@@ -463,10 +463,10 @@ erDiagram
 
 
     CARD_ACTIVITY {
-        Long activity_id PK
-        Long card_id FK
-        Long party_id
-        Long account_id
+        UUID activity_id PK
+        UUID card_id FK
+        UUID party_id
+        UUID account_id
         String activity_reference
         ActivityTypeEnum activity_type
         String activity_category
@@ -484,9 +484,9 @@ erDiagram
     }
 
     CARD_LIMIT {
-        Long limit_id PK
-        Long card_id FK
-        Long party_id
+        UUID limit_id PK
+        UUID card_id FK
+        UUID party_id
         String limit_type
         Double limit_value
         String currency_code
@@ -500,9 +500,9 @@ erDiagram
     }
 
     CARD_FEE {
-        Long fee_id PK
-        Long card_id FK
-        Long program_id FK
+        UUID fee_id PK
+        UUID card_id FK
+        UUID program_id FK
         String fee_type
         String fee_name
         Double fee_amount
@@ -516,9 +516,9 @@ erDiagram
     }
 
     CARD_INTEREST {
-        Long interest_id PK
-        Long card_id FK
-        Long program_id FK
+        UUID interest_id PK
+        UUID card_id FK
+        UUID program_id FK
         String interest_type
         Double interest_rate
         Double annual_percentage_rate
@@ -530,12 +530,12 @@ erDiagram
     }
 
     CARD_REWARD {
-        Long reward_id PK
-        Long card_id FK
-        Long transaction_id FK
-        Long party_id
-        Long account_id
-        Long program_id FK
+        UUID reward_id PK
+        UUID card_id FK
+        UUID transaction_id FK
+        UUID party_id
+        UUID account_id
+        UUID program_id FK
         String reward_reference
         String reward_type
         String reward_category
@@ -569,11 +569,11 @@ erDiagram
         DateTime posting_date
         DateTime expiration_date
         Boolean is_promotional
-        Long promotion_id FK
+        UUID promotion_id FK
         String promotion_name
         Boolean is_transferable
-        Long transfer_to_party_id
-        Long transfer_from_party_id
+        UUID transfer_to_party_id
+        UUID transfer_from_party_id
         DateTime transfer_date
         Boolean is_redeemed
         DateTime redemption_date
@@ -581,9 +581,9 @@ erDiagram
     }
 
     CARD_PROMOTION {
-        Long promotion_id PK
-        Long card_id FK
-        Long program_id FK
+        UUID promotion_id PK
+        UUID card_id FK
+        UUID program_id FK
         String promotion_code
         String promotion_name
         String promotion_description
@@ -709,13 +709,13 @@ Content-Type: application/json
   "cardNumber": "4111111111111111",
   "maskedCardNumber": "411111******1111",
   "cardSequenceNumber": "001",
-  "binId": 1,
-  "cardTypeId": 1,
-  "cardNetworkId": 1,
-  "issuerId": 1,
-  "contractId": 12345,
-  "accountId": 67890,
-  "partyId": 54321,
+  "binId": "550e8400-e29b-41d4-a716-446655440001",
+  "cardTypeId": "550e8400-e29b-41d4-a716-446655440002",
+  "cardNetworkId": "550e8400-e29b-41d4-a716-446655440003",
+  "issuerId": "550e8400-e29b-41d4-a716-446655440004",
+  "contractId": "550e8400-e29b-41d4-a716-446655440005",
+  "accountId": "550e8400-e29b-41d4-a716-446655440006",
+  "partyId": "550e8400-e29b-41d4-a716-446655440007",
   "cardStatus": "ACTIVE",
   "cardHolderName": "John Doe",
   "cardHolderId": "ID12345",
@@ -731,7 +731,7 @@ Content-Type: application/json
   "monthlyLimit": 20000.00,
   "creditLimit": 10000.00,
   "currencyCode": "USD",
-  "designId": 1
+  "designId": "550e8400-e29b-41d4-a716-446655440008"
 }
 ```
 
