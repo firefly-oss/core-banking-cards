@@ -18,6 +18,7 @@ import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -39,9 +40,9 @@ public class CardPromotionServiceTest {
 
     private CardPromotionDTO promotionDTO;
     private CardPromotion promotionEntity;
-    private final Long cardId = 1L;
-    private final Long promotionId = 2L;
-    private final Long programId = 3L;
+    private final UUID cardId = UUID.randomUUID();
+    private final UUID promotionId = UUID.randomUUID();
+    private final UUID programId = UUID.randomUUID();
 
     @BeforeEach
     void setUp() {
@@ -131,7 +132,7 @@ public class CardPromotionServiceTest {
     @Test
     void getPromotion_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByPromotionId(promotionId)).thenReturn(Mono.just(promotionEntity));
 
         // Act & Assert
@@ -165,7 +166,7 @@ public class CardPromotionServiceTest {
     @Test
     void updatePromotion_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByPromotionId(promotionId)).thenReturn(Mono.just(promotionEntity));
 
         // Act & Assert
@@ -195,7 +196,7 @@ public class CardPromotionServiceTest {
     @Test
     void deletePromotion_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByPromotionId(promotionId)).thenReturn(Mono.just(promotionEntity));
 
         // Act & Assert

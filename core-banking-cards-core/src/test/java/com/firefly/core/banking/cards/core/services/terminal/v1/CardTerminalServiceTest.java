@@ -18,6 +18,7 @@ import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -39,7 +40,7 @@ public class CardTerminalServiceTest {
 
     private CardTerminalDTO terminalDTO;
     private CardTerminal terminalEntity;
-    private final Long terminalId = 1L;
+    private final UUID terminalId = UUID.randomUUID();
 
     @BeforeEach
     void setUp() {
@@ -58,7 +59,7 @@ public class CardTerminalServiceTest {
                 .terminalStatus("ACTIVE")
                 .isActive(true)
                 .activationDate(now)
-                .merchantId(1L)
+                .merchantId(UUID.randomUUID())
                 .merchantName("Test Merchant")
                 .merchantLocationId("LOC-001")
                 .merchantLocationName("Main Store")
@@ -129,7 +130,7 @@ public class CardTerminalServiceTest {
         terminalEntity.setTerminalStatus("ACTIVE");
         terminalEntity.setIsActive(true);
         terminalEntity.setActivationDate(now);
-        terminalEntity.setMerchantId(1L);
+        terminalEntity.setMerchantId(UUID.randomUUID());
         terminalEntity.setMerchantName("Test Merchant");
         terminalEntity.setMerchantLocationId("LOC-001");
         terminalEntity.setMerchantLocationName("Main Store");

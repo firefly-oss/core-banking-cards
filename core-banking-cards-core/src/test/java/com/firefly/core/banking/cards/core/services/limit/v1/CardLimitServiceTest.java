@@ -16,13 +16,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Pageable;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -44,8 +42,8 @@ public class CardLimitServiceTest {
 
     private CardLimitDTO limitDTO;
     private CardLimit limitEntity;
-    private final Long cardId = 1L;
-    private final Long limitId = 2L;
+    private final UUID cardId = UUID.randomUUID();
+    private final UUID limitId = UUID.randomUUID();
 
     @BeforeEach
     void setUp() {
@@ -148,7 +146,7 @@ public class CardLimitServiceTest {
         // Arrange
         CardLimit wrongCardLimit = new CardLimit();
         wrongCardLimit.setCardLimitId(limitId);
-        wrongCardLimit.setCardId(999L); // Different card ID
+        wrongCardLimit.setCardId(UUID.randomUUID()); // Different card ID
 
         when(repository.findByCardLimitId(limitId)).thenReturn(Mono.just(wrongCardLimit));
 
@@ -196,7 +194,7 @@ public class CardLimitServiceTest {
         // Arrange
         CardLimit wrongCardLimit = new CardLimit();
         wrongCardLimit.setCardLimitId(limitId);
-        wrongCardLimit.setCardId(999L); // Different card ID
+        wrongCardLimit.setCardId(UUID.randomUUID()); // Different card ID
 
         when(repository.findByCardLimitId(limitId)).thenReturn(Mono.just(wrongCardLimit));
 
@@ -241,7 +239,7 @@ public class CardLimitServiceTest {
         // Arrange
         CardLimit wrongCardLimit = new CardLimit();
         wrongCardLimit.setCardLimitId(limitId);
-        wrongCardLimit.setCardId(999L); // Different card ID
+        wrongCardLimit.setCardId(UUID.randomUUID()); // Different card ID
 
         when(repository.findByCardLimitId(limitId)).thenReturn(Mono.just(wrongCardLimit));
 

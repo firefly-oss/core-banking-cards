@@ -18,6 +18,7 @@ import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -39,7 +40,7 @@ public class CardGatewayServiceTest {
 
     private CardGatewayDTO gatewayDTO;
     private CardGateway gatewayEntity;
-    private final Long gatewayId = 1L;
+    private final UUID gatewayId = UUID.randomUUID();
 
     @BeforeEach
     void setUp() {
@@ -81,9 +82,9 @@ public class CardGatewayServiceTest {
                 .supportedCountries("USA,CAN,MEX")
                 .isInternational(true)
                 .isDomestic(true)
-                .processorId(1L)
+                .processorId(UUID.randomUUID())
                 .processorName("Test Processor")
-                .acquirerId(1L)
+                .acquirerId(UUID.randomUUID())
                 .acquirerName("Test Acquirer")
                 .apiBaseUrl("https://api.testgateway.com")
                 .apiVersion("v1")
@@ -154,9 +155,9 @@ public class CardGatewayServiceTest {
         gatewayEntity.setSupportedCountries("USA,CAN,MEX");
         gatewayEntity.setIsInternational(true);
         gatewayEntity.setIsDomestic(true);
-        gatewayEntity.setProcessorId(1L);
+        gatewayEntity.setProcessorId(UUID.randomUUID());
         gatewayEntity.setProcessorName("Test Processor");
-        gatewayEntity.setAcquirerId(1L);
+        gatewayEntity.setAcquirerId(UUID.randomUUID());
         gatewayEntity.setAcquirerName("Test Acquirer");
         gatewayEntity.setApiBaseUrl("https://api.testgateway.com");
         gatewayEntity.setApiVersion("v1");

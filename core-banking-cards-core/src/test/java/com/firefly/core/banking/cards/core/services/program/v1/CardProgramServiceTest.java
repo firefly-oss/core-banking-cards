@@ -18,6 +18,7 @@ import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -39,7 +40,7 @@ public class CardProgramServiceTest {
 
     private CardProgramDTO programDTO;
     private CardProgram programEntity;
-    private final Long programId = 1L;
+    private final UUID programId = UUID.randomUUID();
 
     @BeforeEach
     void setUp() {
@@ -50,11 +51,11 @@ public class CardProgramServiceTest {
                 .programId(programId)
                 .programName("Test Program")
                 .programCode("TEST-PROG")
-                .issuerId(1L)
-                .binId(1L)
-                .cardTypeId(1L)
-                .cardNetworkId(1L)
-                .defaultDesignId(1L)
+                .issuerId(UUID.randomUUID())
+                .binId(UUID.randomUUID())
+                .cardTypeId(UUID.randomUUID())
+                .cardNetworkId(UUID.randomUUID())
+                .defaultDesignId(UUID.randomUUID())
                 .startDate(now)
                 .endDate(now.plusYears(5))
                 .isActive(true)
@@ -85,11 +86,11 @@ public class CardProgramServiceTest {
         programEntity.setProgramId(programId);
         programEntity.setProgramName("Test Program");
         programEntity.setProgramCode("TEST-PROG");
-        programEntity.setIssuerId(1L);
-        programEntity.setBinId(1L);
-        programEntity.setCardTypeId(1L);
-        programEntity.setCardNetworkId(1L);
-        programEntity.setDefaultDesignId(1L);
+        programEntity.setIssuerId(UUID.randomUUID());
+        programEntity.setBinId(UUID.randomUUID());
+        programEntity.setCardTypeId(UUID.randomUUID());
+        programEntity.setCardNetworkId(UUID.randomUUID());
+        programEntity.setDefaultDesignId(UUID.randomUUID());
         programEntity.setStartDate(now);
         programEntity.setEndDate(now.plusYears(5));
         programEntity.setIsActive(true);

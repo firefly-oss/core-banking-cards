@@ -14,12 +14,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Pageable;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -41,8 +41,8 @@ public class CardBalanceServiceTest {
 
     private CardBalanceDTO balanceDTO;
     private CardBalance balanceEntity;
-    private final Long cardId = 1L;
-    private final Long balanceId = 2L;
+    private final UUID cardId = UUID.randomUUID();
+    private final UUID balanceId = UUID.randomUUID();
 
     @BeforeEach
     void setUp() {
@@ -131,7 +131,7 @@ public class CardBalanceServiceTest {
     @Test
     void getBalance_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByBalanceId(balanceId)).thenReturn(Mono.just(balanceEntity));
 
         // Act & Assert
@@ -165,7 +165,7 @@ public class CardBalanceServiceTest {
     @Test
     void updateBalance_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByBalanceId(balanceId)).thenReturn(Mono.just(balanceEntity));
 
         // Act & Assert
@@ -195,7 +195,7 @@ public class CardBalanceServiceTest {
     @Test
     void deleteBalance_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByBalanceId(balanceId)).thenReturn(Mono.just(balanceEntity));
 
         // Act & Assert

@@ -17,7 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-import java.time.LocalDateTime;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -39,7 +39,7 @@ public class CardNetworkServiceTest {
 
     private CardNetworkDTO networkDTO;
     private CardNetwork networkEntity;
-    private final Long networkId = 1L;
+    private final UUID networkId = UUID.randomUUID();
 
     @BeforeEach
     void setUp() {

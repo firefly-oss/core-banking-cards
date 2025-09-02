@@ -18,6 +18,7 @@ import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -38,7 +39,7 @@ public class BINServiceTest {
 
     private BINDTO binDTO;
     private BIN binEntity;
-    private final Long binId = 1L;
+    private final UUID binId = UUID.randomUUID();
     private final String binNumber = "123456";
 
     @BeforeEach
@@ -50,9 +51,9 @@ public class BINServiceTest {
                 .binId(binId)
                 .binNumber(binNumber)
                 .binLength(6)
-                .issuerId(1L)
-                .cardNetworkId(1L)
-                .cardTypeId(1L)
+                .issuerId(UUID.randomUUID())
+                .cardNetworkId(UUID.randomUUID())
+                .cardTypeId(UUID.randomUUID())
                 .countryCode("USA")
                 .currencyCode("USD")
                 .isActive(true)
@@ -63,9 +64,9 @@ public class BINServiceTest {
         binEntity.setBinId(binId);
         binEntity.setBinNumber(binNumber);
         binEntity.setBinLength(6);
-        binEntity.setIssuerId(1L);
-        binEntity.setCardNetworkId(1L);
-        binEntity.setCardTypeId(1L);
+        binEntity.setIssuerId(UUID.randomUUID());
+        binEntity.setCardNetworkId(UUID.randomUUID());
+        binEntity.setCardTypeId(UUID.randomUUID());
         binEntity.setCountryCode("USA");
         binEntity.setCurrencyCode("USD");
         binEntity.setIsActive(true);

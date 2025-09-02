@@ -15,11 +15,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Pageable;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -41,9 +41,9 @@ public class CardSecurityServiceTest {
 
     private CardSecurityDTO securityDTO;
     private CardSecurity securityEntity;
-    private final Long cardId = 1L;
-    private final Long securityId = 2L;
-    private final Long wrongCardId = 999L;
+    private final UUID cardId = UUID.randomUUID();
+    private final UUID securityId = UUID.randomUUID();
+    private final UUID wrongCardId = UUID.randomUUID();
 
     @BeforeEach
     void setUp() {
@@ -289,7 +289,7 @@ public class CardSecurityServiceTest {
                 .verifyComplete();
 
         verify(repository).findByCardSecurityId(securityId);
-        verify(repository, never()).deleteById(any(Long.class));
+        verify(repository, never()).deleteById(any(UUID.class));
     }
 
     @Test
@@ -321,6 +321,6 @@ public class CardSecurityServiceTest {
                 .verify();
 
         verify(repository).findByCardSecurityId(securityId);
-        verify(repository, never()).deleteById(any(Long.class));
+        verify(repository, never()).deleteById(any(UUID.class));
     }
 }

@@ -19,6 +19,7 @@ import reactor.test.StepVerifier;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -40,8 +41,8 @@ public class CardInterestServiceTest {
 
     private CardInterestDTO interestDTO;
     private CardInterest interestEntity;
-    private final Long cardId = 1L;
-    private final Long interestId = 2L;
+    private final UUID cardId = UUID.randomUUID();
+    private final UUID interestId = UUID.randomUUID();
 
     @BeforeEach
     void setUp() {
@@ -130,7 +131,7 @@ public class CardInterestServiceTest {
     @Test
     void getInterest_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByInterestId(interestId)).thenReturn(Mono.just(interestEntity));
 
         // Act & Assert
@@ -164,7 +165,7 @@ public class CardInterestServiceTest {
     @Test
     void updateInterest_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByInterestId(interestId)).thenReturn(Mono.just(interestEntity));
 
         // Act & Assert
@@ -194,7 +195,7 @@ public class CardInterestServiceTest {
     @Test
     void deleteInterest_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByInterestId(interestId)).thenReturn(Mono.just(interestEntity));
 
         // Act & Assert

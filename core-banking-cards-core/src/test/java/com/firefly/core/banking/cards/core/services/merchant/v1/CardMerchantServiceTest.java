@@ -17,6 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -38,7 +39,7 @@ public class CardMerchantServiceTest {
 
     private CardMerchantDTO merchantDTO;
     private CardMerchant merchantEntity;
-    private final Long merchantId = 1L;
+    private final UUID merchantId = UUID.randomUUID();
 
     @BeforeEach
     void setUp() {

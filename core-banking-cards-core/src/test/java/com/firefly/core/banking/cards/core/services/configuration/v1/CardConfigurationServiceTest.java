@@ -5,7 +5,6 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.common.core.queries.PaginationUtils;
 import com.firefly.core.banking.cards.core.mappers.configuration.v1.CardConfigurationMapper;
 import com.firefly.core.banking.cards.interfaces.dtos.configuration.v1.CardConfigurationDTO;
-import com.firefly.core.banking.cards.interfaces.enums.configuration.v1.ConfigTypeEnum;
 import com.firefly.core.banking.cards.models.entities.configuration.v1.CardConfiguration;
 import com.firefly.core.banking.cards.models.repositories.configuration.v1.CardConfigurationRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,13 +14,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Pageable;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -43,8 +40,8 @@ public class CardConfigurationServiceTest {
 
     private CardConfigurationDTO configDTO;
     private CardConfiguration configEntity;
-    private final Long cardId = 1L;
-    private final Long configId = 2L;
+    private final UUID cardId = UUID.randomUUID();
+    private final UUID configId = UUID.randomUUID();
 
     @BeforeEach
     void setUp() {
@@ -53,7 +50,7 @@ public class CardConfigurationServiceTest {
         configDTO = CardConfigurationDTO.builder()
                 .cardConfigurationId(configId)
                 .cardId(cardId)
-                .programId(3L)
+                .programId(UUID.randomUUID())
                 .configKey("CONTACTLESS")
                 .configValue("true")
                 .configType("BOOLEAN")
@@ -72,7 +69,7 @@ public class CardConfigurationServiceTest {
         configEntity = new CardConfiguration();
         configEntity.setCardConfigurationId(configId);
         configEntity.setCardId(cardId);
-        configEntity.setProgramId(3L);
+        configEntity.setProgramId(UUID.randomUUID());
         configEntity.setConfigKey("CONTACTLESS");
         configEntity.setConfigValue("true");
         configEntity.setConfigType("BOOLEAN");
@@ -166,7 +163,7 @@ public class CardConfigurationServiceTest {
     @Test
     void getConfiguration_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByCardConfigurationId(configId)).thenReturn(Mono.just(configEntity));
 
         // Act & Assert
@@ -211,7 +208,7 @@ public class CardConfigurationServiceTest {
     @Test
     void updateConfiguration_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByCardConfigurationId(configId)).thenReturn(Mono.just(configEntity));
 
         // Act & Assert
@@ -253,7 +250,7 @@ public class CardConfigurationServiceTest {
     @Test
     void deleteConfiguration_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByCardConfigurationId(configId)).thenReturn(Mono.just(configEntity));
 
         // Act & Assert

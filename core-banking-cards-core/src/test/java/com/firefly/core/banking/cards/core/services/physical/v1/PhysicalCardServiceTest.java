@@ -14,13 +14,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Pageable;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -42,8 +40,8 @@ public class PhysicalCardServiceTest {
 
     private PhysicalCardDTO physicalCardDTO;
     private PhysicalCard physicalCardEntity;
-    private final Long cardId = 1L;
-    private final Long physicalCardId = 2L;
+    private final UUID cardId = UUID.randomUUID();
+    private final UUID physicalCardId = UUID.randomUUID();
     private final LocalDateTime now = LocalDateTime.now();
 
     @BeforeEach
@@ -54,7 +52,7 @@ public class PhysicalCardServiceTest {
                 .cardId(cardId)
                 .embossedName("John Doe")
                 .plasticId("P12345")
-                .designId(1L)
+                .designId(UUID.randomUUID())
                 .isContactless(true)
                 .isChip(true)
                 .isMagstripe(true)
@@ -84,7 +82,7 @@ public class PhysicalCardServiceTest {
         physicalCardEntity.setCardId(cardId);
         physicalCardEntity.setEmbossedName("John Doe");
         physicalCardEntity.setPlasticId("P12345");
-        physicalCardEntity.setDesignId(1L);
+        physicalCardEntity.setDesignId(UUID.randomUUID());
         physicalCardEntity.setIsContactless(true);
         physicalCardEntity.setIsChip(true);
         physicalCardEntity.setIsMagstripe(true);
@@ -189,7 +187,7 @@ public class PhysicalCardServiceTest {
         // Arrange
         PhysicalCard wrongCardPhysicalCard = new PhysicalCard();
         wrongCardPhysicalCard.setPhysicalCardId(physicalCardId);
-        wrongCardPhysicalCard.setCardId(999L); // Different card ID
+        wrongCardPhysicalCard.setCardId(UUID.randomUUID()); // Different card ID
 
         when(repository.findByPhysicalCardId(physicalCardId)).thenReturn(Mono.just(wrongCardPhysicalCard));
 
@@ -240,7 +238,7 @@ public class PhysicalCardServiceTest {
         // Arrange
         PhysicalCard wrongCardPhysicalCard = new PhysicalCard();
         wrongCardPhysicalCard.setPhysicalCardId(physicalCardId);
-        wrongCardPhysicalCard.setCardId(999L); // Different card ID
+        wrongCardPhysicalCard.setCardId(UUID.randomUUID()); // Different card ID
 
         when(repository.findByPhysicalCardId(physicalCardId)).thenReturn(Mono.just(wrongCardPhysicalCard));
 
@@ -286,7 +284,7 @@ public class PhysicalCardServiceTest {
         // Arrange
         PhysicalCard wrongCardPhysicalCard = new PhysicalCard();
         wrongCardPhysicalCard.setPhysicalCardId(physicalCardId);
-        wrongCardPhysicalCard.setCardId(999L); // Different card ID
+        wrongCardPhysicalCard.setCardId(UUID.randomUUID()); // Different card ID
 
         when(repository.findByPhysicalCardId(physicalCardId)).thenReturn(Mono.just(wrongCardPhysicalCard));
 

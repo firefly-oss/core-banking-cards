@@ -18,6 +18,7 @@ import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -39,8 +40,8 @@ public class CardEnrollmentServiceTest {
 
     private CardEnrollmentDTO enrollmentDTO;
     private CardEnrollment enrollmentEntity;
-    private final Long cardId = 1L;
-    private final Long enrollmentId = 2L;
+    private final UUID cardId = UUID.randomUUID();
+    private final UUID enrollmentId = UUID.randomUUID();
 
     @BeforeEach
     void setUp() {
@@ -127,7 +128,7 @@ public class CardEnrollmentServiceTest {
     @Test
     void getEnrollment_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByEnrollmentId(enrollmentId)).thenReturn(Mono.just(enrollmentEntity));
 
         // Act & Assert
@@ -161,7 +162,7 @@ public class CardEnrollmentServiceTest {
     @Test
     void updateEnrollment_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByEnrollmentId(enrollmentId)).thenReturn(Mono.just(enrollmentEntity));
 
         // Act & Assert
@@ -191,7 +192,7 @@ public class CardEnrollmentServiceTest {
     @Test
     void deleteEnrollment_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByEnrollmentId(enrollmentId)).thenReturn(Mono.just(enrollmentEntity));
 
         // Act & Assert

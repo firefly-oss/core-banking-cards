@@ -18,6 +18,7 @@ import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -39,7 +40,7 @@ public class CardAcquirerServiceTest {
 
     private CardAcquirerDTO acquirerDTO;
     private CardAcquirer acquirerEntity;
-    private final Long acquirerId = 1L;
+    private final UUID acquirerId = UUID.randomUUID();
 
     @BeforeEach
     void setUp() {
@@ -84,9 +85,9 @@ public class CardAcquirerServiceTest {
                 .isOnline(true)
                 .isPhysical(true)
                 .isMobile(true)
-                .processorId(1L)
+                .processorId(UUID.randomUUID())
                 .processorName("Test Processor")
-                .gatewayId(1L)
+                .gatewayId(UUID.randomUUID())
                 .gatewayName("Test Gateway")
                 .apiBaseUrl("https://api.testacquirer.com")
                 .apiVersion("v1")
@@ -159,9 +160,9 @@ public class CardAcquirerServiceTest {
         acquirerEntity.setIsOnline(true);
         acquirerEntity.setIsPhysical(true);
         acquirerEntity.setIsMobile(true);
-        acquirerEntity.setProcessorId(1L);
+        acquirerEntity.setProcessorId(UUID.randomUUID());
         acquirerEntity.setProcessorName("Test Processor");
-        acquirerEntity.setGatewayId(1L);
+        acquirerEntity.setGatewayId(UUID.randomUUID());
         acquirerEntity.setGatewayName("Test Gateway");
         acquirerEntity.setApiBaseUrl("https://api.testacquirer.com");
         acquirerEntity.setApiVersion("v1");

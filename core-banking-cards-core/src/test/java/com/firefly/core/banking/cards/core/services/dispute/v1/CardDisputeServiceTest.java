@@ -19,6 +19,7 @@ import reactor.test.StepVerifier;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -40,9 +41,9 @@ public class CardDisputeServiceTest {
 
     private CardDisputeDTO disputeDTO;
     private CardDispute disputeEntity;
-    private final Long cardId = 1L;
-    private final Long disputeId = 2L;
-    private final Long transactionId = 3L;
+    private final UUID cardId = UUID.randomUUID();
+    private final UUID disputeId = UUID.randomUUID();
+    private final UUID transactionId = UUID.randomUUID();
 
     @BeforeEach
     void setUp() {
@@ -133,7 +134,7 @@ public class CardDisputeServiceTest {
     @Test
     void getDispute_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByDisputeId(disputeId)).thenReturn(Mono.just(disputeEntity));
 
         // Act & Assert
@@ -167,7 +168,7 @@ public class CardDisputeServiceTest {
     @Test
     void updateDispute_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByDisputeId(disputeId)).thenReturn(Mono.just(disputeEntity));
 
         // Act & Assert
@@ -197,7 +198,7 @@ public class CardDisputeServiceTest {
     @Test
     void deleteDispute_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByDisputeId(disputeId)).thenReturn(Mono.just(disputeEntity));
 
         // Act & Assert

@@ -3,7 +3,6 @@ package com.firefly.core.banking.cards.core.services.card.v1;
 import com.firefly.core.banking.cards.core.mappers.card.v1.CardMapper;
 import com.firefly.core.banking.cards.interfaces.dtos.card.v1.CardDTO;
 import com.firefly.core.banking.cards.interfaces.enums.card.v1.CardStatusEnum;
-import com.firefly.core.banking.cards.interfaces.enums.card.v1.CardTypeEnum;
 import com.firefly.core.banking.cards.models.entities.card.v1.Card;
 import com.firefly.core.banking.cards.models.repositories.card.v1.CardRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +15,7 @@ import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -34,9 +34,9 @@ public class CardServiceTest {
 
     private CardDTO cardDTO;
     private Card card;
-    private final Long cardId = 1L;
-    private final Long contractId = 2L;
-    private final Long accountId = 3L;
+    private final UUID cardId = UUID.randomUUID();
+    private final UUID contractId = UUID.randomUUID();
+    private final UUID accountId = UUID.randomUUID();
 
     @BeforeEach
     void setUp() {
@@ -48,9 +48,9 @@ public class CardServiceTest {
                 .cardId(cardId)
                 .contractId(contractId)
                 .accountId(accountId)
-                .cardTypeId(1L)
+                .cardTypeId(UUID.randomUUID())
                 .cardStatus(CardStatusEnum.ACTIVE)
-                .issuerId(1L)
+                .issuerId(UUID.randomUUID())
                 .issuanceDate(now)
                 .expirationDate(expirationDate)
                 .isPhysical(true)
@@ -60,9 +60,9 @@ public class CardServiceTest {
         card.setCardId(cardId);
         card.setContractId(contractId);
         card.setAccountId(accountId);
-        card.setCardTypeId(1L);
+        card.setCardTypeId(UUID.randomUUID());
         card.setCardStatus(CardStatusEnum.ACTIVE);
-        card.setIssuerId(1L);
+        card.setIssuerId(UUID.randomUUID());
         card.setIssuanceDate(now);
         card.setExpirationDate(expirationDate);
         card.setIsPhysical(true);

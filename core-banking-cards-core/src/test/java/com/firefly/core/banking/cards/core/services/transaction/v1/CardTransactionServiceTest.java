@@ -1,7 +1,6 @@
 package com.firefly.core.banking.cards.core.services.transaction.v1;
 
 import com.firefly.common.core.filters.FilterRequest;
-import com.firefly.common.core.filters.FilterUtils;
 import com.firefly.common.core.queries.PaginationRequest;
 import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.common.core.queries.PaginationUtils;
@@ -23,6 +22,7 @@ import reactor.test.StepVerifier;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -44,8 +44,8 @@ public class CardTransactionServiceTest {
 
     private CardTransactionDTO transactionDTO;
     private CardTransaction transactionEntity;
-    private final Long cardId = 1L;
-    private final Long transactionId = 2L;
+    private final UUID cardId = UUID.randomUUID();
+    private final UUID transactionId = UUID.randomUUID();
     private final LocalDateTime now = LocalDateTime.now();
 
     @BeforeEach
@@ -178,7 +178,7 @@ public class CardTransactionServiceTest {
         // Arrange
         CardTransaction wrongCardTransaction = new CardTransaction();
         wrongCardTransaction.setCardTransactionId(transactionId);
-        wrongCardTransaction.setCardId(999L); // Different card ID
+        wrongCardTransaction.setCardId(UUID.randomUUID()); // Different card ID
 
         when(repository.findByCardTransactionId(transactionId)).thenReturn(Mono.just(wrongCardTransaction));
 
@@ -253,7 +253,7 @@ public class CardTransactionServiceTest {
         // Arrange
         CardTransaction wrongCardTransaction = new CardTransaction();
         wrongCardTransaction.setCardTransactionId(transactionId);
-        wrongCardTransaction.setCardId(999L); // Different card ID
+        wrongCardTransaction.setCardId(UUID.randomUUID()); // Different card ID
 
         when(repository.findByCardTransactionId(transactionId)).thenReturn(Mono.just(wrongCardTransaction));
 
@@ -299,7 +299,7 @@ public class CardTransactionServiceTest {
         // Arrange
         CardTransaction wrongCardTransaction = new CardTransaction();
         wrongCardTransaction.setCardTransactionId(transactionId);
-        wrongCardTransaction.setCardId(999L); // Different card ID
+        wrongCardTransaction.setCardId(UUID.randomUUID()); // Different card ID
 
         when(repository.findByCardTransactionId(transactionId)).thenReturn(Mono.just(wrongCardTransaction));
 

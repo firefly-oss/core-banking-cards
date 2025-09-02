@@ -15,13 +15,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Pageable;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -43,8 +41,8 @@ public class CardProviderServiceTest {
 
     private CardProviderDTO providerDTO;
     private CardProvider providerEntity;
-    private final Long cardId = 1L;
-    private final Long providerId = 2L;
+    private final UUID cardId = UUID.randomUUID();
+    private final UUID providerId = UUID.randomUUID();
 
     @BeforeEach
     void setUp() {
@@ -202,7 +200,7 @@ public class CardProviderServiceTest {
         // Arrange
         CardProvider wrongCardProvider = new CardProvider();
         wrongCardProvider.setCardProviderId(providerId);
-        wrongCardProvider.setCardId(999L); // Different card ID
+        wrongCardProvider.setCardId(UUID.randomUUID()); // Different card ID
 
         when(repository.findById(providerId)).thenReturn(Mono.just(wrongCardProvider));
 
@@ -253,7 +251,7 @@ public class CardProviderServiceTest {
         // Arrange
         CardProvider wrongCardProvider = new CardProvider();
         wrongCardProvider.setCardProviderId(providerId);
-        wrongCardProvider.setCardId(999L); // Different card ID
+        wrongCardProvider.setCardId(UUID.randomUUID()); // Different card ID
 
         when(repository.findById(providerId)).thenReturn(Mono.just(wrongCardProvider));
 
@@ -299,7 +297,7 @@ public class CardProviderServiceTest {
         // Arrange
         CardProvider wrongCardProvider = new CardProvider();
         wrongCardProvider.setCardProviderId(providerId);
-        wrongCardProvider.setCardId(999L); // Different card ID
+        wrongCardProvider.setCardId(UUID.randomUUID()); // Different card ID
 
         when(repository.findById(providerId)).thenReturn(Mono.just(wrongCardProvider));
 

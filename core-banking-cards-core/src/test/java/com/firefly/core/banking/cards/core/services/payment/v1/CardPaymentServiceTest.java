@@ -19,6 +19,7 @@ import reactor.test.StepVerifier;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -40,8 +41,8 @@ public class CardPaymentServiceTest {
 
     private CardPaymentDTO paymentDTO;
     private CardPayment paymentEntity;
-    private final Long cardId = 1L;
-    private final Long paymentId = 2L;
+    private final UUID cardId = UUID.randomUUID();
+    private final UUID paymentId = UUID.randomUUID();
 
     @BeforeEach
     void setUp() {
@@ -130,7 +131,7 @@ public class CardPaymentServiceTest {
     @Test
     void getPayment_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByPaymentId(paymentId)).thenReturn(Mono.just(paymentEntity));
 
         // Act & Assert
@@ -164,7 +165,7 @@ public class CardPaymentServiceTest {
     @Test
     void updatePayment_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByPaymentId(paymentId)).thenReturn(Mono.just(paymentEntity));
 
         // Act & Assert
@@ -194,7 +195,7 @@ public class CardPaymentServiceTest {
     @Test
     void deletePayment_WrongCardId() {
         // Arrange
-        Long wrongCardId = 999L;
+        UUID wrongCardId = UUID.randomUUID();
         when(repository.findByPaymentId(paymentId)).thenReturn(Mono.just(paymentEntity));
 
         // Act & Assert
