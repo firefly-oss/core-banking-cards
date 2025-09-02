@@ -1,8 +1,8 @@
 package com.firefly.core.banking.cards.interfaces.dtos.fraud.v1;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.firefly.core.banking.cards.interfaces.dtos.BaseDTO;
 import com.firefly.core.utils.annotations.FilterableId;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,6 +11,7 @@ import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Data Transfer Object for Fraud Case.
@@ -25,19 +26,19 @@ import java.time.LocalDateTime;
 public class FraudCaseDTO extends BaseDTO {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Long fraudCaseId;
+    private UUID fraudCaseId;
 
     @FilterableId
-    private Long cardId;
+    private UUID cardId;
 
     @FilterableId
-    private Long transactionId;
+    private UUID transactionId;
 
     @FilterableId
-    private Long partyId;
+    private UUID partyId;
 
     @FilterableId
-    private Long accountId;
+    private UUID accountId;
 
     private String caseReference;
 
@@ -101,7 +102,7 @@ public class FraudCaseDTO extends BaseDTO {
 
     private String evidenceDocuments;
 
-    private Long assignedAgentId;
+    private UUID assignedAgentId;
 
     private String assignedAgentName;
 

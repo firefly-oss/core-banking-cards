@@ -1,13 +1,17 @@
 package com.firefly.core.banking.cards.interfaces.dtos.virtual.v1;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.firefly.core.banking.cards.interfaces.dtos.BaseDTO;
 import com.firefly.core.banking.cards.interfaces.enums.virtual.v1.VirtualCardStatusEnum;
 import com.firefly.core.utils.annotations.FilterableId;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @SuperBuilder
@@ -17,10 +21,10 @@ import java.time.LocalDateTime;
 public class VirtualCardDTO extends BaseDTO {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Long virtualCardId;
+    private UUID virtualCardId;
 
     @FilterableId
-    private Long cardId;
+    private UUID cardId;
 
     @FilterableId
     private String deviceId;

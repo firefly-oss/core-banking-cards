@@ -1,15 +1,17 @@
 package com.firefly.core.banking.cards.interfaces.dtos.activity.v1;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.firefly.core.banking.cards.interfaces.dtos.BaseDTO;
 import com.firefly.core.utils.annotations.FilterableId;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import jakarta.validation.constraints.*;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Data Transfer Object for Card Activity.
@@ -25,86 +27,127 @@ import java.time.LocalDateTime;
 public class CardActivityDTO extends BaseDTO {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Long activityId;
+    private UUID activityId;
 
     @FilterableId
-    private Long cardId;
+    @NotNull(message = "Card ID is required")
+    private UUID cardId;
 
     @FilterableId
-    private Long partyId;
+    @NotNull(message = "Party ID is required")
+    private UUID partyId;
 
     @FilterableId
-    private Long accountId;
+    @NotNull(message = "Account ID is required")
+    private UUID accountId;
 
+    @NotBlank(message = "Activity reference is required")
+    @Size(max = 100, message = "Activity reference cannot exceed 100 characters")
     private String activityReference;
 
+    @NotBlank(message = "Activity type is required")
+    @Size(max = 50, message = "Activity type cannot exceed 50 characters")
     private String activityType;
 
+    @Size(max = 50, message = "Activity category cannot exceed 50 characters")
     private String activityCategory;
 
+    @Size(max = 500, message = "Activity description cannot exceed 500 characters")
     private String activityDescription;
 
+    @NotNull(message = "Activity timestamp is required")
+    @PastOrPresent(message = "Activity timestamp cannot be in the future")
     private LocalDateTime activityTimestamp;
 
+    @Size(max = 50, message = "Activity channel cannot exceed 50 characters")
     private String activityChannel;
 
+    @Size(max = 50, message = "Activity source cannot exceed 50 characters")
     private String activitySource;
 
+    @Size(max = 50, message = "Activity status cannot exceed 50 characters")
     private String activityStatus;
 
+    @Size(max = 50, message = "Activity result cannot exceed 50 characters")
     private String activityResult;
 
+    @Size(max = 1000, message = "Activity details cannot exceed 1000 characters")
     private String activityDetails;
 
+    @Size(max = 500, message = "Previous value cannot exceed 500 characters")
     private String previousValue;
 
+    @Size(max = 500, message = "New value cannot exceed 500 characters")
     private String newValue;
 
+    @Size(max = 255, message = "Change reason cannot exceed 255 characters")
     private String changeReason;
 
+    @Size(max = 100, message = "Change authorized by cannot exceed 100 characters")
     private String changeAuthorizedBy;
 
+    @Pattern(regexp = "^(?:(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|(?:[0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|::1|::)$", message = "IP address must be a valid IPv4 or IPv6 address")
     private String ipAddress;
 
+    @Size(max = 100, message = "Device ID cannot exceed 100 characters")
     private String deviceId;
 
+    @Size(max = 50, message = "Device type cannot exceed 50 characters")
     private String deviceType;
 
+    @Size(max = 50, message = "Device OS cannot exceed 50 characters")
     private String deviceOs;
 
+    @Size(max = 50, message = "Browser type cannot exceed 50 characters")
     private String browserType;
 
+    @Size(max = 500, message = "User agent cannot exceed 500 characters")
     private String userAgent;
 
+    @Size(max = 100, message = "Geolocation cannot exceed 100 characters")
     private String geolocation;
 
+    @NotNull(message = "Party initiated flag is required")
     private Boolean isPartyInitiated;
 
+    @NotNull(message = "System initiated flag is required")
     private Boolean isSystemInitiated;
 
+    @NotNull(message = "Agent initiated flag is required")
     private Boolean isAgentInitiated;
 
+    @Size(max = 50, message = "Agent ID cannot exceed 50 characters")
     private String agentId;
 
+    @Size(max = 100, message = "Agent name cannot exceed 100 characters")
     private String agentName;
 
+    @NotNull(message = "Successful flag is required")
     private Boolean isSuccessful;
 
+    @Size(max = 255, message = "Failure reason cannot exceed 255 characters")
     private String failureReason;
 
+    @Size(max = 50, message = "Failure code cannot exceed 50 characters")
     private String failureCode;
 
+    @NotNull(message = "Notification sent flag is required")
     private Boolean isNotificationSent;
 
+    @Size(max = 50, message = "Notification channel cannot exceed 50 characters")
     private String notificationChannel;
 
+    @PastOrPresent(message = "Notification timestamp cannot be in the future")
     private LocalDateTime notificationTimestamp;
 
+    @Size(max = 100, message = "Notification recipient cannot exceed 100 characters")
     private String notificationRecipient;
 
+    @Size(max = 50, message = "Related entity type cannot exceed 50 characters")
     private String relatedEntityType;
 
-    private Long relatedEntityId;
+    private UUID relatedEntityId;
 
+    @Size(max = 1000, message = "Notes cannot exceed 1000 characters")
     private String notes;
 }

@@ -1,8 +1,8 @@
 package com.firefly.core.banking.cards.interfaces.dtos.enrollment.v1;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.firefly.core.banking.cards.interfaces.dtos.BaseDTO;
 import com.firefly.core.utils.annotations.FilterableId;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Data Transfer Object for Card Enrollment.
@@ -24,16 +25,16 @@ import java.time.LocalDateTime;
 public class CardEnrollmentDTO extends BaseDTO {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Long enrollmentId;
+    private UUID enrollmentId;
 
     @FilterableId
-    private Long cardId;
+    private UUID cardId;
 
     @FilterableId
-    private Long partyId;
+    private UUID partyId;
 
     @FilterableId
-    private Long accountId;
+    private UUID accountId;
 
     private String enrollmentType;
 
@@ -50,13 +51,13 @@ public class CardEnrollmentDTO extends BaseDTO {
     private String enrollmentAgent;
 
     @FilterableId
-    private Long promotionId;
+    private UUID promotionId;
 
     @FilterableId
-    private Long programId;
+    private UUID programId;
 
     @FilterableId
-    private Long featureId;
+    private UUID featureId;
 
     private String featureCode;
 

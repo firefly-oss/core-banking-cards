@@ -1,16 +1,18 @@
 package com.firefly.core.banking.cards.interfaces.dtos.alert.v1;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.firefly.core.banking.cards.interfaces.dtos.BaseDTO;
 import com.firefly.core.utils.annotations.FilterableId;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Data Transfer Object for Card Alert.
@@ -25,38 +27,60 @@ import java.time.LocalDateTime;
 public class CardAlertDTO extends BaseDTO {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Long alertId;
+    private UUID alertId;
 
     @FilterableId
-    private Long cardId;
+    @NotNull(message = "Card ID is required")
+    private UUID cardId;
 
     @FilterableId
-    private Long transactionId;
+    private UUID transactionId;
 
     @FilterableId
-    private Long partyId;
+    @NotNull(message = "Party ID is required")
+    private UUID partyId;
 
     @FilterableId
-    private Long accountId;
+    @NotNull(message = "Account ID is required")
+    private UUID accountId;
 
+    @NotBlank(message = "Alert reference is required")
+    @Size(min = 5, max = 50, message = "Alert reference must be between 5 and 50 characters")
     private String alertReference;
 
+    @NotBlank(message = "Alert type is required")
+    @Pattern(regexp = "^(TRANSACTION|SECURITY|LIMIT|PAYMENT|FRAUD|SYSTEM)$", message = "Alert type must be TRANSACTION, SECURITY, LIMIT, PAYMENT, FRAUD, or SYSTEM")
     private String alertType;
 
+    @NotBlank(message = "Alert category is required")
+    @Pattern(regexp = "^(HIGH_VALUE|UNUSUAL_ACTIVITY|DECLINED|LIMIT_EXCEEDED|FRAUD_SUSPECTED)$", message = "Alert category must be HIGH_VALUE, UNUSUAL_ACTIVITY, DECLINED, LIMIT_EXCEEDED, or FRAUD_SUSPECTED")
     private String alertCategory;
 
+    @NotBlank(message = "Alert severity is required")
+    @Pattern(regexp = "^(LOW|MEDIUM|HIGH|CRITICAL)$", message = "Alert severity must be LOW, MEDIUM, HIGH, or CRITICAL")
     private String alertSeverity;
 
+    @NotBlank(message = "Alert status is required")
+    @Pattern(regexp = "^(ACTIVE|ACKNOWLEDGED|RESOLVED|DISMISSED)$", message = "Alert status must be ACTIVE, ACKNOWLEDGED, RESOLVED, or DISMISSED")
     private String alertStatus;
 
+    @NotBlank(message = "Alert title is required")
+    @Size(min = 5, max = 100, message = "Alert title must be between 5 and 100 characters")
     private String alertTitle;
 
+    @NotBlank(message = "Alert message is required")
+    @Size(min = 10, max = 500, message = "Alert message must be between 10 and 500 characters")
     private String alertMessage;
 
+    @Size(max = 1000, message = "Alert details cannot exceed 1000 characters")
     private String alertDetails;
 
+    @NotBlank(message = "Trigger event is required")
+    @Size(min = 5, max = 100, message = "Trigger event must be between 5 and 100 characters")
     private String triggerEvent;
 
+    @NotNull(message = "Trigger timestamp is required")
+    @PastOrPresent(message = "Trigger timestamp cannot be in the future")
     private LocalDateTime triggerTimestamp;
 
     private BigDecimal triggerAmount;

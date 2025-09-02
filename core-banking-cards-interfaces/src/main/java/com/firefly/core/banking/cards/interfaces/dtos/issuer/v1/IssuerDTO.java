@@ -1,12 +1,15 @@
 package com.firefly.core.banking.cards.interfaces.dtos.issuer.v1;
 
-import com.firefly.core.banking.cards.interfaces.dtos.BaseDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.firefly.core.banking.cards.interfaces.dtos.BaseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+
+import jakarta.validation.constraints.*;
+import java.util.UUID;
 
 /**
  * Data Transfer Object for Issuer.
@@ -20,23 +23,36 @@ import lombok.experimental.SuperBuilder;
 public class IssuerDTO extends BaseDTO {
     
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Long issuerId;
-    
+    private UUID issuerId;
+
+    @NotBlank(message = "Issuer name is required")
+    @Size(min = 2, max = 100, message = "Issuer name must be between 2 and 100 characters")
     private String issuerName;
-    
+
+    @NotBlank(message = "Issuer code is required")
+    @Pattern(regexp = "^[A-Z0-9_]{2,20}$", message = "Issuer code must be 2-20 characters, uppercase letters, numbers, and underscores only")
     private String issuerCode;
-    
+
+    @NotBlank(message = "Country code is required")
+    @Pattern(regexp = "^[A-Z]{2}$", message = "Country code must be a 2-letter ISO code")
     private String countryCode;
-    
+
+    @Email(message = "Contact email must be a valid email address")
+    @Size(max = 100, message = "Contact email cannot exceed 100 characters")
     private String contactEmail;
-    
+
+    @Pattern(regexp = "^\\+?[1-9]\\d{1,14}$", message = "Contact phone must be a valid international phone number")
     private String contactPhone;
-    
+
+    @NotNull(message = "Active flag is required")
     private Boolean isActive;
-    
+
+    @Pattern(regexp = "^https?://.*", message = "Support URL must be a valid HTTP/HTTPS URL")
     private String supportUrl;
-    
+
+    @Pattern(regexp = "^https?://.*\\.(jpg|jpeg|png|gif|svg)$", message = "Logo URL must be a valid HTTP/HTTPS URL pointing to an image file")
     private String logoUrl;
-    
+
+    @Size(max = 500, message = "Description cannot exceed 500 characters")
     private String description;
 }

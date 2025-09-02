@@ -1,12 +1,17 @@
 package com.firefly.core.banking.cards.interfaces.dtos.physical.v1;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.firefly.core.banking.cards.interfaces.dtos.BaseDTO;
 import com.firefly.core.utils.annotations.FilterableId;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import jakarta.validation.constraints.*;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Data Transfer Object for Physical Card.
@@ -20,30 +25,46 @@ import java.time.LocalDateTime;
 public class PhysicalCardDTO extends BaseDTO {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Long physicalCardId;
+    private UUID physicalCardId;
 
     @FilterableId
-    private Long cardId;
+    @NotNull(message = "Card ID is required")
+    private UUID cardId;
 
+    @NotBlank(message = "Embossed name is required")
+    @Size(min = 2, max = 26, message = "Embossed name must be between 2 and 26 characters")
     private String embossedName;
 
+    @NotBlank(message = "Plastic ID is required")
+    @Pattern(regexp = "^[A-Z0-9]{8,20}$", message = "Plastic ID must be 8-20 alphanumeric characters")
     private String plasticId;
 
     @FilterableId
-    private Long designId;
+    @NotNull(message = "Design ID is required")
+    private UUID designId;
 
+    @NotNull(message = "Contactless flag is required")
     private Boolean isContactless;
 
+    @NotNull(message = "Chip flag is required")
     private Boolean isChip;
 
+    @NotNull(message = "Magstripe flag is required")
     private Boolean isMagstripe;
 
+    @NotBlank(message = "Manufacturing status is required")
+    @Pattern(regexp = "^(PENDING|IN_PROGRESS|COMPLETED|FAILED)$", message = "Manufacturing status must be PENDING, IN_PROGRESS, COMPLETED, or FAILED")
     private String manufacturingStatus;
 
+    @PastOrPresent(message = "Manufacturing date cannot be in the future")
     private LocalDateTime manufacturingDate;
 
+    @NotBlank(message = "Shipping address is required")
+    @Size(min = 10, max = 200, message = "Shipping address must be between 10 and 200 characters")
     private String shippingAddress;
 
+    @NotBlank(message = "Shipping city is required")
+    @Size(min = 2, max = 50, message = "Shipping city must be between 2 and 50 characters")
     private String shippingCity;
 
     private String shippingState;
@@ -73,7 +94,7 @@ public class PhysicalCardDTO extends BaseDTO {
     private String replacementReason;
 
     @FilterableId
-    private Long previousCardId;
+    private UUID previousCardId;
 
     private String notes;
 }

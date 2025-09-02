@@ -1,8 +1,8 @@
 package com.firefly.core.banking.cards.interfaces.dtos.acquirer.v1;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.firefly.core.banking.cards.interfaces.dtos.BaseDTO;
 import com.firefly.core.utils.annotations.FilterableId;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Data Transfer Object for Card Acquirer.
@@ -25,7 +26,7 @@ import java.time.LocalDateTime;
 public class CardAcquirerDTO extends BaseDTO {
     
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Long acquirerId;
+    private UUID acquirerId;
     
     private String acquirerReference;
     
@@ -106,12 +107,12 @@ public class CardAcquirerDTO extends BaseDTO {
     private Boolean isMobile;
     
     @FilterableId
-    private Long processorId;
+    private UUID processorId;
     
     private String processorName;
     
     @FilterableId
-    private Long gatewayId;
+    private UUID gatewayId;
     
     private String gatewayName;
     

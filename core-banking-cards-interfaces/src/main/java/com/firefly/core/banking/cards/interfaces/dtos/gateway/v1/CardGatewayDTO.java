@@ -1,8 +1,8 @@
 package com.firefly.core.banking.cards.interfaces.dtos.gateway.v1;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.firefly.core.banking.cards.interfaces.dtos.BaseDTO;
 import com.firefly.core.utils.annotations.FilterableId;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Data Transfer Object for Card Gateway.
@@ -25,7 +26,7 @@ import java.time.LocalDateTime;
 public class CardGatewayDTO extends BaseDTO {
     
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Long gatewayId;
+    private UUID gatewayId;
     
     private String gatewayReference;
     
@@ -100,12 +101,12 @@ public class CardGatewayDTO extends BaseDTO {
     private Boolean isDomestic;
     
     @FilterableId
-    private Long processorId;
+    private UUID processorId;
     
     private String processorName;
     
     @FilterableId
-    private Long acquirerId;
+    private UUID acquirerId;
     
     private String acquirerName;
     
