@@ -1,10 +1,15 @@
 package com.firefly.core.banking.cards.models.entities.network.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
+
+import java.util.UUID;
 
 /**
  * Card Network entity.
@@ -19,7 +24,7 @@ public class CardNetwork extends BaseEntity {
 
     @Id
     @Column("card_network_id")
-    private Long cardNetworkId;
+    private UUID cardNetworkId;
 
     @Column("network_name")
     private String networkName;

@@ -6,18 +6,20 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 /**
  * Repository for managing Issuer entities.
  */
 @Repository
-public interface IssuerRepository extends BaseRepository<Issuer, Long> {
+public interface IssuerRepository extends BaseRepository<Issuer, UUID> {
     /**
      * Find an Issuer by its ID.
      *
      * @param issuerId the ID of the Issuer to find
      * @return a Mono emitting the Issuer if found, or empty if not found
      */
-    Mono<Issuer> findByIssuerId(Long issuerId);
+    Mono<Issuer> findByIssuerId(UUID issuerId);
     
     /**
      * Find an Issuer by its code.

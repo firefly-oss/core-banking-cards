@@ -7,19 +7,20 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Repository for managing CardEnrollment entities.
  */
 @Repository
-public interface CardEnrollmentRepository extends BaseRepository<CardEnrollment, Long> {
+public interface CardEnrollmentRepository extends BaseRepository<CardEnrollment, UUID> {
     /**
      * Find a CardEnrollment by its ID.
      *
      * @param enrollmentId the ID of the CardEnrollment to find
      * @return a Mono emitting the CardEnrollment if found, or empty if not found
      */
-    Mono<CardEnrollment> findByEnrollmentId(Long enrollmentId);
+    Mono<CardEnrollment> findByEnrollmentId(UUID enrollmentId);
 
     /**
      * Find a CardEnrollment by its reference.
@@ -35,7 +36,7 @@ public interface CardEnrollmentRepository extends BaseRepository<CardEnrollment,
      * @param cardId the card ID to search for
      * @return a Flux emitting the CardEnrollments for the specified card
      */
-    Flux<CardEnrollment> findByCardId(Long cardId);
+    Flux<CardEnrollment> findByCardId(UUID cardId);
 
     /**
      * Find CardEnrollments by card ID with pagination.
@@ -44,7 +45,7 @@ public interface CardEnrollmentRepository extends BaseRepository<CardEnrollment,
      * @param pageable the pagination information
      * @return a Flux emitting the CardEnrollments for the specified card with pagination
      */
-    Flux<CardEnrollment> findByCardId(Long cardId, org.springframework.data.domain.Pageable pageable);
+    Flux<CardEnrollment> findByCardId(UUID cardId, org.springframework.data.domain.Pageable pageable);
 
     /**
      * Count CardEnrollments by card ID.
@@ -53,7 +54,7 @@ public interface CardEnrollmentRepository extends BaseRepository<CardEnrollment,
      * @return a Mono emitting the count of CardEnrollments for the specified card
      */
     @org.springframework.data.r2dbc.repository.Query("SELECT COUNT(*) FROM card_enrollment WHERE card_id = :cardId")
-    Mono<Long> countByCardId(Long cardId);
+    Mono<Long> countByCardId(UUID cardId);
 
     /**
      * Find CardEnrollments by party ID.
@@ -61,7 +62,7 @@ public interface CardEnrollmentRepository extends BaseRepository<CardEnrollment,
      * @param partyId the party ID to search for
      * @return a Flux emitting the CardEnrollments for the specified party
      */
-    Flux<CardEnrollment> findByPartyId(Long partyId);
+    Flux<CardEnrollment> findByPartyId(UUID partyId);
 
     /**
      * Find CardEnrollments by account ID.
@@ -69,7 +70,7 @@ public interface CardEnrollmentRepository extends BaseRepository<CardEnrollment,
      * @param accountId the account ID to search for
      * @return a Flux emitting the CardEnrollments for the specified account
      */
-    Flux<CardEnrollment> findByAccountId(Long accountId);
+    Flux<CardEnrollment> findByAccountId(UUID accountId);
 
     /**
      * Find CardEnrollments by enrollment type.
@@ -118,7 +119,7 @@ public interface CardEnrollmentRepository extends BaseRepository<CardEnrollment,
      * @param promotionId the promotion ID to search for
      * @return a Flux emitting the CardEnrollments for the specified promotion
      */
-    Flux<CardEnrollment> findByPromotionId(Long promotionId);
+    Flux<CardEnrollment> findByPromotionId(UUID promotionId);
 
     /**
      * Find CardEnrollments by program ID.
@@ -126,7 +127,7 @@ public interface CardEnrollmentRepository extends BaseRepository<CardEnrollment,
      * @param programId the program ID to search for
      * @return a Flux emitting the CardEnrollments for the specified program
      */
-    Flux<CardEnrollment> findByProgramId(Long programId);
+    Flux<CardEnrollment> findByProgramId(UUID programId);
 
     /**
      * Find CardEnrollments by feature ID.
@@ -134,7 +135,7 @@ public interface CardEnrollmentRepository extends BaseRepository<CardEnrollment,
      * @param featureId the feature ID to search for
      * @return a Flux emitting the CardEnrollments for the specified feature
      */
-    Flux<CardEnrollment> findByFeatureId(Long featureId);
+    Flux<CardEnrollment> findByFeatureId(UUID featureId);
 
     /**
      * Find CardEnrollments by feature code.

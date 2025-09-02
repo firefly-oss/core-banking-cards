@@ -6,18 +6,20 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 /**
  * Repository for managing CardType entities.
  */
 @Repository
-public interface CardTypeRepository extends BaseRepository<CardType, Long> {
+public interface CardTypeRepository extends BaseRepository<CardType, UUID> {
     /**
      * Find a CardType by its ID.
      *
      * @param cardTypeId the ID of the CardType to find
      * @return a Mono emitting the CardType if found, or empty if not found
      */
-    Mono<CardType> findByCardTypeId(Long cardTypeId);
+    Mono<CardType> findByCardTypeId(UUID cardTypeId);
     
     /**
      * Find a CardType by its code.

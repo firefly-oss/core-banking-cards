@@ -7,19 +7,20 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Repository for managing CardApplication entities.
  */
 @Repository
-public interface CardApplicationRepository extends BaseRepository<CardApplication, Long> {
+public interface CardApplicationRepository extends BaseRepository<CardApplication, UUID> {
     /**
      * Find a CardApplication by its ID.
      *
      * @param applicationId the ID of the CardApplication to find
      * @return a Mono emitting the CardApplication if found, or empty if not found
      */
-    Mono<CardApplication> findByApplicationId(Long applicationId);
+    Mono<CardApplication> findByApplicationId(UUID applicationId);
 
     /**
      * Find a CardApplication by its reference.
@@ -35,7 +36,7 @@ public interface CardApplicationRepository extends BaseRepository<CardApplicatio
      * @param partyId the party ID to search for
      * @return a Flux emitting the CardApplications for the specified party
      */
-    Flux<CardApplication> findByPartyId(Long partyId);
+    Flux<CardApplication> findByPartyId(UUID partyId);
 
     /**
      * Find CardApplications by account ID.
@@ -43,7 +44,7 @@ public interface CardApplicationRepository extends BaseRepository<CardApplicatio
      * @param accountId the account ID to search for
      * @return a Flux emitting the CardApplications for the specified account
      */
-    Flux<CardApplication> findByAccountId(Long accountId);
+    Flux<CardApplication> findByAccountId(UUID accountId);
 
     /**
      * Find CardApplications by application type.
@@ -59,7 +60,7 @@ public interface CardApplicationRepository extends BaseRepository<CardApplicatio
      * @param cardTypeId the card type ID to search for
      * @return a Flux emitting the CardApplications for the specified card type
      */
-    Flux<CardApplication> findByCardTypeId(Long cardTypeId);
+    Flux<CardApplication> findByCardTypeId(UUID cardTypeId);
 
     /**
      * Find CardApplications by program ID.
@@ -67,7 +68,7 @@ public interface CardApplicationRepository extends BaseRepository<CardApplicatio
      * @param programId the program ID to search for
      * @return a Flux emitting the CardApplications for the specified program
      */
-    Flux<CardApplication> findByProgramId(Long programId);
+    Flux<CardApplication> findByProgramId(UUID programId);
 
     /**
      * Find CardApplications by design ID.
@@ -75,7 +76,7 @@ public interface CardApplicationRepository extends BaseRepository<CardApplicatio
      * @param designId the design ID to search for
      * @return a Flux emitting the CardApplications for the specified design
      */
-    Flux<CardApplication> findByDesignId(Long designId);
+    Flux<CardApplication> findByDesignId(UUID designId);
 
     /**
      * Find CardApplications by application status.
@@ -160,7 +161,7 @@ public interface CardApplicationRepository extends BaseRepository<CardApplicatio
      * @param cardId the card ID to search for
      * @return a Flux emitting the CardApplications for the specified card
      */
-    Flux<CardApplication> findByCardId(Long cardId);
+    Flux<CardApplication> findByCardId(UUID cardId);
 
     /**
      * Find CardApplications with accepted terms.

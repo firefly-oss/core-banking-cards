@@ -1,10 +1,15 @@
 package com.firefly.core.banking.cards.models.entities.design.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
+
+import java.util.UUID;
 
 /**
  * Card Design entity.
@@ -19,7 +24,7 @@ public class CardDesign extends BaseEntity {
 
     @Id
     @Column("design_id")
-    private Long designId;
+    private UUID designId;
 
     @Column("design_name")
     private String designName;
@@ -34,13 +39,13 @@ public class CardDesign extends BaseEntity {
     private String backImageUrl;
 
     @Column("card_type_id")
-    private Long cardTypeId;
+    private UUID cardTypeId;
 
     @Column("issuer_id")
-    private Long issuerId;
+    private UUID issuerId;
 
     @Column("card_network_id")
-    private Long cardNetworkId;
+    private UUID cardNetworkId;
 
     @Column("is_customizable")
     private Boolean isCustomizable;

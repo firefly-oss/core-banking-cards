@@ -7,19 +7,20 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Repository for managing CardProgram entities.
  */
 @Repository
-public interface CardProgramRepository extends BaseRepository<CardProgram, Long> {
+public interface CardProgramRepository extends BaseRepository<CardProgram, UUID> {
     /**
      * Find a CardProgram by its ID.
      *
      * @param programId the ID of the CardProgram to find
      * @return a Mono emitting the CardProgram if found, or empty if not found
      */
-    Mono<CardProgram> findByProgramId(Long programId);
+    Mono<CardProgram> findByProgramId(UUID programId);
     
     /**
      * Find a CardProgram by its code.
@@ -35,7 +36,7 @@ public interface CardProgramRepository extends BaseRepository<CardProgram, Long>
      * @param issuerId the issuer ID to search for
      * @return a Flux emitting the CardPrograms for the specified issuer
      */
-    Flux<CardProgram> findByIssuerId(Long issuerId);
+    Flux<CardProgram> findByIssuerId(UUID issuerId);
     
     /**
      * Find CardPrograms by BIN ID.
@@ -43,7 +44,7 @@ public interface CardProgramRepository extends BaseRepository<CardProgram, Long>
      * @param binId the BIN ID to search for
      * @return a Flux emitting the CardPrograms for the specified BIN
      */
-    Flux<CardProgram> findByBinId(Long binId);
+    Flux<CardProgram> findByBinId(UUID binId);
     
     /**
      * Find CardPrograms by card type ID.
@@ -51,7 +52,7 @@ public interface CardProgramRepository extends BaseRepository<CardProgram, Long>
      * @param cardTypeId the card type ID to search for
      * @return a Flux emitting the CardPrograms for the specified card type
      */
-    Flux<CardProgram> findByCardTypeId(Long cardTypeId);
+    Flux<CardProgram> findByCardTypeId(UUID cardTypeId);
     
     /**
      * Find CardPrograms by card network ID.
@@ -59,7 +60,7 @@ public interface CardProgramRepository extends BaseRepository<CardProgram, Long>
      * @param cardNetworkId the card network ID to search for
      * @return a Flux emitting the CardPrograms for the specified card network
      */
-    Flux<CardProgram> findByCardNetworkId(Long cardNetworkId);
+    Flux<CardProgram> findByCardNetworkId(UUID cardNetworkId);
     
     /**
      * Find active CardPrograms.

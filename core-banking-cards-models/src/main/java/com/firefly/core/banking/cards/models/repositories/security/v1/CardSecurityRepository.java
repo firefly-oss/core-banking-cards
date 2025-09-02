@@ -7,10 +7,12 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@Repository
-public interface CardSecurityRepository extends BaseRepository<CardSecurity, Long> {
-    Mono<CardSecurity> findByCardSecurityId(Long cardSecurityId);
+import java.util.UUID;
 
-    Flux<CardSecurity> findByCardId(Long cardId, Pageable pageable);
-    Mono<Long> countByCardId(Long cardId);
+@Repository
+public interface CardSecurityRepository extends BaseRepository<CardSecurity, UUID> {
+    Mono<CardSecurity> findByCardSecurityId(UUID cardSecurityId);
+
+    Flux<CardSecurity> findByCardId(UUID cardId, Pageable pageable);
+    Mono<Long> countByCardId(UUID cardId);
 }

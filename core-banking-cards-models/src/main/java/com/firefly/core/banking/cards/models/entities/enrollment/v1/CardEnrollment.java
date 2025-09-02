@@ -1,12 +1,16 @@
 package com.firefly.core.banking.cards.models.entities.enrollment.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Card Enrollment entity.
@@ -21,16 +25,16 @@ public class CardEnrollment extends BaseEntity {
 
     @Id
     @Column("enrollment_id")
-    private Long enrollmentId;
+    private UUID enrollmentId;
 
     @Column("card_id")
-    private Long cardId;
+    private UUID cardId;
 
     @Column("party_id")
-    private Long partyId;
+    private UUID partyId;
 
     @Column("account_id")
-    private Long accountId;
+    private UUID accountId;
 
     @Column("enrollment_type")
     private String enrollmentType;
@@ -54,13 +58,13 @@ public class CardEnrollment extends BaseEntity {
     private String enrollmentAgent;
 
     @Column("promotion_id")
-    private Long promotionId;
+    private UUID promotionId;
 
     @Column("program_id")
-    private Long programId;
+    private UUID programId;
 
     @Column("feature_id")
-    private Long featureId;
+    private UUID featureId;
 
     @Column("feature_code")
     private String featureCode;

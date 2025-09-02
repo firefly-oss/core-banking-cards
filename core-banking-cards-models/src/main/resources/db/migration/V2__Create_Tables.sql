@@ -4,7 +4,7 @@
 
 -- Issuer table
 CREATE TABLE issuer (
-    issuer_id BIGSERIAL PRIMARY KEY,
+    issuer_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     issuer_name VARCHAR(255) NOT NULL,
     issuer_code VARCHAR(50) NOT NULL,
     country_code VARCHAR(3),
@@ -17,7 +17,7 @@ CREATE TABLE issuer (
 
 -- Card Network table
 CREATE TABLE card_network (
-    card_network_id BIGSERIAL PRIMARY KEY,
+    card_network_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     network_name VARCHAR(255) NOT NULL,
     network_code VARCHAR(50) NOT NULL,
     network_logo_url VARCHAR(255),
@@ -30,7 +30,7 @@ CREATE TABLE card_network (
 
 -- Card Type table
 CREATE TABLE card_type (
-    card_type_id BIGSERIAL PRIMARY KEY,
+    card_type_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     type_name VARCHAR(255) NOT NULL,
     type_code VARCHAR(50) NOT NULL,
     is_credit BOOLEAN DEFAULT FALSE,
@@ -48,12 +48,12 @@ CREATE TABLE card_type (
 
 -- BIN table
 CREATE TABLE bin (
-    bin_id BIGSERIAL PRIMARY KEY,
+    bin_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     bin_number VARCHAR(8) NOT NULL,
     bin_length INTEGER,
-    issuer_id BIGINT REFERENCES issuer(issuer_id),
-    card_network_id BIGINT REFERENCES card_network(card_network_id),
-    card_type_id BIGINT REFERENCES card_type(card_type_id),
+    issuer_id UUID REFERENCES issuer(issuer_id),
+    card_network_id UUID REFERENCES card_network(card_network_id),
+    card_type_id UUID REFERENCES card_type(card_type_id),
     country_code VARCHAR(3),
     currency_code VARCHAR(3),
     is_active BOOLEAN DEFAULT TRUE,
@@ -63,14 +63,14 @@ CREATE TABLE bin (
 
 -- Card Design table
 CREATE TABLE card_design (
-    design_id BIGSERIAL PRIMARY KEY,
+    design_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     design_name VARCHAR(255) NOT NULL,
     design_code VARCHAR(50) NOT NULL,
     front_image_url VARCHAR(255),
     back_image_url VARCHAR(255),
-    card_type_id BIGINT REFERENCES card_type(card_type_id),
-    issuer_id BIGINT REFERENCES issuer(issuer_id),
-    card_network_id BIGINT REFERENCES card_network(card_network_id),
+    card_type_id UUID REFERENCES card_type(card_type_id),
+    issuer_id UUID REFERENCES issuer(issuer_id),
+    card_network_id UUID REFERENCES card_network(card_network_id),
     is_customizable BOOLEAN DEFAULT FALSE,
     is_default BOOLEAN DEFAULT FALSE,
     is_active BOOLEAN DEFAULT TRUE,
@@ -80,14 +80,14 @@ CREATE TABLE card_design (
 
 -- Card Program table
 CREATE TABLE card_program (
-    program_id BIGSERIAL PRIMARY KEY,
+    program_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     program_name VARCHAR(255) NOT NULL,
     program_code VARCHAR(50) NOT NULL,
-    issuer_id BIGINT REFERENCES issuer(issuer_id),
-    bin_id BIGINT REFERENCES bin(bin_id),
-    card_type_id BIGINT REFERENCES card_type(card_type_id),
-    card_network_id BIGINT REFERENCES card_network(card_network_id),
-    default_design_id BIGINT REFERENCES card_design(design_id),
+    issuer_id UUID REFERENCES issuer(issuer_id),
+    bin_id UUID REFERENCES bin(bin_id),
+    card_type_id UUID REFERENCES card_type(card_type_id),
+    card_network_id UUID REFERENCES card_network(card_network_id),
+    default_design_id UUID REFERENCES card_design(design_id),
     start_date TIMESTAMP,
     end_date TIMESTAMP,
     is_active BOOLEAN DEFAULT TRUE,
@@ -104,17 +104,17 @@ CREATE TABLE card_program (
 
 -- Card table
 CREATE TABLE card (
-    card_id BIGSERIAL PRIMARY KEY,
+    card_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     card_number VARCHAR(19) NOT NULL,
     masked_card_number VARCHAR(19),
     card_sequence_number VARCHAR(3),
-    bin_id BIGINT REFERENCES bin(bin_id),
-    card_type_id BIGINT REFERENCES card_type(card_type_id),
-    card_network_id BIGINT REFERENCES card_network(card_network_id),
-    issuer_id BIGINT REFERENCES issuer(issuer_id),
-    contract_id BIGINT,
-    account_id BIGINT,
-    party_id BIGINT,
+    bin_id UUID REFERENCES bin(bin_id),
+    card_type_id UUID REFERENCES card_type(card_type_id),
+    card_network_id UUID REFERENCES card_network(card_network_id),
+    issuer_id UUID REFERENCES issuer(issuer_id),
+    contract_id UUID,
+    account_id UUID,
+    party_id UUID,
     card_status card_status_enum,
     card_holder_name VARCHAR(255),
     card_holder_id VARCHAR(50),
@@ -137,7 +137,7 @@ CREATE TABLE card (
     credit_limit DOUBLE PRECISION,
     available_balance DOUBLE PRECISION,
     currency_code VARCHAR(3),
-    design_id BIGINT REFERENCES card_design(design_id),
+    design_id UUID REFERENCES card_design(design_id),
     notes TEXT,
     date_created TIMESTAMP,
     date_updated TIMESTAMP
@@ -145,11 +145,11 @@ CREATE TABLE card (
 
 -- Physical Card table
 CREATE TABLE physical_card (
-    physical_card_id BIGSERIAL PRIMARY KEY,
-    card_id BIGINT REFERENCES card(card_id),
+    physical_card_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    card_id UUID REFERENCES card(card_id),
     embossed_name VARCHAR(255),
     plastic_id VARCHAR(50),
-    design_id BIGINT REFERENCES card_design(design_id),
+    design_id UUID REFERENCES card_design(design_id),
     is_contactless BOOLEAN DEFAULT TRUE,
     is_chip BOOLEAN DEFAULT TRUE,
     is_magstripe BOOLEAN DEFAULT TRUE,
@@ -170,7 +170,7 @@ CREATE TABLE physical_card (
     activation_date TIMESTAMP,
     is_activated BOOLEAN DEFAULT FALSE,
     replacement_reason VARCHAR(255),
-    previous_card_id BIGINT REFERENCES card(card_id),
+    previous_card_id UUID REFERENCES card(card_id),
     notes TEXT,
     date_created TIMESTAMP,
     date_updated TIMESTAMP
@@ -178,8 +178,8 @@ CREATE TABLE physical_card (
 
 -- Virtual Card table
 CREATE TABLE virtual_card (
-    virtual_card_id BIGSERIAL PRIMARY KEY,
-    card_id BIGINT REFERENCES card(card_id),
+    virtual_card_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    card_id UUID REFERENCES card(card_id),
     device_id VARCHAR(255),
     device_type VARCHAR(50),
     device_model VARCHAR(50),
@@ -209,8 +209,8 @@ CREATE TABLE virtual_card (
 
 -- Card Balance table
 CREATE TABLE card_balance (
-    balance_id BIGSERIAL PRIMARY KEY,
-    card_id BIGINT REFERENCES card(card_id),
+    balance_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    card_id UUID REFERENCES card(card_id),
     available_balance DOUBLE PRECISION,
     ledger_balance DOUBLE PRECISION,
     pending_authorizations DOUBLE PRECISION,
@@ -224,7 +224,7 @@ CREATE TABLE card_balance (
 
 -- Card Merchant table
 CREATE TABLE card_merchant (
-    merchant_id BIGSERIAL PRIMARY KEY,
+    merchant_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     merchant_reference VARCHAR(50),
     merchant_name VARCHAR(255) NOT NULL,
     merchant_legal_name VARCHAR(255),
@@ -252,7 +252,7 @@ CREATE TABLE card_merchant (
 
 -- Card Terminal table
 CREATE TABLE card_terminal (
-    terminal_id BIGSERIAL PRIMARY KEY,
+    terminal_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     terminal_reference VARCHAR(50),
     terminal_serial_number VARCHAR(50),
     terminal_name VARCHAR(255),
@@ -261,7 +261,7 @@ CREATE TABLE card_terminal (
     terminal_manufacturer VARCHAR(50),
     terminal_status VARCHAR(50),
     is_active BOOLEAN DEFAULT TRUE,
-    merchant_id BIGINT REFERENCES card_merchant(merchant_id),
+    merchant_id UUID REFERENCES card_merchant(merchant_id),
     merchant_name VARCHAR(255),
     address_line1 VARCHAR(255),
     city VARCHAR(100),
@@ -279,10 +279,10 @@ CREATE TABLE card_terminal (
 
 -- Card Transaction table
 CREATE TABLE card_transaction (
-    card_transaction_id BIGSERIAL PRIMARY KEY,
-    card_id BIGINT REFERENCES card(card_id),
-    account_id BIGINT,
-    party_id BIGINT,
+    card_transaction_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    card_id UUID REFERENCES card(card_id),
+    account_id UUID,
+    party_id UUID,
     transaction_reference VARCHAR(50),
     provider_reference VARCHAR(50),
     network_reference VARCHAR(50),
@@ -348,11 +348,11 @@ CREATE TABLE card_transaction (
 
 -- Card Dispute table
 CREATE TABLE card_dispute (
-    dispute_id BIGSERIAL PRIMARY KEY,
-    card_id BIGINT REFERENCES card(card_id),
-    transaction_id BIGINT REFERENCES card_transaction(card_transaction_id),
-    party_id BIGINT,
-    account_id BIGINT,
+    dispute_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    card_id UUID REFERENCES card(card_id),
+    transaction_id UUID REFERENCES card_transaction(card_transaction_id),
+    party_id UUID,
+    account_id UUID,
     dispute_reference VARCHAR(50),
     provider_reference VARCHAR(50),
     network_reference VARCHAR(50),
@@ -378,7 +378,7 @@ CREATE TABLE card_dispute (
     cardholder_statement TEXT,
     merchant_response TEXT,
     evidence_documents TEXT,
-    assigned_agent_id BIGINT,
+    assigned_agent_id UUID,
     assigned_agent_name VARCHAR(100),
     last_updated_timestamp TIMESTAMP,
     notes TEXT,
@@ -388,10 +388,10 @@ CREATE TABLE card_dispute (
 
 -- Card Statement table
 CREATE TABLE card_statement (
-    statement_id BIGSERIAL PRIMARY KEY,
-    card_id BIGINT REFERENCES card(card_id),
-    party_id BIGINT,
-    account_id BIGINT,
+    statement_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    card_id UUID REFERENCES card(card_id),
+    party_id UUID,
+    account_id UUID,
     statement_reference VARCHAR(50),
     statement_date TIMESTAMP,
     statement_period_start TIMESTAMP,
@@ -415,11 +415,11 @@ CREATE TABLE card_statement (
 
 -- Card Payment table
 CREATE TABLE card_payment (
-    payment_id BIGSERIAL PRIMARY KEY,
-    card_id BIGINT REFERENCES card(card_id),
-    party_id BIGINT,
-    account_id BIGINT,
-    statement_id BIGINT REFERENCES card_statement(statement_id),
+    payment_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    card_id UUID REFERENCES card(card_id),
+    party_id UUID,
+    account_id UUID,
+    statement_id UUID REFERENCES card_statement(statement_id),
     payment_reference VARCHAR(50),
     external_reference VARCHAR(50),
     payment_amount DECIMAL(19, 4),
@@ -438,10 +438,10 @@ CREATE TABLE card_payment (
 
 -- Card Activity table
 CREATE TABLE card_activity (
-    activity_id BIGSERIAL PRIMARY KEY,
-    card_id BIGINT REFERENCES card(card_id),
-    party_id BIGINT,
-    account_id BIGINT,
+    activity_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    card_id UUID REFERENCES card(card_id),
+    party_id UUID,
+    account_id UUID,
     activity_reference VARCHAR(50),
     activity_type VARCHAR(50),
     activity_category VARCHAR(50),
@@ -476,7 +476,7 @@ CREATE TABLE card_activity (
     notification_timestamp TIMESTAMP,
     notification_recipient VARCHAR(255),
     related_entity_type VARCHAR(50),
-    related_entity_id BIGINT,
+    related_entity_id UUID,
     notes TEXT,
     date_created TIMESTAMP,
     date_updated TIMESTAMP
@@ -484,9 +484,9 @@ CREATE TABLE card_activity (
 
 -- Card Limit table
 CREATE TABLE card_limit (
-    limit_id BIGSERIAL PRIMARY KEY,
-    card_id BIGINT REFERENCES card(card_id),
-    party_id BIGINT,
+    limit_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    card_id UUID REFERENCES card(card_id),
+    party_id UUID,
     limit_type limit_type_enum,
     limit_value DOUBLE PRECISION,
     currency_code VARCHAR(3),
@@ -503,9 +503,9 @@ CREATE TABLE card_limit (
 
 -- Card Fee table
 CREATE TABLE card_fee (
-    fee_id BIGSERIAL PRIMARY KEY,
-    card_id BIGINT REFERENCES card(card_id),
-    program_id BIGINT REFERENCES card_program(program_id),
+    fee_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    card_id UUID REFERENCES card(card_id),
+    program_id UUID REFERENCES card_program(program_id),
     fee_type VARCHAR(50),
     fee_name VARCHAR(255),
     fee_amount DOUBLE PRECISION,
@@ -522,9 +522,9 @@ CREATE TABLE card_fee (
 
 -- Card Interest table
 CREATE TABLE card_interest (
-    interest_id BIGSERIAL PRIMARY KEY,
-    card_id BIGINT REFERENCES card(card_id),
-    program_id BIGINT REFERENCES card_program(program_id),
+    interest_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    card_id UUID REFERENCES card(card_id),
+    program_id UUID REFERENCES card_program(program_id),
     interest_type VARCHAR(50),
     interest_rate DOUBLE PRECISION,
     annual_percentage_rate DOUBLE PRECISION,
@@ -539,9 +539,9 @@ CREATE TABLE card_interest (
 
 -- Card Promotion table
 CREATE TABLE card_promotion (
-    promotion_id BIGSERIAL PRIMARY KEY,
-    card_id BIGINT REFERENCES card(card_id),
-    program_id BIGINT REFERENCES card_program(program_id),
+    promotion_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    card_id UUID REFERENCES card(card_id),
+    program_id UUID REFERENCES card_program(program_id),
     promotion_code VARCHAR(50),
     promotion_name VARCHAR(255),
     promotion_description TEXT,
@@ -558,12 +558,12 @@ CREATE TABLE card_promotion (
 
 -- Card Reward table
 CREATE TABLE card_reward (
-    reward_id BIGSERIAL PRIMARY KEY,
-    card_id BIGINT REFERENCES card(card_id),
-    transaction_id BIGINT REFERENCES card_transaction(card_transaction_id),
-    party_id BIGINT,
-    account_id BIGINT,
-    program_id BIGINT REFERENCES card_program(program_id),
+    reward_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    card_id UUID REFERENCES card(card_id),
+    transaction_id UUID REFERENCES card_transaction(card_transaction_id),
+    party_id UUID,
+    account_id UUID,
+    program_id UUID REFERENCES card_program(program_id),
     reward_reference VARCHAR(50),
     reward_type VARCHAR(50),
     reward_category VARCHAR(50),
@@ -598,11 +598,11 @@ CREATE TABLE card_reward (
     earning_date TIMESTAMP,
     expiry_date TIMESTAMP,
     is_promotional BOOLEAN DEFAULT FALSE,
-    promotion_id BIGINT REFERENCES card_promotion(promotion_id),
+    promotion_id UUID REFERENCES card_promotion(promotion_id),
     promotion_name VARCHAR(255),
     is_transferable BOOLEAN DEFAULT FALSE,
-    transfer_to_party_id BIGINT,
-    transfer_from_party_id BIGINT,
+    transfer_to_party_id UUID,
+    transfer_from_party_id UUID,
     transfer_date TIMESTAMP,
     is_redeemed BOOLEAN DEFAULT FALSE,
     redemption_date TIMESTAMP,
@@ -613,8 +613,8 @@ CREATE TABLE card_reward (
 
 -- Card Security table
 CREATE TABLE card_security (
-    security_id BIGSERIAL PRIMARY KEY,
-    card_id BIGINT REFERENCES card(card_id),
+    security_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    card_id UUID REFERENCES card(card_id),
     security_feature security_feature_enum,
     is_enabled BOOLEAN DEFAULT TRUE,
     enabled_date TIMESTAMP,
@@ -627,8 +627,8 @@ CREATE TABLE card_security (
 
 -- Card Configuration table
 CREATE TABLE card_configuration (
-    configuration_id BIGSERIAL PRIMARY KEY,
-    card_id BIGINT REFERENCES card(card_id),
+    configuration_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    card_id UUID REFERENCES card(card_id),
     config_type config_type_enum,
     is_enabled BOOLEAN DEFAULT TRUE,
     enabled_date TIMESTAMP,
@@ -641,7 +641,7 @@ CREATE TABLE card_configuration (
 
 -- Card Provider table
 CREATE TABLE card_provider (
-    provider_id BIGSERIAL PRIMARY KEY,
+    provider_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     provider_name VARCHAR(255) NOT NULL,
     provider_code VARCHAR(50) NOT NULL,
     provider_type VARCHAR(50),
@@ -664,7 +664,7 @@ CREATE TABLE card_provider (
 
 -- Card Acquirer table
 CREATE TABLE card_acquirer (
-    acquirer_id BIGSERIAL PRIMARY KEY,
+    acquirer_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     acquirer_name VARCHAR(255) NOT NULL,
     acquirer_code VARCHAR(50) NOT NULL,
     contact_name VARCHAR(255),
@@ -689,7 +689,7 @@ CREATE TABLE card_acquirer (
 
 -- Card Processor table
 CREATE TABLE card_processor (
-    processor_id BIGSERIAL PRIMARY KEY,
+    processor_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     processor_name VARCHAR(255) NOT NULL,
     processor_code VARCHAR(50) NOT NULL,
     contact_name VARCHAR(255),
@@ -713,7 +713,7 @@ CREATE TABLE card_processor (
 
 -- Card Gateway table
 CREATE TABLE card_gateway (
-    gateway_id BIGSERIAL PRIMARY KEY,
+    gateway_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     gateway_name VARCHAR(255) NOT NULL,
     gateway_code VARCHAR(50) NOT NULL,
     contact_name VARCHAR(255),
@@ -737,14 +737,14 @@ CREATE TABLE card_gateway (
 
 -- Card Application table
 CREATE TABLE card_application (
-    application_id BIGSERIAL PRIMARY KEY,
-    party_id BIGINT,
-    account_id BIGINT,
+    application_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    party_id UUID,
+    account_id UUID,
     application_reference VARCHAR(50),
     application_type VARCHAR(50),
-    card_type_id BIGINT REFERENCES card_type(card_type_id),
-    program_id BIGINT REFERENCES card_program(program_id),
-    design_id BIGINT REFERENCES card_design(design_id),
+    card_type_id UUID REFERENCES card_type(card_type_id),
+    program_id UUID REFERENCES card_program(program_id),
+    design_id UUID REFERENCES card_design(design_id),
     application_status VARCHAR(50),
     application_stage VARCHAR(50),
     application_channel VARCHAR(50),
@@ -800,7 +800,7 @@ CREATE TABLE card_application (
     rejection_reason VARCHAR(255),
     rejection_timestamp TIMESTAMP,
     rejection_code VARCHAR(50),
-    card_id BIGINT REFERENCES card(card_id),
+    card_id UUID REFERENCES card(card_id),
     card_issuance_timestamp TIMESTAMP,
     terms_accepted BOOLEAN DEFAULT FALSE,
     terms_accepted_timestamp TIMESTAMP,
@@ -813,9 +813,9 @@ CREATE TABLE card_application (
 
 -- Card Alert table
 CREATE TABLE card_alert (
-    alert_id BIGSERIAL PRIMARY KEY,
-    card_id BIGINT REFERENCES card(card_id),
-    party_id BIGINT,
+    alert_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    card_id UUID REFERENCES card(card_id),
+    party_id UUID,
     alert_type VARCHAR(50),
     alert_name VARCHAR(255),
     alert_description TEXT,
@@ -833,11 +833,11 @@ CREATE TABLE card_alert (
 
 -- Fraud Case table
 CREATE TABLE fraud_case (
-    fraud_case_id BIGSERIAL PRIMARY KEY,
-    card_id BIGINT REFERENCES card(card_id),
-    transaction_id BIGINT REFERENCES card_transaction(card_transaction_id),
-    party_id BIGINT,
-    account_id BIGINT,
+    fraud_case_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    card_id UUID REFERENCES card(card_id),
+    transaction_id UUID REFERENCES card_transaction(card_transaction_id),
+    party_id UUID,
+    account_id UUID,
     case_reference VARCHAR(50),
     provider_reference VARCHAR(50),
     network_reference VARCHAR(50),
@@ -869,10 +869,10 @@ CREATE TABLE fraud_case (
     police_report_number VARCHAR(50),
     police_report_date TIMESTAMP,
     evidence_documents TEXT,
-    assigned_agent_id BIGINT,
+    assigned_agent_id UUID,
     assigned_agent_name VARCHAR(100),
     is_card_reissued BOOLEAN DEFAULT FALSE,
-    new_card_id BIGINT REFERENCES card(card_id),
+    new_card_id UUID REFERENCES card(card_id),
     last_updated_timestamp TIMESTAMP,
     notes TEXT,
     date_created TIMESTAMP,
@@ -881,9 +881,9 @@ CREATE TABLE fraud_case (
 
 -- Card Enrollment table
 CREATE TABLE card_enrollment (
-    enrollment_id BIGSERIAL PRIMARY KEY,
-    card_id BIGINT REFERENCES card(card_id),
-    party_id BIGINT,
+    enrollment_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    card_id UUID REFERENCES card(card_id),
+    party_id UUID,
     service_type VARCHAR(50),
     service_name VARCHAR(255),
     enrollment_date TIMESTAMP,

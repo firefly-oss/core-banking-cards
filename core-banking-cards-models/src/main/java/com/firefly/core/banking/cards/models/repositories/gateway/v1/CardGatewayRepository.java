@@ -6,20 +6,20 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Repository for managing CardGateway entities.
  */
 @Repository
-public interface CardGatewayRepository extends BaseRepository<CardGateway, Long> {
+public interface CardGatewayRepository extends BaseRepository<CardGateway, UUID> {
     /**
      * Find a CardGateway by its ID.
      *
      * @param gatewayId the ID of the CardGateway to find
      * @return a Mono emitting the CardGateway if found, or empty if not found
      */
-    Mono<CardGateway> findByGatewayId(Long gatewayId);
+    Mono<CardGateway> findByGatewayId(UUID gatewayId);
     
     /**
      * Find a CardGateway by its reference.
@@ -136,7 +136,7 @@ public interface CardGatewayRepository extends BaseRepository<CardGateway, Long>
      * @param processorId the processor ID to search for
      * @return a Flux emitting the CardGateways for the specified processor
      */
-    Flux<CardGateway> findByProcessorId(Long processorId);
+    Flux<CardGateway> findByProcessorId(UUID processorId);
     
     /**
      * Find CardGateways by acquirer ID.
@@ -144,7 +144,7 @@ public interface CardGatewayRepository extends BaseRepository<CardGateway, Long>
      * @param acquirerId the acquirer ID to search for
      * @return a Flux emitting the CardGateways for the specified acquirer
      */
-    Flux<CardGateway> findByAcquirerId(Long acquirerId);
+    Flux<CardGateway> findByAcquirerId(UUID acquirerId);
     
     /**
      * Find PCI compliant CardGateways.

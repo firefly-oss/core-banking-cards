@@ -7,19 +7,20 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Repository for managing CardDispute entities.
  */
 @Repository
-public interface CardDisputeRepository extends BaseRepository<CardDispute, Long> {
+public interface CardDisputeRepository extends BaseRepository<CardDispute, UUID> {
     /**
      * Find a CardDispute by its ID.
      *
      * @param disputeId the ID of the CardDispute to find
      * @return a Mono emitting the CardDispute if found, or empty if not found
      */
-    Mono<CardDispute> findByDisputeId(Long disputeId);
+    Mono<CardDispute> findByDisputeId(UUID disputeId);
 
     /**
      * Find a CardDispute by its reference.
@@ -35,7 +36,7 @@ public interface CardDisputeRepository extends BaseRepository<CardDispute, Long>
      * @param cardId the card ID to search for
      * @return a Flux emitting the CardDisputes for the specified card
      */
-    Flux<CardDispute> findByCardId(Long cardId);
+    Flux<CardDispute> findByCardId(UUID cardId);
 
     /**
      * Find CardDisputes by card ID with pagination.
@@ -44,7 +45,7 @@ public interface CardDisputeRepository extends BaseRepository<CardDispute, Long>
      * @param pageable the pagination information
      * @return a Flux emitting the CardDisputes for the specified card with pagination
      */
-    Flux<CardDispute> findByCardId(Long cardId, org.springframework.data.domain.Pageable pageable);
+    Flux<CardDispute> findByCardId(UUID cardId, org.springframework.data.domain.Pageable pageable);
 
     /**
      * Count CardDisputes by card ID.
@@ -53,7 +54,7 @@ public interface CardDisputeRepository extends BaseRepository<CardDispute, Long>
      * @return a Mono emitting the count of CardDisputes for the specified card
      */
     @org.springframework.data.r2dbc.repository.Query("SELECT COUNT(*) FROM card_dispute WHERE card_id = :cardId")
-    Mono<Long> countByCardId(Long cardId);
+    Mono<Long> countByCardId(UUID cardId);
 
     /**
      * Find CardDisputes by transaction ID.
@@ -61,7 +62,7 @@ public interface CardDisputeRepository extends BaseRepository<CardDispute, Long>
      * @param transactionId the transaction ID to search for
      * @return a Flux emitting the CardDisputes for the specified transaction
      */
-    Flux<CardDispute> findByTransactionId(Long transactionId);
+    Flux<CardDispute> findByTransactionId(UUID transactionId);
 
     /**
      * Find CardDisputes by party ID.
@@ -69,7 +70,7 @@ public interface CardDisputeRepository extends BaseRepository<CardDispute, Long>
      * @param partyId the party ID to search for
      * @return a Flux emitting the CardDisputes for the specified party
      */
-    Flux<CardDispute> findByPartyId(Long partyId);
+    Flux<CardDispute> findByPartyId(UUID partyId);
 
     /**
      * Find CardDisputes by account ID.
@@ -77,7 +78,7 @@ public interface CardDisputeRepository extends BaseRepository<CardDispute, Long>
      * @param accountId the account ID to search for
      * @return a Flux emitting the CardDisputes for the specified account
      */
-    Flux<CardDispute> findByAccountId(Long accountId);
+    Flux<CardDispute> findByAccountId(UUID accountId);
 
     /**
      * Find CardDisputes by provider reference.
@@ -166,5 +167,5 @@ public interface CardDisputeRepository extends BaseRepository<CardDispute, Long>
      * @param assignedAgentId the assigned agent ID to search for
      * @return a Flux emitting the CardDisputes assigned to the specified agent
      */
-    Flux<CardDispute> findByAssignedAgentId(Long assignedAgentId);
+    Flux<CardDispute> findByAssignedAgentId(UUID assignedAgentId);
 }

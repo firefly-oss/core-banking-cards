@@ -1,12 +1,16 @@
 package com.firefly.core.banking.cards.models.entities.activity.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Card Activity entity.
@@ -22,16 +26,16 @@ public class CardActivity extends BaseEntity {
 
     @Id
     @Column("activity_id")
-    private Long activityId;
+    private UUID activityId;
 
     @Column("card_id")
-    private Long cardId;
+    private UUID cardId;
 
     @Column("party_id")
-    private Long partyId;
+    private UUID partyId;
 
     @Column("account_id")
-    private Long accountId;
+    private UUID accountId;
 
     @Column("activity_reference")
     private String activityReference;
@@ -136,7 +140,7 @@ public class CardActivity extends BaseEntity {
     private String relatedEntityType;
 
     @Column("related_entity_id")
-    private Long relatedEntityId;
+    private UUID relatedEntityId;
 
     @Column("notes")
     private String notes;

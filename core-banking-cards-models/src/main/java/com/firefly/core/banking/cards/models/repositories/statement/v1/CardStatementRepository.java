@@ -7,19 +7,20 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Repository for managing CardStatement entities.
  */
 @Repository
-public interface CardStatementRepository extends BaseRepository<CardStatement, Long> {
+public interface CardStatementRepository extends BaseRepository<CardStatement, UUID> {
     /**
      * Find a CardStatement by its ID.
      *
      * @param statementId the ID of the CardStatement to find
      * @return a Mono emitting the CardStatement if found, or empty if not found
      */
-    Mono<CardStatement> findByStatementId(Long statementId);
+    Mono<CardStatement> findByStatementId(UUID statementId);
 
     /**
      * Find a CardStatement by its reference.
@@ -35,7 +36,7 @@ public interface CardStatementRepository extends BaseRepository<CardStatement, L
      * @param cardId the card ID to search for
      * @return a Flux emitting the CardStatements for the specified card
      */
-    Flux<CardStatement> findByCardId(Long cardId);
+    Flux<CardStatement> findByCardId(UUID cardId);
 
     /**
      * Find CardStatements by party ID.
@@ -43,7 +44,7 @@ public interface CardStatementRepository extends BaseRepository<CardStatement, L
      * @param partyId the party ID to search for
      * @return a Flux emitting the CardStatements for the specified party
      */
-    Flux<CardStatement> findByPartyId(Long partyId);
+    Flux<CardStatement> findByPartyId(UUID partyId);
 
     /**
      * Find CardStatements by account ID.
@@ -51,7 +52,7 @@ public interface CardStatementRepository extends BaseRepository<CardStatement, L
      * @param accountId the account ID to search for
      * @return a Flux emitting the CardStatements for the specified account
      */
-    Flux<CardStatement> findByAccountId(Long accountId);
+    Flux<CardStatement> findByAccountId(UUID accountId);
 
     /**
      * Find CardStatements by statement date range.

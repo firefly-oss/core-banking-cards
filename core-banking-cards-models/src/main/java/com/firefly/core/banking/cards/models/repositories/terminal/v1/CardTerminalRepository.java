@@ -7,19 +7,20 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Repository for managing CardTerminal entities.
  */
 @Repository
-public interface CardTerminalRepository extends BaseRepository<CardTerminal, Long> {
+public interface CardTerminalRepository extends BaseRepository<CardTerminal, UUID> {
     /**
      * Find a CardTerminal by its ID.
      *
      * @param terminalId the ID of the CardTerminal to find
      * @return a Mono emitting the CardTerminal if found, or empty if not found
      */
-    Mono<CardTerminal> findByTerminalId(Long terminalId);
+    Mono<CardTerminal> findByTerminalId(UUID terminalId);
     
     /**
      * Find a CardTerminal by its reference.
@@ -82,7 +83,7 @@ public interface CardTerminalRepository extends BaseRepository<CardTerminal, Lon
      * @param merchantId the merchant ID to search for
      * @return a Flux emitting the CardTerminals for the specified merchant
      */
-    Flux<CardTerminal> findByMerchantId(Long merchantId);
+    Flux<CardTerminal> findByMerchantId(UUID merchantId);
     
     /**
      * Find CardTerminals by merchant location ID.

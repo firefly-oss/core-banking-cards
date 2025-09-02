@@ -1,13 +1,17 @@
 package com.firefly.core.banking.cards.models.entities.fee.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Card Fee entity.
@@ -22,25 +26,25 @@ public class CardFee extends BaseEntity {
 
     @Id
     @Column("fee_id")
-    private Long feeId;
+    private UUID feeId;
 
     @Column("card_id")
-    private Long cardId;
+    private UUID cardId;
 
     @Column("party_id")
-    private Long partyId;
+    private UUID partyId;
 
     @Column("account_id")
-    private Long accountId;
+    private UUID accountId;
 
     @Column("transaction_id")
-    private Long transactionId;
+    private UUID transactionId;
 
     @Column("statement_id")
-    private Long statementId;
+    private UUID statementId;
 
     @Column("program_id")
-    private Long programId;
+    private UUID programId;
 
     @Column("fee_reference")
     private String feeReference;

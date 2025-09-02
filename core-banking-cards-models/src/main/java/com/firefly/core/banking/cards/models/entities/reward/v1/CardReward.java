@@ -1,13 +1,17 @@
 package com.firefly.core.banking.cards.models.entities.reward.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Card Reward entity.
@@ -22,22 +26,22 @@ public class CardReward extends BaseEntity {
 
     @Id
     @Column("reward_id")
-    private Long rewardId;
+    private UUID rewardId;
 
     @Column("card_id")
-    private Long cardId;
+    private UUID cardId;
 
     @Column("transaction_id")
-    private Long transactionId;
+    private UUID transactionId;
 
     @Column("party_id")
-    private Long partyId;
+    private UUID partyId;
 
     @Column("account_id")
-    private Long accountId;
+    private UUID accountId;
 
     @Column("program_id")
-    private Long programId;
+    private UUID programId;
 
     @Column("reward_reference")
     private String rewardReference;
@@ -139,7 +143,7 @@ public class CardReward extends BaseEntity {
     private Boolean isPromotional;
 
     @Column("promotion_id")
-    private Long promotionId;
+    private UUID promotionId;
 
     @Column("promotion_name")
     private String promotionName;
@@ -148,10 +152,10 @@ public class CardReward extends BaseEntity {
     private Boolean isTransferable;
 
     @Column("transfer_to_party_id")
-    private Long transferToPartyId;
+    private UUID transferToPartyId;
 
     @Column("transfer_from_party_id")
-    private Long transferFromPartyId;
+    private UUID transferFromPartyId;
 
     @Column("transfer_date")
     private LocalDateTime transferDate;

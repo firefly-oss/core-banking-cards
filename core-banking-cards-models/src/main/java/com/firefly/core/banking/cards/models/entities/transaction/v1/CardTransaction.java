@@ -3,13 +3,17 @@ package com.firefly.core.banking.cards.models.entities.transaction.v1;
 import com.firefly.core.banking.cards.interfaces.enums.transaction.v1.TransactionStatusEnum;
 import com.firefly.core.banking.cards.interfaces.enums.transaction.v1.TransactionTypeEnum;
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Card Transaction entity.
@@ -24,16 +28,16 @@ public class CardTransaction extends BaseEntity {
 
     @Id
     @Column("card_transaction_id")
-    private Long cardTransactionId;
+    private UUID cardTransactionId;
 
     @Column("card_id")
-    private Long cardId;
+    private UUID cardId;
 
     @Column("account_id")
-    private Long accountId;
+    private UUID accountId;
 
     @Column("party_id")
-    private Long partyId;
+    private UUID partyId;
 
     @Column("transaction_reference")
     private String transactionReference;

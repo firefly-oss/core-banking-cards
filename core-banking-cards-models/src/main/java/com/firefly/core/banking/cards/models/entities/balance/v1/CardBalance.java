@@ -1,13 +1,17 @@
 package com.firefly.core.banking.cards.models.entities.balance.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Card Balance entity.
@@ -23,19 +27,19 @@ public class CardBalance extends BaseEntity {
 
     @Id
     @Column("balance_id")
-    private Long balanceId;
+    private UUID balanceId;
 
     @Column("card_id")
-    private Long cardId;
+    private UUID cardId;
 
     @Column("party_id")
-    private Long partyId;
+    private UUID partyId;
 
     @Column("account_id")
-    private Long accountId;
+    private UUID accountId;
 
     @Column("statement_id")
-    private Long statementId;
+    private UUID statementId;
 
     @Column("balance_type")
     private String balanceType;
@@ -65,19 +69,19 @@ public class CardBalance extends BaseEntity {
     private LocalDateTime asOfDate;
 
     @Column("last_transaction_id")
-    private Long lastTransactionId;
+    private UUID lastTransactionId;
 
     @Column("last_transaction_timestamp")
     private LocalDateTime lastTransactionTimestamp;
 
     @Column("last_payment_id")
-    private Long lastPaymentId;
+    private UUID lastPaymentId;
 
     @Column("last_payment_timestamp")
     private LocalDateTime lastPaymentTimestamp;
 
     @Column("last_statement_id")
-    private Long lastStatementId;
+    private UUID lastStatementId;
 
     @Column("last_statement_date")
     private LocalDateTime lastStatementDate;
@@ -86,7 +90,7 @@ public class CardBalance extends BaseEntity {
     private Boolean isPromotionalRate;
 
     @Column("promotion_id")
-    private Long promotionId;
+    private UUID promotionId;
 
     @Column("promotion_end_date")
     private LocalDateTime promotionEndDate;

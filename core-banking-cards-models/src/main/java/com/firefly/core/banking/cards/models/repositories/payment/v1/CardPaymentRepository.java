@@ -7,19 +7,20 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Repository for managing CardPayment entities.
  */
 @Repository
-public interface CardPaymentRepository extends BaseRepository<CardPayment, Long> {
+public interface CardPaymentRepository extends BaseRepository<CardPayment, UUID> {
     /**
      * Find a CardPayment by its ID.
      *
      * @param paymentId the ID of the CardPayment to find
      * @return a Mono emitting the CardPayment if found, or empty if not found
      */
-    Mono<CardPayment> findByPaymentId(Long paymentId);
+    Mono<CardPayment> findByPaymentId(UUID paymentId);
 
     /**
      * Find a CardPayment by its reference.
@@ -43,7 +44,7 @@ public interface CardPaymentRepository extends BaseRepository<CardPayment, Long>
      * @param cardId the card ID to search for
      * @return a Flux emitting the CardPayments for the specified card
      */
-    Flux<CardPayment> findByCardId(Long cardId);
+    Flux<CardPayment> findByCardId(UUID cardId);
 
     /**
      * Find CardPayments by card ID with pagination.
@@ -52,7 +53,7 @@ public interface CardPaymentRepository extends BaseRepository<CardPayment, Long>
      * @param pageable the pagination information
      * @return a Flux emitting the CardPayments for the specified card with pagination
      */
-    Flux<CardPayment> findByCardId(Long cardId, org.springframework.data.domain.Pageable pageable);
+    Flux<CardPayment> findByCardId(UUID cardId, org.springframework.data.domain.Pageable pageable);
 
     /**
      * Count CardPayments by card ID.
@@ -61,7 +62,7 @@ public interface CardPaymentRepository extends BaseRepository<CardPayment, Long>
      * @return a Mono emitting the count of CardPayments for the specified card
      */
     @org.springframework.data.r2dbc.repository.Query("SELECT COUNT(*) FROM card_payment WHERE card_id = :cardId")
-    Mono<Long> countByCardId(Long cardId);
+    Mono<Long> countByCardId(UUID cardId);
 
     /**
      * Find CardPayments by party ID.
@@ -69,7 +70,7 @@ public interface CardPaymentRepository extends BaseRepository<CardPayment, Long>
      * @param partyId the party ID to search for
      * @return a Flux emitting the CardPayments for the specified party
      */
-    Flux<CardPayment> findByPartyId(Long partyId);
+    Flux<CardPayment> findByPartyId(UUID partyId);
 
     /**
      * Find CardPayments by account ID.
@@ -77,7 +78,7 @@ public interface CardPaymentRepository extends BaseRepository<CardPayment, Long>
      * @param accountId the account ID to search for
      * @return a Flux emitting the CardPayments for the specified account
      */
-    Flux<CardPayment> findByAccountId(Long accountId);
+    Flux<CardPayment> findByAccountId(UUID accountId);
 
     /**
      * Find CardPayments by statement ID.
@@ -85,7 +86,7 @@ public interface CardPaymentRepository extends BaseRepository<CardPayment, Long>
      * @param statementId the statement ID to search for
      * @return a Flux emitting the CardPayments for the specified statement
      */
-    Flux<CardPayment> findByStatementId(Long statementId);
+    Flux<CardPayment> findByStatementId(UUID statementId);
 
     /**
      * Find CardPayments by payment status.

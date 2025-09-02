@@ -2,12 +2,16 @@ package com.firefly.core.banking.cards.models.entities.card.v1;
 
 import com.firefly.core.banking.cards.interfaces.enums.card.v1.CardStatusEnum;
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Card entity.
@@ -22,7 +26,7 @@ public class Card extends BaseEntity {
 
     @Id
     @Column("card_id")
-    private Long cardId;
+    private UUID cardId;
 
     @Column("card_number")
     private String cardNumber;
@@ -34,25 +38,25 @@ public class Card extends BaseEntity {
     private String cardSequenceNumber;
 
     @Column("bin_id")
-    private Long binId;
+    private UUID binId;
 
     @Column("card_type_id")
-    private Long cardTypeId;
+    private UUID cardTypeId;
 
     @Column("card_network_id")
-    private Long cardNetworkId;
+    private UUID cardNetworkId;
 
     @Column("issuer_id")
-    private Long issuerId;
+    private UUID issuerId;
 
     @Column("contract_id")
-    private Long contractId;
+    private UUID contractId;
 
     @Column("account_id")
-    private Long accountId;
+    private UUID accountId;
 
     @Column("party_id")
-    private Long partyId;
+    private UUID partyId;
 
     @Column("card_status")
     private CardStatusEnum cardStatus;
@@ -121,7 +125,7 @@ public class Card extends BaseEntity {
     private String currencyCode;
 
     @Column("design_id")
-    private Long designId;
+    private UUID designId;
 
     @Column("notes")
     private String notes;

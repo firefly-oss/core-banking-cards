@@ -6,20 +6,20 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Repository for managing CardAcquirer entities.
  */
 @Repository
-public interface CardAcquirerRepository extends BaseRepository<CardAcquirer, Long> {
+public interface CardAcquirerRepository extends BaseRepository<CardAcquirer, UUID> {
     /**
      * Find a CardAcquirer by its ID.
      *
      * @param acquirerId the ID of the CardAcquirer to find
      * @return a Mono emitting the CardAcquirer if found, or empty if not found
      */
-    Mono<CardAcquirer> findByAcquirerId(Long acquirerId);
+    Mono<CardAcquirer> findByAcquirerId(UUID acquirerId);
     
     /**
      * Find a CardAcquirer by its reference.
@@ -149,7 +149,7 @@ public interface CardAcquirerRepository extends BaseRepository<CardAcquirer, Lon
      * @param processorId the processor ID to search for
      * @return a Flux emitting the CardAcquirers for the specified processor
      */
-    Flux<CardAcquirer> findByProcessorId(Long processorId);
+    Flux<CardAcquirer> findByProcessorId(UUID processorId);
     
     /**
      * Find CardAcquirers by gateway ID.
@@ -157,7 +157,7 @@ public interface CardAcquirerRepository extends BaseRepository<CardAcquirer, Lon
      * @param gatewayId the gateway ID to search for
      * @return a Flux emitting the CardAcquirers for the specified gateway
      */
-    Flux<CardAcquirer> findByGatewayId(Long gatewayId);
+    Flux<CardAcquirer> findByGatewayId(UUID gatewayId);
     
     /**
      * Find PCI compliant CardAcquirers.

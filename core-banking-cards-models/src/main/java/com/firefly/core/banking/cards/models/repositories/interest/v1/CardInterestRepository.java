@@ -7,19 +7,20 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Repository for managing CardInterest entities.
  */
 @Repository
-public interface CardInterestRepository extends BaseRepository<CardInterest, Long> {
+public interface CardInterestRepository extends BaseRepository<CardInterest, UUID> {
     /**
      * Find a CardInterest by its ID.
      *
      * @param interestId the ID of the CardInterest to find
      * @return a Mono emitting the CardInterest if found, or empty if not found
      */
-    Mono<CardInterest> findByInterestId(Long interestId);
+    Mono<CardInterest> findByInterestId(UUID interestId);
 
     /**
      * Find a CardInterest by its reference.
@@ -35,7 +36,7 @@ public interface CardInterestRepository extends BaseRepository<CardInterest, Lon
      * @param cardId the card ID to search for
      * @return a Flux emitting the CardInterests for the specified card
      */
-    Flux<CardInterest> findByCardId(Long cardId);
+    Flux<CardInterest> findByCardId(UUID cardId);
 
     /**
      * Find CardInterests by card ID with pagination.
@@ -44,7 +45,7 @@ public interface CardInterestRepository extends BaseRepository<CardInterest, Lon
      * @param pageable the pagination information
      * @return a Flux emitting the CardInterests for the specified card with pagination
      */
-    Flux<CardInterest> findByCardId(Long cardId, org.springframework.data.domain.Pageable pageable);
+    Flux<CardInterest> findByCardId(UUID cardId, org.springframework.data.domain.Pageable pageable);
 
     /**
      * Count CardInterests by card ID.
@@ -53,7 +54,7 @@ public interface CardInterestRepository extends BaseRepository<CardInterest, Lon
      * @return a Mono emitting the count of CardInterests for the specified card
      */
     @org.springframework.data.r2dbc.repository.Query("SELECT COUNT(*) FROM card_interest WHERE card_id = :cardId")
-    Mono<Long> countByCardId(Long cardId);
+    Mono<Long> countByCardId(UUID cardId);
 
     /**
      * Find CardInterests by party ID.
@@ -61,7 +62,7 @@ public interface CardInterestRepository extends BaseRepository<CardInterest, Lon
      * @param partyId the party ID to search for
      * @return a Flux emitting the CardInterests for the specified party
      */
-    Flux<CardInterest> findByPartyId(Long partyId);
+    Flux<CardInterest> findByPartyId(UUID partyId);
 
     /**
      * Find CardInterests by account ID.
@@ -69,7 +70,7 @@ public interface CardInterestRepository extends BaseRepository<CardInterest, Lon
      * @param accountId the account ID to search for
      * @return a Flux emitting the CardInterests for the specified account
      */
-    Flux<CardInterest> findByAccountId(Long accountId);
+    Flux<CardInterest> findByAccountId(UUID accountId);
 
     /**
      * Find CardInterests by statement ID.
@@ -77,7 +78,7 @@ public interface CardInterestRepository extends BaseRepository<CardInterest, Lon
      * @param statementId the statement ID to search for
      * @return a Flux emitting the CardInterests for the specified statement
      */
-    Flux<CardInterest> findByStatementId(Long statementId);
+    Flux<CardInterest> findByStatementId(UUID statementId);
 
     /**
      * Find CardInterests by program ID.
@@ -85,7 +86,7 @@ public interface CardInterestRepository extends BaseRepository<CardInterest, Lon
      * @param programId the program ID to search for
      * @return a Flux emitting the CardInterests for the specified program
      */
-    Flux<CardInterest> findByProgramId(Long programId);
+    Flux<CardInterest> findByProgramId(UUID programId);
 
     /**
      * Find CardInterests by interest type.
@@ -169,5 +170,5 @@ public interface CardInterestRepository extends BaseRepository<CardInterest, Lon
      * @param promotionId the promotion ID to search for
      * @return a Flux emitting the CardInterests for the specified promotion
      */
-    Flux<CardInterest> findByPromotionId(Long promotionId);
+    Flux<CardInterest> findByPromotionId(UUID promotionId);
 }

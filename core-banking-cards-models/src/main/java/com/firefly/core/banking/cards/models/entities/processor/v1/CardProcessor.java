@@ -1,12 +1,16 @@
 package com.firefly.core.banking.cards.models.entities.processor.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Card Processor entity.
@@ -22,7 +26,7 @@ public class CardProcessor extends BaseEntity {
 
     @Id
     @Column("processor_id")
-    private Long processorId;
+    private UUID processorId;
 
     @Column("processor_reference")
     private String processorReference;

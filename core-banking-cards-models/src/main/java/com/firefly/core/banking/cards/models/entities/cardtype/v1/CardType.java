@@ -1,10 +1,15 @@
 package com.firefly.core.banking.cards.models.entities.cardtype.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
+
+import java.util.UUID;
 
 /**
  * Card Type entity.
@@ -19,7 +24,7 @@ public class CardType extends BaseEntity {
 
     @Id
     @Column("card_type_id")
-    private Long cardTypeId;
+    private UUID cardTypeId;
 
     @Column("type_name")
     private String typeName;

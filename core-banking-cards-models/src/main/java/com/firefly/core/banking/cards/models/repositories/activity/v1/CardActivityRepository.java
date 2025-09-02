@@ -7,19 +7,20 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Repository for managing CardActivity entities.
  */
 @Repository
-public interface CardActivityRepository extends BaseRepository<CardActivity, Long> {
+public interface CardActivityRepository extends BaseRepository<CardActivity, UUID> {
     /**
      * Find a CardActivity by its ID.
      *
      * @param activityId the ID of the CardActivity to find
      * @return a Mono emitting the CardActivity if found, or empty if not found
      */
-    Mono<CardActivity> findByActivityId(Long activityId);
+    Mono<CardActivity> findByActivityId(UUID activityId);
 
     /**
      * Find a CardActivity by its reference.
@@ -35,7 +36,7 @@ public interface CardActivityRepository extends BaseRepository<CardActivity, Lon
      * @param cardId the card ID to search for
      * @return a Flux emitting the CardActivities for the specified card
      */
-    Flux<CardActivity> findByCardId(Long cardId);
+    Flux<CardActivity> findByCardId(UUID cardId);
 
     /**
      * Find CardActivities by card ID with pagination.
@@ -44,7 +45,7 @@ public interface CardActivityRepository extends BaseRepository<CardActivity, Lon
      * @param pageable the pagination information
      * @return a Flux emitting the CardActivities for the specified card with pagination
      */
-    Flux<CardActivity> findByCardId(Long cardId, org.springframework.data.domain.Pageable pageable);
+    Flux<CardActivity> findByCardId(UUID cardId, org.springframework.data.domain.Pageable pageable);
 
     /**
      * Count CardActivities by card ID.
@@ -53,7 +54,7 @@ public interface CardActivityRepository extends BaseRepository<CardActivity, Lon
      * @return a Mono emitting the count of CardActivities for the specified card
      */
     @org.springframework.data.r2dbc.repository.Query("SELECT COUNT(*) FROM card_activity WHERE card_id = :cardId")
-    Mono<Long> countByCardId(Long cardId);
+    Mono<Long> countByCardId(UUID cardId);
 
     /**
      * Find CardActivities by party ID.
@@ -61,7 +62,7 @@ public interface CardActivityRepository extends BaseRepository<CardActivity, Lon
      * @param partyId the party ID to search for
      * @return a Flux emitting the CardActivities for the specified party
      */
-    Flux<CardActivity> findByPartyId(Long partyId);
+    Flux<CardActivity> findByPartyId(UUID partyId);
 
     /**
      * Find CardActivities by account ID.
@@ -69,7 +70,7 @@ public interface CardActivityRepository extends BaseRepository<CardActivity, Lon
      * @param accountId the account ID to search for
      * @return a Flux emitting the CardActivities for the specified account
      */
-    Flux<CardActivity> findByAccountId(Long accountId);
+    Flux<CardActivity> findByAccountId(UUID accountId);
 
     /**
      * Find CardActivities by activity type.
@@ -193,5 +194,5 @@ public interface CardActivityRepository extends BaseRepository<CardActivity, Lon
      * @param relatedEntityId the related entity ID to search for
      * @return a Flux emitting the CardActivities related to the specified entity
      */
-    Flux<CardActivity> findByRelatedEntityTypeAndRelatedEntityId(String relatedEntityType, Long relatedEntityId);
+    Flux<CardActivity> findByRelatedEntityTypeAndRelatedEntityId(String relatedEntityType, UUID relatedEntityId);
 }

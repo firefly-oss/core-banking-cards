@@ -1,13 +1,17 @@
 package com.firefly.core.banking.cards.models.entities.dispute.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Card Dispute entity.
@@ -22,19 +26,19 @@ public class CardDispute extends BaseEntity {
 
     @Id
     @Column("dispute_id")
-    private Long disputeId;
+    private UUID disputeId;
 
     @Column("card_id")
-    private Long cardId;
+    private UUID cardId;
 
     @Column("transaction_id")
-    private Long transactionId;
+    private UUID transactionId;
 
     @Column("party_id")
-    private Long partyId;
+    private UUID partyId;
 
     @Column("account_id")
-    private Long accountId;
+    private UUID accountId;
 
     @Column("dispute_reference")
     private String disputeReference;
@@ -112,7 +116,7 @@ public class CardDispute extends BaseEntity {
     private String evidenceDocuments;
 
     @Column("assigned_agent_id")
-    private Long assignedAgentId;
+    private UUID assignedAgentId;
 
     @Column("assigned_agent_name")
     private String assignedAgentName;

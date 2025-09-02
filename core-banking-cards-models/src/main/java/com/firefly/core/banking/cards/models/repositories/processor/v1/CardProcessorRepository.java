@@ -6,20 +6,20 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Repository for managing CardProcessor entities.
  */
 @Repository
-public interface CardProcessorRepository extends BaseRepository<CardProcessor, Long> {
+public interface CardProcessorRepository extends BaseRepository<CardProcessor, UUID> {
     /**
      * Find a CardProcessor by its ID.
      *
      * @param processorId the ID of the CardProcessor to find
      * @return a Mono emitting the CardProcessor if found, or empty if not found
      */
-    Mono<CardProcessor> findByProcessorId(Long processorId);
+    Mono<CardProcessor> findByProcessorId(UUID processorId);
     
     /**
      * Find a CardProcessor by its reference.

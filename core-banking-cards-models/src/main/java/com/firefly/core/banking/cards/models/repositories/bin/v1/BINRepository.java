@@ -5,18 +5,20 @@ import com.firefly.core.banking.cards.models.repositories.BaseRepository;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 /**
  * Repository for managing BIN (Bank Identification Number) entities.
  */
 @Repository
-public interface BINRepository extends BaseRepository<BIN, Long> {
+public interface BINRepository extends BaseRepository<BIN, UUID> {
     /**
      * Find a BIN by its ID.
      *
      * @param binId the ID of the BIN to find
      * @return a Mono emitting the BIN if found, or empty if not found
      */
-    Mono<BIN> findByBinId(Long binId);
+    Mono<BIN> findByBinId(UUID binId);
     
     /**
      * Find a BIN by its number.

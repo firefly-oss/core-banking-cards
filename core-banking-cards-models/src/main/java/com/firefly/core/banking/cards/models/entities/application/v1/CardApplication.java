@@ -1,13 +1,17 @@
 package com.firefly.core.banking.cards.models.entities.application.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Card Application entity.
@@ -22,13 +26,13 @@ public class CardApplication extends BaseEntity {
 
     @Id
     @Column("application_id")
-    private Long applicationId;
+    private UUID applicationId;
 
     @Column("party_id")
-    private Long partyId;
+    private UUID partyId;
 
     @Column("account_id")
-    private Long accountId;
+    private UUID accountId;
 
     @Column("application_reference")
     private String applicationReference;
@@ -37,13 +41,13 @@ public class CardApplication extends BaseEntity {
     private String applicationType;
 
     @Column("card_type_id")
-    private Long cardTypeId;
+    private UUID cardTypeId;
 
     @Column("program_id")
-    private Long programId;
+    private UUID programId;
 
     @Column("design_id")
-    private Long designId;
+    private UUID designId;
 
     @Column("application_status")
     private String applicationStatus;
@@ -211,7 +215,7 @@ public class CardApplication extends BaseEntity {
     private String rejectionCode;
 
     @Column("card_id")
-    private Long cardId;
+    private UUID cardId;
 
     @Column("card_issuance_timestamp")
     private LocalDateTime cardIssuanceTimestamp;

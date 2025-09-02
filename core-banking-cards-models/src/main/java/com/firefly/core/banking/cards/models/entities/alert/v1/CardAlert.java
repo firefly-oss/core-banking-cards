@@ -1,13 +1,17 @@
 package com.firefly.core.banking.cards.models.entities.alert.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Card Alert entity.
@@ -22,19 +26,19 @@ public class CardAlert extends BaseEntity {
 
     @Id
     @Column("alert_id")
-    private Long alertId;
+    private UUID alertId;
 
     @Column("card_id")
-    private Long cardId;
+    private UUID cardId;
 
     @Column("transaction_id")
-    private Long transactionId;
+    private UUID transactionId;
 
     @Column("party_id")
-    private Long partyId;
+    private UUID partyId;
 
     @Column("account_id")
-    private Long accountId;
+    private UUID accountId;
 
     @Column("alert_reference")
     private String alertReference;

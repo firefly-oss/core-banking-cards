@@ -1,12 +1,16 @@
 package com.firefly.core.banking.cards.models.entities.terminal.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Card Terminal entity.
@@ -22,7 +26,7 @@ public class CardTerminal extends BaseEntity {
 
     @Id
     @Column("terminal_id")
-    private Long terminalId;
+    private UUID terminalId;
 
     @Column("terminal_reference")
     private String terminalReference;
@@ -61,7 +65,7 @@ public class CardTerminal extends BaseEntity {
     private String deactivationReason;
 
     @Column("merchant_id")
-    private Long merchantId;
+    private UUID merchantId;
 
     @Column("merchant_name")
     private String merchantName;

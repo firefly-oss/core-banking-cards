@@ -1,12 +1,16 @@
 package com.firefly.core.banking.cards.models.entities.acquirer.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Card Acquirer entity.
@@ -22,7 +26,7 @@ public class CardAcquirer extends BaseEntity {
 
     @Id
     @Column("acquirer_id")
-    private Long acquirerId;
+    private UUID acquirerId;
 
     @Column("acquirer_reference")
     private String acquirerReference;
@@ -142,13 +146,13 @@ public class CardAcquirer extends BaseEntity {
     private Boolean isMobile;
 
     @Column("processor_id")
-    private Long processorId;
+    private UUID processorId;
 
     @Column("processor_name")
     private String processorName;
 
     @Column("gateway_id")
-    private Long gatewayId;
+    private UUID gatewayId;
 
     @Column("gateway_name")
     private String gatewayName;

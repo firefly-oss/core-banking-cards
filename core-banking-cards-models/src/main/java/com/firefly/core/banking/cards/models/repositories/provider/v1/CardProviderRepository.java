@@ -7,8 +7,10 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Repository
-public interface CardProviderRepository extends BaseRepository<CardProvider, Long> {
-    Flux<CardProvider> findByCardId(Long cardId, Pageable pageable);
-    Mono<Long> countByCardId(Long cardId);
+public interface CardProviderRepository extends BaseRepository<CardProvider, UUID> {
+    Flux<CardProvider> findByCardId(UUID cardId, Pageable pageable);
+    Mono<Long> countByCardId(UUID cardId);
 }

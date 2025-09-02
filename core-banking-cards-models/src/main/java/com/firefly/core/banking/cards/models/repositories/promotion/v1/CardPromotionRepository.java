@@ -8,13 +8,15 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Repository
 public interface CardPromotionRepository extends ReactiveCrudRepository<CardPromotion, Long> {
 
-    Mono<CardPromotion> findByPromotionId(Long promotionId);
+    Mono<CardPromotion> findByPromotionId(UUID promotionId);
 
-    Flux<CardPromotion> findByCardId(Long cardId, Pageable pageable);
+    Flux<CardPromotion> findByCardId(UUID cardId, Pageable pageable);
 
     @Query("SELECT COUNT(*) FROM card_promotion WHERE card_id = :cardId")
-    Mono<Long> countByCardId(Long cardId);
+    Mono<Long> countByCardId(UUID cardId);
 }

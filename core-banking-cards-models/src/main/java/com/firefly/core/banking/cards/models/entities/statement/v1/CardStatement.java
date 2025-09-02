@@ -1,13 +1,17 @@
 package com.firefly.core.banking.cards.models.entities.statement.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Card Statement entity.
@@ -22,16 +26,16 @@ public class CardStatement extends BaseEntity {
 
     @Id
     @Column("statement_id")
-    private Long statementId;
+    private UUID statementId;
 
     @Column("card_id")
-    private Long cardId;
+    private UUID cardId;
 
     @Column("party_id")
-    private Long partyId;
+    private UUID partyId;
 
     @Column("account_id")
-    private Long accountId;
+    private UUID accountId;
 
     @Column("statement_reference")
     private String statementReference;

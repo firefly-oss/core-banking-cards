@@ -1,13 +1,17 @@
 package com.firefly.core.banking.cards.models.entities.interest.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Card Interest entity.
@@ -22,22 +26,22 @@ public class CardInterest extends BaseEntity {
 
     @Id
     @Column("interest_id")
-    private Long interestId;
+    private UUID interestId;
 
     @Column("card_id")
-    private Long cardId;
+    private UUID cardId;
 
     @Column("party_id")
-    private Long partyId;
+    private UUID partyId;
 
     @Column("account_id")
-    private Long accountId;
+    private UUID accountId;
 
     @Column("statement_id")
-    private Long statementId;
+    private UUID statementId;
 
     @Column("program_id")
-    private Long programId;
+    private UUID programId;
 
     @Column("interest_reference")
     private String interestReference;
@@ -124,7 +128,7 @@ public class CardInterest extends BaseEntity {
     private Boolean isPromotionalRate;
 
     @Column("promotion_id")
-    private Long promotionId;
+    private UUID promotionId;
 
     @Column("promotion_start_date")
     private LocalDateTime promotionStartDate;

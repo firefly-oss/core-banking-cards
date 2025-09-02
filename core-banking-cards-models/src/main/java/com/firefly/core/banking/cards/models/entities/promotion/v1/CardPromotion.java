@@ -1,13 +1,17 @@
 package com.firefly.core.banking.cards.models.entities.promotion.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Card Promotion entity.
@@ -23,19 +27,19 @@ public class CardPromotion extends BaseEntity {
 
     @Id
     @Column("promotion_id")
-    private Long promotionId;
+    private UUID promotionId;
 
     @Column("card_id")
-    private Long cardId;
+    private UUID cardId;
 
     @Column("program_id")
-    private Long programId;
+    private UUID programId;
 
     @Column("card_type_id")
-    private Long cardTypeId;
+    private UUID cardTypeId;
 
     @Column("issuer_id")
-    private Long issuerId;
+    private UUID issuerId;
 
     @Column("promotion_code")
     private String promotionCode;

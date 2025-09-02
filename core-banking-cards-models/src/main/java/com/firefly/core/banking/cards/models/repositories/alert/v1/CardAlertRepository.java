@@ -7,19 +7,20 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Repository for managing CardAlert entities.
  */
 @Repository
-public interface CardAlertRepository extends BaseRepository<CardAlert, Long> {
+public interface CardAlertRepository extends BaseRepository<CardAlert, UUID> {
     /**
      * Find a CardAlert by its ID.
      *
      * @param alertId the ID of the CardAlert to find
      * @return a Mono emitting the CardAlert if found, or empty if not found
      */
-    Mono<CardAlert> findByAlertId(Long alertId);
+    Mono<CardAlert> findByAlertId(UUID alertId);
 
     /**
      * Find a CardAlert by its reference.
@@ -35,7 +36,7 @@ public interface CardAlertRepository extends BaseRepository<CardAlert, Long> {
      * @param cardId the card ID to search for
      * @return a Flux emitting the CardAlerts for the specified card
      */
-    Flux<CardAlert> findByCardId(Long cardId);
+    Flux<CardAlert> findByCardId(UUID cardId);
 
     /**
      * Find CardAlerts by transaction ID.
@@ -43,7 +44,7 @@ public interface CardAlertRepository extends BaseRepository<CardAlert, Long> {
      * @param transactionId the transaction ID to search for
      * @return a Flux emitting the CardAlerts for the specified transaction
      */
-    Flux<CardAlert> findByTransactionId(Long transactionId);
+    Flux<CardAlert> findByTransactionId(UUID transactionId);
 
     /**
      * Find CardAlerts by party ID.
@@ -51,7 +52,7 @@ public interface CardAlertRepository extends BaseRepository<CardAlert, Long> {
      * @param partyId the party ID to search for
      * @return a Flux emitting the CardAlerts for the specified party
      */
-    Flux<CardAlert> findByPartyId(Long partyId);
+    Flux<CardAlert> findByPartyId(UUID partyId);
 
     /**
      * Find CardAlerts by account ID.
@@ -59,7 +60,7 @@ public interface CardAlertRepository extends BaseRepository<CardAlert, Long> {
      * @param accountId the account ID to search for
      * @return a Flux emitting the CardAlerts for the specified account
      */
-    Flux<CardAlert> findByAccountId(Long accountId);
+    Flux<CardAlert> findByAccountId(UUID accountId);
 
     /**
      * Find CardAlerts by alert type.

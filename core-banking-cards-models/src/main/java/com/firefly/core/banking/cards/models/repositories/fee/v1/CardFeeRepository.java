@@ -7,19 +7,20 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Repository for managing CardFee entities.
  */
 @Repository
-public interface CardFeeRepository extends BaseRepository<CardFee, Long> {
+public interface CardFeeRepository extends BaseRepository<CardFee, UUID> {
     /**
      * Find a CardFee by its ID.
      *
      * @param feeId the ID of the CardFee to find
      * @return a Mono emitting the CardFee if found, or empty if not found
      */
-    Mono<CardFee> findByFeeId(Long feeId);
+    Mono<CardFee> findByFeeId(UUID feeId);
 
     /**
      * Find a CardFee by its reference.
@@ -35,7 +36,7 @@ public interface CardFeeRepository extends BaseRepository<CardFee, Long> {
      * @param cardId the card ID to search for
      * @return a Flux emitting the CardFees for the specified card
      */
-    Flux<CardFee> findByCardId(Long cardId);
+    Flux<CardFee> findByCardId(UUID cardId);
 
     /**
      * Find CardFees by party ID.
@@ -43,7 +44,7 @@ public interface CardFeeRepository extends BaseRepository<CardFee, Long> {
      * @param partyId the party ID to search for
      * @return a Flux emitting the CardFees for the specified party
      */
-    Flux<CardFee> findByPartyId(Long partyId);
+    Flux<CardFee> findByPartyId(UUID partyId);
 
     /**
      * Find CardFees by account ID.
@@ -51,7 +52,7 @@ public interface CardFeeRepository extends BaseRepository<CardFee, Long> {
      * @param accountId the account ID to search for
      * @return a Flux emitting the CardFees for the specified account
      */
-    Flux<CardFee> findByAccountId(Long accountId);
+    Flux<CardFee> findByAccountId(UUID accountId);
 
     /**
      * Find CardFees by transaction ID.
@@ -59,7 +60,7 @@ public interface CardFeeRepository extends BaseRepository<CardFee, Long> {
      * @param transactionId the transaction ID to search for
      * @return a Flux emitting the CardFees for the specified transaction
      */
-    Flux<CardFee> findByTransactionId(Long transactionId);
+    Flux<CardFee> findByTransactionId(UUID transactionId);
 
     /**
      * Find CardFees by statement ID.
@@ -67,7 +68,7 @@ public interface CardFeeRepository extends BaseRepository<CardFee, Long> {
      * @param statementId the statement ID to search for
      * @return a Flux emitting the CardFees for the specified statement
      */
-    Flux<CardFee> findByStatementId(Long statementId);
+    Flux<CardFee> findByStatementId(UUID statementId);
 
     /**
      * Find CardFees by program ID.
@@ -75,7 +76,7 @@ public interface CardFeeRepository extends BaseRepository<CardFee, Long> {
      * @param programId the program ID to search for
      * @return a Flux emitting the CardFees for the specified program
      */
-    Flux<CardFee> findByProgramId(Long programId);
+    Flux<CardFee> findByProgramId(UUID programId);
 
     /**
      * Find CardFees by fee type.

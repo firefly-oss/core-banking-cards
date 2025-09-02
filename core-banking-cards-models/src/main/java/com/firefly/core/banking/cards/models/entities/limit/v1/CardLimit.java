@@ -1,13 +1,17 @@
 package com.firefly.core.banking.cards.models.entities.limit.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Card Limit entity.
@@ -22,13 +26,13 @@ public class CardLimit extends BaseEntity {
 
     @Id
     @Column("card_limit_id")
-    private Long cardLimitId;
+    private UUID cardLimitId;
 
     @Column("card_id")
-    private Long cardId;
+    private UUID cardId;
 
     @Column("program_id")
-    private Long programId;
+    private UUID programId;
 
     @Column("limit_name")
     private String limitName;

@@ -1,12 +1,16 @@
 package com.firefly.core.banking.cards.models.entities.gateway.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Card Gateway entity.
@@ -22,7 +26,7 @@ public class CardGateway extends BaseEntity {
 
     @Id
     @Column("gateway_id")
-    private Long gatewayId;
+    private UUID gatewayId;
 
     @Column("gateway_reference")
     private String gatewayReference;
@@ -133,13 +137,13 @@ public class CardGateway extends BaseEntity {
     private Boolean isDomestic;
 
     @Column("processor_id")
-    private Long processorId;
+    private UUID processorId;
 
     @Column("processor_name")
     private String processorName;
 
     @Column("acquirer_id")
-    private Long acquirerId;
+    private UUID acquirerId;
 
     @Column("acquirer_name")
     private String acquirerName;

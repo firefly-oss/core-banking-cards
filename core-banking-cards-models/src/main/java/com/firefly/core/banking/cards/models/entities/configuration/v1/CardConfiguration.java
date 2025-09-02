@@ -1,12 +1,16 @@
 package com.firefly.core.banking.cards.models.entities.configuration.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Card Configuration entity.
@@ -20,13 +24,13 @@ import java.time.LocalDateTime;
 public class CardConfiguration extends BaseEntity {
     @Id
     @Column("card_configuration_id")
-    private Long cardConfigurationId;
+    private UUID cardConfigurationId;
 
     @Column("card_id")
-    private Long cardId;
+    private UUID cardId;
 
     @Column("program_id")
-    private Long programId;
+    private UUID programId;
 
     @Column("config_key")
     private String configKey;

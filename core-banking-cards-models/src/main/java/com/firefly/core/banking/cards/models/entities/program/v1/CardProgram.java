@@ -1,12 +1,16 @@
 package com.firefly.core.banking.cards.models.entities.program.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Card Program entity.
@@ -21,7 +25,7 @@ public class CardProgram extends BaseEntity {
 
     @Id
     @Column("program_id")
-    private Long programId;
+    private UUID programId;
 
     @Column("program_name")
     private String programName;
@@ -30,19 +34,19 @@ public class CardProgram extends BaseEntity {
     private String programCode;
 
     @Column("issuer_id")
-    private Long issuerId;
+    private UUID issuerId;
 
     @Column("bin_id")
-    private Long binId;
+    private UUID binId;
 
     @Column("card_type_id")
-    private Long cardTypeId;
+    private UUID cardTypeId;
 
     @Column("card_network_id")
-    private Long cardNetworkId;
+    private UUID cardNetworkId;
 
     @Column("default_design_id")
-    private Long defaultDesignId;
+    private UUID defaultDesignId;
 
     @Column("start_date")
     private LocalDateTime startDate;

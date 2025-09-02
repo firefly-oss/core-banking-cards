@@ -1,12 +1,16 @@
 package com.firefly.core.banking.cards.models.entities.physical.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Physical Card entity.
@@ -21,10 +25,10 @@ public class PhysicalCard extends BaseEntity {
 
     @Id
     @Column("physical_card_id")
-    private Long physicalCardId;
+    private UUID physicalCardId;
 
     @Column("card_id")
-    private Long cardId;
+    private UUID cardId;
 
     @Column("embossed_name")
     private String embossedName;
@@ -33,7 +37,7 @@ public class PhysicalCard extends BaseEntity {
     private String plasticId;
 
     @Column("design_id")
-    private Long designId;
+    private UUID designId;
 
     @Column("is_contactless")
     private Boolean isContactless;
@@ -96,7 +100,7 @@ public class PhysicalCard extends BaseEntity {
     private String replacementReason;
 
     @Column("previous_card_id")
-    private Long previousCardId;
+    private UUID previousCardId;
 
     @Column("notes")
     private String notes;

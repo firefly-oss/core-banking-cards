@@ -7,19 +7,20 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Repository for managing CardBalance entities.
  */
 @Repository
-public interface CardBalanceRepository extends BaseRepository<CardBalance, Long> {
+public interface CardBalanceRepository extends BaseRepository<CardBalance, UUID> {
     /**
      * Find a CardBalance by its ID.
      *
      * @param balanceId the ID of the CardBalance to find
      * @return a Mono emitting the CardBalance if found, or empty if not found
      */
-    Mono<CardBalance> findByBalanceId(Long balanceId);
+    Mono<CardBalance> findByBalanceId(UUID balanceId);
 
     /**
      * Find CardBalances by card ID.
@@ -27,7 +28,7 @@ public interface CardBalanceRepository extends BaseRepository<CardBalance, Long>
      * @param cardId the card ID to search for
      * @return a Flux emitting the CardBalances for the specified card
      */
-    Flux<CardBalance> findByCardId(Long cardId);
+    Flux<CardBalance> findByCardId(UUID cardId);
 
     /**
      * Find CardBalances by card ID with pagination.
@@ -36,7 +37,7 @@ public interface CardBalanceRepository extends BaseRepository<CardBalance, Long>
      * @param pageable the pagination information
      * @return a Flux emitting the CardBalances for the specified card with pagination
      */
-    Flux<CardBalance> findByCardId(Long cardId, org.springframework.data.domain.Pageable pageable);
+    Flux<CardBalance> findByCardId(UUID cardId, org.springframework.data.domain.Pageable pageable);
 
     /**
      * Count CardBalances by card ID.
@@ -45,7 +46,7 @@ public interface CardBalanceRepository extends BaseRepository<CardBalance, Long>
      * @return a Mono emitting the count of CardBalances for the specified card
      */
     @org.springframework.data.r2dbc.repository.Query("SELECT COUNT(*) FROM card_balance WHERE card_id = :cardId")
-    Mono<Long> countByCardId(Long cardId);
+    Mono<Long> countByCardId(UUID cardId);
 
     /**
      * Find CardBalances by party ID.
@@ -53,7 +54,7 @@ public interface CardBalanceRepository extends BaseRepository<CardBalance, Long>
      * @param partyId the party ID to search for
      * @return a Flux emitting the CardBalances for the specified party
      */
-    Flux<CardBalance> findByPartyId(Long partyId);
+    Flux<CardBalance> findByPartyId(UUID partyId);
 
     /**
      * Find CardBalances by account ID.
@@ -61,7 +62,7 @@ public interface CardBalanceRepository extends BaseRepository<CardBalance, Long>
      * @param accountId the account ID to search for
      * @return a Flux emitting the CardBalances for the specified account
      */
-    Flux<CardBalance> findByAccountId(Long accountId);
+    Flux<CardBalance> findByAccountId(UUID accountId);
 
     /**
      * Find CardBalances by statement ID.
@@ -69,7 +70,7 @@ public interface CardBalanceRepository extends BaseRepository<CardBalance, Long>
      * @param statementId the statement ID to search for
      * @return a Flux emitting the CardBalances for the specified statement
      */
-    Flux<CardBalance> findByStatementId(Long statementId);
+    Flux<CardBalance> findByStatementId(UUID statementId);
 
     /**
      * Find CardBalances by balance type.
@@ -143,7 +144,7 @@ public interface CardBalanceRepository extends BaseRepository<CardBalance, Long>
      * @param promotionId the promotion ID to search for
      * @return a Flux emitting the CardBalances for the specified promotion
      */
-    Flux<CardBalance> findByPromotionId(Long promotionId);
+    Flux<CardBalance> findByPromotionId(UUID promotionId);
 
     /**
      * Find CardBalances by as of date range.
@@ -160,5 +161,5 @@ public interface CardBalanceRepository extends BaseRepository<CardBalance, Long>
      * @param lastTransactionId the last transaction ID to search for
      * @return a Flux emitting the CardBalances with the specified last transaction
      */
-    Flux<CardBalance> findByLastTransactionId(Long lastTransactionId);
+    Flux<CardBalance> findByLastTransactionId(UUID lastTransactionId);
 }

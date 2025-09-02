@@ -6,20 +6,20 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Repository for managing CardMerchant entities.
  */
 @Repository
-public interface CardMerchantRepository extends BaseRepository<CardMerchant, Long> {
+public interface CardMerchantRepository extends BaseRepository<CardMerchant, UUID> {
     /**
      * Find a CardMerchant by its ID.
      *
      * @param merchantId the ID of the CardMerchant to find
      * @return a Mono emitting the CardMerchant if found, or empty if not found
      */
-    Mono<CardMerchant> findByMerchantId(Long merchantId);
+    Mono<CardMerchant> findByMerchantId(UUID merchantId);
     
     /**
      * Find a CardMerchant by its reference.

@@ -1,10 +1,15 @@
 package com.firefly.core.banking.cards.models.entities.bin.v1;
 
 import com.firefly.core.banking.cards.models.entities.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
+
+import java.util.UUID;
 
 /**
  * Bank Identification Number (BIN) entity.
@@ -19,7 +24,7 @@ public class BIN extends BaseEntity {
 
     @Id
     @Column("bin_id")
-    private Long binId;
+    private UUID binId;
 
     @Column("bin_number")
     private String binNumber;
@@ -28,13 +33,13 @@ public class BIN extends BaseEntity {
     private Integer binLength;
 
     @Column("issuer_id")
-    private Long issuerId;
+    private UUID issuerId;
 
     @Column("card_network_id")
-    private Long cardNetworkId;
+    private UUID cardNetworkId;
 
     @Column("card_type_id")
-    private Long cardTypeId;
+    private UUID cardTypeId;
 
     @Column("country_code")
     private String countryCode;

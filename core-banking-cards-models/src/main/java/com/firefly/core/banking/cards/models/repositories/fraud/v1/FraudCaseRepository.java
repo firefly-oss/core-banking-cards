@@ -7,19 +7,20 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Repository for managing FraudCase entities.
  */
 @Repository
-public interface FraudCaseRepository extends BaseRepository<FraudCase, Long> {
+public interface FraudCaseRepository extends BaseRepository<FraudCase, UUID> {
     /**
      * Find a FraudCase by its ID.
      *
      * @param fraudCaseId the ID of the FraudCase to find
      * @return a Mono emitting the FraudCase if found, or empty if not found
      */
-    Mono<FraudCase> findByFraudCaseId(Long fraudCaseId);
+    Mono<FraudCase> findByFraudCaseId(UUID fraudCaseId);
 
     /**
      * Find a FraudCase by its reference.
@@ -35,7 +36,7 @@ public interface FraudCaseRepository extends BaseRepository<FraudCase, Long> {
      * @param cardId the card ID to search for
      * @return a Flux emitting the FraudCases for the specified card
      */
-    Flux<FraudCase> findByCardId(Long cardId);
+    Flux<FraudCase> findByCardId(UUID cardId);
 
     /**
      * Find FraudCases by transaction ID.
@@ -43,7 +44,7 @@ public interface FraudCaseRepository extends BaseRepository<FraudCase, Long> {
      * @param transactionId the transaction ID to search for
      * @return a Flux emitting the FraudCases for the specified transaction
      */
-    Flux<FraudCase> findByTransactionId(Long transactionId);
+    Flux<FraudCase> findByTransactionId(UUID transactionId);
 
     /**
      * Find FraudCases by party ID.
@@ -51,7 +52,7 @@ public interface FraudCaseRepository extends BaseRepository<FraudCase, Long> {
      * @param partyId the party ID to search for
      * @return a Flux emitting the FraudCases for the specified party
      */
-    Flux<FraudCase> findByPartyId(Long partyId);
+    Flux<FraudCase> findByPartyId(UUID partyId);
 
     /**
      * Find FraudCases by account ID.
@@ -59,7 +60,7 @@ public interface FraudCaseRepository extends BaseRepository<FraudCase, Long> {
      * @param accountId the account ID to search for
      * @return a Flux emitting the FraudCases for the specified account
      */
-    Flux<FraudCase> findByAccountId(Long accountId);
+    Flux<FraudCase> findByAccountId(UUID accountId);
 
     /**
      * Find FraudCases by provider reference.
@@ -160,5 +161,5 @@ public interface FraudCaseRepository extends BaseRepository<FraudCase, Long> {
      * @param assignedAgentId the assigned agent ID to search for
      * @return a Flux emitting the FraudCases assigned to the specified agent
      */
-    Flux<FraudCase> findByAssignedAgentId(Long assignedAgentId);
+    Flux<FraudCase> findByAssignedAgentId(UUID assignedAgentId);
 }

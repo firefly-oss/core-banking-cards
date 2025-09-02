@@ -8,19 +8,20 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Repository for managing CardReward entities.
  */
 @Repository
-public interface CardRewardRepository extends BaseRepository<CardReward, Long> {
+public interface CardRewardRepository extends BaseRepository<CardReward, UUID> {
     /**
      * Find a CardReward by its ID.
      *
      * @param rewardId the ID of the CardReward to find
      * @return a Mono emitting the CardReward if found, or empty if not found
      */
-    Mono<CardReward> findByRewardId(Long rewardId);
+    Mono<CardReward> findByRewardId(UUID rewardId);
 
     /**
      * Find CardRewards by card ID.
@@ -28,7 +29,7 @@ public interface CardRewardRepository extends BaseRepository<CardReward, Long> {
      * @param cardId the card ID to search for
      * @return a Flux emitting the CardRewards for the specified card
      */
-    Flux<CardReward> findByCardId(Long cardId);
+    Flux<CardReward> findByCardId(UUID cardId);
 
     /**
      * Find CardRewards by card ID with pagination.
@@ -37,7 +38,7 @@ public interface CardRewardRepository extends BaseRepository<CardReward, Long> {
      * @param pageable the pagination information
      * @return a Flux emitting the CardRewards for the specified card with pagination
      */
-    Flux<CardReward> findByCardId(Long cardId, Pageable pageable);
+    Flux<CardReward> findByCardId(UUID cardId, Pageable pageable);
 
     /**
      * Count CardRewards by card ID.
@@ -45,7 +46,7 @@ public interface CardRewardRepository extends BaseRepository<CardReward, Long> {
      * @param cardId the card ID to count for
      * @return a Mono emitting the count of CardRewards for the specified card
      */
-    Mono<Long> countByCardId(Long cardId);
+    Mono<Long> countByCardId(UUID cardId);
 
     /**
      * Find CardRewards by transaction ID.
@@ -53,7 +54,7 @@ public interface CardRewardRepository extends BaseRepository<CardReward, Long> {
      * @param transactionId the transaction ID to search for
      * @return a Flux emitting the CardRewards for the specified transaction
      */
-    Flux<CardReward> findByTransactionId(Long transactionId);
+    Flux<CardReward> findByTransactionId(UUID transactionId);
 
     /**
      * Find CardRewards by party ID.
@@ -61,7 +62,7 @@ public interface CardRewardRepository extends BaseRepository<CardReward, Long> {
      * @param partyId the party ID to search for
      * @return a Flux emitting the CardRewards for the specified party
      */
-    Flux<CardReward> findByPartyId(Long partyId);
+    Flux<CardReward> findByPartyId(UUID partyId);
 
     /**
      * Find CardRewards by account ID.
@@ -69,7 +70,7 @@ public interface CardRewardRepository extends BaseRepository<CardReward, Long> {
      * @param accountId the account ID to search for
      * @return a Flux emitting the CardRewards for the specified account
      */
-    Flux<CardReward> findByAccountId(Long accountId);
+    Flux<CardReward> findByAccountId(UUID accountId);
 
     /**
      * Find CardRewards by program ID.
@@ -77,7 +78,7 @@ public interface CardRewardRepository extends BaseRepository<CardReward, Long> {
      * @param programId the program ID to search for
      * @return a Flux emitting the CardRewards for the specified program
      */
-    Flux<CardReward> findByProgramId(Long programId);
+    Flux<CardReward> findByProgramId(UUID programId);
 
     /**
      * Find CardRewards by reward type.
@@ -144,7 +145,7 @@ public interface CardRewardRepository extends BaseRepository<CardReward, Long> {
      * @param promotionId the promotion ID to search for
      * @return a Flux emitting the CardRewards for the specified promotion
      */
-    Flux<CardReward> findByPromotionId(Long promotionId);
+    Flux<CardReward> findByPromotionId(UUID promotionId);
 
     /**
      * Find CardRewards by transaction date range.
