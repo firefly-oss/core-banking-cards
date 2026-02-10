@@ -1,6 +1,6 @@
 # Firefly Core Banking Cards Service
 
-## 📑 Table of Contents
+## Table of Contents
 
 - [Overview](#-overview)
 - [Key Features](#-key-features)
@@ -33,13 +33,13 @@
 - [Contributing](#-contributing)
 - [License](#-license)
 
-## 📋 Overview
+## Overview
 
 The Core Banking Cards Service is a comprehensive microservice for the Firefly banking platform that provides end-to-end management of payment cards. This service enables financial institutions to issue, manage, and process transactions for both physical and virtual payment cards across multiple card networks and payment processors.
 
 For detailed documentation on the main use cases, please refer to the [documentation](docs/index.md). For information about the API design principles and patterns, see the [API Design Guide](docs/api-design.md).
 
-### ✨ Key Features
+### Key Features
 
 - **Card Program Management**: Define and manage card programs with specific rules, limits, and features
 - **Card Issuance**: Issue physical and virtual cards to parties
@@ -48,7 +48,7 @@ For detailed documentation on the main use cases, please refer to the [documenta
 - **Card Security**: Implement fraud detection and prevention measures
 - **Reporting and Analytics**: Generate comprehensive reports on card usage and performance
 
-### 💼 Business Value
+### Business Value
 
 - **Increased Revenue**: Enable financial institutions to offer diverse card products and monetize transactions
 - **Operational Efficiency**: Streamline card management processes and reduce manual intervention
@@ -57,7 +57,7 @@ For detailed documentation on the main use cases, please refer to the [documenta
 - **Regulatory Compliance**: Ensure adherence to industry standards and regulatory requirements
 - **Market Agility**: Quickly launch new card products and adapt to changing market demands
 
-## 🏗️ Architecture
+## Architecture
 
 The Core Banking Cards Service follows a microservice architecture pattern, designed to be independently deployable, scalable, and maintainable. The service is built using a reactive programming model to handle high throughput with minimal resource consumption.
 
@@ -72,7 +72,7 @@ The Core Banking Cards Service follows a microservice architecture pattern, desi
 │                                                                 │
 │  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  │
 │  │   Web Layer     │  │  Service Layer  │  │    Data Layer   │  │
-│  │  (Controllers)  │──▶│   (Services)   │──▶│ (Repositories) │  │
+│  │  (Controllers)  │──│   (Services)   │──│ (Repositories) │  │
 │  └─────────────────┘  └─────────────────┘  └─────────────────┘  │
 │                                                                 │
 └───────────────────────────────┬─────────────────────────────────┘
@@ -85,7 +85,7 @@ The Core Banking Cards Service follows a microservice architecture pattern, desi
 
 The service communicates with other microservices through synchronous REST APIs and asynchronous event-driven messaging. It integrates with external payment processors and card networks through dedicated adapters and gateways.
 
-### 📦 Module Structure
+### Module Structure
 
 The service is organized into the following modules:
 
@@ -97,11 +97,11 @@ The service is organized into the following modules:
 | **core-banking-cards-web** | REST controllers, API configuration, security settings, and application entry point |
 | **core-banking-cards-sdk** | Client SDK generated from OpenAPI specification for easy integration with the service |
 
-### 🛠️ Technology Stack
+### Technology Stack
 
 | Category | Technologies |
 |----------|--------------|
-| **Language & Framework** | Java 21 (with Virtual Threads), Spring Boot 3.2 |
+| **Language & Framework** | Java 25 (with Virtual Threads), Spring Boot 3.5 |
 | **API Layer** | Spring WebFlux (reactive programming) |
 | **Data Access** | Spring Data R2DBC (reactive database connectivity) |
 | **Database** | PostgreSQL, Flyway (migrations) |
@@ -110,7 +110,7 @@ The service is organized into the following modules:
 | **Testing** | JUnit 5, Mockito, TestContainers |
 | **Monitoring** | Micrometer, Prometheus |
 
-### 🧩 Design Patterns
+### Design Patterns
 
 - **Hexagonal Architecture**: Separates core business logic from external concerns
 - **Repository Pattern**: Abstracts data access logic
@@ -120,7 +120,7 @@ The service is organized into the following modules:
 - **Observer Pattern**: Implements event-driven communication
 - **Circuit Breaker Pattern**: Handles failures in external service calls
 
-## 📊 Data Model
+## Data Model
 
 The Core Banking Cards Service has a comprehensive data model that supports the full lifecycle of card management. The model is designed to handle various card types, transaction processing, and party interactions.
 
@@ -658,33 +658,33 @@ erDiagram
 
 ### Main Entity Categories
 
-#### 🏦 Core Entities
+#### Core Entities
 - **Card Program**: Defines rules and configurations for a group of cards
 - **Card Type**: Specifies card characteristics (credit, debit, prepaid)
 - **Card Network**: Represents payment networks (Visa, Mastercard, etc.)
 - **Issuer**: Financial institutions that issue cards
 - **BIN**: Bank Identification Number that identifies issuer and card type
 
-#### 💳 Card Entities
+#### Card Entities
 - **Card**: Central entity representing a payment card
 - **Physical Card**: Physical aspects including manufacturing and shipping details
 - **Virtual Card**: Digital version for online transactions and mobile wallets
 - **Card Configuration**: Settings for individual cards
 - **Card Balance**: Tracks available funds and balances
 
-#### 💰 Transaction Entities
+#### Transaction Entities
 - **Card Transaction**: Records of financial transactions
 - **Card Statement**: Periodic statements of card activity
 - **Card Payment**: Payments made towards card balances
 - **Card Dispute**: Disputes filed against transactions
 
-#### 👥 Merchant Entities
+#### Merchant Entities
 - **Card Merchant**: Businesses accepting card payments
 - **Card Terminal**: Payment terminals for processing transactions
 - **Card Acquirer**: Financial institutions processing merchant payments
 - **Card Processor**: Entities processing transactions between parties
 
-## 🔌 API Reference
+## API Reference
 
 The Core Banking Cards Service exposes RESTful endpoints for managing cards and related entities. All endpoints follow REST principles and use standard HTTP methods.
 
@@ -737,7 +737,7 @@ Content-Type: application/json
 
 Detailed API documentation is available in the [API Reference](docs/api-reference.md) document and at `/swagger-ui.html` when the service is running.
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -788,7 +788,7 @@ server:
   port: ${SERVER_PORT:8080}
 ```
 
-## 🔧 SDK Generation
+## SDK Generation
 
 The Core Banking Cards Service provides a client SDK that can be used to integrate with the service. The SDK is generated automatically from the OpenAPI specification using the OpenAPI Generator Maven Plugin.
 
@@ -897,7 +897,7 @@ The SDK generation is configured in the `pom.xml` file. You can customize variou
 
 For more information on available configuration options, refer to the [OpenAPI Generator documentation](https://github.com/OpenAPITools/openapi-generator).
 
-## 💻 Development
+## Development
 
 ### Project Structure
 
@@ -930,7 +930,7 @@ The project implements a comprehensive testing approach:
 - **API Tests**: Test REST endpoints
 - **Performance Tests**: Test system under load
 
-## 🔄 Deployment
+## Deployment
 
 ### Docker Deployment
 
@@ -959,7 +959,7 @@ The service supports different environments through Spring profiles:
 java -jar app.jar --spring.profiles.active=dev
 ```
 
-## 📊 Monitoring
+## Monitoring
 
 ### Health & Metrics
 
@@ -972,25 +972,25 @@ java -jar app.jar --spring.profiles.active=dev
 
 Key metrics include request count and latency, JVM memory usage, database connection pool statistics, and custom business metrics.
 
-## 🔒 Security
+## Security
 
 - **Authentication**: JWT-based authentication
 - **Authorization**: Role-based access control
 - **Data Protection**: Encryption of sensitive data (card numbers, CVV, PINs)
 - **Communication**: TLS for all API communications
 
-## 👥 Contributing
+## Contributing
 
 We welcome contributions to the Core Banking Cards Service! Here's how you can help:
 
-1. 🍴 **Fork the repository**
-2. 🌿 **Create a feature branch** (`git checkout -b feature/amazing-feature`)
-3. 💾 **Commit your changes** (`git commit -m 'Add some amazing feature'`)
-4. 📤 **Push to the branch** (`git push origin feature/amazing-feature`)
-5. 🔄 **Open a Pull Request**
+1. **Fork the repository**
+2. **Create a feature branch** (`git checkout -b feature/amazing-feature`)
+3. **Commit your changes** (`git commit -m 'Add some amazing feature'`)
+4. **Push to the branch** (`git push origin feature/amazing-feature`)
+5. **Open a Pull Request**
 
 Please make sure your code follows our coding standards and includes appropriate tests.
 
-## 📄 License
+## License
 
 This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.

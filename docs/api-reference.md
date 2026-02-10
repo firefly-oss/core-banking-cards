@@ -51,12 +51,12 @@ Retrieve a paginated list of all BIN records.
 {
   "content": [
     {
-      "binId": 1,
+      "binId": "550e8400-e29b-41d4-a716-446655440001",
       "binNumber": "123456",
       "binLength": 6,
-      "issuerId": 1,
-      "cardNetworkId": 1,
-      "cardTypeId": 1,
+      "issuerId": "550e8400-e29b-41d4-a716-446655440002",
+      "cardNetworkId": "550e8400-e29b-41d4-a716-446655440003",
+      "cardTypeId": "550e8400-e29b-41d4-a716-446655440004",
       "countryCode": "US",
       "currencyCode": "USD",
       "isActive": true,
@@ -94,9 +94,9 @@ Create a new BIN record.
 {
   "binNumber": "123456",
   "binLength": 6,
-  "issuerId": 1,
-  "cardNetworkId": 1,
-  "cardTypeId": 1,
+  "issuerId": "550e8400-e29b-41d4-a716-446655440002",
+  "cardNetworkId": "550e8400-e29b-41d4-a716-446655440003",
+  "cardTypeId": "550e8400-e29b-41d4-a716-446655440004",
   "countryCode": "US",
   "currencyCode": "USD",
   "isActive": true,
@@ -108,12 +108,12 @@ Create a new BIN record.
 
 ```json
 {
-  "binId": 1,
+  "binId": "550e8400-e29b-41d4-a716-446655440001",
   "binNumber": "123456",
   "binLength": 6,
-  "issuerId": 1,
-  "cardNetworkId": 1,
-  "cardTypeId": 1,
+  "issuerId": "550e8400-e29b-41d4-a716-446655440002",
+  "cardNetworkId": "550e8400-e29b-41d4-a716-446655440003",
+  "cardTypeId": "550e8400-e29b-41d4-a716-446655440004",
   "countryCode": "US",
   "currencyCode": "USD",
   "isActive": true,
@@ -133,18 +133,18 @@ Retrieve a specific BIN record by its unique identifier.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| binId | integer | Unique identifier of the BIN |
+| binId | UUID | Unique identifier of the BIN |
 
 **Response:**
 
 ```json
 {
-  "binId": 1,
+  "binId": "550e8400-e29b-41d4-a716-446655440001",
   "binNumber": "123456",
   "binLength": 6,
-  "issuerId": 1,
-  "cardNetworkId": 1,
-  "cardTypeId": 1,
+  "issuerId": "550e8400-e29b-41d4-a716-446655440002",
+  "cardNetworkId": "550e8400-e29b-41d4-a716-446655440003",
+  "cardTypeId": "550e8400-e29b-41d4-a716-446655440004",
   "countryCode": "US",
   "currencyCode": "USD",
   "isActive": true,
@@ -170,12 +170,12 @@ Retrieve a specific BIN record by its BIN number.
 
 ```json
 {
-  "binId": 1,
+  "binId": "550e8400-e29b-41d4-a716-446655440001",
   "binNumber": "123456",
   "binLength": 6,
-  "issuerId": 1,
-  "cardNetworkId": 1,
-  "cardTypeId": 1,
+  "issuerId": "550e8400-e29b-41d4-a716-446655440002",
+  "cardNetworkId": "550e8400-e29b-41d4-a716-446655440003",
+  "cardTypeId": "550e8400-e29b-41d4-a716-446655440004",
   "countryCode": "US",
   "currencyCode": "USD",
   "isActive": true,
@@ -196,7 +196,7 @@ Update an existing BIN record by its unique identifier.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| binId | integer | Unique identifier of the BIN to update |
+| binId | UUID | Unique identifier of the BIN to update |
 
 **Request Body:**
 
@@ -204,9 +204,9 @@ Update an existing BIN record by its unique identifier.
 {
   "binNumber": "123456",
   "binLength": 6,
-  "issuerId": 1,
-  "cardNetworkId": 1,
-  "cardTypeId": 1,
+  "issuerId": "550e8400-e29b-41d4-a716-446655440002",
+  "cardNetworkId": "550e8400-e29b-41d4-a716-446655440003",
+  "cardTypeId": "550e8400-e29b-41d4-a716-446655440004",
   "countryCode": "US",
   "currencyCode": "USD",
   "isActive": true,
@@ -218,12 +218,12 @@ Update an existing BIN record by its unique identifier.
 
 ```json
 {
-  "binId": 1,
+  "binId": "550e8400-e29b-41d4-a716-446655440001",
   "binNumber": "123456",
   "binLength": 6,
-  "issuerId": 1,
-  "cardNetworkId": 1,
-  "cardTypeId": 1,
+  "issuerId": "550e8400-e29b-41d4-a716-446655440002",
+  "cardNetworkId": "550e8400-e29b-41d4-a716-446655440003",
+  "cardTypeId": "550e8400-e29b-41d4-a716-446655440004",
   "countryCode": "US",
   "currencyCode": "USD",
   "isActive": true,
@@ -243,7 +243,7 @@ Delete a BIN record by its unique identifier.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| binId | integer | Unique identifier of the BIN to delete |
+| binId | UUID | Unique identifier of the BIN to delete |
 
 **Response:**
 
@@ -274,14 +274,14 @@ Retrieve a paginated list of all card program records.
 {
   "content": [
     {
-      "programId": 1,
+      "programId": "550e8400-e29b-41d4-a716-446655440010",
       "programName": "Premium Credit Card",
       "programCode": "PCC-001",
-      "issuerId": 1,
-      "binId": 1,
-      "cardTypeId": 1,
-      "cardNetworkId": 1,
-      "defaultDesignId": 1,
+      "issuerId": "550e8400-e29b-41d4-a716-446655440002",
+      "binId": "550e8400-e29b-41d4-a716-446655440001",
+      "cardTypeId": "550e8400-e29b-41d4-a716-446655440004",
+      "cardNetworkId": "550e8400-e29b-41d4-a716-446655440003",
+      "defaultDesignId": "550e8400-e29b-41d4-a716-446655440005",
       "startDate": "2023-01-01T00:00:00Z",
       "endDate": "2028-12-31T23:59:59Z",
       "isActive": true,
@@ -336,11 +336,11 @@ Create a new card program record.
 {
   "programName": "Premium Credit Card",
   "programCode": "PCC-001",
-  "issuerId": 1,
-  "binId": 1,
-  "cardTypeId": 1,
-  "cardNetworkId": 1,
-  "defaultDesignId": 1,
+  "issuerId": "550e8400-e29b-41d4-a716-446655440002",
+  "binId": "550e8400-e29b-41d4-a716-446655440001",
+  "cardTypeId": "550e8400-e29b-41d4-a716-446655440004",
+  "cardNetworkId": "550e8400-e29b-41d4-a716-446655440003",
+  "defaultDesignId": "550e8400-e29b-41d4-a716-446655440005",
   "startDate": "2023-01-01T00:00:00Z",
   "endDate": "2028-12-31T23:59:59Z",
   "isActive": true,
@@ -369,14 +369,14 @@ Create a new card program record.
 
 ```json
 {
-  "programId": 1,
+  "programId": "550e8400-e29b-41d4-a716-446655440010",
   "programName": "Premium Credit Card",
   "programCode": "PCC-001",
-  "issuerId": 1,
-  "binId": 1,
-  "cardTypeId": 1,
-  "cardNetworkId": 1,
-  "defaultDesignId": 1,
+  "issuerId": "550e8400-e29b-41d4-a716-446655440002",
+  "binId": "550e8400-e29b-41d4-a716-446655440001",
+  "cardTypeId": "550e8400-e29b-41d4-a716-446655440004",
+  "cardNetworkId": "550e8400-e29b-41d4-a716-446655440003",
+  "defaultDesignId": "550e8400-e29b-41d4-a716-446655440005",
   "startDate": "2023-01-01T00:00:00Z",
   "endDate": "2028-12-31T23:59:59Z",
   "isActive": true,
@@ -413,20 +413,20 @@ Retrieve a specific card program record by its unique identifier.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| programId | integer | Unique identifier of the card program |
+| programId | UUID | Unique identifier of the card program |
 
 **Response:**
 
 ```json
 {
-  "programId": 1,
+  "programId": "550e8400-e29b-41d4-a716-446655440010",
   "programName": "Premium Credit Card",
   "programCode": "PCC-001",
-  "issuerId": 1,
-  "binId": 1,
-  "cardTypeId": 1,
-  "cardNetworkId": 1,
-  "defaultDesignId": 1,
+  "issuerId": "550e8400-e29b-41d4-a716-446655440002",
+  "binId": "550e8400-e29b-41d4-a716-446655440001",
+  "cardTypeId": "550e8400-e29b-41d4-a716-446655440004",
+  "cardNetworkId": "550e8400-e29b-41d4-a716-446655440003",
+  "defaultDesignId": "550e8400-e29b-41d4-a716-446655440005",
   "startDate": "2023-01-01T00:00:00Z",
   "endDate": "2028-12-31T23:59:59Z",
   "isActive": true,
@@ -464,7 +464,7 @@ Update an existing card program record by its unique identifier.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| programId | integer | Unique identifier of the card program to update |
+| programId | UUID | Unique identifier of the card program to update |
 
 **Request Body:**
 
@@ -472,11 +472,11 @@ Update an existing card program record by its unique identifier.
 {
   "programName": "Premium Credit Card Plus",
   "programCode": "PCC-001",
-  "issuerId": 1,
-  "binId": 1,
-  "cardTypeId": 1,
-  "cardNetworkId": 1,
-  "defaultDesignId": 1,
+  "issuerId": "550e8400-e29b-41d4-a716-446655440002",
+  "binId": "550e8400-e29b-41d4-a716-446655440001",
+  "cardTypeId": "550e8400-e29b-41d4-a716-446655440004",
+  "cardNetworkId": "550e8400-e29b-41d4-a716-446655440003",
+  "defaultDesignId": "550e8400-e29b-41d4-a716-446655440005",
   "startDate": "2023-01-01T00:00:00Z",
   "endDate": "2028-12-31T23:59:59Z",
   "isActive": true,
@@ -505,14 +505,14 @@ Update an existing card program record by its unique identifier.
 
 ```json
 {
-  "programId": 1,
+  "programId": "550e8400-e29b-41d4-a716-446655440010",
   "programName": "Premium Credit Card Plus",
   "programCode": "PCC-001",
-  "issuerId": 1,
-  "binId": 1,
-  "cardTypeId": 1,
-  "cardNetworkId": 1,
-  "defaultDesignId": 1,
+  "issuerId": "550e8400-e29b-41d4-a716-446655440002",
+  "binId": "550e8400-e29b-41d4-a716-446655440001",
+  "cardTypeId": "550e8400-e29b-41d4-a716-446655440004",
+  "cardNetworkId": "550e8400-e29b-41d4-a716-446655440003",
+  "defaultDesignId": "550e8400-e29b-41d4-a716-446655440005",
   "startDate": "2023-01-01T00:00:00Z",
   "endDate": "2028-12-31T23:59:59Z",
   "isActive": true,
@@ -549,7 +549,7 @@ Delete a card program record by its unique identifier.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| programId | integer | Unique identifier of the card program to delete |
+| programId | UUID | Unique identifier of the card program to delete |
 
 **Response:**
 
@@ -574,13 +574,13 @@ Create a new card record in the banking system.
   "cardNumber": "4111111111111111",
   "maskedCardNumber": "411111******1111",
   "cardSequenceNumber": "001",
-  "binId": 1,
-  "cardTypeId": 1,
-  "cardNetworkId": 1,
-  "issuerId": 1,
-  "contractId": 12345,
-  "accountId": 67890,
-  "partyId": 54321,
+  "binId": "550e8400-e29b-41d4-a716-446655440001",
+  "cardTypeId": "550e8400-e29b-41d4-a716-446655440004",
+  "cardNetworkId": "550e8400-e29b-41d4-a716-446655440003",
+  "issuerId": "550e8400-e29b-41d4-a716-446655440002",
+  "contractId": "550e8400-e29b-41d4-a716-446655440020",
+  "accountId": "550e8400-e29b-41d4-a716-446655440021",
+  "partyId": "550e8400-e29b-41d4-a716-446655440022",
   "cardStatus": "ACTIVE",
   "cardHolderName": "John Doe",
   "cardHolderId": "ID12345",
@@ -601,7 +601,7 @@ Create a new card record in the banking system.
   "creditLimit": 10000.00,
   "availableBalance": 10000.00,
   "currencyCode": "USD",
-  "designId": 1
+  "designId": "550e8400-e29b-41d4-a716-446655440005"
 }
 ```
 
@@ -609,16 +609,16 @@ Create a new card record in the banking system.
 
 ```json
 {
-  "cardId": 1,
+  "cardId": "550e8400-e29b-41d4-a716-446655440030",
   "maskedCardNumber": "411111******1111",
   "cardSequenceNumber": "001",
-  "binId": 1,
-  "cardTypeId": 1,
-  "cardNetworkId": 1,
-  "issuerId": 1,
-  "contractId": 12345,
-  "accountId": 67890,
-  "partyId": 54321,
+  "binId": "550e8400-e29b-41d4-a716-446655440001",
+  "cardTypeId": "550e8400-e29b-41d4-a716-446655440004",
+  "cardNetworkId": "550e8400-e29b-41d4-a716-446655440003",
+  "issuerId": "550e8400-e29b-41d4-a716-446655440002",
+  "contractId": "550e8400-e29b-41d4-a716-446655440020",
+  "accountId": "550e8400-e29b-41d4-a716-446655440021",
+  "partyId": "550e8400-e29b-41d4-a716-446655440022",
   "cardStatus": "ACTIVE",
   "cardHolderName": "John Doe",
   "cardHolderId": "ID12345",
@@ -637,7 +637,7 @@ Create a new card record in the banking system.
   "creditLimit": 10000.00,
   "availableBalance": 10000.00,
   "currencyCode": "USD",
-  "designId": 1
+  "designId": "550e8400-e29b-41d4-a716-446655440005"
 }
 ```
 
@@ -655,22 +655,22 @@ Retrieve an existing card record by its unique identifier.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| cardId | integer | Unique identifier of the card |
+| cardId | UUID | Unique identifier of the card |
 
 **Response:**
 
 ```json
 {
-  "cardId": 1,
+  "cardId": "550e8400-e29b-41d4-a716-446655440030",
   "maskedCardNumber": "411111******1111",
   "cardSequenceNumber": "001",
-  "binId": 1,
-  "cardTypeId": 1,
-  "cardNetworkId": 1,
-  "issuerId": 1,
-  "contractId": 12345,
-  "accountId": 67890,
-  "partyId": 54321,
+  "binId": "550e8400-e29b-41d4-a716-446655440001",
+  "cardTypeId": "550e8400-e29b-41d4-a716-446655440004",
+  "cardNetworkId": "550e8400-e29b-41d4-a716-446655440003",
+  "issuerId": "550e8400-e29b-41d4-a716-446655440002",
+  "contractId": "550e8400-e29b-41d4-a716-446655440020",
+  "accountId": "550e8400-e29b-41d4-a716-446655440021",
+  "partyId": "550e8400-e29b-41d4-a716-446655440022",
   "cardStatus": "ACTIVE",
   "cardHolderName": "John Doe",
   "cardHolderId": "ID12345",
@@ -689,7 +689,7 @@ Retrieve an existing card record by its unique identifier.
   "creditLimit": 10000.00,
   "availableBalance": 10000.00,
   "currencyCode": "USD",
-  "designId": 1
+  "designId": "550e8400-e29b-41d4-a716-446655440005"
 }
 ```
 
@@ -706,7 +706,7 @@ Update an existing card record by its unique identifier.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| cardId | integer | Unique identifier of the card to update |
+| cardId | UUID | Unique identifier of the card to update |
 
 **Request Body:**
 
@@ -726,16 +726,16 @@ Update an existing card record by its unique identifier.
 
 ```json
 {
-  "cardId": 1,
+  "cardId": "550e8400-e29b-41d4-a716-446655440030",
   "maskedCardNumber": "411111******1111",
   "cardSequenceNumber": "001",
-  "binId": 1,
-  "cardTypeId": 1,
-  "cardNetworkId": 1,
-  "issuerId": 1,
-  "contractId": 12345,
-  "accountId": 67890,
-  "partyId": 54321,
+  "binId": "550e8400-e29b-41d4-a716-446655440001",
+  "cardTypeId": "550e8400-e29b-41d4-a716-446655440004",
+  "cardNetworkId": "550e8400-e29b-41d4-a716-446655440003",
+  "issuerId": "550e8400-e29b-41d4-a716-446655440002",
+  "contractId": "550e8400-e29b-41d4-a716-446655440020",
+  "accountId": "550e8400-e29b-41d4-a716-446655440021",
+  "partyId": "550e8400-e29b-41d4-a716-446655440022",
   "cardStatus": "ACTIVE",
   "cardHolderName": "John A. Doe",
   "cardHolderId": "ID12345",
@@ -754,7 +754,7 @@ Update an existing card record by its unique identifier.
   "creditLimit": 12000.00,
   "availableBalance": 10000.00,
   "currencyCode": "USD",
-  "designId": 1
+  "designId": "550e8400-e29b-41d4-a716-446655440005"
 }
 ```
 
@@ -770,7 +770,7 @@ Delete a card record by its unique identifier.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| cardId | integer | Unique identifier of the card to delete |
+| cardId | UUID | Unique identifier of the card to delete |
 
 **Response:**
 
@@ -803,7 +803,7 @@ Retrieve a paginated list of all merchant records.
 {
   "content": [
     {
-      "merchantId": 1,
+      "merchantId": "550e8400-e29b-41d4-a716-446655440040",
       "merchantReference": "MERCH-001",
       "merchantName": "Example Store",
       "merchantLegalName": "Example Store Inc.",
@@ -952,7 +952,7 @@ Create a new merchant record.
 
 ```json
 {
-  "merchantId": 1,
+  "merchantId": "550e8400-e29b-41d4-a716-446655440040",
   "merchantReference": "MERCH-001",
   "merchantName": "Example Store",
   "merchantLegalName": "Example Store Inc.",
@@ -1023,13 +1023,13 @@ Retrieve a specific merchant record by its unique identifier.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| merchantId | integer | Unique identifier of the merchant |
+| merchantId | UUID | Unique identifier of the merchant |
 
 **Response:**
 
 ```json
 {
-  "merchantId": 1,
+  "merchantId": "550e8400-e29b-41d4-a716-446655440040",
   "merchantReference": "MERCH-001",
   "merchantName": "Example Store",
   "merchantLegalName": "Example Store Inc.",
@@ -1101,7 +1101,7 @@ Update an existing merchant record by its unique identifier.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| merchantId | integer | Unique identifier of the merchant to update |
+| merchantId | UUID | Unique identifier of the merchant to update |
 
 **Request Body:**
 
@@ -1127,7 +1127,7 @@ Update an existing merchant record by its unique identifier.
 
 ```json
 {
-  "merchantId": 1,
+  "merchantId": "550e8400-e29b-41d4-a716-446655440040",
   "merchantReference": "MERCH-001",
   "merchantName": "Example Store Updated",
   "merchantLegalName": "Example Store Inc.",
@@ -1198,7 +1198,7 @@ Delete a merchant record by its unique identifier.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| merchantId | integer | Unique identifier of the merchant to delete |
+| merchantId | UUID | Unique identifier of the merchant to delete |
 
 **Response:**
 
