@@ -17,8 +17,8 @@
 
 package com.firefly.core.banking.cards.core.services.dispute.v1;
 
-import com.firefly.common.core.queries.PaginationRequest;
-import com.firefly.common.core.queries.PaginationResponse;
+import org.fireflyframework.core.queries.PaginationRequest;
+import org.fireflyframework.core.queries.PaginationResponse;
 import com.firefly.core.banking.cards.interfaces.dtos.dispute.v1.CardDisputeDTO;
 import reactor.core.publisher.Mono;
 

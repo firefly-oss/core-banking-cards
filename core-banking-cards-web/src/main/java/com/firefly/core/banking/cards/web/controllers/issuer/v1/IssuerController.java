@@ -17,8 +17,8 @@
 
 package com.firefly.core.banking.cards.web.controllers.issuer.v1;
 
-import com.firefly.common.core.queries.PaginationRequest;
-import com.firefly.common.core.queries.PaginationResponse;
+import org.fireflyframework.core.queries.PaginationRequest;
+import org.fireflyframework.core.queries.PaginationResponse;
 import com.firefly.core.banking.cards.core.services.issuer.v1.IssuerServiceImpl;
 import com.firefly.core.banking.cards.interfaces.dtos.issuer.v1.IssuerDTO;
 import io.swagger.v3.oas.annotations.Operation;

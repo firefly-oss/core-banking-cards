@@ -17,9 +17,9 @@
 
 package com.firefly.core.banking.cards.core.services.limit.v1;
 
-import com.firefly.common.core.queries.PaginationRequest;
-import com.firefly.common.core.queries.PaginationResponse;
-import com.firefly.common.core.queries.PaginationUtils;
+import org.fireflyframework.core.queries.PaginationRequest;
+import org.fireflyframework.core.queries.PaginationResponse;
+import org.fireflyframework.core.queries.PaginationUtils;
 import com.firefly.core.banking.cards.core.mappers.limit.v1.CardLimitMapper;
 import com.firefly.core.banking.cards.interfaces.dtos.limit.v1.CardLimitDTO;
 import com.firefly.core.banking.cards.models.entities.limit.v1.CardLimit;

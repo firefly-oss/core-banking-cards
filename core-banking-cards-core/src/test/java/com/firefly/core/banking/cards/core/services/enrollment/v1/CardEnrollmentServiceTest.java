@@ -17,9 +17,9 @@
 
 package com.firefly.core.banking.cards.core.services.enrollment.v1;
 
-import com.firefly.common.core.queries.PaginationRequest;
-import com.firefly.common.core.queries.PaginationResponse;
-import com.firefly.common.core.queries.PaginationUtils;
+import org.fireflyframework.core.queries.PaginationRequest;
+import org.fireflyframework.core.queries.PaginationResponse;
+import org.fireflyframework.core.queries.PaginationUtils;
 import com.firefly.core.banking.cards.core.mappers.enrollment.v1.CardEnrollmentMapper;
 import com.firefly.core.banking.cards.interfaces.dtos.enrollment.v1.CardEnrollmentDTO;
 import com.firefly.core.banking.cards.models.entities.enrollment.v1.CardEnrollment;

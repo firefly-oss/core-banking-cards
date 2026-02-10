@@ -17,8 +17,8 @@
 
 package com.firefly.core.banking.cards.core.services.physical.v1;
 
-import com.firefly.common.core.queries.PaginationRequest;
-import com.firefly.common.core.queries.PaginationResponse;
+import org.fireflyframework.core.queries.PaginationRequest;
+import org.fireflyframework.core.queries.PaginationResponse;
 import com.firefly.core.banking.cards.interfaces.dtos.physical.v1.PhysicalCardDTO;
 import reactor.core.publisher.Mono;
 

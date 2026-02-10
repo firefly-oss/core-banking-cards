@@ -17,8 +17,8 @@
 
 package com.firefly.core.banking.cards.web.controllers.interest.v1;
 
-import com.firefly.common.core.queries.PaginationRequest;
-import com.firefly.common.core.queries.PaginationResponse;
+import org.fireflyframework.core.queries.PaginationRequest;
+import org.fireflyframework.core.queries.PaginationResponse;
 import com.firefly.core.banking.cards.core.services.interest.v1.CardInterestServiceImpl;
 import com.firefly.core.banking.cards.interfaces.dtos.interest.v1.CardInterestDTO;
 import io.swagger.v3.oas.annotations.Operation;

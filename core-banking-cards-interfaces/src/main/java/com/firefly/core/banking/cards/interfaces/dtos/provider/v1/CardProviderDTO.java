@@ -20,7 +20,7 @@ package com.firefly.core.banking.cards.interfaces.dtos.provider.v1;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.firefly.core.banking.cards.interfaces.dtos.BaseDTO;
 import com.firefly.core.banking.cards.interfaces.enums.provider.v1.ProviderStatusEnum;
-import com.firefly.core.utils.annotations.FilterableId;
+import org.fireflyframework.utils.annotations.FilterableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

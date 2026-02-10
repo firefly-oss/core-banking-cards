@@ -17,9 +17,9 @@
 
 package com.firefly.core.banking.cards.core.services.virtual.v1;
 
-import com.firefly.common.core.queries.PaginationRequest;
-import com.firefly.common.core.queries.PaginationResponse;
-import com.firefly.common.core.queries.PaginationUtils;
+import org.fireflyframework.core.queries.PaginationRequest;
+import org.fireflyframework.core.queries.PaginationResponse;
+import org.fireflyframework.core.queries.PaginationUtils;
 import com.firefly.core.banking.cards.core.mappers.virtual.v1.VirtualCardMapper;
 import com.firefly.core.banking.cards.interfaces.dtos.virtual.v1.VirtualCardDTO;
 import com.firefly.core.banking.cards.interfaces.enums.virtual.v1.VirtualCardStatusEnum;

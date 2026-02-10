@@ -17,9 +17,9 @@
 
 package com.firefly.core.banking.cards.core.services.provider.v1;
 
-import com.firefly.common.core.queries.PaginationRequest;
-import com.firefly.common.core.queries.PaginationResponse;
-import com.firefly.common.core.queries.PaginationUtils;
+import org.fireflyframework.core.queries.PaginationRequest;
+import org.fireflyframework.core.queries.PaginationResponse;
+import org.fireflyframework.core.queries.PaginationUtils;
 import com.firefly.core.banking.cards.core.mappers.provider.v1.CardProviderMapper;
 import com.firefly.core.banking.cards.interfaces.dtos.provider.v1.CardProviderDTO;
 import com.firefly.core.banking.cards.models.entities.provider.v1.CardProvider;

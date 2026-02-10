@@ -17,8 +17,8 @@
 
 package com.firefly.core.banking.cards.web.controllers.acquirer.v1;
 
-import com.firefly.common.core.queries.PaginationRequest;
-import com.firefly.common.core.queries.PaginationResponse;
+import org.fireflyframework.core.queries.PaginationRequest;
+import org.fireflyframework.core.queries.PaginationResponse;
 import com.firefly.core.banking.cards.core.services.acquirer.v1.CardAcquirerServiceImpl;
 import com.firefly.core.banking.cards.interfaces.dtos.acquirer.v1.CardAcquirerDTO;
 import io.swagger.v3.oas.annotations.Operation;

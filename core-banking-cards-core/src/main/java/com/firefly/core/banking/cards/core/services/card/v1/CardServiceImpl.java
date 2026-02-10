@@ -17,9 +17,9 @@
 
 package com.firefly.core.banking.cards.core.services.card.v1;
 
-import com.firefly.common.core.filters.FilterRequest;
-import com.firefly.common.core.filters.FilterUtils;
-import com.firefly.common.core.queries.PaginationResponse;
+import org.fireflyframework.core.filters.FilterRequest;
+import org.fireflyframework.core.filters.FilterUtils;
+import org.fireflyframework.core.queries.PaginationResponse;
 import com.firefly.core.banking.cards.core.mappers.card.v1.CardMapper;
 import com.firefly.core.banking.cards.interfaces.dtos.card.v1.CardDTO;
 import com.firefly.core.banking.cards.models.entities.card.v1.Card;
