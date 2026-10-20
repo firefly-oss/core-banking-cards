@@ -12,6 +12,7 @@
     </parent>
 
     <artifactId>core-banking-cards</artifactId>
+    <name>core-banking-cards</name>
     <packaging>pom</packaging>
     <modules>
         <module>core-banking-cards-core</module>

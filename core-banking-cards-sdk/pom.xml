@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>core-banking-cards-sdk</artifactId>
+    <name>core-banking-cards-sdk</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
