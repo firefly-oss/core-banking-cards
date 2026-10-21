@@ -1,9 +1,9 @@
 <a href="https://fireflysoftware.io/openplatform/">
 <picture>
-  <source media="(max-width: 640px) and (prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/firefly-oss/.github/main/profile/assets/banner-narrow-dark.svg">
-  <source media="(max-width: 640px)" srcset="https://raw.githubusercontent.com/firefly-oss/.github/main/profile/assets/banner-narrow-light.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/firefly-oss/.github/main/profile/assets/banner-dark.svg">
-  <img src="https://raw.githubusercontent.com/firefly-oss/.github/main/profile/assets/banner-light.svg" alt="Firefly OpenPlatform - Core Banking - Cards" width="100%">
+  <source media="(max-width: 640px) and (prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/fireflysoftwaresolutions/.github/main/profile/assets/banner-narrow-dark.svg">
+  <source media="(max-width: 640px)" srcset="https://raw.githubusercontent.com/fireflysoftwaresolutions/.github/main/profile/assets/banner-narrow-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/fireflysoftwaresolutions/.github/main/profile/assets/banner-dark.svg">
+  <img src="https://raw.githubusercontent.com/fireflysoftwaresolutions/.github/main/profile/assets/banner-light.svg" alt="Firefly OpenPlatform - Core Banking - Cards" width="100%">
 </picture>
 </a>
 
@@ -679,7 +679,7 @@ erDiagram
 - **BIN**: Bank Identification Number that identifies issuer and card type
 
 #### Card Entities
-- **Card**: Central entity representing a payment card
+- **Card**: Central entity representing a payment card. A new card is `DRAFT`. A draft may become `ACTIVE` or `CANCELLED`. An active card may become `BLOCKED`, `EXPIRED`, or `CANCELLED`. A blocked card may return to `ACTIVE` or become `EXPIRED` or `CANCELLED`. `EXPIRED` and `CANCELLED` stay on file. Only a draft card can be removed. Cancel an issued card so the card history stays on file
 - **Physical Card**: Physical aspects including manufacturing and shipping details
 - **Virtual Card**: Digital version for online transactions and mobile wallets
 - **Card Configuration**: Settings for individual cards

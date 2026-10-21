@@ -700,7 +700,7 @@ PUT /api/v1/cards/{cardId}
 Content-Type: application/json
 ```
 
-Update an existing card record by its unique identifier.
+Update an existing card record by its unique identifier. A status change follows the card lifecycle: `DRAFT` may become `ACTIVE` or `CANCELLED`; `ACTIVE` may become `BLOCKED`, `EXPIRED`, or `CANCELLED`; `BLOCKED` may return to `ACTIVE` or become `EXPIRED` or `CANCELLED`. `EXPIRED` and `CANCELLED` stay on file.
 
 **Path Parameters:**
 
@@ -764,19 +764,19 @@ Update an existing card record by its unique identifier.
 DELETE /api/v1/cards/{cardId}
 ```
 
-Delete a card record by its unique identifier.
+Delete a draft card by its unique identifier. An issued card stays on file. Cancel it so the card history is kept.
 
 **Path Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| cardId | UUID | Unique identifier of the card to delete |
+| cardId | UUID | Unique identifier of the draft card to delete |
 
 **Response:**
 
 No content (204) if successful.
 
-> Note: In most production scenarios, cards should be deactivated or blocked rather than deleted to preserve transaction history and audit trails.
+> Only a card in `DRAFT` can be removed. `ACTIVE`, `BLOCKED`, `EXPIRED`, and `CANCELLED` cards stay on file.
 ### Merchant Management
 
 Merchant APIs allow management of merchant records, which represent businesses that accept card payments.
