@@ -40,7 +40,7 @@ import java.util.UUID;
 @Table("card_security")
 public class CardSecurity extends BaseEntity {
     @Id
-    @Column("card_security_id")
+    @Column("security_id")
     private UUID cardSecurityId;
 
     @Column("card_id")

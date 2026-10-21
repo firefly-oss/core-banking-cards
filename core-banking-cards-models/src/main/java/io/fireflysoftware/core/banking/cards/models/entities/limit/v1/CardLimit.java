@@ -42,7 +42,7 @@ import java.util.UUID;
 public class CardLimit extends BaseEntity {
 
     @Id
-    @Column("card_limit_id")
+    @Column("limit_id")
     private UUID cardLimitId;
 
     @Column("card_id")
@@ -75,7 +75,7 @@ public class CardLimit extends BaseEntity {
     @Column("currency_code")
     private String currencyCode;
 
-    @Column("limit_amount")
+    @Column("limit_value")
     private BigDecimal limitAmount;
 
     @Column("current_usage")
