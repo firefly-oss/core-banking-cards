@@ -7420,6 +7420,7 @@ components:
         cardStatus:
           type: string
           enum:
+            - DRAFT
             - ACTIVE
             - BLOCKED
             - EXPIRED

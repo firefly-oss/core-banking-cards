@@ -18,6 +18,7 @@
 package io.fireflysoftware.core.banking.cards.interfaces.enums.card.v1;
 
 public enum CardStatusEnum {
+    DRAFT,
     ACTIVE,
     BLOCKED,
     EXPIRED,

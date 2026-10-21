@@ -167,6 +167,7 @@ public class CardServiceTest {
     @Test
     void deleteCard_Success() {
         // Arrange
+        card.setCardStatus(CardStatusEnum.DRAFT);
         when(cardRepository.findByCardId(cardId)).thenReturn(Mono.just(card));
         when(cardRepository.delete(card)).thenReturn(Mono.empty());
 

@@ -22,6 +22,7 @@ import org.fireflyframework.core.filters.FilterUtils;
 import org.fireflyframework.core.queries.PaginationResponse;
 import io.fireflysoftware.core.banking.cards.core.mappers.card.v1.CardMapper;
 import io.fireflysoftware.core.banking.cards.interfaces.dtos.card.v1.CardDTO;
+import io.fireflysoftware.core.banking.cards.interfaces.enums.card.v1.CardStatusEnum;
 import io.fireflysoftware.core.banking.cards.models.entities.card.v1.Card;
 import io.fireflysoftware.core.banking.cards.models.repositories.card.v1.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,11 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public Mono<CardDTO> createCard(CardDTO cardDTO) {
-        return repository.save(mapper.toEntity(cardDTO))
+        Card card = mapper.toEntity(cardDTO);
+        if (card.getCardStatus() == null) {
+            card.setCardStatus(CardStatusEnum.DRAFT);
+        }
+        return repository.save(card)
                 .map(mapper::toDTO);
     }
 
@@ -67,8 +72,18 @@ public class CardServiceImpl implements CardService {
     public Mono<CardDTO> updateCard(UUID cardId, CardDTO cardDTO) {
         return repository.findByCardId(cardId)
                 .flatMap(existingCard -> {
+                    CardStatusEnum current = existingCard.getCardStatus() != null
+                            ? existingCard.getCardStatus()
+                            : CardStatusEnum.DRAFT;
                     Card updatedCard = mapper.toEntity(cardDTO);
                     updatedCard.setCardId(existingCard.getCardId());
+                    if (updatedCard.getCardStatus() == null) {
+                        updatedCard.setCardStatus(current);
+                    }
+                    if (!CardLifecycle.canTransition(current, updatedCard.getCardStatus())) {
+                        return Mono.error(new IllegalStateException(
+                                "Card " + cardId + " cannot move from " + current + " to " + updatedCard.getCardStatus()));
+                    }
                     return repository.save(updatedCard);
                 })
                 .map(mapper::toDTO);
@@ -77,6 +92,16 @@ public class CardServiceImpl implements CardService {
     @Override
     public Mono<Void> deleteCard(UUID cardId) {
         return repository.findByCardId(cardId)
-                .flatMap(repository::delete);
+                .flatMap(existingCard -> {
+                    CardStatusEnum status = existingCard.getCardStatus() != null
+                            ? existingCard.getCardStatus()
+                            : CardStatusEnum.DRAFT;
+                    if (status != CardStatusEnum.DRAFT) {
+                        return Mono.error(new IllegalStateException(
+                                "Card " + cardId + " is " + status
+                                        + " and cannot be deleted; cancel it so the card history is kept"));
+                    }
+                    return repository.delete(existingCard);
+                });
     }
 }
