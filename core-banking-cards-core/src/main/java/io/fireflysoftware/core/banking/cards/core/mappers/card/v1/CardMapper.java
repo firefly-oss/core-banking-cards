@@ -20,6 +20,7 @@ package io.fireflysoftware.core.banking.cards.core.mappers.card.v1;
 import io.fireflysoftware.core.banking.cards.interfaces.dtos.card.v1.CardDTO;
 import io.fireflysoftware.core.banking.cards.models.entities.card.v1.Card;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 /**
@@ -34,6 +35,8 @@ public interface CardMapper {
      * @param card the Card entity to convert
      * @return the resulting CardDTO
      */
+    @Mapping(target = "pin", ignore = true)
+    @Mapping(target = "cvv", ignore = true)
     CardDTO toDTO(Card card);
 
     /**
@@ -42,5 +45,7 @@ public interface CardMapper {
      * @param cardDTO the CardDTO to convert
      * @return the resulting Card entity
      */
+    @Mapping(target = "pin", ignore = true)
+    @Mapping(target = "cvv", ignore = true)
     Card toEntity(CardDTO cardDTO);
 }

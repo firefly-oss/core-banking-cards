@@ -79,8 +79,10 @@ public class CardController {
                     "* `monthlyLimit` - Maximum monthly transaction amount\n" +
                     "* `creditLimit` - Credit limit (for credit cards)\n\n" +
                     "## Security Considerations\n" +
-                    "Sensitive card data like the full card number, CVV, and PIN are generated securely by the system. " +
-                    "These values are stored encrypted and are never returned in full through the API."
+                    "Card record creation does not provision processor credentials. PIN and CVV inputs are rejected " +
+                    "and are omitted from ordinary responses. Existing records containing these credentials require " +
+                    "controlled remediation before ordinary updates. This legacy record API still handles full card " +
+                    "numbers; processor tokenization and protected card-data display require a separate integration."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Card created successfully",
@@ -115,9 +117,10 @@ public class CardController {
                     "* Card limits and restrictions\n" +
                     "* Card features and capabilities\n\n" +
                     "## Security Considerations\n" +
-                    "Sensitive information like the full card number, CVV, and PIN are masked or excluded from " +
-                    "the response for security reasons. The card number is partially masked (e.g., '411111******1111') " +
-                    "to allow identification while protecting sensitive data.\n\n" +
+                    "PIN and CVV are omitted from ordinary responses, including historical records. " +
+                    "The legacy response still includes the full card number when stored; the masked-number field " +
+                    "does not itself suppress that property. Processor tokenization and protected display are " +
+                    "separate integration requirements.\n\n" +
                     "## Common Use Cases\n" +
                     "* Retrieving card details for display in party portals\n" +
                     "* Checking card status before processing transactions\n" +

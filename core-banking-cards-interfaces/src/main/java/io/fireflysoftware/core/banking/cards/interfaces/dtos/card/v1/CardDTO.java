@@ -25,6 +25,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import jakarta.validation.constraints.*;
@@ -100,10 +101,14 @@ public class CardDTO extends BaseDTO {
     @Max(value = 2050, message = "Expiration year cannot exceed 2050")
     private Integer expirationYear;
 
-    @Pattern(regexp = "^[0-9]{3,4}$", message = "CVV must be 3 or 4 digits")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Null(message = "CVV is not accepted by card record operations")
+    @ToString.Exclude
     private String cvv;
 
-    @Pattern(regexp = "^[0-9]{4,8}$", message = "PIN must be 4-8 digits")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Null(message = "PIN is not accepted by card record operations")
+    @ToString.Exclude
     private String pin;
 
     @PastOrPresent(message = "Activation date cannot be in the future")

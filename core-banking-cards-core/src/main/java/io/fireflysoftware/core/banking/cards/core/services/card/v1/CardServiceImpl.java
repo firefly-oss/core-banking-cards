@@ -27,7 +27,9 @@ import io.fireflysoftware.core.banking.cards.models.entities.card.v1.Card;
 import io.fireflysoftware.core.banking.cards.models.repositories.card.v1.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
 import java.util.UUID;
@@ -44,6 +46,9 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public Mono<PaginationResponse<CardDTO>> filterCards(FilterRequest<CardDTO> filterRequest) {
+        if (hasSensitiveAuthenticationFilter(filterRequest)) {
+            return Mono.error(rejectedSensitiveAuthenticationData());
+        }
         return FilterUtils
                 .createFilter(
                         Card.class,
@@ -54,6 +59,9 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public Mono<CardDTO> createCard(CardDTO cardDTO) {
+        if (hasSensitiveAuthenticationData(cardDTO)) {
+            return Mono.error(rejectedSensitiveAuthenticationData());
+        }
         Card card = mapper.toEntity(cardDTO);
         if (card.getCardStatus() == null) {
             card.setCardStatus(CardStatusEnum.DRAFT);
@@ -70,8 +78,15 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public Mono<CardDTO> updateCard(UUID cardId, CardDTO cardDTO) {
+        if (hasSensitiveAuthenticationData(cardDTO)) {
+            return Mono.error(rejectedSensitiveAuthenticationData());
+        }
         return repository.findByCardId(cardId)
                 .flatMap(existingCard -> {
+                    if (existingCard.getPin() != null || existingCard.getCvv() != null) {
+                        return Mono.error(new ResponseStatusException(HttpStatus.CONFLICT,
+                                "Historical card credentials require controlled remediation before an update"));
+                    }
                     CardStatusEnum current = existingCard.getCardStatus() != null
                             ? existingCard.getCardStatus()
                             : CardStatusEnum.DRAFT;
@@ -87,6 +102,34 @@ public class CardServiceImpl implements CardService {
                     return repository.save(updatedCard);
                 })
                 .map(mapper::toDTO);
+    }
+
+    private static boolean hasSensitiveAuthenticationData(CardDTO card) {
+        return card.getPin() != null || card.getCvv() != null;
+    }
+
+    private static boolean hasSensitiveAuthenticationFilter(FilterRequest<CardDTO> request) {
+        var filters = request.getFilters();
+        if (filters != null && (hasSensitiveAuthenticationData(filters)
+                || FilterRequest.getSpecialFilter(filters, "pin") != null
+                || FilterRequest.getSpecialFilter(filters, "cvv") != null)) {
+            return true;
+        }
+        var range = request.getRangeFilters();
+        if (range != null && range.getRanges() != null
+                && range.getRanges().keySet().stream().anyMatch(CardServiceImpl::isCredentialField)) {
+            return true;
+        }
+        return request.getPagination() != null && isCredentialField(request.getPagination().getSortBy());
+    }
+
+    private static boolean isCredentialField(String field) {
+        return field != null && ("pin".equalsIgnoreCase(field.trim()) || "cvv".equalsIgnoreCase(field.trim()));
+    }
+
+    private static ResponseStatusException rejectedSensitiveAuthenticationData() {
+        return new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                "PIN and CVV are not accepted by card record operations");
     }
 
     @Override
