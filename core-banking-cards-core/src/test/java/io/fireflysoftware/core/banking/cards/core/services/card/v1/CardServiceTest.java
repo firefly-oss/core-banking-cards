@@ -87,6 +87,8 @@ public class CardServiceTest {
 
     @Test
     void createCard_Success() {
+        cardDTO.setCardStatus(CardStatusEnum.DRAFT);
+        card.setCardStatus(CardStatusEnum.DRAFT);
         // Arrange
         when(cardMapper.toEntity(any(CardDTO.class))).thenReturn(card);
         when(cardRepository.save(any(Card.class))).thenReturn(Mono.just(card));

@@ -62,10 +62,14 @@ public class CardServiceImpl implements CardService {
         if (hasSensitiveAuthenticationData(cardDTO)) {
             return Mono.error(rejectedSensitiveAuthenticationData());
         }
-        Card card = mapper.toEntity(cardDTO);
-        if (card.getCardStatus() == null) {
-            card.setCardStatus(CardStatusEnum.DRAFT);
+        if ((cardDTO.getCardStatus() != null && cardDTO.getCardStatus() != CardStatusEnum.DRAFT)
+                || cardDTO.getActivationDate() != null || Boolean.TRUE.equals(cardDTO.getIsActive())) {
+            return Mono.error(rejectedLifecycleChange());
         }
+        Card card = mapper.toEntity(cardDTO);
+        card.setCardStatus(CardStatusEnum.DRAFT);
+        card.setIsActive(false);
+        card.setIsLocked(true);
         return repository.save(card)
                 .map(mapper::toDTO);
     }
@@ -90,6 +94,16 @@ public class CardServiceImpl implements CardService {
                     CardStatusEnum current = existingCard.getCardStatus() != null
                             ? existingCard.getCardStatus()
                             : CardStatusEnum.DRAFT;
+                    if (!java.util.Objects.equals(cardDTO.getPartyId(), existingCard.getPartyId())
+                            || !java.util.Objects.equals(cardDTO.getAccountId(), existingCard.getAccountId())
+                            || (cardDTO.getCardStatus() == CardStatusEnum.ACTIVE && current != CardStatusEnum.ACTIVE)
+                            || !java.util.Objects.equals(cardDTO.getActivationDate(), existingCard.getActivationDate())
+                            || (Boolean.TRUE.equals(cardDTO.getIsActive())
+                                    && !Boolean.TRUE.equals(existingCard.getIsActive()))
+                            || (Boolean.FALSE.equals(cardDTO.getIsLocked())
+                                    && Boolean.TRUE.equals(existingCard.getIsLocked()))) {
+                        return Mono.error(rejectedLifecycleChange());
+                    }
                     Card updatedCard = mapper.toEntity(cardDTO);
                     updatedCard.setCardId(existingCard.getCardId());
                     if (updatedCard.getCardStatus() == null) {
@@ -99,9 +113,24 @@ public class CardServiceImpl implements CardService {
                         return Mono.error(new IllegalStateException(
                                 "Card " + cardId + " cannot move from " + current + " to " + updatedCard.getCardStatus()));
                     }
+                    if (updatedCard.getIsActive() == null) {
+                        updatedCard.setIsActive(existingCard.getIsActive());
+                    }
+                    if (updatedCard.getIsLocked() == null) {
+                        updatedCard.setIsLocked(existingCard.getIsLocked());
+                    }
+                    if (updatedCard.getCardStatus() != CardStatusEnum.ACTIVE) {
+                        updatedCard.setIsActive(false);
+                        updatedCard.setIsLocked(true);
+                    }
                     return repository.save(updatedCard);
                 })
                 .map(mapper::toDTO);
+    }
+
+    private static ResponseStatusException rejectedLifecycleChange() {
+        return new ResponseStatusException(HttpStatus.CONFLICT,
+                "Card activation and restriction removal require a verified lifecycle action");
     }
 
     private static boolean hasSensitiveAuthenticationData(CardDTO card) {

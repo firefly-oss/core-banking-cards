@@ -19,8 +19,12 @@ package io.fireflysoftware.core.banking.cards.web.controllers.card.v1;
 
 import org.fireflyframework.core.filters.FilterRequest;
 import org.fireflyframework.core.queries.PaginationResponse;
+import org.fireflyframework.web.idempotency.annotation.DisableIdempotency;
 import io.fireflysoftware.core.banking.cards.core.services.card.v1.CardServiceImpl;
 import io.fireflysoftware.core.banking.cards.interfaces.dtos.card.v1.CardDTO;
+import io.fireflysoftware.core.banking.cards.interfaces.dtos.card.v1.CardActivationRequest;
+import io.fireflysoftware.core.banking.cards.interfaces.dtos.card.v1.CardActivationReceipt;
+import io.fireflysoftware.core.banking.cards.core.services.card.v1.activation.CardActivationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -44,6 +48,40 @@ public class CardController {
     @Autowired
     private CardServiceImpl service;
 
+    @Autowired
+    private CardActivationService activationService;
+
+    @Operation(summary = "Verify a card activation action",
+            description = "Consumes issued possession proof only after core independently verifies the bound issuer operation. "
+                    + "Requires authenticated current ownership and a configured issuer adapter. Pending or uncertain receipts do not activate a card.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Activation confirmed",
+                    content = @Content(schema = @Schema(implementation = CardActivationReceipt.class))),
+            @ApiResponse(responseCode = "202", description = "Activation observation is pending or uncertain",
+                    content = @Content(schema = @Schema(implementation = CardActivationReceipt.class))),
+            @ApiResponse(responseCode = "400", description = "Invalid proof request", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Activation is not authorized", content = @Content),
+            @ApiResponse(responseCode = "409", description = "Action conflict or issuer reconciliation required", content = @Content),
+            @ApiResponse(responseCode = "422", description = "Issuer rejected the action",
+                    content = @Content(schema = @Schema(implementation = CardActivationReceipt.class))),
+            @ApiResponse(responseCode = "503", description = "Required activation integration is unavailable", content = @Content)
+    })
+    @DisableIdempotency
+    @PostMapping(value = "/{cardId}/activation", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ResponseEntity<CardActivationReceipt>> activateCard(
+            @PathVariable UUID cardId,
+            @RequestHeader("X-Idempotency-Key") UUID actionId,
+            @Valid @RequestBody CardActivationRequest request) {
+        return activationService.activate(cardId, actionId, request)
+                .map(receipt -> ResponseEntity.status(switch (receipt.state()) {
+                    case CONFIRMED -> 200;
+                    case REJECTED -> 422;
+                    case RECONCILIATION_REQUIRED -> 409;
+                    case RESERVED, UNCERTAIN -> 202;
+                }).body(receipt));
+    }
+
     @Operation(
             summary = "Filter Cards",
             description = "Retrieve a paginated list of all bank cards based on filter criteria."
@@ -63,6 +101,7 @@ public class CardController {
                     "## Description\n" +
                     "This endpoint allows the creation of new payment cards. Cards are the central entity in the system " +
                     "and are associated with specific card programs, issuers, networks, and account holders. " +
+                    "New records are inactive locked drafts. ACTIVE status and activation evidence require a verified lifecycle action. " +
                     "The created card can be either physical, virtual, or both, depending on the configuration.\n\n" +
                     "## Required Fields\n" +
                     "* `cardTypeId` - Type of card (credit, debit, prepaid)\n" +
@@ -151,7 +190,7 @@ public class CardController {
                     "It enables financial institutions to manage card lifecycle events and adjust card parameters " +
                     "based on party needs or risk assessments.\n\n" +
                     "## Updatable Fields\n" +
-                    "* `cardStatus` - Current status (ACTIVE, INACTIVE, BLOCKED, etc.)\n" +
+                    "* `cardStatus` - Restriction or terminal status; activation and unblocking require verified lifecycle actions\n" +
                     "* `cardHolderName` - Name displayed on the card\n" +
                     "* `dailyLimit` - Maximum daily transaction amount\n" +
                     "* `monthlyLimit` - Maximum monthly transaction amount\n" +
@@ -168,7 +207,7 @@ public class CardController {
                     "* Issuer\n\n" +
                     "For changes to these immutable attributes, a new card must be issued.\n\n" +
                     "## Common Use Cases\n" +
-                    "* Activating a newly issued card\n" +
+                    "* Applying a restriction to an existing card\n" +
                     "* Blocking a card due to suspected fraud\n" +
                     "* Adjusting card limits based on party request\n" +
                     "* Updating cardholder information"

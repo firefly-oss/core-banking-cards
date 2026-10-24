@@ -21,6 +21,8 @@ The current source contains the declarations indexed in the companion reference.
 
 Card record creation and update reject every non-null PIN or CVV; responses and ordinary mapping omit both fields. Read the [authentication-data boundary](docs/card-authentication-data.md) for historical-row protection, database guards, filtering restrictions and the remaining processor/PAN work. This correction is separate from complete card issuance and activation.
 
+Read the [persisted activation boundary](docs/card-activation.md) for the fail-closed owner action, proof reservation, issuer-observation contract and recovery states. The retained local qualification covers the core persistence prerequisite and generated-SDK failure boundary. Authenticated ownership, a configured issuer lifecycle adapter, genuine issuance, durable sandbox recovery, positive generated-SDK activation and live-provider acceptance remain open.
+
 ## Business ownership and supported journeys
 
 Maintain the card inventory and the configuration a card journey needs for issuance, activation, blocking, replacement, and cancellation.
@@ -33,7 +35,7 @@ A card record does not provision a card at a processor or prove network authoriz
 | [CardActivityController](core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/activity/v1/CardActivityController.java) | `GET /api/v1/cards/{cardId}/activities`; `GET /api/v1/cards/{cardId}/activities/{activityId}`; `POST /api/v1/cards/{cardId}/activities`; 2 more declarations |
 | [CardBalanceController](core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/balance/v1/CardBalanceController.java) | `GET /api/v1/cards/{cardId}/balances`; `GET /api/v1/cards/{cardId}/balances/{balanceId}`; `POST /api/v1/cards/{cardId}/balances`; 2 more declarations |
 | [BINController](core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/bin/v1/BINController.java) | `GET /api/v1/bins`; `GET /api/v1/bins/{binId}`; `POST /api/v1/bins`; 2 more declarations |
-| [CardController](core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/v1/CardController.java) | `GET /api/v1/cards/{cardId}`; `POST /api/v1/cards/filter`; `POST /api/v1/cards`; 2 more declarations |
+| [CardController](core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/v1/CardController.java) | `GET /api/v1/cards/{cardId}`; `POST /api/v1/cards/{cardId}/activation`; `POST /api/v1/cards/filter`; 3 more declarations |
 | [CardConfigurationController](core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/configuration/v1/CardConfigurationController.java) | `GET /api/v1/cards/{cardId}/configurations`; `GET /api/v1/cards/{cardId}/configurations/{configId}`; `POST /api/v1/cards/{cardId}/configurations`; 2 more declarations |
 | [CardDisputeController](core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/dispute/v1/CardDisputeController.java) | `GET /api/v1/cards/{cardId}/disputes`; `GET /api/v1/cards/{cardId}/disputes/{disputeId}`; `POST /api/v1/cards/{cardId}/disputes`; 2 more declarations |
 | [CardEnrollmentController](core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/enrollment/v1/CardEnrollmentController.java) | `GET /api/v1/cards/{cardId}/enrollments`; `GET /api/v1/cards/{cardId}/enrollments/{enrollmentId}`; `POST /api/v1/cards/{cardId}/enrollments`; 2 more declarations |
@@ -101,6 +103,8 @@ Runtime integration remains gated on the service configuration and selected adap
 
 @Test
     void createCard_Success() {
+        cardDTO.setCardStatus(CardStatusEnum.DRAFT);
+        card.setCardStatus(CardStatusEnum.DRAFT);
         // Arrange
         when(cardMapper.toEntity(any(CardDTO.class))).thenReturn(card);
         when(cardRepository.save(any(Card.class))).thenReturn(Mono.just(card));
@@ -117,7 +121,7 @@ Runtime integration remains gated on the service configuration and selected adap
     }
 ```
 
-**Expected behavior.** CardDTO is converted to the owned entity, saved, and converted back. This does not issue a plastic/virtual card at a network.
+**Expected behavior.** A DRAFT CardDTO is converted to the owned entity, saved inactive and locked, and converted back. Ordinary creation rejects ACTIVE status and activation evidence. This does not issue a plastic/virtual card at a network.
 
 **Verification and recovery.** Run the complete selected test class and inspect its Surefire result: zero failures/errors and at least one executed test are required. A skipped or zero-test build is not evidence. Compare the assertions with the owning DTO/service before extending the request. For a runtime run, separately configure authentication/entitlements and the exact downstream endpoints, migrate/seed disposable owner stores, and reread the returned identifier; these unit/contract fixtures do not establish those prerequisites.
 
@@ -163,7 +167,7 @@ Use the request and response types declared by each operation. Preserve stable r
 | [CardDispute](core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/dispute/v1/CardDispute.java) | `disputeId`, `cardId`, `transactionId`, `partyId`, `accountId`, `disputeReference`, `providerReference` |
 | [CardEnrollment](core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/enrollment/v1/CardEnrollment.java) | `enrollmentId`, `cardId`, `partyId`, `accountId`, `enrollmentType`, `enrollmentReference`, `enrollmentStatus` |
 
-The [data contract reference](docs/openplatform/reference.md#data-contracts) indexes **66 DTO, record, or entity declarations** and their fields. Read DTO validation annotations together with service logic and migrations; a field's presence does not establish that every endpoint accepts it.
+The [data contract reference](docs/openplatform/reference.md#data-contracts) indexes **68 DTO, record, or entity declarations** and their fields. Read DTO validation annotations together with service logic and migrations; a field's presence does not establish that every endpoint accepts it.
 
 Use the authentication and authorization behavior actually enforced by the deployed entry point. Tenant, party, distributor, and staff identifiers carry business scope; they must not be accepted as proof of identity. Preserve validation and downstream errors rather than mapping an unavailable dependency to a successful business result.
 
@@ -173,10 +177,10 @@ Examples of locally enforced failure or access behavior:
 | --- | --- |
 | `new RuntimeException("CardActivity not found for the specified card."));` | [CardActivityServiceImpl](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/activity/v1/CardActivityServiceImpl.java) |
 | `new RuntimeException("CardBalance not found for the specified card."));` | [CardBalanceServiceImpl](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/v1/CardBalanceServiceImpl.java) |
+| `new ResponseStatusException(HttpStatus.CONFLICT,` | [CardServiceImpl](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceImpl.java) |
 | `new IllegalStateException(` | [CardServiceImpl](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceImpl.java) |
-| `new RuntimeException("CardDispute not found for the specified card."));` | [CardDisputeServiceImpl](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/v1/CardDisputeServiceImpl.java) |
-| `new RuntimeException("CardEnrollment not found for the specified card."));` | [CardEnrollmentServiceImpl](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/v1/CardEnrollmentServiceImpl.java) |
-| `new RuntimeException("CardInterest not found for the specified card."));` | [CardInterestServiceImpl](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/interest/v1/CardInterestServiceImpl.java) |
+| `new ResponseStatusException(HttpStatus.BAD_REQUEST,` | [CardServiceImpl](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceImpl.java) |
+| `new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,` | [CardActivationService](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationService.java) |
 
 The [security and failure reference](docs/openplatform/reference.md#security-and-failure-evidence) links local authorization annotations, status mappings, and exception sites. Framework or gateway policy is additional to this local inventory; verify the deployed filter chain and caller entitlements before integration.
 
@@ -236,9 +240,9 @@ mvn -pl core-banking-cards-web spring-boot:run
 
 Run against disposable local infrastructure first. Supply endpoint/database variables from the configuration reference; a default localhost URL does not start that dependency.
 
-Locally declared build plugins: `maven-compiler-plugin`, `maven-resources-plugin`, `openapi-generator-maven-plugin`, `spring-boot-maven-plugin`. Inherited checks remain governed by the parent POM.
+Locally declared build plugins: `maven-compiler-plugin`, `maven-failsafe-plugin`, `maven-resources-plugin`, `openapi-generator-maven-plugin`, `spring-boot-maven-plugin`. Inherited checks remain governed by the parent POM.
 
-The checkout contains **24 test source/resource files**. See the [test source index](docs/openplatform/reference.md#test-sources) for coverage locations. This inventory is not evidence that those tests passed.
+The checkout contains **31 test source/resource files**. See the [test source index](docs/openplatform/reference.md#test-sources) for coverage locations. This inventory is not evidence that those tests passed.
 
 CI definitions: [maven-central.yml](.github/workflows/maven-central.yml), [release.yml](.github/workflows/release.yml).
 
@@ -246,7 +250,7 @@ CI definitions: [maven-central.yml](.github/workflows/maven-central.yml), [relea
 
 On failure, retain the request and business record identifiers, inspect the owning controller/service and downstream status, then verify the current persisted state before retrying. Distinguish invalid input, denied access, missing records, and unavailable infrastructure. Avoid replaying a financial or externally visible action until its prior effect is known. For persistent modules, review the migration history and use the deployment rollback procedure; do not erase records to recover a failed request.
 
-Database evolution is represented by 5 migration files in [core-banking-cards-models/src/main/resources/db/migration](core-banking-cards-models/src/main/resources/db/migration/). Review the last applied migration and the owning entity before diagnosing a schema mismatch.
+Database evolution is represented by 7 migration files in [core-banking-cards-models/src/main/resources/db/migration](core-banking-cards-models/src/main/resources/db/migration/). Review the last applied migration and the owning entity before diagnosing a schema mismatch.
 
 Existing test scenarios provide concrete starting points for failure reproduction:
 
@@ -271,6 +275,8 @@ Documentation generation checks source freshness and local references. It does n
 
 - [Core Banking Cards API Design](docs/api-design.md)
 - [Core Banking Cards Service API Reference](docs/api-reference.md)
+- [Persisted card activation boundary](docs/card-activation.md)
+- [Card record authentication data](docs/card-authentication-data.md)
 - [Core Banking Cards Service Documentation](docs/index.md)
 - [Card Issuance](docs/use-cases/card-issuance.md)
 - [Card Program Management](docs/use-cases/card-program-management.md)

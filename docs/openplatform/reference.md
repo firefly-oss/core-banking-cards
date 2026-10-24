@@ -30,6 +30,7 @@ This reference is derived from checked-in source. It separates declared HTTP map
 | `PUT /api/v1/bins/{binId}` | `public Mono<ResponseEntity<BINDTO>> updateBIN( @Parameter(description = "Unique identifier of the BIN to update", required = true) @PathVariable UUID binId, @Parameter(description = "Updated data for the BIN", required = true, schema = @Schema(implementation = BINDTO.class)) @RequestBody BINDTO binDTO )` | [BINController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/bin/v1/BINController.java) | Local declaration |
 | `DELETE /api/v1/bins/{binId}` | `public Mono<ResponseEntity<Void>> deleteBIN( @Parameter(description = "Unique identifier of the BIN to delete", required = true) @PathVariable UUID binId )` | [BINController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/bin/v1/BINController.java) | Local declaration |
 | `GET /api/v1/cards/{cardId}` | `public Mono<ResponseEntity<CardDTO>> getCard( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId )` | [CardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/v1/CardController.java) | Local declaration |
+| `POST /api/v1/cards/{cardId}/activation` | `public Mono<ResponseEntity<CardActivationReceipt>> activateCard( @PathVariable UUID cardId, @RequestHeader("X-Idempotency-Key") UUID actionId, @Valid @RequestBody CardActivationRequest request)` | [CardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/v1/CardController.java) | Local declaration |
 | `POST /api/v1/cards/filter` | `public Mono<ResponseEntity<PaginationResponse<CardDTO>>> filterCards( @Valid @RequestBody FilterRequest<CardDTO> filterRequest )` | [CardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/v1/CardController.java) | Local declaration |
 | `POST /api/v1/cards` | `public Mono<ResponseEntity<CardDTO>> createCard( @Parameter(description = "Data for the new card", required = true, schema = @Schema(implementation = CardDTO.class)) @Valid @RequestBody CardDTO cardDTO )` | [CardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/v1/CardController.java) | Local declaration |
 | `PUT /api/v1/cards/{cardId}` | `public Mono<ResponseEntity<CardDTO>> updateCard( @Parameter(description = "Unique identifier of the card to update", required = true) @PathVariable UUID cardId, @Parameter(description = "Updated card data", required = true, schema = @Schema(implementation = CardDTO.class)) @RequestBody CardDTO cardDTO )` | [CardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/v1/CardController.java) | Local declaration |
@@ -466,6 +467,27 @@ Validation annotations present in this declaration: `@Max`, `@Min`, `@NotBlank`,
 | `description` | `String` | `@Size(max = 500, message = "Description cannot exceed 500 characters")` |
 
 Validation annotations present in this declaration: `@Max`, `@Min`, `@NotBlank`, `@NotNull`, `@Pattern`, `@Size`. Inspect the linked source for the field-level constraints.
+
+### CardActivationReceipt
+
+[CardActivationReceipt](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/card/v1/CardActivationReceipt.java) · DTO / record / model
+
+| Field | Java type | Validation annotations |
+| --- | --- | --- |
+| `actionId` | `UUID` | See declaration / service rules |
+| `cardId` | `UUID` | See declaration / service rules |
+| `state` | `State` | See declaration / service rules |
+| `activationTime` | `OffsetDateTime` | See declaration / service rules |
+
+### CardActivationRequest
+
+[CardActivationRequest](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/card/v1/CardActivationRequest.java) · DTO / record / model
+
+| Field | Java type | Validation annotations |
+| --- | --- | --- |
+| `activationProof` | `String` | See declaration / service rules |
+
+Validation annotations present in this declaration: `@NotBlank`, `@Pattern`. Inspect the linked source for the field-level constraints.
 
 ### CardDTO
 
@@ -3261,6 +3283,25 @@ Mono<CardDTO> updateCard(UUID cardId, CardDTO cardDTO);
 Mono<Void> deleteCard(UUID cardId);
 ```
 
+### CardActivationPolicy
+
+[CardActivationPolicy](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationPolicy.java)
+
+```java
+Mono<AuthorizedScope> authorize(UUID cardId);
+record AuthorizedScope(UUID tenantId, UUID actorId, UUID partyId, UUID accountId, OffsetDateTime expiresAt);
+```
+
+### CardIssuerPort
+
+[CardIssuerPort](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardIssuerPort.java)
+
+```java
+Mono<Observation> observeActivation(Binding binding, UUID actionId);
+record Binding(UUID cardId, UUID tenantId, UUID partyId, UUID accountId, String adapterId, String instrumentReference, long version);
+record Observation(UUID actionId, UUID tenantId, String adapterId, String instrumentReference, long bindingVersion, Outcome outcome, String receiptReference);
+```
+
 ### CardConfigurationService
 
 [CardConfigurationService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/configuration/v1/CardConfigurationService.java)
@@ -3547,8 +3588,20 @@ Values below come from source placeholders. Plain YAML values and configuration-
 | `new RuntimeException("CardBalance not found for the specified card."));` | [CardBalanceServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/v1/CardBalanceServiceImpl.java) |
 | `new RuntimeException("CardBalance not found for the specified card."));` | [CardBalanceServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/v1/CardBalanceServiceImpl.java) |
 | `new RuntimeException("CardBalance not found for the specified card."));` | [CardBalanceServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/v1/CardBalanceServiceImpl.java) |
+| `new ResponseStatusException(HttpStatus.CONFLICT,` | [CardServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceImpl.java) |
 | `new IllegalStateException(` | [CardServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceImpl.java) |
+| `new ResponseStatusException(HttpStatus.CONFLICT,` | [CardServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceImpl.java) |
+| `new ResponseStatusException(HttpStatus.BAD_REQUEST,` | [CardServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceImpl.java) |
 | `new IllegalStateException(` | [CardServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceImpl.java) |
+| `new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,` | [CardActivationService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationService.java) |
+| `new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid activation request"));` | [CardActivationService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationService.java) |
+| `new ResponseStatusException(` | [CardActivationService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationService.java) |
+| `HttpStatus.FORBIDDEN` | [CardActivationService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationService.java) |
+| `new IllegalStateException("SHA-256 unavailable");` | [CardActivationService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationService.java) |
+| `new ResponseStatusException(HttpStatus.CONFLICT, "Activation is not permitted")));` | [CardActivationStore](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationStore.java) |
+| `new ResponseStatusException(HttpStatus.CONFLICT, "Activation is not permitted");` | [CardActivationStore](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationStore.java) |
+| `new ResponseStatusException(HttpStatus.CONFLICT, "Activation is not permitted");` | [CardActivationStore](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationStore.java) |
+| `new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Activation persistence is unavailable");` | [CardActivationStore](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationStore.java) |
 | `new RuntimeException("CardDispute not found for the specified card."));` | [CardDisputeServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/v1/CardDisputeServiceImpl.java) |
 | `new RuntimeException("CardDispute not found for the specified card."));` | [CardDisputeServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/v1/CardDisputeServiceImpl.java) |
 | `new RuntimeException("CardDispute not found for the specified card."));` | [CardDisputeServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/v1/CardDisputeServiceImpl.java) |
@@ -3581,10 +3634,13 @@ Coordinates: `io.fireflysoftware:core-banking-cards-core:26.10.6`. Parent: `io.f
 - `io.fireflysoftware:core-banking-cards-models:`
 - `io.projectreactor:reactor-test:`
 - `org.fireflyframework:fireflyframework-starter-core:`
+- `org.flywaydb:flyway-database-postgresql:`
 - `org.mapstruct:mapstruct:`
 - `org.projectlombok:lombok:`
 - `org.springframework.boot:spring-boot-starter-test:`
 - `org.springframework.boot:spring-boot-starter-webflux:`
+- `org.testcontainers:testcontainers-junit-jupiter:`
+- `org.testcontainers:testcontainers-postgresql:`
 
 ### core-banking-cards-interfaces
 
@@ -3628,9 +3684,13 @@ Coordinates: `io.fireflysoftware:core-banking-cards-sdk:26.10.6`. Parent: `io.fi
 - `io.swagger.core.v3:swagger-annotations:`
 - `jakarta.annotation:jakarta.annotation-api:`
 - `javax.annotation:javax.annotation-api:1.3.2`
+- `org.flywaydb:flyway-database-postgresql:`
 - `org.openapitools:jackson-databind-nullable:0.2.8`
 - `org.projectlombok:lombok:`
+- `org.springframework.boot:spring-boot-starter-test:`
 - `org.springframework:spring-webflux:`
+- `org.testcontainers:testcontainers-junit-jupiter:`
+- `org.testcontainers:testcontainers-postgresql:`
 
 ### core-banking-cards-web
 
@@ -3668,6 +3728,11 @@ Coordinates: `io.fireflysoftware:core-banking-cards:26.10.6`. Parent: `io.firefl
 - [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/acquirer/v1/CardAcquirerServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/acquirer/v1/CardAcquirerServiceTest.java)
 - [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/balance/v1/CardBalanceServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/balance/v1/CardBalanceServiceTest.java)
 - [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/bin/v1/BINServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/bin/v1/BINServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationCrudTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationCrudTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataBoundaryTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataBoundaryTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataDatabaseTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataDatabaseTest.java)
 - [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceTest.java)
 - [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/configuration/v1/CardConfigurationServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/configuration/v1/CardConfigurationServiceTest.java)
 - [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/dispute/v1/CardDisputeServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/dispute/v1/CardDisputeServiceTest.java)
@@ -3687,6 +3752,8 @@ Coordinates: `io.fireflysoftware:core-banking-cards:26.10.6`. Parent: `io.firefl
 - [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/terminal/v1/CardTerminalServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/terminal/v1/CardTerminalServiceTest.java)
 - [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/transaction/v1/CardTransactionServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/transaction/v1/CardTransactionServiceTest.java)
 - [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/virtual/v1/VirtualCardServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/virtual/v1/VirtualCardServiceTest.java)
+- [core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardActivationRuntimeIT.java](../../core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardActivationRuntimeIT.java)
+- [core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardAuthenticationDataRuntimeIT.java](../../core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardAuthenticationDataRuntimeIT.java)
 - [core-banking-cards-web/src/test/java/io/fireflysoftware/core/banking/cards/web/openapi/OpenApiGenApplication.java](../../core-banking-cards-web/src/test/java/io/fireflysoftware/core/banking/cards/web/openapi/OpenApiGenApplication.java)
 
 ## CI definitions

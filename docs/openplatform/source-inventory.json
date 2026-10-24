@@ -21,6 +21,14 @@
       "title": "Core Banking Cards Service API Reference"
     },
     {
+      "path": "docs/card-activation.md",
+      "title": "Persisted card activation boundary"
+    },
+    {
+      "path": "docs/card-authentication-data.md",
+      "title": "Card record authentication data"
+    },
+    {
       "path": "docs/index.md",
       "title": "Core Banking Cards Service Documentation"
     },
@@ -45,7 +53,7 @@
       "title": "Reporting and Analytics"
     }
   ],
-  "editorial_sha256": "d90f0f0843c0cf3155becfb6302225c10882079681bfc6770bf58a6da32c09e0",
+  "editorial_sha256": "bf1d5e2665265508afa4c485fccaa96fbbfae981103064d23608daddabe655d6",
   "errors": [
     {
       "evidence": "new RuntimeException(\"CardActivity not found for the specified card.\"));",
@@ -72,12 +80,60 @@
       "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/v1/CardBalanceServiceImpl.java"
     },
     {
-      "evidence": "new IllegalStateException(",
+      "evidence": "new ResponseStatusException(HttpStatus.CONFLICT,",
       "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceImpl.java"
     },
     {
       "evidence": "new IllegalStateException(",
       "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceImpl.java"
+    },
+    {
+      "evidence": "new ResponseStatusException(HttpStatus.CONFLICT,",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceImpl.java"
+    },
+    {
+      "evidence": "new ResponseStatusException(HttpStatus.BAD_REQUEST,",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceImpl.java"
+    },
+    {
+      "evidence": "new IllegalStateException(",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceImpl.java"
+    },
+    {
+      "evidence": "new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationService.java"
+    },
+    {
+      "evidence": "new ResponseStatusException(HttpStatus.BAD_REQUEST, \"Invalid activation request\"));",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationService.java"
+    },
+    {
+      "evidence": "new ResponseStatusException(",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationService.java"
+    },
+    {
+      "evidence": "HttpStatus.FORBIDDEN",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationService.java"
+    },
+    {
+      "evidence": "new IllegalStateException(\"SHA-256 unavailable\");",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationService.java"
+    },
+    {
+      "evidence": "new ResponseStatusException(HttpStatus.CONFLICT, \"Activation is not permitted\")));",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationStore.java"
+    },
+    {
+      "evidence": "new ResponseStatusException(HttpStatus.CONFLICT, \"Activation is not permitted\");",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationStore.java"
+    },
+    {
+      "evidence": "new ResponseStatusException(HttpStatus.CONFLICT, \"Activation is not permitted\");",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationStore.java"
+    },
+    {
+      "evidence": "new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, \"Activation persistence is unavailable\");",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationStore.java"
     },
     {
       "evidence": "new RuntimeException(\"CardDispute not found for the specified card.\"));",
@@ -160,13 +216,13 @@
     ".github/workflows/maven-central.yml": "efbb22fc303393816663c7bf87bf37d514867ff75f01c370433252bbdb483bd9",
     ".github/workflows/release.yml": "644fde5e25210b185c925fa0014234031479112e01c492a0b74fe4b500e1e6e5",
     "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
-    "core-banking-cards-core/pom.xml": "ee185016cf509f890a115d0aa46074f862341796c672f9e5a6a2bb86977c0860",
+    "core-banking-cards-core/pom.xml": "04221de8db0f2e66ebd74e74725b142681d9525deb78f1cf37860dcb9f484206",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/mappers/acquirer/v1/CardAcquirerMapper.java": "9310850f0a0522e9962f148e0e8cd04e8d587261922fa0e78736a2bd9063b291",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/mappers/activity/v1/CardActivityMapper.java": "eda28734ebc368f344fd47486bde7507342ca6ff5292e6045225b8b15f0f648a",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/mappers/application/v1/CardApplicationMapper.java": "72a82b580b9fb181dc701e5844607f3eb7bba445ddddf3e92e2a562e657c2f25",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/mappers/balance/v1/CardBalanceMapper.java": "12fd83fdec106bbb18ce57ac4a6f853ed1b8e4b43e89859c83b46a648fcafe60",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/mappers/bin/v1/BINMapper.java": "ed773c549858705b8d207af78e41398ee331f6fd0a52c74575bb67d2ac133630",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/mappers/card/v1/CardMapper.java": "9e5ee958c2762ebb2b1bb034b451398286beb4ed7fa45df9e4c8b4964e2cde00",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/mappers/card/v1/CardMapper.java": "484d5f8dd9ff8e54b8812a2066b750b84d6bae35cada4ffd408a695a82eb9a6f",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/mappers/cardtype/v1/CardTypeMapper.java": "14aef7cb4a5dd17a911a5d1f72a2df9f3735ef01049b4e18f082a1e180495180",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/mappers/configuration/v1/CardConfigurationMapper.java": "5db020a6d17460727517380f6532c33821c0bf686e81826558db4e863aa3dcf7",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/mappers/design/v1/CardDesignMapper.java": "badb9ee40ce41e492a46f27b5c4401ed308d9c70fdb3cbceb09099938c4492bd",
@@ -200,7 +256,11 @@
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/bin/v1/BINServiceImpl.java": "94a39e010a7a6d197acb4e62d9164cbaf134779c74dd6efe49ec85575770e519",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardLifecycle.java": "03007261a4e33e7c105c63de10c126d1948dbd501b24ba4ab018829fbe558c3b",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardService.java": "fe592475115035866e843d153d25f3f9aadc45fd95092a026344568c03923d74",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceImpl.java": "5b6d12913afc52a68858d45b55edb82b6699179209e9f5f4389198e94339e447",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceImpl.java": "2db2f4d093c638bfe93771ab2139311bd4fc7eb47689c7162283a392c63a8984",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationPolicy.java": "5daa2e51e8ffedd7dfb99e661386e643efbc135041f3a1365da33930d90697fe",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationService.java": "66210aff52a91a4328b068db6cfb267fbf547cd8da7920f8ce3434ac721aa6ae",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationStore.java": "09ee2045c77be60ab88942fe4b8668bad301963da35847d3ddb295cd6643579d",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardIssuerPort.java": "dced3615bbf3c41a3d85dad42a61fda4be00cd60819fc73462f550b1da1c32b8",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/configuration/v1/CardConfigurationService.java": "5a383900120e2b0bd1c43711ba81b933fedbff59172c91d28ad371e1f93be165",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/configuration/v1/CardConfigurationServiceImpl.java": "b05d88c7030026b5e121b568b018193621e2c9405d4de5b37676ffdfdf35a9fa",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/v1/CardDisputeService.java": "bc87debeb52e27098dcf2372e3b4ee77c812686fa19c9dea9accad3411c6d743",
@@ -241,7 +301,12 @@
     "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/acquirer/v1/CardAcquirerServiceTest.java": "dae0b018154392a3685bc4118820ec042423903daa11f28271f34703ab8acd26",
     "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/balance/v1/CardBalanceServiceTest.java": "deb8fe6be011b4b4fb806718370e3c8a106182c856fe587efae974472dc58298",
     "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/bin/v1/BINServiceTest.java": "f5927bd5c63d5ce3ceb075e9ecbe8558ade4b9019af4c02f256a2f810e048f84",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceTest.java": "922a98695f3cf036c2b6136acc7658d415d4c7b2d345e560bc84a0b05f3e391f",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationCrudTest.java": "bfe098fa755f1a5ac9b36de0558a0cb4f15fbd965bec0a2d841a92db714abb7e",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java": "a8c045427fe07093e19a88cf76d76768776d04fc3e6b1c3afa0734182c9c83d0",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationServiceTest.java": "41105b60ef86f6a5f4f3d42e7bff7d4fd1a47111f00ed18b6b9bbb1917d8bc86",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataBoundaryTest.java": "6d4d8be7fc572acc84dd0a3d3f732b6539e94c28b4edd18373f08f3a33b8ec8b",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataDatabaseTest.java": "ece1c09cca9dde82829f1a3ee24dc6a58de08058612b1feb597b0112550ede83",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceTest.java": "ef723877d7c1156d909fcde2a5f623ab81ceee45b770a83f9056d5aac1cd5c5f",
     "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/configuration/v1/CardConfigurationServiceTest.java": "03b5b0c68f96e4cdf7be4122b5263bad4f8ac2a1c3a00f9a5eb20816b5bb8ee3",
     "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/dispute/v1/CardDisputeServiceTest.java": "47e7effbfaf5ebbaba591acca428fb6cebd9cf0dc31068c5e734f9fe04deaebd",
     "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/v1/CardEnrollmentServiceTest.java": "ee53bc97dd18958c74eac193dad6dcb4e58532c330cde92d58364adaad3a9be9",
@@ -268,7 +333,9 @@
     "core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/application/v1/CardApplicationDTO.java": "8f697fbf9ee5ecd1b34b1b56856e220c1ef9137d63a2ac7b102e6318d31f0981",
     "core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/balance/v1/CardBalanceDTO.java": "c175b8e69cd4354280b8e9e51ff3c383f36b62ad639ff84c3d44f728ec643254",
     "core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/bin/v1/BINDTO.java": "4d3a2655c4ef8586790825a3e49aac5306cb564416251d40697eeb5efb240693",
-    "core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/card/v1/CardDTO.java": "5e7a919052a741529d2fd2cad7313bad9b905a914026a2c6616f0a4f4dbe72c9",
+    "core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/card/v1/CardActivationReceipt.java": "fa492961d72fb4becb90d0d0ccb8484c278e73650e4a45cc725dca3f96c76c4e",
+    "core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/card/v1/CardActivationRequest.java": "fdc876490ffa7e981ba36504f91d5643dcd21ae5376b58e7ce47870e6b49e7fd",
+    "core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/card/v1/CardDTO.java": "bc72fd155e85f91d3908d6b9bceea5755a2de4847fa0cb82902df98ac56ac559",
     "core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/cardtype/v1/CardTypeDTO.java": "6da349b0a610bbd29a741487d38f03f357255edddfd77488400367f82624625e",
     "core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/configuration/v1/CardConfigurationDTO.java": "25740399c2255c1d848867f56d0ee0315b9de63a8a7c3096944a60d1a332a3c7",
     "core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/design/v1/CardDesignDTO.java": "38600d26df4fcc1e165e4f6e6317627cbedb3ac5ed65a9af19e008d262cea590",
@@ -380,16 +447,20 @@
     "core-banking-cards-models/src/main/resources/db/migration/V3__Create_Casts.sql": "97038595e8aef769712e9d9154c2571161ac86b96e4cec13bf2a659ac540aabe",
     "core-banking-cards-models/src/main/resources/db/migration/V4__Create_Indexes.sql": "aa8143dfacf9de9d1dee05dd2e26ff15bbbaa1512b5541fdec9b599afbe2e78e",
     "core-banking-cards-models/src/main/resources/db/migration/V5__Add_draft_card_status.sql": "6416267f78298663729230cd5a81ea5d4917bb804c943b536e21a8b1ad848713",
-    "core-banking-cards-sdk/pom.xml": "7e7ceb6f57b705a63442eb97709e9be50b230525f12c476427cf044ee1bbaaa3",
+    "core-banking-cards-models/src/main/resources/db/migration/V6__Reject_New_Card_Authentication_Data.sql": "e5e1a3e171966387f486cf60946d5fb2fb5d12595b42038b59037e6beb4b45d3",
+    "core-banking-cards-models/src/main/resources/db/migration/V7__Add_Card_Activation_Actions.sql": "e54f1c550cde5c460c84e9a56c2816fc37ff23e27a6e86b324d67e09408597de",
+    "core-banking-cards-sdk/pom.xml": "02d47c45092801b91745809860f9e872ef998b8b011345fa1d65a8dddf36f697",
     "core-banking-cards-sdk/src/main/resources/api-spec/openapi.yml": "e4ea8937997dbed7513e28e255266aad9ad7a22b166e86a9df0b7c2ec5a0f98a",
-    "core-banking-cards-sdk/src/main/resources/openapi.yml": "00dd0598375f201c54de92394f4a8071b16992166c895298d1237c12cd3f37c3",
+    "core-banking-cards-sdk/src/main/resources/openapi.yml": "adfee62a7ee32eee6d05f6a065623e0ef59c487b1d2d7d821ad3742b105b13f6",
+    "core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardActivationRuntimeIT.java": "ddf64c47232d8d4de4e7190135b84b0b92e46895773db659fb2edfbe02c12e06",
+    "core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardAuthenticationDataRuntimeIT.java": "47586b1636551f0a7ab66e0ddc4f19450589209dd7428bf1d181ea286f18d5a8",
     "core-banking-cards-web/pom.xml": "fd908451b5f389011199f456cf7fa724e963405967fd6c52a4dc57cc96891465",
     "core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/CardsApplication.java": "a3f72f69a366a4addbb668e33af05b096faf543a180e68b9a0894d105473b1c1",
     "core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/acquirer/v1/CardAcquirerController.java": "ef0892c12bcdfa47156e763637bbe03a1bbd8cc10b0a904d8d04a03a3a8b78b8",
     "core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/activity/v1/CardActivityController.java": "b7cd30ef4d076f22fec3061811d3708def8a8d2c85847efeb822b3dc9b98d190",
     "core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/balance/v1/CardBalanceController.java": "3c918fe0854a2590424e2febae7c8f77e80d01938fae5f9d8b45e07b1c1b7440",
     "core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/bin/v1/BINController.java": "176d03222d7ea0cf20c72cf1c82d7cb4c74787b4ec9daa042b9c547da78148e4",
-    "core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/v1/CardController.java": "35a38efdbc81d7eb33ad601d05e5a54c7c27593ca719f88ced16782ddde73cde",
+    "core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/v1/CardController.java": "206c1d0bb5515c7f0acf51bab551cb40153e99a2f826ca72e11e7cff32edce9f",
     "core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/configuration/v1/CardConfigurationController.java": "e8ac09cf8cbf3cd7e1b50ceb54e0d8064f25cd32ea55f81fbbc406b2544b0e97",
     "core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/dispute/v1/CardDisputeController.java": "1c426b4638c4de091d361e696bc4bbb2804497db670b363854be369e9bc35d2e",
     "core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/enrollment/v1/CardEnrollmentController.java": "bc888039af205c10a93410d7ebaefcda6d18200107962a3d5d5a81f182841ba1",
@@ -412,6 +483,8 @@
     "core-banking-cards-web/src/test/java/io/fireflysoftware/core/banking/cards/web/openapi/OpenApiGenApplication.java": "02bffc634b3cb29f52a7b3f46e491fceac4ce9a4c33a0d7bd8a921b6e5381199",
     "docs/api-design.md": "c1e4ce8f93722e30c5bb605b432f6029ebe858c18335d3a3a3a9df1d9d3b9ff5",
     "docs/api-reference.md": "8a8f9d33525f48a91f79af86c3b27729ae83b78a2216c5332f6d41902c3992e0",
+    "docs/card-activation.md": "872711f24ec66af143adb3b0564920f03408e0dc2bb708adeeaaa664b7aa167c",
+    "docs/card-authentication-data.md": "3d12b87ba3af10665567e0068930350b01098c1f3db8af330ca160ced18f527c",
     "docs/index.md": "0c08300783a0ca247d4d98b9354383758b7a6df0570c94ec1a77c5d81df6b2cf",
     "docs/use-cases/card-issuance.md": "6279196baa2bf97fd254b835ae2d9c36336e3c064e5e56c89da76eaf32fe2dde",
     "docs/use-cases/card-program-management.md": "bd98a591301fecf02d612dfcc89a14d0f2e00d104584af8f46f27b0522b5d9b2",
@@ -425,7 +498,9 @@
     "core-banking-cards-models/src/main/resources/db/migration/V2__Create_Tables.sql",
     "core-banking-cards-models/src/main/resources/db/migration/V3__Create_Casts.sql",
     "core-banking-cards-models/src/main/resources/db/migration/V4__Create_Indexes.sql",
-    "core-banking-cards-models/src/main/resources/db/migration/V5__Add_draft_card_status.sql"
+    "core-banking-cards-models/src/main/resources/db/migration/V5__Add_draft_card_status.sql",
+    "core-banking-cards-models/src/main/resources/db/migration/V6__Reject_New_Card_Authentication_Data.sql",
+    "core-banking-cards-models/src/main/resources/db/migration/V7__Add_Card_Activation_Actions.sql"
   ],
   "modules": [
     "core-banking-cards-core",
@@ -654,6 +729,16 @@
       "route": "/api/v1/cards/{cardId}",
       "signature": "public Mono<ResponseEntity<CardDTO>> getCard( @Parameter(description = \"Unique identifier of the card\", required = true) @PathVariable UUID cardId )",
       "verb": "GET"
+    },
+    {
+      "abstract": false,
+      "mapping": "value = \"/{cardId}/activation\", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE",
+      "method": "activateCard",
+      "owner": "CardController",
+      "path": "core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/v1/CardController.java",
+      "route": "/api/v1/cards/{cardId}/activation",
+      "signature": "public Mono<ResponseEntity<CardActivationReceipt>> activateCard( @PathVariable UUID cardId, @RequestHeader(\"X-Idempotency-Key\") UUID actionId, @Valid @RequestBody CardActivationRequest request)",
+      "verb": "POST"
     },
     {
       "abstract": false,
@@ -1617,7 +1702,10 @@
         "org.mapstruct:mapstruct:",
         "org.projectlombok:lombok:",
         "org.springframework.boot:spring-boot-starter-test:",
-        "io.projectreactor:reactor-test:"
+        "io.projectreactor:reactor-test:",
+        "org.testcontainers:testcontainers-postgresql:",
+        "org.testcontainers:testcontainers-junit-jupiter:",
+        "org.flywaydb:flyway-database-postgresql:"
       ],
       "group": "io.fireflysoftware",
       "java": "",
@@ -1677,13 +1765,18 @@
         "org.openapitools:jackson-databind-nullable:0.2.8",
         "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:",
         "javax.annotation:javax.annotation-api:1.3.2",
-        "org.springframework:spring-webflux:"
+        "org.springframework:spring-webflux:",
+        "org.springframework.boot:spring-boot-starter-test:",
+        "org.testcontainers:testcontainers-postgresql:",
+        "org.testcontainers:testcontainers-junit-jupiter:",
+        "org.flywaydb:flyway-database-postgresql:"
       ],
       "group": "io.fireflysoftware",
       "java": "",
       "parent": "io.fireflysoftware:core-banking-cards:26.10.6",
       "path": "core-banking-cards-sdk/pom.xml",
       "plugins": [
+        "maven-failsafe-plugin",
         "openapi-generator-maven-plugin"
       ],
       "version": "26.10.6"
@@ -1817,6 +1910,27 @@
       ],
       "name": "CardService",
       "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardService.java"
+    },
+    {
+      "boundary": false,
+      "boundary_evidence": [],
+      "methods": [
+        "Mono<AuthorizedScope> authorize(UUID cardId)",
+        "record AuthorizedScope(UUID tenantId, UUID actorId, UUID partyId, UUID accountId, OffsetDateTime expiresAt)"
+      ],
+      "name": "CardActivationPolicy",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationPolicy.java"
+    },
+    {
+      "boundary": false,
+      "boundary_evidence": [],
+      "methods": [
+        "Mono<Observation> observeActivation(Binding binding, UUID actionId)",
+        "record Binding(UUID cardId, UUID tenantId, UUID partyId, UUID accountId, String adapterId, String instrumentReference, long version)",
+        "record Observation(UUID actionId, UUID tenantId, String adapterId, String instrumentReference, long bindingVersion, Outcome outcome, String receiptReference)"
+      ],
+      "name": "CardIssuerPort",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardIssuerPort.java"
     },
     {
       "boundary": false,
@@ -2273,6 +2387,190 @@
     {
       "name": "deleteBIN_NotFound",
       "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/bin/v1/BINServiceTest.java"
+    },
+    {
+      "name": "setup",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationCrudTest.java"
+    },
+    {
+      "name": "ordinaryCreateCannotInventAnActiveOrUnlockedInstrument",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationCrudTest.java"
+    },
+    {
+      "name": "ordinaryCreatePersistsAnInactiveLockedDraft",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationCrudTest.java"
+    },
+    {
+      "name": "draftAndBlockedRecordsCannotBecomeActiveThroughOrdinaryUpdate",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationCrudTest.java"
+    },
+    {
+      "name": "ordinaryUpdateCannotChangeOwnershipOrActivationDateOrRemoveRestrictions",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationCrudTest.java"
+    },
+    {
+      "name": "reject",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationCrudTest.java"
+    },
+    {
+      "name": "setup",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java"
+    },
+    {
+      "name": "unissuedProofCannotCreateAnActivationAction",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java"
+    },
+    {
+      "name": "wrongExpiredAndCrossTenantProofsLeaveTheCardUnusable",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java"
+    },
+    {
+      "name": "proofConsumptionCardStateAndReceiptCommitOnceAndRejectNewKeyReplay",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java"
+    },
+    {
+      "name": "finalizationRollbackRetainsNeitherActivationNorConsumptionNorReceipt",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java"
+    },
+    {
+      "name": "aRestrictionDuringIssuerVerificationCannotBeOverwrittenByConfirmation",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java"
+    },
+    {
+      "name": "proofExpiryIsCheckedAfterWaitingForTheCardLock",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java"
+    },
+    {
+      "name": "concurrentDifferentKeysCannotReserveTheSameProof",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java"
+    },
+    {
+      "name": "coreIndependentlyRejectsWrongIssuerBindingAndPersistsTheUncertainReceipt",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java"
+    },
+    {
+      "name": "anExpiredCardWithOnlyMonthAndYearCannotReserveActivation",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java"
+    },
+    {
+      "name": "staleOrdinaryWritesCannotEraseCommittedActivationHistoryOrIssuerOwnership",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java"
+    },
+    {
+      "name": "aStaleOrdinaryWriteCannotLiftARestrictionAppliedAfterItsRead",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java"
+    },
+    {
+      "name": "contradictoryOrUnknownExpiryCannotBeResolvedByExtendingTheKnownDate",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java"
+    },
+    {
+      "name": "historicalAuthenticationDataRemainsQuarantinedAtTheNewActivationBoundary",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java"
+    },
+    {
+      "name": "concurrentCrossCardActionKeyReuseReturnsConflictThroughPersistenceAdapter",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java"
+    },
+    {
+      "name": "seedBinding",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java"
+    },
+    {
+      "name": "execute",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java"
+    },
+    {
+      "name": "requireBoundary",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java"
+    },
+    {
+      "name": "reserve",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java"
+    },
+    {
+      "name": "missingAuthenticatedPolicyOrIssuerCannotActivateARecord",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationServiceTest.java"
+    },
+    {
+      "name": "blankOrShortProofIsRejectedBeforeAnyPersistenceOrIssuerOperation",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationServiceTest.java"
+    },
+    {
+      "name": "ephemeralProofDoesNotAppearInSerializationOrDiagnosticString",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationServiceTest.java"
+    },
+    {
+      "name": "historicalCredentialsNeverEnterTheOrdinaryResponseDto",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataBoundaryTest.java"
+    },
+    {
+      "name": "dtoMappingCannotIntroduceCredentialsIntoPersistence",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataBoundaryTest.java"
+    },
+    {
+      "name": "responseSerializationOmitsCredentialsEvenForAnExplicitlyPopulatedDto",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataBoundaryTest.java"
+    },
+    {
+      "name": "ordinaryInputRejectsBothCredentialsIncludingBlankValues",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataBoundaryTest.java"
+    },
+    {
+      "name": "dtoDiagnosticsDoNotExposeCredentials",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataBoundaryTest.java"
+    },
+    {
+      "name": "directCreateRejectsCredentialsBeforeAnyPersistenceCollaborator",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataBoundaryTest.java"
+    },
+    {
+      "name": "directUpdateRejectsCredentialsBeforeAnyPersistenceCollaborator",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataBoundaryTest.java"
+    },
+    {
+      "name": "credentialPredicatesAreRejectedBeforeAnyFilterQuery",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataBoundaryTest.java"
+    },
+    {
+      "name": "credentialRangeAndSortCannotBecomeObservationOracles",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataBoundaryTest.java"
+    },
+    {
+      "name": "assertBadInput",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataBoundaryTest.java"
+    },
+    {
+      "name": "setup",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataDatabaseTest.java"
+    },
+    {
+      "name": "migrationRetainsHistoricalRowsWithoutRewritingCredentials",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataDatabaseTest.java"
+    },
+    {
+      "name": "nonownerCannotInsertCredentialsIncludingEmptyStrings",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataDatabaseTest.java"
+    },
+    {
+      "name": "nonownerCannotIntroduceCredentialsThroughAnUpdate",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataDatabaseTest.java"
+    },
+    {
+      "name": "legacyRowsAreReadableWithoutReturningCredentials",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataDatabaseTest.java"
+    },
+    {
+      "name": "ordinaryUpdateQuarantinesHistoricalCredentialsWithoutMutatingTheRow",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataDatabaseTest.java"
+    },
+    {
+      "name": "historicalCredentialsCannotBeSearchedOrUsedAsSortKeys",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataDatabaseTest.java"
+    },
+    {
+      "name": "rejectFilter",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataDatabaseTest.java"
     },
     {
       "name": "createCard_Success",
@@ -2969,6 +3267,46 @@
     {
       "name": "deleteVirtualCard_WrongCard",
       "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/virtual/v1/VirtualCardServiceTest.java"
+    },
+    {
+      "name": "start",
+      "path": "core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardActivationRuntimeIT.java"
+    },
+    {
+      "name": "stop",
+      "path": "core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardActivationRuntimeIT.java"
+    },
+    {
+      "name": "runtimeSpecKeepsOwnerActivationReplayOutsideTransportResponseReuse",
+      "path": "core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardActivationRuntimeIT.java"
+    },
+    {
+      "name": "generatedClientCannotActivateWithoutAuthenticatedPolicyAndIssuerAdapter",
+      "path": "core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardActivationRuntimeIT.java"
+    },
+    {
+      "name": "start",
+      "path": "core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardAuthenticationDataRuntimeIT.java"
+    },
+    {
+      "name": "stop",
+      "path": "core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardAuthenticationDataRuntimeIT.java"
+    },
+    {
+      "name": "generatedClientSupportsCredentialFreeCreateReadAndUpdate",
+      "path": "core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardAuthenticationDataRuntimeIT.java"
+    },
+    {
+      "name": "credentialRejectionsHaveNoWriteAndDoNotEchoSubmittedValues",
+      "path": "core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardAuthenticationDataRuntimeIT.java"
+    },
+    {
+      "name": "historicalReadIsRedactedAndOrdinaryUpdatePreservesTheRow",
+      "path": "core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardAuthenticationDataRuntimeIT.java"
+    },
+    {
+      "name": "rejected",
+      "path": "core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardAuthenticationDataRuntimeIT.java"
     }
   ],
   "tests": [
@@ -2976,6 +3314,11 @@
     "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/acquirer/v1/CardAcquirerServiceTest.java",
     "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/balance/v1/CardBalanceServiceTest.java",
     "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/bin/v1/BINServiceTest.java",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationCrudTest.java",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationServiceTest.java",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataBoundaryTest.java",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataDatabaseTest.java",
     "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceTest.java",
     "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/configuration/v1/CardConfigurationServiceTest.java",
     "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/dispute/v1/CardDisputeServiceTest.java",
@@ -2995,6 +3338,8 @@
     "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/terminal/v1/CardTerminalServiceTest.java",
     "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/transaction/v1/CardTransactionServiceTest.java",
     "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/virtual/v1/VirtualCardServiceTest.java",
+    "core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardActivationRuntimeIT.java",
+    "core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardAuthenticationDataRuntimeIT.java",
     "core-banking-cards-web/src/test/java/io/fireflysoftware/core/banking/cards/web/openapi/OpenApiGenApplication.java"
   ],
   "types": [
@@ -4758,6 +5103,50 @@
       ],
       "name": "BINDTO",
       "path": "core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/bin/v1/BINDTO.java",
+      "persistent": false
+    },
+    {
+      "constraints": [],
+      "fields": [
+        {
+          "constraints": [],
+          "name": "actionId",
+          "type": "UUID"
+        },
+        {
+          "constraints": [],
+          "name": "cardId",
+          "type": "UUID"
+        },
+        {
+          "constraints": [],
+          "name": "state",
+          "type": "State"
+        },
+        {
+          "constraints": [],
+          "name": "activationTime",
+          "type": "OffsetDateTime"
+        }
+      ],
+      "name": "CardActivationReceipt",
+      "path": "core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/card/v1/CardActivationReceipt.java",
+      "persistent": false
+    },
+    {
+      "constraints": [
+        "NotBlank",
+        "Pattern"
+      ],
+      "fields": [
+        {
+          "constraints": [],
+          "name": "activationProof",
+          "type": "String"
+        }
+      ],
+      "name": "CardActivationRequest",
+      "path": "core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/card/v1/CardActivationRequest.java",
       "persistent": false
     },
     {

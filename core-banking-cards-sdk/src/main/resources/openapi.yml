@@ -2691,7 +2691,7 @@ paths:
         This endpoint allows modification of card attributes such as status, limits, and expiration details. It enables financial institutions to manage card lifecycle events and adjust card parameters based on party needs or risk assessments.
 
         ## Updatable Fields
-        * `cardStatus` - Current status (ACTIVE, INACTIVE, BLOCKED, etc.)
+        * `cardStatus` - Restriction or terminal status; activation and unblocking require verified lifecycle actions
         * `cardHolderName` - Name displayed on the card
         * `dailyLimit` - Maximum daily transaction amount
         * `monthlyLimit` - Maximum monthly transaction amount
@@ -2711,7 +2711,7 @@ paths:
         For changes to these immutable attributes, a new card must be issued.
 
         ## Common Use Cases
-        * Activating a newly issued card
+        * Applying a restriction to an existing card
         * Blocking a card due to suspected fraud
         * Adjusting card limits based on party request
         * Updating cardholder information
@@ -5147,6 +5147,63 @@ paths:
                 $ref: "#/components/schemas/CardActivityDTO"
         "400":
           description: Invalid activity data provided
+  /api/v1/cards/{cardId}/activation:
+    post:
+      tags:
+      - Cards
+      summary: Verify a card activation action
+      description: Consumes issued possession proof only after core independently
+        verifies the bound issuer operation. Requires authenticated current ownership
+        and a configured issuer adapter. Pending or uncertain receipts do not activate
+        a card.
+      operationId: activateCard
+      parameters:
+      - name: cardId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CardActivationRequest"
+        required: true
+      responses:
+        "200":
+          description: Activation confirmed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CardActivationReceipt"
+        "202":
+          description: Activation observation is pending or uncertain
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CardActivationReceipt"
+        "400":
+          description: Invalid proof request
+        "403":
+          description: Activation is not authorized
+        "409":
+          description: Action conflict or issuer reconciliation required
+        "422":
+          description: Issuer rejected the action
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CardActivationReceipt"
+        "503":
+          description: Required activation integration is unavailable
+      x-disable-idempotency: true
   /api/v1/cards/filter:
     post:
       tags:
@@ -5186,7 +5243,7 @@ paths:
         Create a new card record in the banking system.
 
         ## Description
-        This endpoint allows the creation of new payment cards. Cards are the central entity in the system and are associated with specific card programs, issuers, networks, and account holders. The created card can be either physical, virtual, or both, depending on the configuration.
+        This endpoint allows the creation of new payment cards. Cards are the central entity in the system and are associated with specific card programs, issuers, networks, and account holders. New records are inactive locked drafts. ACTIVE status and activation evidence require a verified lifecycle action. The created card can be either physical, virtual, or both, depending on the configuration.
 
         ## Required Fields
         * `cardTypeId` - Type of card (credit, debit, prepaid)
@@ -8585,6 +8642,38 @@ components:
           type: string
           format: date-time
         nextAuditDate:
+          type: string
+          format: date-time
+    CardActivationRequest:
+      required:
+      - activationProof
+      type: object
+      properties:
+        activationProof:
+          minLength: 1
+          pattern: "[A-Za-z0-9_-]{43,128}"
+          type: string
+          description: High-entropy issuer-issued possession proof
+          format: password
+          writeOnly: true
+    CardActivationReceipt:
+      type: object
+      properties:
+        actionId:
+          type: string
+          format: uuid
+        cardId:
+          type: string
+          format: uuid
+        state:
+          type: string
+          enum:
+          - RESERVED
+          - CONFIRMED
+          - REJECTED
+          - UNCERTAIN
+          - RECONCILIATION_REQUIRED
+        activationTime:
           type: string
           format: date-time
     FilterOptions:
