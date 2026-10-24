@@ -17,6 +17,8 @@
 
 package io.fireflysoftware.core.banking.cards.core.services.gateway;
 
+import io.fireflysoftware.core.banking.cards.core.services.gateway.impl.CardGatewayServiceImpl;
+
 import org.fireflyframework.core.queries.PaginationRequest;
 import org.fireflyframework.core.queries.PaginationResponse;
 import org.fireflyframework.core.queries.PaginationUtils;

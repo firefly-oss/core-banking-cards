@@ -34,9 +34,21 @@ class CardRepositoryArchitectureTest {
     void activationBusinessContractHasAnImplementationWithTheExistingBeanIdentity() throws Exception {
         var contract = assertDoesNotThrow(() -> Class.forName(ROOT + "core.services.card.activation.CardActivationService"));
         assertTrue(contract.isInterface());
-        var implementation = Class.forName(contract.getName() + "Impl");
+        var implementation = Class.forName(contract.getPackageName() + ".impl." + contract.getSimpleName() + "Impl");
         assertTrue(contract.isAssignableFrom(implementation));
         assertEquals("cardActivationService", implementation.getAnnotation(Service.class).value());
+    }
+
+    @Test
+    void businessImplementationsLiveUnderTheirFunctionalImplSubpackage() throws Exception {
+        var resolver = new org.springframework.core.io.support.PathMatchingResourcePatternResolver();
+        var readers = new org.springframework.core.type.classreading.CachingMetadataReaderFactory(resolver);
+        var resources = resolver.getResources("classpath*:io/fireflysoftware/core/banking/cards/core/services/**/*ServiceImpl.class");
+        assertTrue(resources.length > 0);
+        for (var resource : resources) {
+            var name = readers.getMetadataReader(resource).getClassMetadata().getClassName();
+            assertTrue(name.matches(".*\\.impl\\.[^.]+ServiceImpl"), name);
+        }
     }
 
     @Test

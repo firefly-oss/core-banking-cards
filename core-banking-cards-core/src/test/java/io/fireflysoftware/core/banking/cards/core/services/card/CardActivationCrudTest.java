@@ -17,6 +17,8 @@
 
 package io.fireflysoftware.core.banking.cards.core.services.card;
 
+import io.fireflysoftware.core.banking.cards.core.services.card.impl.CardServiceImpl;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;

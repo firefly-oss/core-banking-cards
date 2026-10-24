@@ -20,7 +20,7 @@ package io.fireflysoftware.core.banking.cards.web;
 import static org.junit.jupiter.api.Assertions.*;
 
 import io.fireflysoftware.core.banking.cards.core.services.card.activation.CardActivationService;
-import io.fireflysoftware.core.banking.cards.core.services.card.activation.CardActivationServiceImpl;
+import io.fireflysoftware.core.banking.cards.core.services.card.activation.impl.CardActivationServiceImpl;
 import io.fireflysoftware.core.banking.cards.core.services.card.activation.CardActivationStore;
 import io.fireflysoftware.core.banking.cards.models.repositories.card.CardIssuerInstrumentRepository;
 import io.r2dbc.spi.ConnectionFactory;

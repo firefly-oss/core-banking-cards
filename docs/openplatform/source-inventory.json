@@ -53,71 +53,31 @@
       "title": "Reporting and Analytics"
     }
   ],
-  "editorial_sha256": "80adcb700a01c4109ee68b02730e5fde18a47861325cc879ef3e7e440925796b",
+  "editorial_sha256": "994a26407e3e35510f57c10bba8cc9325d1e8d2f415b4b23b84b6242dcce7da5",
   "errors": [
     {
       "evidence": "new RuntimeException(\"CardActivity not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/activity/CardActivityServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/activity/impl/CardActivityServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardActivity not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/activity/CardActivityServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/activity/impl/CardActivityServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardActivity not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/activity/CardActivityServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/activity/impl/CardActivityServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardBalance not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/CardBalanceServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/impl/CardBalanceServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardBalance not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/CardBalanceServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/impl/CardBalanceServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardBalance not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/CardBalanceServiceImpl.java"
-    },
-    {
-      "evidence": "new ResponseStatusException(HttpStatus.CONFLICT,",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/CardServiceImpl.java"
-    },
-    {
-      "evidence": "new IllegalStateException(",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/CardServiceImpl.java"
-    },
-    {
-      "evidence": "new ResponseStatusException(HttpStatus.CONFLICT,",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/CardServiceImpl.java"
-    },
-    {
-      "evidence": "new ResponseStatusException(HttpStatus.BAD_REQUEST,",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/CardServiceImpl.java"
-    },
-    {
-      "evidence": "new IllegalStateException(",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/CardServiceImpl.java"
-    },
-    {
-      "evidence": "new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationServiceImpl.java"
-    },
-    {
-      "evidence": "new ResponseStatusException(HttpStatus.BAD_REQUEST, \"Invalid activation request\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationServiceImpl.java"
-    },
-    {
-      "evidence": "new ResponseStatusException(",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationServiceImpl.java"
-    },
-    {
-      "evidence": "HttpStatus.FORBIDDEN",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationServiceImpl.java"
-    },
-    {
-      "evidence": "new IllegalStateException(\"SHA-256 unavailable\");",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/impl/CardBalanceServiceImpl.java"
     },
     {
       "evidence": "new ResponseStatusException(HttpStatus.CONFLICT, \"Activation is not permitted\")));",
@@ -136,80 +96,120 @@
       "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationStore.java"
     },
     {
-      "evidence": "new RuntimeException(\"CardDispute not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/CardDisputeServiceImpl.java"
+      "evidence": "new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/impl/CardActivationServiceImpl.java"
+    },
+    {
+      "evidence": "new ResponseStatusException(HttpStatus.BAD_REQUEST, \"Invalid activation request\"));",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/impl/CardActivationServiceImpl.java"
+    },
+    {
+      "evidence": "new ResponseStatusException(",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/impl/CardActivationServiceImpl.java"
+    },
+    {
+      "evidence": "HttpStatus.FORBIDDEN",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/impl/CardActivationServiceImpl.java"
+    },
+    {
+      "evidence": "new IllegalStateException(\"SHA-256 unavailable\");",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/impl/CardActivationServiceImpl.java"
+    },
+    {
+      "evidence": "new ResponseStatusException(HttpStatus.CONFLICT,",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/impl/CardServiceImpl.java"
+    },
+    {
+      "evidence": "new IllegalStateException(",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/impl/CardServiceImpl.java"
+    },
+    {
+      "evidence": "new ResponseStatusException(HttpStatus.CONFLICT,",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/impl/CardServiceImpl.java"
+    },
+    {
+      "evidence": "new ResponseStatusException(HttpStatus.BAD_REQUEST,",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/impl/CardServiceImpl.java"
+    },
+    {
+      "evidence": "new IllegalStateException(",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/impl/CardServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardDispute not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/CardDisputeServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/impl/CardDisputeServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardDispute not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/CardDisputeServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/impl/CardDisputeServiceImpl.java"
+    },
+    {
+      "evidence": "new RuntimeException(\"CardDispute not found for the specified card.\"));",
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/impl/CardDisputeServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardEnrollment not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/CardEnrollmentServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/impl/CardEnrollmentServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardEnrollment not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/CardEnrollmentServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/impl/CardEnrollmentServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardEnrollment not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/CardEnrollmentServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/impl/CardEnrollmentServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardInterest not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/interest/CardInterestServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/interest/impl/CardInterestServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardInterest not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/interest/CardInterestServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/interest/impl/CardInterestServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardInterest not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/interest/CardInterestServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/interest/impl/CardInterestServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardPayment not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/payment/CardPaymentServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/payment/impl/CardPaymentServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardPayment not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/payment/CardPaymentServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/payment/impl/CardPaymentServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardPayment not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/payment/CardPaymentServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/payment/impl/CardPaymentServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardPromotion not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/promotion/CardPromotionServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/promotion/impl/CardPromotionServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardPromotion not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/promotion/CardPromotionServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/promotion/impl/CardPromotionServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardPromotion not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/promotion/CardPromotionServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/promotion/impl/CardPromotionServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"Error saving CardSecurity: \" + throwable.getMessage())));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/CardSecurityServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/impl/CardSecurityServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardSecurity not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/CardSecurityServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/impl/CardSecurityServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardSecurity not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/CardSecurityServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/impl/CardSecurityServiceImpl.java"
     },
     {
       "evidence": "new RuntimeException(\"CardSecurity not found for the specified card.\"));",
-      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/CardSecurityServiceImpl.java"
+      "path": "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/impl/CardSecurityServiceImpl.java"
     }
   ],
   "files": {
@@ -247,86 +247,86 @@
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/mappers/transaction/CardTransactionMapper.java": "b486465d132e0919833e973daea9fcfc6479475c6489603a921a130a42c0718c",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/mappers/virtual/VirtualCardMapper.java": "edb404fcedd798a434949e0b0a77beb8050e3f692bbfb9b1ae48a39177af0265",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/acquirer/CardAcquirerService.java": "017abd81296c9c7cccaa801972823ed62485aec5a04d1c2fee057e438d6eaa92",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/acquirer/CardAcquirerServiceImpl.java": "e795dd20ca5cb8e53b728f30f423abc0b3eae98f19c84707a45329a94c6d9d38",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/acquirer/impl/CardAcquirerServiceImpl.java": "692cc3500497faf3cf3995052312506ad4c417915aa7a5cfa682b10e15235d74",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/activity/CardActivityService.java": "bdd2afc2c9c3c0ff0734f930d200f7817e0b7cc8d9c564124a45601618133b7a",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/activity/CardActivityServiceImpl.java": "a20a74b81a709678875a418d740a5c882374786f663d9c0fea3c216541327a65",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/activity/impl/CardActivityServiceImpl.java": "1275e409e54dc75a33a84b1ea5efee7c01ef2a987f7fb83d8adc0f320671ac9a",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/CardBalanceService.java": "92a158b47dd8e7691b9830db7cb1ee247c024549dee2107177190849728b8574",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/CardBalanceServiceImpl.java": "13559b3ce1e56c4faa23af1a1405d1a9ef00df04fb6b6d624364ea53cc80f620",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/impl/CardBalanceServiceImpl.java": "1a86c052f4c5cf2ed671a2d381710c6005af6fb1aa09b3404c339c11528e69da",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/bin/BINService.java": "a38289ecac17f0786854112413147d5218e731e90c41fc5f5fd79d208528c5b8",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/bin/BINServiceImpl.java": "e534e36dd98f96a95ab54572ed370083b44ce7f23eaf6ef653341b6caf307be1",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/CardLifecycle.java": "1308a716b03e72395e39d0cce4b6f3fca27d51af3e64aaab982642532c9d211a",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/bin/impl/BINServiceImpl.java": "2a548c289fdc89760a475371a3f81ba30eff1bbc014730500adb7b29c483239d",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/CardService.java": "b44a1db02c5c0e435e9578fca55cd920becdb21ddc942981dbfdf27e188832bd",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/CardServiceImpl.java": "b9ef443c9133bd165e0278e4e33bf8a8f7be545bf3f5587126aa281538fa9a4e",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationPolicy.java": "00af2d43696e820490407d884a002c8cbe27f42ec34980cf2ae514eb6c0f4866",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationService.java": "4b9f439636a8f601d91876e3fff08e7b94c511a9a48d509f55444990c2069e5f",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationServiceImpl.java": "c80fe2b165028597b70bcaf23efc8694d3f156f9cba2b6321a211af0594cb8be",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationStore.java": "d3797db244e1fef2d970330f59b2d4f915bc620eae73fdac73f3b49e50100d61",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardIssuerPort.java": "198dc7f2473fbccf782f2a1da85fe6d90859641abdaa755b417fe648b2b0b5c6",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/impl/CardActivationServiceImpl.java": "03e61af89688395c0925514333e9b14d640ce9ef2796abca28f9a4af9aac732b",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/impl/CardLifecycle.java": "3f3adbe1566d4c69445719fef6041a6259976a9b85abff77e21cd64d0dbb089e",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/impl/CardServiceImpl.java": "4bc84a8ece3bbae47260dca9f415d9988ce3a5a68914fcfb1cda95d6aca34dd9",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/configuration/CardConfigurationService.java": "4dc2e1ca4c92cd71edec0f45530ffccc87cfefe9b0ab7bea94214a0685c3d66f",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/configuration/CardConfigurationServiceImpl.java": "d4ed2492656c5e62e50d57f0d1ae8bd4fd2a97c4f0376bf02005878362120ab0",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/configuration/impl/CardConfigurationServiceImpl.java": "67b3fae067bda777ec60c53bfb6be60ca3dfb270a28b29b385e705ede320d288",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/CardDisputeService.java": "d4435f111b484cf0c14b55cccfa7437b6eb6ddc90a4e3573932ea2fb55d9c809",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/CardDisputeServiceImpl.java": "d474869b4bc9cfa7a9b410ef22b9c3f940720853350cc9cd8ec71eb0f9d499a6",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/impl/CardDisputeServiceImpl.java": "d9a5036ab150c82bc36e4453fa71f5f43004030592527d4198b5ea2105e047e6",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/CardEnrollmentService.java": "17ea1480081dbf4bad4931c831f86c8ad4c8efec1448ead2922e05c67c585742",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/CardEnrollmentServiceImpl.java": "9cddad4212249dca575b4f939f3ed21c1aee41dbd1cf7ecdc9098d529f8b66ff",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/impl/CardEnrollmentServiceImpl.java": "4713efade01a98a38e2830a19605d2ca7fd4f2230dfd92e3cfedd28942fd8c38",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/gateway/CardGatewayService.java": "4d58196eeed07d291df752b982b932e717e9a3f2236fff442f076343353c3f4a",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/gateway/CardGatewayServiceImpl.java": "0a861037e440d71fa33fca2ff4a3e206b7bd6b6a44502925830ff484ada3bcb2",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/gateway/impl/CardGatewayServiceImpl.java": "5e6a5dc8634ecae6d4a3096473a1cf8fd847279198d78b407cb438134d388269",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/interest/CardInterestService.java": "28f853fdf23adec64057b660d3fbb01b182f7c5a1dbfd37174600db4fd86fb7b",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/interest/CardInterestServiceImpl.java": "9850412c568a1e043c23f7cb789b67f220ab28541149cf0f78f5a4e6c1612d1e",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/interest/impl/CardInterestServiceImpl.java": "f5577d127bb5413df1e8444a186ec4478d43ffe032a8555572a4bd03c3b81d90",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/issuer/IssuerService.java": "6558c6a6324382cab1358e57df6f51fa3fb2b69471b88aebd87dbab534eac27f",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/issuer/IssuerServiceImpl.java": "6b3a3ec5c5928bcc51faef92ee502f108e0d61be6a0bcd5588008f744fe3f4ef",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/issuer/impl/IssuerServiceImpl.java": "9d457dc6645673ffde772a90669fad8f9bc471f02d92fd647c5556678e89eaff",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/limit/CardLimitService.java": "4af693efc356f280a1c600fb677004f9cf3297bdb4e20f2a54cccd842db7e858",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/limit/CardLimitServiceImpl.java": "917ce2c70ca2ad1465e1190794d1c2ffd04445c6793c84b3ee14937e9e162012",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/limit/impl/CardLimitServiceImpl.java": "669056508c0352998ee9cd7f669e0e7cf0a04f663bd0b561559f93c8a274d230",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/merchant/CardMerchantService.java": "3e5d0caea593e3f3041d063d4ad9a464fc6ca927b0028f19725175ccfdd03d07",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/merchant/CardMerchantServiceImpl.java": "1657d6581e78007dd9ceeb4762c33287c38ca174fcb059e885c20ef827c881ca",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/merchant/impl/CardMerchantServiceImpl.java": "a143bf10f704491fcdc6eb875d35e2cac22aeb0816a599b8fa3bcd0609e50209",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/network/CardNetworkService.java": "344a230c9bf8ec4fe9e3d572f6295005540f4fcbc5dc727e0b904e3fa6e21b25",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/network/CardNetworkServiceImpl.java": "763119e9f2c039f4f8bb1a1e29ca90f14e567915801992bd7fee11c8f0677327",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/network/impl/CardNetworkServiceImpl.java": "d4ca6a5940ddcb8ae18c4e02461115d8bba01723b4488a23e89c0eb5183217a0",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/payment/CardPaymentService.java": "e3cbfef48861c557f0b63694ed1a1d22f87ba31259c85dd3ba8dfa5f9dc6de3a",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/payment/CardPaymentServiceImpl.java": "9d502b9bbb192c17eb1d6794e996b80d98619934c5fea23e7767564a89437002",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/payment/impl/CardPaymentServiceImpl.java": "9c623e78ee4d1ffffdcd179f5efb79d8bf70cd2072574fbf3b25f314d6f86cbe",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/physical/PhysicalCardService.java": "5af0d2c3f54ecd2c667e32c19e3f3db3a1d2908f8fb187a6d1f6138675bf74b9",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/physical/PhysicalCardServiceImpl.java": "295cf44d8379ef08e0929436d090b0f37b4eb673429f12c24c32c1eab7bd83a2",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/physical/impl/PhysicalCardServiceImpl.java": "3974ad1071634171d8d4745a9e4c87e65a01ae70ccdca3155af40a7a02e050bb",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/program/CardProgramService.java": "c6c68417e8de6e2c82bfce6de1724d41fd82e582175dcb0499f545fe772b81f5",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/program/CardProgramServiceImpl.java": "91cb4fff7ba380de7cec5277caca71bd01cb0a8e2e186b8d09a8ffc3b90f32c8",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/program/impl/CardProgramServiceImpl.java": "621e6caaccd57d1975d8e201f2d2bd7593fd2dcb0463335c67af4732452cbc1d",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/promotion/CardPromotionService.java": "a6533a2fe2b5043069f74663b10cd799988ece51f0508cb9f0eb5b830b76438a",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/promotion/CardPromotionServiceImpl.java": "8f955a0bf95547cf255fbd073b414f36bc6e977b665d518b16ef5dd1d4ad2f53",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/promotion/impl/CardPromotionServiceImpl.java": "123a41e867e020bd12a913e11dc151e7a2f3ad65276c077b2b79ccbb5effeeca",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/provider/CardProviderService.java": "e4784c4b5ed5e187404a7a33590d97f453c9d60cf67449528fa7ee7f076b9c21",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/provider/CardProviderServiceImpl.java": "3bc3b1d11f7e5a819254834ac0f42aa1fa2305523901b6505d28abe6010fed93",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/provider/impl/CardProviderServiceImpl.java": "4b6f0fb94b4ae7cdbefcdfdb22de6439111705b4aa8d01ba7e81f9c479275f26",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/CardSecurityService.java": "8c1ab66c0bac5ae839f2b8f4bf0af01da54c8c3812552772f93c3c723b014aba",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/CardSecurityServiceImpl.java": "1496db1a35b8ec2d2e46847b7dd74c7454cdc61b6ac2c78aa8bee6b8e93ee47a",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/impl/CardSecurityServiceImpl.java": "f6c012335c2a026e39905cc63e724478cf4b6577da0d12be02a74431a062a41b",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/terminal/CardTerminalService.java": "f91d56e217da09d9c0c916e294a06cda08b447b2dbd5d932198af0bc517bfd8a",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/terminal/CardTerminalServiceImpl.java": "8436025f32f7c70dbd51b6ac71f0f08a4b5e00b62ad432a9140663472025965d",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/terminal/impl/CardTerminalServiceImpl.java": "4a3b871e98b9e1d9c5c47a4e160d83056c3b525c40070199f11d200c39660371",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/transaction/CardTransactionService.java": "4aae19f0041fb106ad4ca9f9a2e835c43110a1674fa1b5e4b99b4a84fe26627c",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/transaction/CardTransactionServiceImpl.java": "c0f36ce05d1640b63c2a57f8817f1d3bdea8d68d996dda291b2c2f1b97933eb0",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/transaction/impl/CardTransactionServiceImpl.java": "e07ff44954f53a5df450c193ab556d7aced74783035241ea9bf5cfb968bb6be5",
     "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/virtual/VirtualCardService.java": "b0ef57bf33a6501b4ab76fc94a65742a651420b6b7934937ef05045a9ba8b452",
-    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/virtual/VirtualCardServiceImpl.java": "6bd9f08129c91ad1bdbda6af3fc521b99459e136c0f2b8cca48d63c3eaf65efa",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/architecture/CardRepositoryArchitectureTest.java": "637492c65e5b09ad27e3ef30d16c501c54d4da5f895bffa20677a3bb30eb09fe",
+    "core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/virtual/impl/VirtualCardServiceImpl.java": "8c96214deaaae16cb360393c706d36c4035d5197f616a9691fe8a1b9654f95e3",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/architecture/CardRepositoryArchitectureTest.java": "3b6f533f43791af96f42cd86006d307a8c9007a1b485629d52c36fa169a45bd3",
     "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/README.md": "de9dabe739629e651e010687cfc152093d476801de5f7aeeac16afa1e03e747e",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/acquirer/CardAcquirerServiceTest.java": "1f7834fdb323d80fcccf39169236dee2e052fe1190b6dd9ade8b34c945bbdd5a",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/balance/CardBalanceServiceTest.java": "42da104411135a83cc0e51d22af5168144dd4edab88b72f30c124999ca56e801",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/bin/BINServiceTest.java": "5f3aa2ab1e42871e841059fed32071512eb9ffbd862548d3743f32d3171af806",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardActivationCrudTest.java": "b4f107c40c7d6e53379677a67e30305120920e2c483636eb76ce89398fcb011d",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardActivationDatabaseTest.java": "5a5771a4ea42a49f2fc2fba4b8461fcb216c534fba8253e9cd913c700b64f553",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardActivationServiceTest.java": "8569c55103ffb3cedfa98cc5a76694d36d3b60309ac5f65856fcb248469d92f0",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardSensitiveDataBoundaryTest.java": "7933fc60b0432ccd676e9be403829a28b03a02841953e9b1de5fc9a444137c2b",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardSensitiveDataDatabaseTest.java": "80f949fb26243d66c4fb3e66dcb9a4aca0e8bd6f7c219f612889d0c87ceae4ca",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardServiceTest.java": "c46e34e3179650084192addb25fd0dc4d1c3efc6655daddcaeaecc49a88f6217",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/configuration/CardConfigurationServiceTest.java": "f787c566243f983280010985225d03ac2e2be44a536bbabe5dea910eea4737f2",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/dispute/CardDisputeServiceTest.java": "7302e68f5787d7ea0536cd67deb911acbb19be22d1108db18047f3178e97feda",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/CardEnrollmentServiceTest.java": "f8860452f4c48ca10eb742b19c645f704ebd6ae806681af16334596c37a94c27",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/gateway/CardGatewayServiceTest.java": "12b1e5c4a1a0b610735437672847231e9f7f033086edb2ce473b32dedc271536",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/interest/CardInterestServiceTest.java": "c6445db7b6a4aaab4c645402aa41eb2f40b2803253ae64f4ef3dd95e6587ef29",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/issuer/IssuerServiceTest.java": "a66694995afccbe587d92bfd266014846dc4ef903407d572c7ccf8d9988505a0",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/limit/CardLimitServiceTest.java": "51d27013373a9eb64ca5661522d7924f044f9546f83f34b9abb48b6cdeca7bd0",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/merchant/CardMerchantServiceTest.java": "62f0338a74ca2bec3a371192bfad3ed33785bee37360653455558d2ee4e0b04a",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/network/CardNetworkServiceTest.java": "dbad812fdbff6a9bfb797cbbe2a711fc207d68ce183cfd57f23330d323700b20",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/payment/CardPaymentServiceTest.java": "dd7aee3c2d839c003ab4cdc47098666ac25ef6cf3358fcd56fa8534a38ae306b",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/physical/PhysicalCardServiceTest.java": "813c9d75b4dafd403ccfe72651e2fd8829dc8d3c15420461c97a40b8b0e5c962",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/program/CardProgramServiceTest.java": "f750d91a5d3807ffb4e84260463a4a62d01df77ada8ef6fb5eea5622f4f46f41",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/promotion/CardPromotionServiceTest.java": "de4235a10118ce2599e95792a6448ad33292cfd40efa3cfa3a330ace9b770acf",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/provider/CardProviderServiceTest.java": "4d5574161801d36abbbe5915a7e410c65b4b6cfa95ec6120d9244bed34dc0be5",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/security/CardSecurityServiceTest.java": "50dbbaae3c1f9300c49fb114200397447a284bb7bd1ba05f12da3f92615117b8",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/terminal/CardTerminalServiceTest.java": "0ff4b85a7e8f59a2aafbfcb499700f327968896d3865c155bf8a3a4650c84bf6",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/transaction/CardTransactionServiceTest.java": "587308ad8e354551eb9af96ec1452f0e33963eba1e1e4e96482af01bf182e646",
-    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/virtual/VirtualCardServiceTest.java": "e944069ccf4f08b4ab4a46eb6c2e4bfb1b05999e5fed9f919dba767dbbf5c1e0",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/acquirer/CardAcquirerServiceTest.java": "27ee9592ab489a58946af4653986edca9a480c2e8fcddb1c60a4da90c9ba806b",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/balance/CardBalanceServiceTest.java": "d7ef054089ec15274291fc9908f7e7a63fed9845504e07b0a5ccae7d6f676201",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/bin/BINServiceTest.java": "57dffb1383f3903960838f3ae8b40c8aec8aad6db6f57b262eef3b51f316a504",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardActivationCrudTest.java": "daa4921545b7c90ed8f171caa627cbdee166feb7293a2ace00b402d66105cd13",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardActivationDatabaseTest.java": "79ca376c23d741f99eccbeb87ed6b48dce8fdb9da659df8d0d81ea1d708cb8ef",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardActivationServiceTest.java": "3bbcbf0f661b43eced6e34b0b84641592c72db15ae6c4a5dc374d37219ede227",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardSensitiveDataBoundaryTest.java": "c8d0dcecd79ac4bbe2d226fba109985e123d24b917c897dc283f3ece15a65522",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardSensitiveDataDatabaseTest.java": "f7b4f1a8b2281b0e994e62168774e4881b07e87fe9308ddfa9f37b84673c8a97",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardServiceTest.java": "357b7338c7dba2e7ea16e7bf814e97d69ad4763d9bb367a67c317ae0a28903c6",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/configuration/CardConfigurationServiceTest.java": "826bc09898ddd2a575654ed124bac75566557fa105e025483ee8d8f0784bfefb",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/dispute/CardDisputeServiceTest.java": "771e015c939d07c014e20f20e614b1ce5148fced58a01854e07da88503bebba2",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/CardEnrollmentServiceTest.java": "26cd975628b9567af7c583221e4bc9d6941ff5aae318bf3e72a165dc09eeed5b",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/gateway/CardGatewayServiceTest.java": "4e973170bafdc4e21550a176f10e79a51c1c274a963bd0607112e009a7ef82da",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/interest/CardInterestServiceTest.java": "b3fb8a1f08283edc30eea4a3363cc850a6760f39671f3463f399b34bcefe4d51",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/issuer/IssuerServiceTest.java": "3a80afc1afc8edae4654333459ac9fb9f0894cbbec39db3ee30f2d816f21a501",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/limit/CardLimitServiceTest.java": "dcb6166c6c62692bf85bfce5b9cb98d7be3f529ad26fa43d0526dc38db5126e0",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/merchant/CardMerchantServiceTest.java": "cc76eb257bc5192a14873f054a2b676238622923509ecd069e4f72f8df3c7a4a",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/network/CardNetworkServiceTest.java": "aacd0bb6a3f3f107e0d7d482e2d670c47f9be0183db63eb56b3cee3c1ab3dd61",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/payment/CardPaymentServiceTest.java": "f16843e3076c1d506536329f01a2daddbc234356a1824e67f63d971308f21baa",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/physical/PhysicalCardServiceTest.java": "06c31a6aaf3d57713ac2fd3d17dd4e71d6c4ef84345bfae46daeea6d3c05ca14",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/program/CardProgramServiceTest.java": "2ae8d3f6eae2ca4bcae4a9dcde1cb7bb2ca8efacc9108100925d5ba55b92fa73",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/promotion/CardPromotionServiceTest.java": "d750aa6976cfcc762a6070cddc2de5b1dde2be4b9a748da6d57f7839303ef125",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/provider/CardProviderServiceTest.java": "caab2b55138abaaee7448ce8bdbf75bfd7b155e9ecd34c1af911de6e6e3bb8e4",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/security/CardSecurityServiceTest.java": "3fe48ff15700ef7939b9d2f1929d3f4022dea2f6dcbd56642d6e760b4a678ad3",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/terminal/CardTerminalServiceTest.java": "6f4293809e67bf13e266228d0b14ac3ab4158c1b1dffd7c52ed16d50d6382086",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/transaction/CardTransactionServiceTest.java": "4faefa7d2b33e3e3b4dc045ba1fd2f095522b79611b02d9f37df48242b595d62",
+    "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/virtual/VirtualCardServiceTest.java": "6866ab767eba1bb528842013fb8ecf8dab129b5937a548c4c9ea3c9593eafad5",
     "core-banking-cards-interfaces/pom.xml": "54c94873e2a1a799fc703fbffb06d77c15ffacd5d5f690774bea315507327aa9",
     "core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/BaseDTO.java": "9b35242dfbd2187fe769bce45328337674e06f3aa89e98c03b2dd27b5ce91a8d",
     "core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/acquirer/CardAcquirerDTO.java": "0c12e1c2f5fd62c185546c5ddd16c830a3cac67771c329d0d18db50838bc3369",
@@ -486,7 +486,7 @@
     "core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/transaction/CardTransactionController.java": "3e215375293e09f248fe747a34327f35d29995222baa463441e88bcef78fba07",
     "core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/virtual/VirtualCardController.java": "6e5e988a67c8844c20e9a07b6c0fa072f3927cb53698bad1fc0257f9c8f28d84",
     "core-banking-cards-web/src/main/resources/application.yaml": "cf4a366cba30118fb0355990b2fdc0605d0830879434f4c9914b644ff3cc202b",
-    "core-banking-cards-web/src/test/java/io/fireflysoftware/core/banking/cards/web/CardServiceWiringTest.java": "1244aa03f86527a7bbddf36c3290d5dded478737deeca8c618d5da7f79a47a00",
+    "core-banking-cards-web/src/test/java/io/fireflysoftware/core/banking/cards/web/CardServiceWiringTest.java": "35a2c8535037bc8a71185e6eda4e24fadb4401b287dc04892d488921e1a84f0a",
     "core-banking-cards-web/src/test/java/io/fireflysoftware/core/banking/cards/web/openapi/OpenApiGenApplication.java": "02bffc634b3cb29f52a7b3f46e491fceac4ce9a4c33a0d7bd8a921b6e5381199",
     "docs/api-design.md": "c1e4ce8f93722e30c5bb605b432f6029ebe858c18335d3a3a3a9df1d9d3b9ff5",
     "docs/api-reference.md": "8a8f9d33525f48a91f79af86c3b27729ae83b78a2216c5332f6d41902c3992e0",
@@ -2298,6 +2298,10 @@
   "test_cases": [
     {
       "name": "activationBusinessContractHasAnImplementationWithTheExistingBeanIdentity",
+      "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/architecture/CardRepositoryArchitectureTest.java"
+    },
+    {
+      "name": "businessImplementationsLiveUnderTheirFunctionalImplSubpackage",
       "path": "core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/architecture/CardRepositoryArchitectureTest.java"
     },
     {

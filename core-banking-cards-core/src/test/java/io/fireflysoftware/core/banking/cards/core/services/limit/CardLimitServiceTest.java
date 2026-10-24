@@ -17,6 +17,8 @@
 
 package io.fireflysoftware.core.banking.cards.core.services.limit;
 
+import io.fireflysoftware.core.banking.cards.core.services.limit.impl.CardLimitServiceImpl;
+
 import org.fireflyframework.core.queries.PaginationRequest;
 import org.fireflyframework.core.queries.PaginationResponse;
 import org.fireflyframework.core.queries.PaginationUtils;

@@ -17,6 +17,8 @@
 
 package io.fireflysoftware.core.banking.cards.core.services.card;
 
+import io.fireflysoftware.core.banking.cards.core.services.card.activation.impl.CardActivationServiceImpl;
+
 import static org.junit.jupiter.api.Assertions.*;
 import java.sql.*;
 import java.time.Duration;
@@ -201,7 +203,7 @@ class CardActivationDatabaseTest {
                 new io.fireflysoftware.core.banking.cards.core.services.card.activation.CardIssuerPort.Observation(action,binding.tenantId(),
                         binding.adapterId(),wrongInstrument.get()?"different-instrument":binding.instrumentReference(),binding.version(),
                         io.fireflysoftware.core.banking.cards.core.services.card.activation.CardIssuerPort.Outcome.ACTIVATED,"synthetic-fixture-receipt"));
-        var service=new io.fireflysoftware.core.banking.cards.core.services.card.activation.CardActivationServiceImpl(store,
+        var service=new io.fireflysoftware.core.banking.cards.core.services.card.activation.impl.CardActivationServiceImpl(store,
                 java.util.Optional.of(policy),java.util.Optional.of(issuer));
         var request=new io.fireflysoftware.core.banking.cards.interfaces.dtos.card.CardActivationRequest();
         request.setActivationProof(proof);

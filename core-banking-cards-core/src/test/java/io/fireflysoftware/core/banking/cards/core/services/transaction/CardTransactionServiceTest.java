@@ -17,6 +17,8 @@
 
 package io.fireflysoftware.core.banking.cards.core.services.transaction;
 
+import io.fireflysoftware.core.banking.cards.core.services.transaction.impl.CardTransactionServiceImpl;
+
 import org.fireflyframework.core.filters.FilterRequest;
 import org.fireflyframework.core.queries.PaginationRequest;
 import org.fireflyframework.core.queries.PaginationResponse;

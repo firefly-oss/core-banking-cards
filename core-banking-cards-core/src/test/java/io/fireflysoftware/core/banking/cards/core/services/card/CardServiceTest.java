@@ -17,6 +17,8 @@
 
 package io.fireflysoftware.core.banking.cards.core.services.card;
 
+import io.fireflysoftware.core.banking.cards.core.services.card.impl.CardServiceImpl;
+
 import io.fireflysoftware.core.banking.cards.core.mappers.card.CardMapper;
 import io.fireflysoftware.core.banking.cards.interfaces.dtos.card.CardDTO;
 import io.fireflysoftware.core.banking.cards.interfaces.enums.card.CardStatusEnum;

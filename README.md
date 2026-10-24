@@ -175,12 +175,12 @@ Examples of locally enforced failure or access behavior:
 
 | Declared check or failure | Implementation |
 | --- | --- |
-| `new RuntimeException("CardActivity not found for the specified card."));` | [CardActivityServiceImpl](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/activity/CardActivityServiceImpl.java) |
-| `new RuntimeException("CardBalance not found for the specified card."));` | [CardBalanceServiceImpl](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/CardBalanceServiceImpl.java) |
-| `new ResponseStatusException(HttpStatus.CONFLICT,` | [CardServiceImpl](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/CardServiceImpl.java) |
-| `new IllegalStateException(` | [CardServiceImpl](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/CardServiceImpl.java) |
-| `new ResponseStatusException(HttpStatus.BAD_REQUEST,` | [CardServiceImpl](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/CardServiceImpl.java) |
-| `new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,` | [CardActivationServiceImpl](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationServiceImpl.java) |
+| `new RuntimeException("CardActivity not found for the specified card."));` | [CardActivityServiceImpl](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/activity/impl/CardActivityServiceImpl.java) |
+| `new RuntimeException("CardBalance not found for the specified card."));` | [CardBalanceServiceImpl](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/impl/CardBalanceServiceImpl.java) |
+| `new ResponseStatusException(HttpStatus.CONFLICT,` | [CardServiceImpl](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/impl/CardServiceImpl.java) |
+| `new IllegalStateException(` | [CardServiceImpl](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/impl/CardServiceImpl.java) |
+| `new ResponseStatusException(HttpStatus.BAD_REQUEST,` | [CardServiceImpl](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/impl/CardServiceImpl.java) |
+| `new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,` | [CardActivationServiceImpl](core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/impl/CardActivationServiceImpl.java) |
 
 The [security and failure reference](docs/openplatform/reference.md#security-and-failure-evidence) links local authorization annotations, status mappings, and exception sites. Framework or gateway policy is additional to this local inventory; verify the deployed filter chain and caller entitlements before integration.
 
