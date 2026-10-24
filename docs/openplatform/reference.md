@@ -8,124 +8,124 @@ This reference is derived from checked-in source. It separates declared HTTP map
 
 | Mapping | Method | Controller | Kind |
 | --- | --- | --- | --- |
-| `GET /api/v1/acquirers` | `public Mono<ResponseEntity<PaginationResponse<CardAcquirerDTO>>> getAllAcquirers( @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardAcquirerController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/acquirer/v1/CardAcquirerController.java) | Local declaration |
-| `GET /api/v1/acquirers/{acquirerId}` | `public Mono<ResponseEntity<CardAcquirerDTO>> getAcquirer( @Parameter(description = "Unique identifier of the card acquirer", required = true) @PathVariable UUID acquirerId )` | [CardAcquirerController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/acquirer/v1/CardAcquirerController.java) | Local declaration |
-| `POST /api/v1/acquirers` | `public Mono<ResponseEntity<CardAcquirerDTO>> createAcquirer( @Parameter(description = "Data for the new card acquirer", required = true, schema = @Schema(implementation = CardAcquirerDTO.class)) @RequestBody CardAcquirerDTO acquirerDTO )` | [CardAcquirerController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/acquirer/v1/CardAcquirerController.java) | Local declaration |
-| `PUT /api/v1/acquirers/{acquirerId}` | `public Mono<ResponseEntity<CardAcquirerDTO>> updateAcquirer( @Parameter(description = "Unique identifier of the card acquirer to update", required = true) @PathVariable UUID acquirerId, @Parameter(description = "Updated data for the card acquirer", required = true, schema = @Schema(implementation = CardAcquirerDTO.class)) @RequestBody CardAcquirerDTO acquirerDTO )` | [CardAcquirerController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/acquirer/v1/CardAcquirerController.java) | Local declaration |
-| `DELETE /api/v1/acquirers/{acquirerId}` | `public Mono<ResponseEntity<Void>> deleteAcquirer( @Parameter(description = "Unique identifier of the card acquirer to delete", required = true) @PathVariable UUID acquirerId )` | [CardAcquirerController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/acquirer/v1/CardAcquirerController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/activities` | `public Mono<ResponseEntity<PaginationResponse<CardActivityDTO>>> getAllActivities( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardActivityController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/activity/v1/CardActivityController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/activities/{activityId}` | `public Mono<ResponseEntity<CardActivityDTO>> getActivity( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the activity record", required = true) @PathVariable UUID activityId )` | [CardActivityController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/activity/v1/CardActivityController.java) | Local declaration |
-| `POST /api/v1/cards/{cardId}/activities` | `public Mono<ResponseEntity<CardActivityDTO>> createActivity( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card activity record", required = true, schema = @Schema(implementation = CardActivityDTO.class)) @RequestBody CardActivityDTO activityDTO )` | [CardActivityController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/activity/v1/CardActivityController.java) | Local declaration |
-| `PUT /api/v1/cards/{cardId}/activities/{activityId}` | `public Mono<ResponseEntity<CardActivityDTO>> updateActivity( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the activity record to update", required = true) @PathVariable UUID activityId, @Parameter(description = "Updated data for the activity record", required = true, schema = @Schema(implementation = CardActivityDTO.class)) @RequestBody CardActivityDTO activityDTO )` | [CardActivityController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/activity/v1/CardActivityController.java) | Local declaration |
-| `DELETE /api/v1/cards/{cardId}/activities/{activityId}` | `public Mono<ResponseEntity<Void>> deleteActivity( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the activity record to delete", required = true) @PathVariable UUID activityId )` | [CardActivityController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/activity/v1/CardActivityController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/balances` | `public Mono<ResponseEntity<PaginationResponse<CardBalanceDTO>>> getAllBalances( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardBalanceController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/balance/v1/CardBalanceController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/balances/{balanceId}` | `public Mono<ResponseEntity<CardBalanceDTO>> getBalance( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the balance record", required = true) @PathVariable UUID balanceId )` | [CardBalanceController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/balance/v1/CardBalanceController.java) | Local declaration |
-| `POST /api/v1/cards/{cardId}/balances` | `public Mono<ResponseEntity<CardBalanceDTO>> createBalance( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card balance record", required = true, schema = @Schema(implementation = CardBalanceDTO.class)) @RequestBody CardBalanceDTO balanceDTO )` | [CardBalanceController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/balance/v1/CardBalanceController.java) | Local declaration |
-| `PUT /api/v1/cards/{cardId}/balances/{balanceId}` | `public Mono<ResponseEntity<CardBalanceDTO>> updateBalance( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the balance record to update", required = true) @PathVariable UUID balanceId, @Parameter(description = "Updated data for the balance record", required = true, schema = @Schema(implementation = CardBalanceDTO.class)) @RequestBody CardBalanceDTO balanceDTO )` | [CardBalanceController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/balance/v1/CardBalanceController.java) | Local declaration |
-| `DELETE /api/v1/cards/{cardId}/balances/{balanceId}` | `public Mono<ResponseEntity<Void>> deleteBalance( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the balance record to delete", required = true) @PathVariable UUID balanceId )` | [CardBalanceController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/balance/v1/CardBalanceController.java) | Local declaration |
-| `GET /api/v1/bins` | `public Mono<ResponseEntity<PaginationResponse<BINDTO>>> getAllBINs( @RequestBody PaginationRequest paginationRequest )` | [BINController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/bin/v1/BINController.java) | Local declaration |
-| `GET /api/v1/bins/{binId}` | `public Mono<ResponseEntity<BINDTO>> getBIN( @Parameter(description = "Unique identifier of the BIN", required = true) @PathVariable UUID binId )` | [BINController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/bin/v1/BINController.java) | Local declaration |
-| `GET /api/v1/bins` | `public Mono<ResponseEntity<BINDTO>> getBINByNumber( @Parameter(description = "BIN number", required = true) @RequestParam("number") String binNumber )` | [BINController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/bin/v1/BINController.java) | Local declaration |
-| `POST /api/v1/bins` | `public Mono<ResponseEntity<BINDTO>> createBIN( @Parameter(description = "Data for the new BIN", required = true, schema = @Schema(implementation = BINDTO.class)) @Valid @RequestBody BINDTO binDTO )` | [BINController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/bin/v1/BINController.java) | Local declaration |
-| `PUT /api/v1/bins/{binId}` | `public Mono<ResponseEntity<BINDTO>> updateBIN( @Parameter(description = "Unique identifier of the BIN to update", required = true) @PathVariable UUID binId, @Parameter(description = "Updated data for the BIN", required = true, schema = @Schema(implementation = BINDTO.class)) @RequestBody BINDTO binDTO )` | [BINController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/bin/v1/BINController.java) | Local declaration |
-| `DELETE /api/v1/bins/{binId}` | `public Mono<ResponseEntity<Void>> deleteBIN( @Parameter(description = "Unique identifier of the BIN to delete", required = true) @PathVariable UUID binId )` | [BINController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/bin/v1/BINController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}` | `public Mono<ResponseEntity<CardDTO>> getCard( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId )` | [CardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/v1/CardController.java) | Local declaration |
-| `POST /api/v1/cards/{cardId}/activation` | `public Mono<ResponseEntity<CardActivationReceipt>> activateCard( @PathVariable UUID cardId, @RequestHeader("X-Idempotency-Key") UUID actionId, @Valid @RequestBody CardActivationRequest request)` | [CardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/v1/CardController.java) | Local declaration |
-| `POST /api/v1/cards/filter` | `public Mono<ResponseEntity<PaginationResponse<CardDTO>>> filterCards( @Valid @RequestBody FilterRequest<CardDTO> filterRequest )` | [CardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/v1/CardController.java) | Local declaration |
-| `POST /api/v1/cards` | `public Mono<ResponseEntity<CardDTO>> createCard( @Parameter(description = "Data for the new card", required = true, schema = @Schema(implementation = CardDTO.class)) @Valid @RequestBody CardDTO cardDTO )` | [CardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/v1/CardController.java) | Local declaration |
-| `PUT /api/v1/cards/{cardId}` | `public Mono<ResponseEntity<CardDTO>> updateCard( @Parameter(description = "Unique identifier of the card to update", required = true) @PathVariable UUID cardId, @Parameter(description = "Updated card data", required = true, schema = @Schema(implementation = CardDTO.class)) @RequestBody CardDTO cardDTO )` | [CardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/v1/CardController.java) | Local declaration |
-| `DELETE /api/v1/cards/{cardId}` | `public Mono<ResponseEntity<Void>> deleteCard( @Parameter(description = "Unique identifier of the card to delete", required = true) @PathVariable UUID cardId )` | [CardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/v1/CardController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/configurations` | `public Mono<ResponseEntity<PaginationResponse<CardConfigurationDTO>>> getAllConfigurations( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardConfigurationController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/configuration/v1/CardConfigurationController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/configurations/{configId}` | `public Mono<ResponseEntity<CardConfigurationDTO>> getConfiguration( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the card configuration record", required = true) @PathVariable UUID configId )` | [CardConfigurationController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/configuration/v1/CardConfigurationController.java) | Local declaration |
-| `POST /api/v1/cards/{cardId}/configurations` | `public Mono<ResponseEntity<CardConfigurationDTO>> createConfiguration( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card configuration record", required = true, schema = @Schema(implementation = CardConfigurationDTO.class)) @RequestBody CardConfigurationDTO configDTO )` | [CardConfigurationController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/configuration/v1/CardConfigurationController.java) | Local declaration |
-| `PUT /api/v1/cards/{cardId}/configurations/{configId}` | `public Mono<ResponseEntity<CardConfigurationDTO>> updateConfiguration( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the card configuration record to update", required = true) @PathVariable UUID configId, @Parameter(description = "Updated configuration data", required = true, schema = @Schema(implementation = CardConfigurationDTO.class)) @RequestBody CardConfigurationDTO configDTO )` | [CardConfigurationController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/configuration/v1/CardConfigurationController.java) | Local declaration |
-| `DELETE /api/v1/cards/{cardId}/configurations/{configId}` | `public Mono<ResponseEntity<Void>> deleteConfiguration( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the card configuration record to delete", required = true) @PathVariable UUID configId )` | [CardConfigurationController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/configuration/v1/CardConfigurationController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/disputes` | `public Mono<ResponseEntity<PaginationResponse<CardDisputeDTO>>> getAllDisputes( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardDisputeController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/dispute/v1/CardDisputeController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/disputes/{disputeId}` | `public Mono<ResponseEntity<CardDisputeDTO>> getDispute( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the dispute record", required = true) @PathVariable UUID disputeId )` | [CardDisputeController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/dispute/v1/CardDisputeController.java) | Local declaration |
-| `POST /api/v1/cards/{cardId}/disputes` | `public Mono<ResponseEntity<CardDisputeDTO>> createDispute( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card dispute record", required = true, schema = @Schema(implementation = CardDisputeDTO.class)) @RequestBody CardDisputeDTO disputeDTO )` | [CardDisputeController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/dispute/v1/CardDisputeController.java) | Local declaration |
-| `PUT /api/v1/cards/{cardId}/disputes/{disputeId}` | `public Mono<ResponseEntity<CardDisputeDTO>> updateDispute( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the dispute record to update", required = true) @PathVariable UUID disputeId, @Parameter(description = "Updated data for the dispute record", required = true, schema = @Schema(implementation = CardDisputeDTO.class)) @RequestBody CardDisputeDTO disputeDTO )` | [CardDisputeController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/dispute/v1/CardDisputeController.java) | Local declaration |
-| `DELETE /api/v1/cards/{cardId}/disputes/{disputeId}` | `public Mono<ResponseEntity<Void>> deleteDispute( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the dispute record to delete", required = true) @PathVariable UUID disputeId )` | [CardDisputeController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/dispute/v1/CardDisputeController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/enrollments` | `public Mono<ResponseEntity<PaginationResponse<CardEnrollmentDTO>>> getAllEnrollments( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardEnrollmentController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/enrollment/v1/CardEnrollmentController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/enrollments/{enrollmentId}` | `public Mono<ResponseEntity<CardEnrollmentDTO>> getEnrollment( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the enrollment record", required = true) @PathVariable UUID enrollmentId )` | [CardEnrollmentController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/enrollment/v1/CardEnrollmentController.java) | Local declaration |
-| `POST /api/v1/cards/{cardId}/enrollments` | `public Mono<ResponseEntity<CardEnrollmentDTO>> createEnrollment( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card enrollment record", required = true, schema = @Schema(implementation = CardEnrollmentDTO.class)) @RequestBody CardEnrollmentDTO enrollmentDTO )` | [CardEnrollmentController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/enrollment/v1/CardEnrollmentController.java) | Local declaration |
-| `PUT /api/v1/cards/{cardId}/enrollments/{enrollmentId}` | `public Mono<ResponseEntity<CardEnrollmentDTO>> updateEnrollment( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the enrollment record to update", required = true) @PathVariable UUID enrollmentId, @Parameter(description = "Updated data for the enrollment record", required = true, schema = @Schema(implementation = CardEnrollmentDTO.class)) @RequestBody CardEnrollmentDTO enrollmentDTO )` | [CardEnrollmentController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/enrollment/v1/CardEnrollmentController.java) | Local declaration |
-| `DELETE /api/v1/cards/{cardId}/enrollments/{enrollmentId}` | `public Mono<ResponseEntity<Void>> deleteEnrollment( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the enrollment record to delete", required = true) @PathVariable UUID enrollmentId )` | [CardEnrollmentController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/enrollment/v1/CardEnrollmentController.java) | Local declaration |
-| `GET /api/v1/gateways` | `public Mono<ResponseEntity<PaginationResponse<CardGatewayDTO>>> getAllGateways( @RequestBody PaginationRequest paginationRequest )` | [CardGatewayController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/gateway/v1/CardGatewayController.java) | Local declaration |
-| `GET /api/v1/gateways/{gatewayId}` | `public Mono<ResponseEntity<CardGatewayDTO>> getGateway( @Parameter(description = "Unique identifier of the card gateway", required = true) @PathVariable UUID gatewayId )` | [CardGatewayController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/gateway/v1/CardGatewayController.java) | Local declaration |
-| `POST /api/v1/gateways` | `public Mono<ResponseEntity<CardGatewayDTO>> createGateway( @Parameter(description = "Data for the new card gateway", required = true, schema = @Schema(implementation = CardGatewayDTO.class)) @RequestBody CardGatewayDTO gatewayDTO )` | [CardGatewayController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/gateway/v1/CardGatewayController.java) | Local declaration |
-| `PUT /api/v1/gateways/{gatewayId}` | `public Mono<ResponseEntity<CardGatewayDTO>> updateGateway( @Parameter(description = "Unique identifier of the card gateway to update", required = true) @PathVariable UUID gatewayId, @Parameter(description = "Updated data for the card gateway", required = true, schema = @Schema(implementation = CardGatewayDTO.class)) @RequestBody CardGatewayDTO gatewayDTO )` | [CardGatewayController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/gateway/v1/CardGatewayController.java) | Local declaration |
-| `DELETE /api/v1/gateways/{gatewayId}` | `public Mono<ResponseEntity<Void>> deleteGateway( @Parameter(description = "Unique identifier of the card gateway to delete", required = true) @PathVariable UUID gatewayId )` | [CardGatewayController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/gateway/v1/CardGatewayController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/interests` | `public Mono<ResponseEntity<PaginationResponse<CardInterestDTO>>> getAllInterests( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardInterestController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/interest/v1/CardInterestController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/interests/{interestId}` | `public Mono<ResponseEntity<CardInterestDTO>> getInterest( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the interest record", required = true) @PathVariable UUID interestId )` | [CardInterestController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/interest/v1/CardInterestController.java) | Local declaration |
-| `POST /api/v1/cards/{cardId}/interests` | `public Mono<ResponseEntity<CardInterestDTO>> createInterest( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card interest record", required = true, schema = @Schema(implementation = CardInterestDTO.class)) @RequestBody CardInterestDTO interestDTO )` | [CardInterestController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/interest/v1/CardInterestController.java) | Local declaration |
-| `PUT /api/v1/cards/{cardId}/interests/{interestId}` | `public Mono<ResponseEntity<CardInterestDTO>> updateInterest( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the interest record to update", required = true) @PathVariable UUID interestId, @Parameter(description = "Updated data for the interest record", required = true, schema = @Schema(implementation = CardInterestDTO.class)) @RequestBody CardInterestDTO interestDTO )` | [CardInterestController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/interest/v1/CardInterestController.java) | Local declaration |
-| `DELETE /api/v1/cards/{cardId}/interests/{interestId}` | `public Mono<ResponseEntity<Void>> deleteInterest( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the interest record to delete", required = true) @PathVariable UUID interestId )` | [CardInterestController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/interest/v1/CardInterestController.java) | Local declaration |
-| `GET /api/v1/issuers` | `public Mono<ResponseEntity<PaginationResponse<IssuerDTO>>> getAllIssuers( @RequestBody PaginationRequest paginationRequest )` | [IssuerController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/issuer/v1/IssuerController.java) | Local declaration |
-| `GET /api/v1/issuers/{issuerId}` | `public Mono<ResponseEntity<IssuerDTO>> getIssuer( @Parameter(description = "Unique identifier of the issuer", required = true) @PathVariable UUID issuerId )` | [IssuerController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/issuer/v1/IssuerController.java) | Local declaration |
-| `POST /api/v1/issuers` | `public Mono<ResponseEntity<IssuerDTO>> createIssuer( @Parameter(description = "Data for the new issuer", required = true, schema = @Schema(implementation = IssuerDTO.class)) @RequestBody IssuerDTO issuerDTO )` | [IssuerController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/issuer/v1/IssuerController.java) | Local declaration |
-| `PUT /api/v1/issuers/{issuerId}` | `public Mono<ResponseEntity<IssuerDTO>> updateIssuer( @Parameter(description = "Unique identifier of the issuer to update", required = true) @PathVariable UUID issuerId, @Parameter(description = "Updated data for the issuer", required = true, schema = @Schema(implementation = IssuerDTO.class)) @RequestBody IssuerDTO issuerDTO )` | [IssuerController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/issuer/v1/IssuerController.java) | Local declaration |
-| `DELETE /api/v1/issuers/{issuerId}` | `public Mono<ResponseEntity<Void>> deleteIssuer( @Parameter(description = "Unique identifier of the issuer to delete", required = true) @PathVariable UUID issuerId )` | [IssuerController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/issuer/v1/IssuerController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/limits` | `public Mono<ResponseEntity<PaginationResponse<CardLimitDTO>>> getAllLimits( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardLimitController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/limit/v1/CardLimitController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/limits/{limitId}` | `public Mono<ResponseEntity<CardLimitDTO>> getLimit( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the card limit record", required = true) @PathVariable UUID limitId )` | [CardLimitController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/limit/v1/CardLimitController.java) | Local declaration |
-| `POST /api/v1/cards/{cardId}/limits` | `public Mono<ResponseEntity<CardLimitDTO>> createLimit( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card limit record", required = true, schema = @Schema(implementation = CardLimitDTO.class)) @RequestBody CardLimitDTO limitDTO )` | [CardLimitController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/limit/v1/CardLimitController.java) | Local declaration |
-| `PUT /api/v1/cards/{cardId}/limits/{limitId}` | `public Mono<ResponseEntity<CardLimitDTO>> updateLimit( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the card limit record to update", required = true) @PathVariable UUID limitId, @Parameter(description = "Updated card limit data", required = true, schema = @Schema(implementation = CardLimitDTO.class)) @RequestBody CardLimitDTO limitDTO )` | [CardLimitController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/limit/v1/CardLimitController.java) | Local declaration |
-| `DELETE /api/v1/cards/{cardId}/limits/{limitId}` | `public Mono<ResponseEntity<Void>> deleteLimit( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the card limit record to delete", required = true) @PathVariable UUID limitId )` | [CardLimitController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/limit/v1/CardLimitController.java) | Local declaration |
-| `GET /api/v1/merchants` | `public Mono<ResponseEntity<PaginationResponse<CardMerchantDTO>>> getAllMerchants( @RequestBody PaginationRequest paginationRequest )` | [CardMerchantController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/merchant/v1/CardMerchantController.java) | Local declaration |
-| `GET /api/v1/merchants/{merchantId}` | `public Mono<ResponseEntity<CardMerchantDTO>> getMerchant( @Parameter(description = "Unique identifier of the card merchant", required = true) @PathVariable UUID merchantId )` | [CardMerchantController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/merchant/v1/CardMerchantController.java) | Local declaration |
-| `POST /api/v1/merchants` | `public Mono<ResponseEntity<CardMerchantDTO>> createMerchant( @Parameter(description = "Data for the new card merchant", required = true, schema = @Schema(implementation = CardMerchantDTO.class)) @RequestBody CardMerchantDTO merchantDTO )` | [CardMerchantController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/merchant/v1/CardMerchantController.java) | Local declaration |
-| `PUT /api/v1/merchants/{merchantId}` | `public Mono<ResponseEntity<CardMerchantDTO>> updateMerchant( @Parameter(description = "Unique identifier of the card merchant to update", required = true) @PathVariable UUID merchantId, @Parameter(description = "Updated data for the card merchant", required = true, schema = @Schema(implementation = CardMerchantDTO.class)) @RequestBody CardMerchantDTO merchantDTO )` | [CardMerchantController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/merchant/v1/CardMerchantController.java) | Local declaration |
-| `DELETE /api/v1/merchants/{merchantId}` | `public Mono<ResponseEntity<Void>> deleteMerchant( @Parameter(description = "Unique identifier of the card merchant to delete", required = true) @PathVariable UUID merchantId )` | [CardMerchantController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/merchant/v1/CardMerchantController.java) | Local declaration |
-| `GET /api/v1/networks` | `public Mono<ResponseEntity<PaginationResponse<CardNetworkDTO>>> getAllNetworks( @RequestBody PaginationRequest paginationRequest )` | [CardNetworkController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/network/v1/CardNetworkController.java) | Local declaration |
-| `GET /api/v1/networks/{networkId}` | `public Mono<ResponseEntity<CardNetworkDTO>> getNetwork( @Parameter(description = "Unique identifier of the card network", required = true) @PathVariable UUID networkId )` | [CardNetworkController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/network/v1/CardNetworkController.java) | Local declaration |
-| `POST /api/v1/networks` | `public Mono<ResponseEntity<CardNetworkDTO>> createNetwork( @Parameter(description = "Data for the new card network", required = true, schema = @Schema(implementation = CardNetworkDTO.class)) @RequestBody CardNetworkDTO networkDTO )` | [CardNetworkController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/network/v1/CardNetworkController.java) | Local declaration |
-| `PUT /api/v1/networks/{networkId}` | `public Mono<ResponseEntity<CardNetworkDTO>> updateNetwork( @Parameter(description = "Unique identifier of the card network to update", required = true) @PathVariable UUID networkId, @Parameter(description = "Updated data for the card network", required = true, schema = @Schema(implementation = CardNetworkDTO.class)) @RequestBody CardNetworkDTO networkDTO )` | [CardNetworkController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/network/v1/CardNetworkController.java) | Local declaration |
-| `DELETE /api/v1/networks/{networkId}` | `public Mono<ResponseEntity<Void>> deleteNetwork( @Parameter(description = "Unique identifier of the card network to delete", required = true) @PathVariable UUID networkId )` | [CardNetworkController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/network/v1/CardNetworkController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/payments` | `public Mono<ResponseEntity<PaginationResponse<CardPaymentDTO>>> getAllPayments( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @RequestBody PaginationRequest paginationRequest )` | [CardPaymentController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/payment/v1/CardPaymentController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/payments/{paymentId}` | `public Mono<ResponseEntity<CardPaymentDTO>> getPayment( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the payment record", required = true) @PathVariable UUID paymentId )` | [CardPaymentController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/payment/v1/CardPaymentController.java) | Local declaration |
-| `POST /api/v1/cards/{cardId}/payments` | `public Mono<ResponseEntity<CardPaymentDTO>> createPayment( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card payment record", required = true, schema = @Schema(implementation = CardPaymentDTO.class)) @RequestBody CardPaymentDTO paymentDTO )` | [CardPaymentController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/payment/v1/CardPaymentController.java) | Local declaration |
-| `PUT /api/v1/cards/{cardId}/payments/{paymentId}` | `public Mono<ResponseEntity<CardPaymentDTO>> updatePayment( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the payment record to update", required = true) @PathVariable UUID paymentId, @Parameter(description = "Updated data for the payment record", required = true, schema = @Schema(implementation = CardPaymentDTO.class)) @RequestBody CardPaymentDTO paymentDTO )` | [CardPaymentController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/payment/v1/CardPaymentController.java) | Local declaration |
-| `DELETE /api/v1/cards/{cardId}/payments/{paymentId}` | `public Mono<ResponseEntity<Void>> deletePayment( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the payment record to delete", required = true) @PathVariable UUID paymentId )` | [CardPaymentController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/payment/v1/CardPaymentController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/physical-cards` | `public Mono<ResponseEntity<PaginationResponse<PhysicalCardDTO>>> getAllPhysicalCards( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [PhysicalCardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/physical/v1/PhysicalCardController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/physical-cards/{physicalCardId}` | `public Mono<ResponseEntity<PhysicalCardDTO>> getPhysicalCard( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the physical card record", required = true) @PathVariable UUID physicalCardId )` | [PhysicalCardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/physical/v1/PhysicalCardController.java) | Local declaration |
-| `POST /api/v1/cards/{cardId}/physical-cards` | `public Mono<ResponseEntity<PhysicalCardDTO>> createPhysicalCard( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new physical card record", required = true, schema = @Schema(implementation = PhysicalCardDTO.class)) @RequestBody PhysicalCardDTO physicalCardDTO )` | [PhysicalCardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/physical/v1/PhysicalCardController.java) | Local declaration |
-| `PUT /api/v1/cards/{cardId}/physical-cards/{physicalCardId}` | `public Mono<ResponseEntity<PhysicalCardDTO>> updatePhysicalCard( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the physical card record to update", required = true) @PathVariable UUID physicalCardId, @Parameter(description = "Updated data for the physical card record", required = true, schema = @Schema(implementation = PhysicalCardDTO.class)) @RequestBody PhysicalCardDTO physicalCardDTO )` | [PhysicalCardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/physical/v1/PhysicalCardController.java) | Local declaration |
-| `DELETE /api/v1/cards/{cardId}/physical-cards/{physicalCardId}` | `public Mono<ResponseEntity<Void>> deletePhysicalCard( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the physical card record to delete", required = true) @PathVariable UUID physicalCardId )` | [PhysicalCardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/physical/v1/PhysicalCardController.java) | Local declaration |
-| `GET /api/v1/programs` | `public Mono<ResponseEntity<PaginationResponse<CardProgramDTO>>> getAllPrograms( @RequestBody PaginationRequest paginationRequest )` | [CardProgramController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/program/v1/CardProgramController.java) | Local declaration |
-| `GET /api/v1/programs/{programId}` | `public Mono<ResponseEntity<CardProgramDTO>> getProgram( @Parameter(description = "Unique identifier of the card program", required = true) @PathVariable UUID programId )` | [CardProgramController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/program/v1/CardProgramController.java) | Local declaration |
-| `POST /api/v1/programs` | `public Mono<ResponseEntity<CardProgramDTO>> createProgram( @Parameter(description = "Data for the new card program", required = true, schema = @Schema(implementation = CardProgramDTO.class)) @RequestBody CardProgramDTO programDTO )` | [CardProgramController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/program/v1/CardProgramController.java) | Local declaration |
-| `PUT /api/v1/programs/{programId}` | `public Mono<ResponseEntity<CardProgramDTO>> updateProgram( @Parameter(description = "Unique identifier of the card program to update", required = true) @PathVariable UUID programId, @Parameter(description = "Updated data for the card program", required = true, schema = @Schema(implementation = CardProgramDTO.class)) @RequestBody CardProgramDTO programDTO )` | [CardProgramController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/program/v1/CardProgramController.java) | Local declaration |
-| `DELETE /api/v1/programs/{programId}` | `public Mono<ResponseEntity<Void>> deleteProgram( @Parameter(description = "Unique identifier of the card program to delete", required = true) @PathVariable UUID programId )` | [CardProgramController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/program/v1/CardProgramController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/promotions` | `public Mono<ResponseEntity<PaginationResponse<CardPromotionDTO>>> getAllPromotions( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardPromotionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/promotion/v1/CardPromotionController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/promotions/{promotionId}` | `public Mono<ResponseEntity<CardPromotionDTO>> getPromotion( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the promotion record", required = true) @PathVariable UUID promotionId )` | [CardPromotionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/promotion/v1/CardPromotionController.java) | Local declaration |
-| `POST /api/v1/cards/{cardId}/promotions` | `public Mono<ResponseEntity<CardPromotionDTO>> createPromotion( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card promotion record", required = true, schema = @Schema(implementation = CardPromotionDTO.class)) @RequestBody CardPromotionDTO promotionDTO )` | [CardPromotionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/promotion/v1/CardPromotionController.java) | Local declaration |
-| `PUT /api/v1/cards/{cardId}/promotions/{promotionId}` | `public Mono<ResponseEntity<CardPromotionDTO>> updatePromotion( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the promotion record to update", required = true) @PathVariable UUID promotionId, @Parameter(description = "Updated data for the promotion record", required = true, schema = @Schema(implementation = CardPromotionDTO.class)) @RequestBody CardPromotionDTO promotionDTO )` | [CardPromotionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/promotion/v1/CardPromotionController.java) | Local declaration |
-| `DELETE /api/v1/cards/{cardId}/promotions/{promotionId}` | `public Mono<ResponseEntity<Void>> deletePromotion( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the promotion record to delete", required = true) @PathVariable UUID promotionId )` | [CardPromotionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/promotion/v1/CardPromotionController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/providers` | `public Mono<ResponseEntity<PaginationResponse<CardProviderDTO>>> getAllProviders( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardProviderController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/provider/v1/CardProviderController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/providers/{providerId}` | `public Mono<ResponseEntity<CardProviderDTO>> getProvider( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the card provider record", required = true) @PathVariable UUID providerId )` | [CardProviderController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/provider/v1/CardProviderController.java) | Local declaration |
-| `POST /api/v1/cards/{cardId}/providers` | `public Mono<ResponseEntity<CardProviderDTO>> createProvider( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card provider record", required = true, schema = @Schema(implementation = CardProviderDTO.class)) @RequestBody CardProviderDTO providerDTO )` | [CardProviderController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/provider/v1/CardProviderController.java) | Local declaration |
-| `PUT /api/v1/cards/{cardId}/providers/{providerId}` | `public Mono<ResponseEntity<CardProviderDTO>> updateProvider( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the card provider record to update", required = true) @PathVariable UUID providerId, @Parameter(description = "Updated card provider data", required = true, schema = @Schema(implementation = CardProviderDTO.class)) @RequestBody CardProviderDTO providerDTO )` | [CardProviderController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/provider/v1/CardProviderController.java) | Local declaration |
-| `DELETE /api/v1/cards/{cardId}/providers/{providerId}` | `public Mono<ResponseEntity<Void>> deleteProvider( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the card provider record to delete", required = true) @PathVariable UUID providerId )` | [CardProviderController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/provider/v1/CardProviderController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/security` | `public Mono<ResponseEntity<PaginationResponse<CardSecurityDTO>>> getAllSecuritySettings( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardSecurityController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/security/v1/CardSecurityController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/security/{securityId}` | `public Mono<ResponseEntity<CardSecurityDTO>> getSecuritySetting( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the security setting", required = true) @PathVariable UUID securityId )` | [CardSecurityController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/security/v1/CardSecurityController.java) | Local declaration |
-| `POST /api/v1/cards/{cardId}/security` | `public Mono<ResponseEntity<CardSecurityDTO>> createSecuritySetting( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new security setting record", required = true, schema = @Schema(implementation = CardSecurityDTO.class)) @RequestBody CardSecurityDTO securityDTO )` | [CardSecurityController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/security/v1/CardSecurityController.java) | Local declaration |
-| `PUT /api/v1/cards/{cardId}/security/{securityId}` | `public Mono<ResponseEntity<CardSecurityDTO>> updateSecuritySetting( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the security setting to update", required = true) @PathVariable UUID securityId, @Parameter(description = "Updated security setting data", required = true, schema = @Schema(implementation = CardSecurityDTO.class)) @RequestBody CardSecurityDTO securityDTO )` | [CardSecurityController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/security/v1/CardSecurityController.java) | Local declaration |
-| `DELETE /api/v1/cards/{cardId}/security/{securityId}` | `public Mono<ResponseEntity<Void>> deleteSecuritySetting( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the security setting record to delete", required = true) @PathVariable UUID securityId )` | [CardSecurityController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/security/v1/CardSecurityController.java) | Local declaration |
-| `GET /api/v1/terminals` | `public Mono<ResponseEntity<PaginationResponse<CardTerminalDTO>>> getAllTerminals( @RequestBody PaginationRequest paginationRequest )` | [CardTerminalController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/terminal/v1/CardTerminalController.java) | Local declaration |
-| `GET /api/v1/terminals/{terminalId}` | `public Mono<ResponseEntity<CardTerminalDTO>> getTerminal( @Parameter(description = "Unique identifier of the card terminal", required = true) @PathVariable UUID terminalId )` | [CardTerminalController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/terminal/v1/CardTerminalController.java) | Local declaration |
-| `POST /api/v1/terminals` | `public Mono<ResponseEntity<CardTerminalDTO>> createTerminal( @Parameter(description = "Data for the new card terminal", required = true, schema = @Schema(implementation = CardTerminalDTO.class)) @RequestBody CardTerminalDTO terminalDTO )` | [CardTerminalController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/terminal/v1/CardTerminalController.java) | Local declaration |
-| `PUT /api/v1/terminals/{terminalId}` | `public Mono<ResponseEntity<CardTerminalDTO>> updateTerminal( @Parameter(description = "Unique identifier of the card terminal to update", required = true) @PathVariable UUID terminalId, @Parameter(description = "Updated data for the card terminal", required = true, schema = @Schema(implementation = CardTerminalDTO.class)) @RequestBody CardTerminalDTO terminalDTO )` | [CardTerminalController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/terminal/v1/CardTerminalController.java) | Local declaration |
-| `DELETE /api/v1/terminals/{terminalId}` | `public Mono<ResponseEntity<Void>> deleteTerminal( @Parameter(description = "Unique identifier of the card terminal to delete", required = true) @PathVariable UUID terminalId )` | [CardTerminalController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/terminal/v1/CardTerminalController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/transactions` | `public Mono<ResponseEntity<PaginationResponse<CardTransactionDTO>>> getAllTransactions( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @RequestBody PaginationRequest paginationRequest )` | [CardTransactionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/transaction/v1/CardTransactionController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/transactions` | `public Mono<ResponseEntity<PaginationResponse<CardTransactionDTO>>> filterProducts( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @RequestBody FilterRequest<CardTransactionDTO> filterRequest )` | [CardTransactionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/transaction/v1/CardTransactionController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/transactions/{transactionId}` | `public Mono<ResponseEntity<CardTransactionDTO>> getTransaction( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the transaction record", required = true) @PathVariable UUID transactionId )` | [CardTransactionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/transaction/v1/CardTransactionController.java) | Local declaration |
-| `POST /api/v1/cards/{cardId}/transactions` | `public Mono<ResponseEntity<CardTransactionDTO>> createTransaction( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card transaction record", required = true, schema = @Schema(implementation = CardTransactionDTO.class)) @RequestBody CardTransactionDTO transactionDTO )` | [CardTransactionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/transaction/v1/CardTransactionController.java) | Local declaration |
-| `PUT /api/v1/cards/{cardId}/transactions/{transactionId}` | `public Mono<ResponseEntity<CardTransactionDTO>> updateTransaction( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the card transaction to update", required = true) @PathVariable UUID transactionId, @Parameter(description = "Updated transaction data", required = true, schema = @Schema(implementation = CardTransactionDTO.class)) @RequestBody CardTransactionDTO transactionDTO )` | [CardTransactionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/transaction/v1/CardTransactionController.java) | Local declaration |
-| `DELETE /api/v1/cards/{cardId}/transactions/{transactionId}` | `public Mono<ResponseEntity<Void>> deleteTransaction( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the transaction record to delete", required = true) @PathVariable UUID transactionId )` | [CardTransactionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/transaction/v1/CardTransactionController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/virtual-cards` | `public Mono<ResponseEntity<PaginationResponse<VirtualCardDTO>>> getAllVirtualCards( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [VirtualCardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/virtual/v1/VirtualCardController.java) | Local declaration |
-| `GET /api/v1/cards/{cardId}/virtual-cards/{virtualCardId}` | `public Mono<ResponseEntity<VirtualCardDTO>> getVirtualCard( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the virtual card record", required = true) @PathVariable UUID virtualCardId )` | [VirtualCardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/virtual/v1/VirtualCardController.java) | Local declaration |
-| `POST /api/v1/cards/{cardId}/virtual-cards` | `public Mono<ResponseEntity<VirtualCardDTO>> createVirtualCard( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new virtual card record", required = true, schema = @Schema(implementation = VirtualCardDTO.class)) @RequestBody VirtualCardDTO virtualCardDTO )` | [VirtualCardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/virtual/v1/VirtualCardController.java) | Local declaration |
-| `PUT /api/v1/cards/{cardId}/virtual-cards/{virtualCardId}` | `public Mono<ResponseEntity<VirtualCardDTO>> updateVirtualCard( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the virtual card record to update", required = true) @PathVariable UUID virtualCardId, @Parameter(description = "Updated virtual card data", required = true, schema = @Schema(implementation = VirtualCardDTO.class)) @RequestBody VirtualCardDTO virtualCardDTO )` | [VirtualCardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/virtual/v1/VirtualCardController.java) | Local declaration |
-| `DELETE /api/v1/cards/{cardId}/virtual-cards/{virtualCardId}` | `public Mono<ResponseEntity<Void>> deleteVirtualCard( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the virtual card record to delete", required = true) @PathVariable UUID virtualCardId )` | [VirtualCardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/virtual/v1/VirtualCardController.java) | Local declaration |
+| `GET /api/v1/acquirers` | `public Mono<ResponseEntity<PaginationResponse<CardAcquirerDTO>>> getAllAcquirers( @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardAcquirerController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/acquirer/CardAcquirerController.java) | Local declaration |
+| `GET /api/v1/acquirers/{acquirerId}` | `public Mono<ResponseEntity<CardAcquirerDTO>> getAcquirer( @Parameter(description = "Unique identifier of the card acquirer", required = true) @PathVariable UUID acquirerId )` | [CardAcquirerController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/acquirer/CardAcquirerController.java) | Local declaration |
+| `POST /api/v1/acquirers` | `public Mono<ResponseEntity<CardAcquirerDTO>> createAcquirer( @Parameter(description = "Data for the new card acquirer", required = true, schema = @Schema(implementation = CardAcquirerDTO.class)) @RequestBody CardAcquirerDTO acquirerDTO )` | [CardAcquirerController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/acquirer/CardAcquirerController.java) | Local declaration |
+| `PUT /api/v1/acquirers/{acquirerId}` | `public Mono<ResponseEntity<CardAcquirerDTO>> updateAcquirer( @Parameter(description = "Unique identifier of the card acquirer to update", required = true) @PathVariable UUID acquirerId, @Parameter(description = "Updated data for the card acquirer", required = true, schema = @Schema(implementation = CardAcquirerDTO.class)) @RequestBody CardAcquirerDTO acquirerDTO )` | [CardAcquirerController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/acquirer/CardAcquirerController.java) | Local declaration |
+| `DELETE /api/v1/acquirers/{acquirerId}` | `public Mono<ResponseEntity<Void>> deleteAcquirer( @Parameter(description = "Unique identifier of the card acquirer to delete", required = true) @PathVariable UUID acquirerId )` | [CardAcquirerController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/acquirer/CardAcquirerController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/activities` | `public Mono<ResponseEntity<PaginationResponse<CardActivityDTO>>> getAllActivities( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardActivityController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/activity/CardActivityController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/activities/{activityId}` | `public Mono<ResponseEntity<CardActivityDTO>> getActivity( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the activity record", required = true) @PathVariable UUID activityId )` | [CardActivityController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/activity/CardActivityController.java) | Local declaration |
+| `POST /api/v1/cards/{cardId}/activities` | `public Mono<ResponseEntity<CardActivityDTO>> createActivity( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card activity record", required = true, schema = @Schema(implementation = CardActivityDTO.class)) @RequestBody CardActivityDTO activityDTO )` | [CardActivityController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/activity/CardActivityController.java) | Local declaration |
+| `PUT /api/v1/cards/{cardId}/activities/{activityId}` | `public Mono<ResponseEntity<CardActivityDTO>> updateActivity( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the activity record to update", required = true) @PathVariable UUID activityId, @Parameter(description = "Updated data for the activity record", required = true, schema = @Schema(implementation = CardActivityDTO.class)) @RequestBody CardActivityDTO activityDTO )` | [CardActivityController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/activity/CardActivityController.java) | Local declaration |
+| `DELETE /api/v1/cards/{cardId}/activities/{activityId}` | `public Mono<ResponseEntity<Void>> deleteActivity( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the activity record to delete", required = true) @PathVariable UUID activityId )` | [CardActivityController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/activity/CardActivityController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/balances` | `public Mono<ResponseEntity<PaginationResponse<CardBalanceDTO>>> getAllBalances( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardBalanceController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/balance/CardBalanceController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/balances/{balanceId}` | `public Mono<ResponseEntity<CardBalanceDTO>> getBalance( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the balance record", required = true) @PathVariable UUID balanceId )` | [CardBalanceController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/balance/CardBalanceController.java) | Local declaration |
+| `POST /api/v1/cards/{cardId}/balances` | `public Mono<ResponseEntity<CardBalanceDTO>> createBalance( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card balance record", required = true, schema = @Schema(implementation = CardBalanceDTO.class)) @RequestBody CardBalanceDTO balanceDTO )` | [CardBalanceController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/balance/CardBalanceController.java) | Local declaration |
+| `PUT /api/v1/cards/{cardId}/balances/{balanceId}` | `public Mono<ResponseEntity<CardBalanceDTO>> updateBalance( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the balance record to update", required = true) @PathVariable UUID balanceId, @Parameter(description = "Updated data for the balance record", required = true, schema = @Schema(implementation = CardBalanceDTO.class)) @RequestBody CardBalanceDTO balanceDTO )` | [CardBalanceController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/balance/CardBalanceController.java) | Local declaration |
+| `DELETE /api/v1/cards/{cardId}/balances/{balanceId}` | `public Mono<ResponseEntity<Void>> deleteBalance( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the balance record to delete", required = true) @PathVariable UUID balanceId )` | [CardBalanceController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/balance/CardBalanceController.java) | Local declaration |
+| `GET /api/v1/bins` | `public Mono<ResponseEntity<PaginationResponse<BINDTO>>> getAllBINs( @RequestBody PaginationRequest paginationRequest )` | [BINController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/bin/BINController.java) | Local declaration |
+| `GET /api/v1/bins/{binId}` | `public Mono<ResponseEntity<BINDTO>> getBIN( @Parameter(description = "Unique identifier of the BIN", required = true) @PathVariable UUID binId )` | [BINController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/bin/BINController.java) | Local declaration |
+| `GET /api/v1/bins` | `public Mono<ResponseEntity<BINDTO>> getBINByNumber( @Parameter(description = "BIN number", required = true) @RequestParam("number") String binNumber )` | [BINController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/bin/BINController.java) | Local declaration |
+| `POST /api/v1/bins` | `public Mono<ResponseEntity<BINDTO>> createBIN( @Parameter(description = "Data for the new BIN", required = true, schema = @Schema(implementation = BINDTO.class)) @Valid @RequestBody BINDTO binDTO )` | [BINController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/bin/BINController.java) | Local declaration |
+| `PUT /api/v1/bins/{binId}` | `public Mono<ResponseEntity<BINDTO>> updateBIN( @Parameter(description = "Unique identifier of the BIN to update", required = true) @PathVariable UUID binId, @Parameter(description = "Updated data for the BIN", required = true, schema = @Schema(implementation = BINDTO.class)) @RequestBody BINDTO binDTO )` | [BINController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/bin/BINController.java) | Local declaration |
+| `DELETE /api/v1/bins/{binId}` | `public Mono<ResponseEntity<Void>> deleteBIN( @Parameter(description = "Unique identifier of the BIN to delete", required = true) @PathVariable UUID binId )` | [BINController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/bin/BINController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}` | `public Mono<ResponseEntity<CardDTO>> getCard( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId )` | [CardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/CardController.java) | Local declaration |
+| `POST /api/v1/cards/{cardId}/activation` | `public Mono<ResponseEntity<CardActivationReceipt>> activateCard( @PathVariable UUID cardId, @RequestHeader("X-Idempotency-Key") UUID actionId, @Valid @RequestBody CardActivationRequest request)` | [CardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/CardController.java) | Local declaration |
+| `POST /api/v1/cards/filter` | `public Mono<ResponseEntity<PaginationResponse<CardDTO>>> filterCards( @Valid @RequestBody FilterRequest<CardDTO> filterRequest )` | [CardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/CardController.java) | Local declaration |
+| `POST /api/v1/cards` | `public Mono<ResponseEntity<CardDTO>> createCard( @Parameter(description = "Data for the new card", required = true, schema = @Schema(implementation = CardDTO.class)) @Valid @RequestBody CardDTO cardDTO )` | [CardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/CardController.java) | Local declaration |
+| `PUT /api/v1/cards/{cardId}` | `public Mono<ResponseEntity<CardDTO>> updateCard( @Parameter(description = "Unique identifier of the card to update", required = true) @PathVariable UUID cardId, @Parameter(description = "Updated card data", required = true, schema = @Schema(implementation = CardDTO.class)) @RequestBody CardDTO cardDTO )` | [CardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/CardController.java) | Local declaration |
+| `DELETE /api/v1/cards/{cardId}` | `public Mono<ResponseEntity<Void>> deleteCard( @Parameter(description = "Unique identifier of the card to delete", required = true) @PathVariable UUID cardId )` | [CardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/card/CardController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/configurations` | `public Mono<ResponseEntity<PaginationResponse<CardConfigurationDTO>>> getAllConfigurations( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardConfigurationController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/configuration/CardConfigurationController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/configurations/{configId}` | `public Mono<ResponseEntity<CardConfigurationDTO>> getConfiguration( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the card configuration record", required = true) @PathVariable UUID configId )` | [CardConfigurationController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/configuration/CardConfigurationController.java) | Local declaration |
+| `POST /api/v1/cards/{cardId}/configurations` | `public Mono<ResponseEntity<CardConfigurationDTO>> createConfiguration( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card configuration record", required = true, schema = @Schema(implementation = CardConfigurationDTO.class)) @RequestBody CardConfigurationDTO configDTO )` | [CardConfigurationController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/configuration/CardConfigurationController.java) | Local declaration |
+| `PUT /api/v1/cards/{cardId}/configurations/{configId}` | `public Mono<ResponseEntity<CardConfigurationDTO>> updateConfiguration( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the card configuration record to update", required = true) @PathVariable UUID configId, @Parameter(description = "Updated configuration data", required = true, schema = @Schema(implementation = CardConfigurationDTO.class)) @RequestBody CardConfigurationDTO configDTO )` | [CardConfigurationController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/configuration/CardConfigurationController.java) | Local declaration |
+| `DELETE /api/v1/cards/{cardId}/configurations/{configId}` | `public Mono<ResponseEntity<Void>> deleteConfiguration( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the card configuration record to delete", required = true) @PathVariable UUID configId )` | [CardConfigurationController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/configuration/CardConfigurationController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/disputes` | `public Mono<ResponseEntity<PaginationResponse<CardDisputeDTO>>> getAllDisputes( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardDisputeController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/dispute/CardDisputeController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/disputes/{disputeId}` | `public Mono<ResponseEntity<CardDisputeDTO>> getDispute( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the dispute record", required = true) @PathVariable UUID disputeId )` | [CardDisputeController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/dispute/CardDisputeController.java) | Local declaration |
+| `POST /api/v1/cards/{cardId}/disputes` | `public Mono<ResponseEntity<CardDisputeDTO>> createDispute( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card dispute record", required = true, schema = @Schema(implementation = CardDisputeDTO.class)) @RequestBody CardDisputeDTO disputeDTO )` | [CardDisputeController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/dispute/CardDisputeController.java) | Local declaration |
+| `PUT /api/v1/cards/{cardId}/disputes/{disputeId}` | `public Mono<ResponseEntity<CardDisputeDTO>> updateDispute( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the dispute record to update", required = true) @PathVariable UUID disputeId, @Parameter(description = "Updated data for the dispute record", required = true, schema = @Schema(implementation = CardDisputeDTO.class)) @RequestBody CardDisputeDTO disputeDTO )` | [CardDisputeController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/dispute/CardDisputeController.java) | Local declaration |
+| `DELETE /api/v1/cards/{cardId}/disputes/{disputeId}` | `public Mono<ResponseEntity<Void>> deleteDispute( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the dispute record to delete", required = true) @PathVariable UUID disputeId )` | [CardDisputeController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/dispute/CardDisputeController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/enrollments` | `public Mono<ResponseEntity<PaginationResponse<CardEnrollmentDTO>>> getAllEnrollments( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardEnrollmentController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/enrollment/CardEnrollmentController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/enrollments/{enrollmentId}` | `public Mono<ResponseEntity<CardEnrollmentDTO>> getEnrollment( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the enrollment record", required = true) @PathVariable UUID enrollmentId )` | [CardEnrollmentController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/enrollment/CardEnrollmentController.java) | Local declaration |
+| `POST /api/v1/cards/{cardId}/enrollments` | `public Mono<ResponseEntity<CardEnrollmentDTO>> createEnrollment( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card enrollment record", required = true, schema = @Schema(implementation = CardEnrollmentDTO.class)) @RequestBody CardEnrollmentDTO enrollmentDTO )` | [CardEnrollmentController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/enrollment/CardEnrollmentController.java) | Local declaration |
+| `PUT /api/v1/cards/{cardId}/enrollments/{enrollmentId}` | `public Mono<ResponseEntity<CardEnrollmentDTO>> updateEnrollment( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the enrollment record to update", required = true) @PathVariable UUID enrollmentId, @Parameter(description = "Updated data for the enrollment record", required = true, schema = @Schema(implementation = CardEnrollmentDTO.class)) @RequestBody CardEnrollmentDTO enrollmentDTO )` | [CardEnrollmentController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/enrollment/CardEnrollmentController.java) | Local declaration |
+| `DELETE /api/v1/cards/{cardId}/enrollments/{enrollmentId}` | `public Mono<ResponseEntity<Void>> deleteEnrollment( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the enrollment record to delete", required = true) @PathVariable UUID enrollmentId )` | [CardEnrollmentController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/enrollment/CardEnrollmentController.java) | Local declaration |
+| `GET /api/v1/gateways` | `public Mono<ResponseEntity<PaginationResponse<CardGatewayDTO>>> getAllGateways( @RequestBody PaginationRequest paginationRequest )` | [CardGatewayController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/gateway/CardGatewayController.java) | Local declaration |
+| `GET /api/v1/gateways/{gatewayId}` | `public Mono<ResponseEntity<CardGatewayDTO>> getGateway( @Parameter(description = "Unique identifier of the card gateway", required = true) @PathVariable UUID gatewayId )` | [CardGatewayController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/gateway/CardGatewayController.java) | Local declaration |
+| `POST /api/v1/gateways` | `public Mono<ResponseEntity<CardGatewayDTO>> createGateway( @Parameter(description = "Data for the new card gateway", required = true, schema = @Schema(implementation = CardGatewayDTO.class)) @RequestBody CardGatewayDTO gatewayDTO )` | [CardGatewayController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/gateway/CardGatewayController.java) | Local declaration |
+| `PUT /api/v1/gateways/{gatewayId}` | `public Mono<ResponseEntity<CardGatewayDTO>> updateGateway( @Parameter(description = "Unique identifier of the card gateway to update", required = true) @PathVariable UUID gatewayId, @Parameter(description = "Updated data for the card gateway", required = true, schema = @Schema(implementation = CardGatewayDTO.class)) @RequestBody CardGatewayDTO gatewayDTO )` | [CardGatewayController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/gateway/CardGatewayController.java) | Local declaration |
+| `DELETE /api/v1/gateways/{gatewayId}` | `public Mono<ResponseEntity<Void>> deleteGateway( @Parameter(description = "Unique identifier of the card gateway to delete", required = true) @PathVariable UUID gatewayId )` | [CardGatewayController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/gateway/CardGatewayController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/interests` | `public Mono<ResponseEntity<PaginationResponse<CardInterestDTO>>> getAllInterests( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardInterestController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/interest/CardInterestController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/interests/{interestId}` | `public Mono<ResponseEntity<CardInterestDTO>> getInterest( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the interest record", required = true) @PathVariable UUID interestId )` | [CardInterestController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/interest/CardInterestController.java) | Local declaration |
+| `POST /api/v1/cards/{cardId}/interests` | `public Mono<ResponseEntity<CardInterestDTO>> createInterest( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card interest record", required = true, schema = @Schema(implementation = CardInterestDTO.class)) @RequestBody CardInterestDTO interestDTO )` | [CardInterestController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/interest/CardInterestController.java) | Local declaration |
+| `PUT /api/v1/cards/{cardId}/interests/{interestId}` | `public Mono<ResponseEntity<CardInterestDTO>> updateInterest( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the interest record to update", required = true) @PathVariable UUID interestId, @Parameter(description = "Updated data for the interest record", required = true, schema = @Schema(implementation = CardInterestDTO.class)) @RequestBody CardInterestDTO interestDTO )` | [CardInterestController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/interest/CardInterestController.java) | Local declaration |
+| `DELETE /api/v1/cards/{cardId}/interests/{interestId}` | `public Mono<ResponseEntity<Void>> deleteInterest( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the interest record to delete", required = true) @PathVariable UUID interestId )` | [CardInterestController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/interest/CardInterestController.java) | Local declaration |
+| `GET /api/v1/issuers` | `public Mono<ResponseEntity<PaginationResponse<IssuerDTO>>> getAllIssuers( @RequestBody PaginationRequest paginationRequest )` | [IssuerController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/issuer/IssuerController.java) | Local declaration |
+| `GET /api/v1/issuers/{issuerId}` | `public Mono<ResponseEntity<IssuerDTO>> getIssuer( @Parameter(description = "Unique identifier of the issuer", required = true) @PathVariable UUID issuerId )` | [IssuerController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/issuer/IssuerController.java) | Local declaration |
+| `POST /api/v1/issuers` | `public Mono<ResponseEntity<IssuerDTO>> createIssuer( @Parameter(description = "Data for the new issuer", required = true, schema = @Schema(implementation = IssuerDTO.class)) @RequestBody IssuerDTO issuerDTO )` | [IssuerController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/issuer/IssuerController.java) | Local declaration |
+| `PUT /api/v1/issuers/{issuerId}` | `public Mono<ResponseEntity<IssuerDTO>> updateIssuer( @Parameter(description = "Unique identifier of the issuer to update", required = true) @PathVariable UUID issuerId, @Parameter(description = "Updated data for the issuer", required = true, schema = @Schema(implementation = IssuerDTO.class)) @RequestBody IssuerDTO issuerDTO )` | [IssuerController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/issuer/IssuerController.java) | Local declaration |
+| `DELETE /api/v1/issuers/{issuerId}` | `public Mono<ResponseEntity<Void>> deleteIssuer( @Parameter(description = "Unique identifier of the issuer to delete", required = true) @PathVariable UUID issuerId )` | [IssuerController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/issuer/IssuerController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/limits` | `public Mono<ResponseEntity<PaginationResponse<CardLimitDTO>>> getAllLimits( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardLimitController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/limit/CardLimitController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/limits/{limitId}` | `public Mono<ResponseEntity<CardLimitDTO>> getLimit( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the card limit record", required = true) @PathVariable UUID limitId )` | [CardLimitController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/limit/CardLimitController.java) | Local declaration |
+| `POST /api/v1/cards/{cardId}/limits` | `public Mono<ResponseEntity<CardLimitDTO>> createLimit( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card limit record", required = true, schema = @Schema(implementation = CardLimitDTO.class)) @RequestBody CardLimitDTO limitDTO )` | [CardLimitController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/limit/CardLimitController.java) | Local declaration |
+| `PUT /api/v1/cards/{cardId}/limits/{limitId}` | `public Mono<ResponseEntity<CardLimitDTO>> updateLimit( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the card limit record to update", required = true) @PathVariable UUID limitId, @Parameter(description = "Updated card limit data", required = true, schema = @Schema(implementation = CardLimitDTO.class)) @RequestBody CardLimitDTO limitDTO )` | [CardLimitController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/limit/CardLimitController.java) | Local declaration |
+| `DELETE /api/v1/cards/{cardId}/limits/{limitId}` | `public Mono<ResponseEntity<Void>> deleteLimit( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the card limit record to delete", required = true) @PathVariable UUID limitId )` | [CardLimitController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/limit/CardLimitController.java) | Local declaration |
+| `GET /api/v1/merchants` | `public Mono<ResponseEntity<PaginationResponse<CardMerchantDTO>>> getAllMerchants( @RequestBody PaginationRequest paginationRequest )` | [CardMerchantController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/merchant/CardMerchantController.java) | Local declaration |
+| `GET /api/v1/merchants/{merchantId}` | `public Mono<ResponseEntity<CardMerchantDTO>> getMerchant( @Parameter(description = "Unique identifier of the card merchant", required = true) @PathVariable UUID merchantId )` | [CardMerchantController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/merchant/CardMerchantController.java) | Local declaration |
+| `POST /api/v1/merchants` | `public Mono<ResponseEntity<CardMerchantDTO>> createMerchant( @Parameter(description = "Data for the new card merchant", required = true, schema = @Schema(implementation = CardMerchantDTO.class)) @RequestBody CardMerchantDTO merchantDTO )` | [CardMerchantController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/merchant/CardMerchantController.java) | Local declaration |
+| `PUT /api/v1/merchants/{merchantId}` | `public Mono<ResponseEntity<CardMerchantDTO>> updateMerchant( @Parameter(description = "Unique identifier of the card merchant to update", required = true) @PathVariable UUID merchantId, @Parameter(description = "Updated data for the card merchant", required = true, schema = @Schema(implementation = CardMerchantDTO.class)) @RequestBody CardMerchantDTO merchantDTO )` | [CardMerchantController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/merchant/CardMerchantController.java) | Local declaration |
+| `DELETE /api/v1/merchants/{merchantId}` | `public Mono<ResponseEntity<Void>> deleteMerchant( @Parameter(description = "Unique identifier of the card merchant to delete", required = true) @PathVariable UUID merchantId )` | [CardMerchantController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/merchant/CardMerchantController.java) | Local declaration |
+| `GET /api/v1/networks` | `public Mono<ResponseEntity<PaginationResponse<CardNetworkDTO>>> getAllNetworks( @RequestBody PaginationRequest paginationRequest )` | [CardNetworkController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/network/CardNetworkController.java) | Local declaration |
+| `GET /api/v1/networks/{networkId}` | `public Mono<ResponseEntity<CardNetworkDTO>> getNetwork( @Parameter(description = "Unique identifier of the card network", required = true) @PathVariable UUID networkId )` | [CardNetworkController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/network/CardNetworkController.java) | Local declaration |
+| `POST /api/v1/networks` | `public Mono<ResponseEntity<CardNetworkDTO>> createNetwork( @Parameter(description = "Data for the new card network", required = true, schema = @Schema(implementation = CardNetworkDTO.class)) @RequestBody CardNetworkDTO networkDTO )` | [CardNetworkController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/network/CardNetworkController.java) | Local declaration |
+| `PUT /api/v1/networks/{networkId}` | `public Mono<ResponseEntity<CardNetworkDTO>> updateNetwork( @Parameter(description = "Unique identifier of the card network to update", required = true) @PathVariable UUID networkId, @Parameter(description = "Updated data for the card network", required = true, schema = @Schema(implementation = CardNetworkDTO.class)) @RequestBody CardNetworkDTO networkDTO )` | [CardNetworkController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/network/CardNetworkController.java) | Local declaration |
+| `DELETE /api/v1/networks/{networkId}` | `public Mono<ResponseEntity<Void>> deleteNetwork( @Parameter(description = "Unique identifier of the card network to delete", required = true) @PathVariable UUID networkId )` | [CardNetworkController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/network/CardNetworkController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/payments` | `public Mono<ResponseEntity<PaginationResponse<CardPaymentDTO>>> getAllPayments( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @RequestBody PaginationRequest paginationRequest )` | [CardPaymentController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/payment/CardPaymentController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/payments/{paymentId}` | `public Mono<ResponseEntity<CardPaymentDTO>> getPayment( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the payment record", required = true) @PathVariable UUID paymentId )` | [CardPaymentController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/payment/CardPaymentController.java) | Local declaration |
+| `POST /api/v1/cards/{cardId}/payments` | `public Mono<ResponseEntity<CardPaymentDTO>> createPayment( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card payment record", required = true, schema = @Schema(implementation = CardPaymentDTO.class)) @RequestBody CardPaymentDTO paymentDTO )` | [CardPaymentController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/payment/CardPaymentController.java) | Local declaration |
+| `PUT /api/v1/cards/{cardId}/payments/{paymentId}` | `public Mono<ResponseEntity<CardPaymentDTO>> updatePayment( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the payment record to update", required = true) @PathVariable UUID paymentId, @Parameter(description = "Updated data for the payment record", required = true, schema = @Schema(implementation = CardPaymentDTO.class)) @RequestBody CardPaymentDTO paymentDTO )` | [CardPaymentController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/payment/CardPaymentController.java) | Local declaration |
+| `DELETE /api/v1/cards/{cardId}/payments/{paymentId}` | `public Mono<ResponseEntity<Void>> deletePayment( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the payment record to delete", required = true) @PathVariable UUID paymentId )` | [CardPaymentController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/payment/CardPaymentController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/physical-cards` | `public Mono<ResponseEntity<PaginationResponse<PhysicalCardDTO>>> getAllPhysicalCards( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [PhysicalCardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/physical/PhysicalCardController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/physical-cards/{physicalCardId}` | `public Mono<ResponseEntity<PhysicalCardDTO>> getPhysicalCard( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the physical card record", required = true) @PathVariable UUID physicalCardId )` | [PhysicalCardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/physical/PhysicalCardController.java) | Local declaration |
+| `POST /api/v1/cards/{cardId}/physical-cards` | `public Mono<ResponseEntity<PhysicalCardDTO>> createPhysicalCard( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new physical card record", required = true, schema = @Schema(implementation = PhysicalCardDTO.class)) @RequestBody PhysicalCardDTO physicalCardDTO )` | [PhysicalCardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/physical/PhysicalCardController.java) | Local declaration |
+| `PUT /api/v1/cards/{cardId}/physical-cards/{physicalCardId}` | `public Mono<ResponseEntity<PhysicalCardDTO>> updatePhysicalCard( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the physical card record to update", required = true) @PathVariable UUID physicalCardId, @Parameter(description = "Updated data for the physical card record", required = true, schema = @Schema(implementation = PhysicalCardDTO.class)) @RequestBody PhysicalCardDTO physicalCardDTO )` | [PhysicalCardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/physical/PhysicalCardController.java) | Local declaration |
+| `DELETE /api/v1/cards/{cardId}/physical-cards/{physicalCardId}` | `public Mono<ResponseEntity<Void>> deletePhysicalCard( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the physical card record to delete", required = true) @PathVariable UUID physicalCardId )` | [PhysicalCardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/physical/PhysicalCardController.java) | Local declaration |
+| `GET /api/v1/programs` | `public Mono<ResponseEntity<PaginationResponse<CardProgramDTO>>> getAllPrograms( @RequestBody PaginationRequest paginationRequest )` | [CardProgramController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/program/CardProgramController.java) | Local declaration |
+| `GET /api/v1/programs/{programId}` | `public Mono<ResponseEntity<CardProgramDTO>> getProgram( @Parameter(description = "Unique identifier of the card program", required = true) @PathVariable UUID programId )` | [CardProgramController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/program/CardProgramController.java) | Local declaration |
+| `POST /api/v1/programs` | `public Mono<ResponseEntity<CardProgramDTO>> createProgram( @Parameter(description = "Data for the new card program", required = true, schema = @Schema(implementation = CardProgramDTO.class)) @RequestBody CardProgramDTO programDTO )` | [CardProgramController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/program/CardProgramController.java) | Local declaration |
+| `PUT /api/v1/programs/{programId}` | `public Mono<ResponseEntity<CardProgramDTO>> updateProgram( @Parameter(description = "Unique identifier of the card program to update", required = true) @PathVariable UUID programId, @Parameter(description = "Updated data for the card program", required = true, schema = @Schema(implementation = CardProgramDTO.class)) @RequestBody CardProgramDTO programDTO )` | [CardProgramController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/program/CardProgramController.java) | Local declaration |
+| `DELETE /api/v1/programs/{programId}` | `public Mono<ResponseEntity<Void>> deleteProgram( @Parameter(description = "Unique identifier of the card program to delete", required = true) @PathVariable UUID programId )` | [CardProgramController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/program/CardProgramController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/promotions` | `public Mono<ResponseEntity<PaginationResponse<CardPromotionDTO>>> getAllPromotions( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardPromotionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/promotion/CardPromotionController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/promotions/{promotionId}` | `public Mono<ResponseEntity<CardPromotionDTO>> getPromotion( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the promotion record", required = true) @PathVariable UUID promotionId )` | [CardPromotionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/promotion/CardPromotionController.java) | Local declaration |
+| `POST /api/v1/cards/{cardId}/promotions` | `public Mono<ResponseEntity<CardPromotionDTO>> createPromotion( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card promotion record", required = true, schema = @Schema(implementation = CardPromotionDTO.class)) @RequestBody CardPromotionDTO promotionDTO )` | [CardPromotionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/promotion/CardPromotionController.java) | Local declaration |
+| `PUT /api/v1/cards/{cardId}/promotions/{promotionId}` | `public Mono<ResponseEntity<CardPromotionDTO>> updatePromotion( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the promotion record to update", required = true) @PathVariable UUID promotionId, @Parameter(description = "Updated data for the promotion record", required = true, schema = @Schema(implementation = CardPromotionDTO.class)) @RequestBody CardPromotionDTO promotionDTO )` | [CardPromotionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/promotion/CardPromotionController.java) | Local declaration |
+| `DELETE /api/v1/cards/{cardId}/promotions/{promotionId}` | `public Mono<ResponseEntity<Void>> deletePromotion( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the promotion record to delete", required = true) @PathVariable UUID promotionId )` | [CardPromotionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/promotion/CardPromotionController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/providers` | `public Mono<ResponseEntity<PaginationResponse<CardProviderDTO>>> getAllProviders( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardProviderController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/provider/CardProviderController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/providers/{providerId}` | `public Mono<ResponseEntity<CardProviderDTO>> getProvider( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the card provider record", required = true) @PathVariable UUID providerId )` | [CardProviderController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/provider/CardProviderController.java) | Local declaration |
+| `POST /api/v1/cards/{cardId}/providers` | `public Mono<ResponseEntity<CardProviderDTO>> createProvider( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card provider record", required = true, schema = @Schema(implementation = CardProviderDTO.class)) @RequestBody CardProviderDTO providerDTO )` | [CardProviderController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/provider/CardProviderController.java) | Local declaration |
+| `PUT /api/v1/cards/{cardId}/providers/{providerId}` | `public Mono<ResponseEntity<CardProviderDTO>> updateProvider( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the card provider record to update", required = true) @PathVariable UUID providerId, @Parameter(description = "Updated card provider data", required = true, schema = @Schema(implementation = CardProviderDTO.class)) @RequestBody CardProviderDTO providerDTO )` | [CardProviderController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/provider/CardProviderController.java) | Local declaration |
+| `DELETE /api/v1/cards/{cardId}/providers/{providerId}` | `public Mono<ResponseEntity<Void>> deleteProvider( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the card provider record to delete", required = true) @PathVariable UUID providerId )` | [CardProviderController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/provider/CardProviderController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/security` | `public Mono<ResponseEntity<PaginationResponse<CardSecurityDTO>>> getAllSecuritySettings( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [CardSecurityController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/security/CardSecurityController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/security/{securityId}` | `public Mono<ResponseEntity<CardSecurityDTO>> getSecuritySetting( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the security setting", required = true) @PathVariable UUID securityId )` | [CardSecurityController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/security/CardSecurityController.java) | Local declaration |
+| `POST /api/v1/cards/{cardId}/security` | `public Mono<ResponseEntity<CardSecurityDTO>> createSecuritySetting( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new security setting record", required = true, schema = @Schema(implementation = CardSecurityDTO.class)) @RequestBody CardSecurityDTO securityDTO )` | [CardSecurityController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/security/CardSecurityController.java) | Local declaration |
+| `PUT /api/v1/cards/{cardId}/security/{securityId}` | `public Mono<ResponseEntity<CardSecurityDTO>> updateSecuritySetting( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the security setting to update", required = true) @PathVariable UUID securityId, @Parameter(description = "Updated security setting data", required = true, schema = @Schema(implementation = CardSecurityDTO.class)) @RequestBody CardSecurityDTO securityDTO )` | [CardSecurityController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/security/CardSecurityController.java) | Local declaration |
+| `DELETE /api/v1/cards/{cardId}/security/{securityId}` | `public Mono<ResponseEntity<Void>> deleteSecuritySetting( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the security setting record to delete", required = true) @PathVariable UUID securityId )` | [CardSecurityController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/security/CardSecurityController.java) | Local declaration |
+| `GET /api/v1/terminals` | `public Mono<ResponseEntity<PaginationResponse<CardTerminalDTO>>> getAllTerminals( @RequestBody PaginationRequest paginationRequest )` | [CardTerminalController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/terminal/CardTerminalController.java) | Local declaration |
+| `GET /api/v1/terminals/{terminalId}` | `public Mono<ResponseEntity<CardTerminalDTO>> getTerminal( @Parameter(description = "Unique identifier of the card terminal", required = true) @PathVariable UUID terminalId )` | [CardTerminalController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/terminal/CardTerminalController.java) | Local declaration |
+| `POST /api/v1/terminals` | `public Mono<ResponseEntity<CardTerminalDTO>> createTerminal( @Parameter(description = "Data for the new card terminal", required = true, schema = @Schema(implementation = CardTerminalDTO.class)) @RequestBody CardTerminalDTO terminalDTO )` | [CardTerminalController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/terminal/CardTerminalController.java) | Local declaration |
+| `PUT /api/v1/terminals/{terminalId}` | `public Mono<ResponseEntity<CardTerminalDTO>> updateTerminal( @Parameter(description = "Unique identifier of the card terminal to update", required = true) @PathVariable UUID terminalId, @Parameter(description = "Updated data for the card terminal", required = true, schema = @Schema(implementation = CardTerminalDTO.class)) @RequestBody CardTerminalDTO terminalDTO )` | [CardTerminalController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/terminal/CardTerminalController.java) | Local declaration |
+| `DELETE /api/v1/terminals/{terminalId}` | `public Mono<ResponseEntity<Void>> deleteTerminal( @Parameter(description = "Unique identifier of the card terminal to delete", required = true) @PathVariable UUID terminalId )` | [CardTerminalController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/terminal/CardTerminalController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/transactions` | `public Mono<ResponseEntity<PaginationResponse<CardTransactionDTO>>> getAllTransactions( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @RequestBody PaginationRequest paginationRequest )` | [CardTransactionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/transaction/CardTransactionController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/transactions` | `public Mono<ResponseEntity<PaginationResponse<CardTransactionDTO>>> filterProducts( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @RequestBody FilterRequest<CardTransactionDTO> filterRequest )` | [CardTransactionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/transaction/CardTransactionController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/transactions/{transactionId}` | `public Mono<ResponseEntity<CardTransactionDTO>> getTransaction( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the transaction record", required = true) @PathVariable UUID transactionId )` | [CardTransactionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/transaction/CardTransactionController.java) | Local declaration |
+| `POST /api/v1/cards/{cardId}/transactions` | `public Mono<ResponseEntity<CardTransactionDTO>> createTransaction( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new card transaction record", required = true, schema = @Schema(implementation = CardTransactionDTO.class)) @RequestBody CardTransactionDTO transactionDTO )` | [CardTransactionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/transaction/CardTransactionController.java) | Local declaration |
+| `PUT /api/v1/cards/{cardId}/transactions/{transactionId}` | `public Mono<ResponseEntity<CardTransactionDTO>> updateTransaction( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the card transaction to update", required = true) @PathVariable UUID transactionId, @Parameter(description = "Updated transaction data", required = true, schema = @Schema(implementation = CardTransactionDTO.class)) @RequestBody CardTransactionDTO transactionDTO )` | [CardTransactionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/transaction/CardTransactionController.java) | Local declaration |
+| `DELETE /api/v1/cards/{cardId}/transactions/{transactionId}` | `public Mono<ResponseEntity<Void>> deleteTransaction( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the transaction record to delete", required = true) @PathVariable UUID transactionId )` | [CardTransactionController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/transaction/CardTransactionController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/virtual-cards` | `public Mono<ResponseEntity<PaginationResponse<VirtualCardDTO>>> getAllVirtualCards( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @ParameterObject @ModelAttribute PaginationRequest paginationRequest )` | [VirtualCardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/virtual/VirtualCardController.java) | Local declaration |
+| `GET /api/v1/cards/{cardId}/virtual-cards/{virtualCardId}` | `public Mono<ResponseEntity<VirtualCardDTO>> getVirtualCard( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the virtual card record", required = true) @PathVariable UUID virtualCardId )` | [VirtualCardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/virtual/VirtualCardController.java) | Local declaration |
+| `POST /api/v1/cards/{cardId}/virtual-cards` | `public Mono<ResponseEntity<VirtualCardDTO>> createVirtualCard( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Data for the new virtual card record", required = true, schema = @Schema(implementation = VirtualCardDTO.class)) @RequestBody VirtualCardDTO virtualCardDTO )` | [VirtualCardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/virtual/VirtualCardController.java) | Local declaration |
+| `PUT /api/v1/cards/{cardId}/virtual-cards/{virtualCardId}` | `public Mono<ResponseEntity<VirtualCardDTO>> updateVirtualCard( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the virtual card record to update", required = true) @PathVariable UUID virtualCardId, @Parameter(description = "Updated virtual card data", required = true, schema = @Schema(implementation = VirtualCardDTO.class)) @RequestBody VirtualCardDTO virtualCardDTO )` | [VirtualCardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/virtual/VirtualCardController.java) | Local declaration |
+| `DELETE /api/v1/cards/{cardId}/virtual-cards/{virtualCardId}` | `public Mono<ResponseEntity<Void>> deleteVirtualCard( @Parameter(description = "Unique identifier of the card", required = true) @PathVariable UUID cardId, @Parameter(description = "Unique identifier of the virtual card record to delete", required = true) @PathVariable UUID virtualCardId )` | [VirtualCardController](../../core-banking-cards-web/src/main/java/io/fireflysoftware/core/banking/cards/web/controllers/virtual/VirtualCardController.java) | Local declaration |
 
 ## Data contracts
 
@@ -140,7 +140,7 @@ This reference is derived from checked-in source. It separates declared HTTP map
 
 ### CardAcquirerDTO
 
-[CardAcquirerDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/acquirer/v1/CardAcquirerDTO.java) · DTO / record / model
+[CardAcquirerDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/acquirer/CardAcquirerDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -223,7 +223,7 @@ This reference is derived from checked-in source. It separates declared HTTP map
 
 ### CardActivityDTO
 
-[CardActivityDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/activity/v1/CardActivityDTO.java) · DTO / record / model
+[CardActivityDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/activity/CardActivityDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -272,7 +272,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardAlertDTO
 
-[CardAlertDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/alert/v1/CardAlertDTO.java) · DTO / record / model
+[CardAlertDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/alert/CardAlertDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -316,7 +316,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardApplicationDTO
 
-[CardApplicationDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/application/v1/CardApplicationDTO.java) · DTO / record / model
+[CardApplicationDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/application/CardApplicationDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -394,7 +394,7 @@ Validation annotations present in this declaration: `@Email`, `@Max`, `@Min`, `@
 
 ### CardBalanceDTO
 
-[CardBalanceDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/balance/v1/CardBalanceDTO.java) · DTO / record / model
+[CardBalanceDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/balance/CardBalanceDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -451,7 +451,7 @@ Validation annotations present in this declaration: `@Max`, `@Min`, `@NotBlank`,
 
 ### BINDTO
 
-[BINDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/bin/v1/BINDTO.java) · DTO / record / model
+[BINDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/bin/BINDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -470,7 +470,7 @@ Validation annotations present in this declaration: `@Max`, `@Min`, `@NotBlank`,
 
 ### CardActivationReceipt
 
-[CardActivationReceipt](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/card/v1/CardActivationReceipt.java) · DTO / record / model
+[CardActivationReceipt](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/card/CardActivationReceipt.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -481,7 +481,7 @@ Validation annotations present in this declaration: `@Max`, `@Min`, `@NotBlank`,
 
 ### CardActivationRequest
 
-[CardActivationRequest](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/card/v1/CardActivationRequest.java) · DTO / record / model
+[CardActivationRequest](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/card/CardActivationRequest.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -491,7 +491,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@Pattern`. Ins
 
 ### CardDTO
 
-[CardDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/card/v1/CardDTO.java) · DTO / record / model
+[CardDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/card/CardDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -535,7 +535,7 @@ Validation annotations present in this declaration: `@Max`, `@Min`, `@NotBlank`,
 
 ### CardTypeDTO
 
-[CardTypeDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/cardtype/v1/CardTypeDTO.java) · DTO / record / model
+[CardTypeDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/cardtype/CardTypeDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -558,7 +558,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardConfigurationDTO
 
-[CardConfigurationDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/configuration/v1/CardConfigurationDTO.java) · DTO / record / model
+[CardConfigurationDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/configuration/CardConfigurationDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -581,7 +581,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardDesignDTO
 
-[CardDesignDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/design/v1/CardDesignDTO.java) · DTO / record / model
+[CardDesignDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/design/CardDesignDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -602,7 +602,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardDisputeDTO
 
-[CardDisputeDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/dispute/v1/CardDisputeDTO.java) · DTO / record / model
+[CardDisputeDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/dispute/CardDisputeDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -643,7 +643,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardEnrollmentDTO
 
-[CardEnrollmentDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/enrollment/v1/CardEnrollmentDTO.java) · DTO / record / model
+[CardEnrollmentDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/enrollment/CardEnrollmentDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -690,7 +690,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardFeeDTO
 
-[CardFeeDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/fee/v1/CardFeeDTO.java) · DTO / record / model
+[CardFeeDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/fee/CardFeeDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -743,7 +743,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### FraudCaseDTO
 
-[FraudCaseDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/fraud/v1/FraudCaseDTO.java) · DTO / record / model
+[FraudCaseDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/fraud/FraudCaseDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -789,7 +789,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardGatewayDTO
 
-[CardGatewayDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/gateway/v1/CardGatewayDTO.java) · DTO / record / model
+[CardGatewayDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/gateway/CardGatewayDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -893,7 +893,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardInterestDTO
 
-[CardInterestDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/interest/v1/CardInterestDTO.java) · DTO / record / model
+[CardInterestDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/interest/CardInterestDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -957,7 +957,7 @@ Validation annotations present in this declaration: `@Max`, `@Min`, `@NotBlank`,
 
 ### IssuerDTO
 
-[IssuerDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/issuer/v1/IssuerDTO.java) · DTO / record / model
+[IssuerDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/issuer/IssuerDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -976,7 +976,7 @@ Validation annotations present in this declaration: `@Email`, `@NotBlank`, `@Not
 
 ### CardLimitDTO
 
-[CardLimitDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/limit/v1/CardLimitDTO.java) · DTO / record / model
+[CardLimitDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/limit/CardLimitDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -991,7 +991,7 @@ Validation annotations present in this declaration: `@NotNull`. Inspect the link
 
 ### CardMerchantDTO
 
-[CardMerchantDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/merchant/v1/CardMerchantDTO.java) · DTO / record / model
+[CardMerchantDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/merchant/CardMerchantDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -1062,7 +1062,7 @@ Validation annotations present in this declaration: `@Email`, `@Max`, `@Min`, `@
 
 ### CardNetworkDTO
 
-[CardNetworkDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/network/v1/CardNetworkDTO.java) · DTO / record / model
+[CardNetworkDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/network/CardNetworkDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -1081,7 +1081,7 @@ Validation annotations present in this declaration: `@Email`, `@NotBlank`, `@Not
 
 ### CardPaymentDTO
 
-[CardPaymentDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/payment/v1/CardPaymentDTO.java) · DTO / record / model
+[CardPaymentDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/payment/CardPaymentDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -1127,7 +1127,7 @@ Validation annotations present in this declaration: `@Max`, `@Min`, `@NotBlank`,
 
 ### PhysicalCardDTO
 
-[PhysicalCardDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/physical/v1/PhysicalCardDTO.java) · DTO / record / model
+[PhysicalCardDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/physical/PhysicalCardDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -1163,7 +1163,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardProcessorDTO
 
-[CardProcessorDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/processor/v1/CardProcessorDTO.java) · DTO / record / model
+[CardProcessorDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/processor/CardProcessorDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -1261,7 +1261,7 @@ Validation annotations present in this declaration: `@Email`, `@NotBlank`, `@Not
 
 ### CardProgramDTO
 
-[CardProgramDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/program/v1/CardProgramDTO.java) · DTO / record / model
+[CardProgramDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/program/CardProgramDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -1302,7 +1302,7 @@ Validation annotations present in this declaration: `@Max`, `@Min`, `@NotBlank`,
 
 ### CardPromotionDTO
 
-[CardPromotionDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/promotion/v1/CardPromotionDTO.java) · DTO / record / model
+[CardPromotionDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/promotion/CardPromotionDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -1366,7 +1366,7 @@ Validation annotations present in this declaration: `@Max`, `@Min`, `@NotBlank`,
 
 ### CardProviderDTO
 
-[CardProviderDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/provider/v1/CardProviderDTO.java) · DTO / record / model
+[CardProviderDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/provider/CardProviderDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -1408,7 +1408,7 @@ Validation annotations present in this declaration: `@Email`, `@NotBlank`, `@Not
 
 ### CardRewardDTO
 
-[CardRewardDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/reward/v1/CardRewardDTO.java) · DTO / record / model
+[CardRewardDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/reward/CardRewardDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -1462,7 +1462,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardSecurityDTO
 
-[CardSecurityDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/security/v1/CardSecurityDTO.java) · DTO / record / model
+[CardSecurityDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/security/CardSecurityDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -1473,7 +1473,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardStatementDTO
 
-[CardStatementDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/statement/v1/CardStatementDTO.java) · DTO / record / model
+[CardStatementDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/statement/CardStatementDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -1521,7 +1521,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardTerminalDTO
 
-[CardTerminalDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/terminal/v1/CardTerminalDTO.java) · DTO / record / model
+[CardTerminalDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/terminal/CardTerminalDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -1604,7 +1604,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardTransactionDTO
 
-[CardTransactionDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/transaction/v1/CardTransactionDTO.java) · DTO / record / model
+[CardTransactionDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/transaction/CardTransactionDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -1632,7 +1632,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### VirtualCardDTO
 
-[VirtualCardDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/virtual/v1/VirtualCardDTO.java) · DTO / record / model
+[VirtualCardDTO](../../core-banking-cards-interfaces/src/main/java/io/fireflysoftware/core/banking/cards/interfaces/dtos/virtual/VirtualCardDTO.java) · DTO / record / model
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -1655,7 +1655,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardAcquirer
 
-[CardAcquirer](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/acquirer/v1/CardAcquirer.java) · Persisted entity
+[CardAcquirer](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/acquirer/CardAcquirer.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -1739,7 +1739,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardActivity
 
-[CardActivity](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/activity/v1/CardActivity.java) · Persisted entity
+[CardActivity](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/activity/CardActivity.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -1786,7 +1786,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardAlert
 
-[CardAlert](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/alert/v1/CardAlert.java) · Persisted entity
+[CardAlert](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/alert/CardAlert.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -1829,7 +1829,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardApplication
 
-[CardApplication](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/application/v1/CardApplication.java) · Persisted entity
+[CardApplication](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/application/CardApplication.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -1906,7 +1906,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardBalance
 
-[CardBalance](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/balance/v1/CardBalance.java) · Persisted entity
+[CardBalance](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/balance/CardBalance.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -1962,7 +1962,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### BIN
 
-[BIN](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/bin/v1/BIN.java) · Persisted entity
+[BIN](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/bin/BIN.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -1979,7 +1979,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### Card
 
-[Card](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/card/v1/Card.java) · Persisted entity
+[Card](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/card/Card.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2019,9 +2019,34 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 | `designId` | `UUID` | See declaration / service rules |
 | `notes` | `String` | See declaration / service rules |
 
+### CardActivationAction
+
+[CardActivationAction](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/card/CardActivationAction.java) · Persisted entity
+
+| Field | Java type | Validation annotations |
+| --- | --- | --- |
+| `actionId` | `UUID` | See declaration / service rules |
+| `cardId` | `UUID` | See declaration / service rules |
+| `state` | `String` | See declaration / service rules |
+| `activationTime` | `OffsetDateTime` | See declaration / service rules |
+
+### CardIssuerInstrument
+
+[CardIssuerInstrument](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/card/CardIssuerInstrument.java) · Persisted entity
+
+| Field | Java type | Validation annotations |
+| --- | --- | --- |
+| `cardId` | `UUID` | See declaration / service rules |
+| `tenantId` | `UUID` | See declaration / service rules |
+| `partyId` | `UUID` | See declaration / service rules |
+| `accountId` | `UUID` | See declaration / service rules |
+| `adapterId` | `String` | See declaration / service rules |
+| `instrumentReference` | `String` | See declaration / service rules |
+| `bindingVersion` | `long` | See declaration / service rules |
+
 ### CardType
 
-[CardType](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/cardtype/v1/CardType.java) · Persisted entity
+[CardType](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/cardtype/CardType.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2042,7 +2067,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardConfiguration
 
-[CardConfiguration](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/configuration/v1/CardConfiguration.java) · Persisted entity
+[CardConfiguration](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/configuration/CardConfiguration.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2065,7 +2090,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardDesign
 
-[CardDesign](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/design/v1/CardDesign.java) · Persisted entity
+[CardDesign](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/design/CardDesign.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2084,7 +2109,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardDispute
 
-[CardDispute](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/dispute/v1/CardDispute.java) · Persisted entity
+[CardDispute](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/dispute/CardDispute.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2125,7 +2150,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardEnrollment
 
-[CardEnrollment](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/enrollment/v1/CardEnrollment.java) · Persisted entity
+[CardEnrollment](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/enrollment/CardEnrollment.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2173,7 +2198,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardFee
 
-[CardFee](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/fee/v1/CardFee.java) · Persisted entity
+[CardFee](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/fee/CardFee.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2225,7 +2250,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### FraudCase
 
-[FraudCase](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/fraud/v1/FraudCase.java) · Persisted entity
+[FraudCase](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/fraud/FraudCase.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2272,7 +2297,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardGateway
 
-[CardGateway](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/gateway/v1/CardGateway.java) · Persisted entity
+[CardGateway](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/gateway/CardGateway.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2377,7 +2402,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardInterest
 
-[CardInterest](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/interest/v1/CardInterest.java) · Persisted entity
+[CardInterest](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/interest/CardInterest.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2440,7 +2465,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### Issuer
 
-[Issuer](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/issuer/v1/Issuer.java) · Persisted entity
+[Issuer](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/issuer/Issuer.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2457,7 +2482,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardLimit
 
-[CardLimit](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/limit/v1/CardLimit.java) · Persisted entity
+[CardLimit](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/limit/CardLimit.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2492,7 +2517,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardMerchant
 
-[CardMerchant](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/merchant/v1/CardMerchant.java) · Persisted entity
+[CardMerchant](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/merchant/CardMerchant.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2561,7 +2586,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardNetwork
 
-[CardNetwork](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/network/v1/CardNetwork.java) · Persisted entity
+[CardNetwork](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/network/CardNetwork.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2578,7 +2603,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardPayment
 
-[CardPayment](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/payment/v1/CardPayment.java) · Persisted entity
+[CardPayment](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/payment/CardPayment.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2622,7 +2647,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### PhysicalCard
 
-[PhysicalCard](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/physical/v1/PhysicalCard.java) · Persisted entity
+[PhysicalCard](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/physical/PhysicalCard.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2656,7 +2681,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardProcessor
 
-[CardProcessor](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/processor/v1/CardProcessor.java) · Persisted entity
+[CardProcessor](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/processor/CardProcessor.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2753,7 +2778,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardProgram
 
-[CardProgram](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/program/v1/CardProgram.java) · Persisted entity
+[CardProgram](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/program/CardProgram.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2792,7 +2817,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardPromotion
 
-[CardPromotion](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/promotion/v1/CardPromotion.java) · Persisted entity
+[CardPromotion](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/promotion/CardPromotion.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2855,7 +2880,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardProvider
 
-[CardProvider](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/provider/v1/CardProvider.java) · Persisted entity
+[CardProvider](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/provider/CardProvider.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2895,7 +2920,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardReward
 
-[CardReward](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/reward/v1/CardReward.java) · Persisted entity
+[CardReward](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/reward/CardReward.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2948,7 +2973,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardSecurity
 
-[CardSecurity](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/security/v1/CardSecurity.java) · Persisted entity
+[CardSecurity](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/security/CardSecurity.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -2980,7 +3005,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardStatement
 
-[CardStatement](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/statement/v1/CardStatement.java) · Persisted entity
+[CardStatement](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/statement/CardStatement.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -3026,7 +3051,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardTerminal
 
-[CardTerminal](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/terminal/v1/CardTerminal.java) · Persisted entity
+[CardTerminal](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/terminal/CardTerminal.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -3107,7 +3132,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardTransaction
 
-[CardTransaction](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/transaction/v1/CardTransaction.java) · Persisted entity
+[CardTransaction](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/transaction/CardTransaction.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -3172,7 +3197,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### VirtualCard
 
-[VirtualCard](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/virtual/v1/VirtualCard.java) · Persisted entity
+[VirtualCard](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/entities/virtual/VirtualCard.java) · Persisted entity
 
 | Field | Java type | Validation annotations |
 | --- | --- | --- |
@@ -3206,7 +3231,7 @@ Validation annotations present in this declaration: `@NotBlank`, `@NotNull`, `@P
 
 ### CardGatewayMapper
 
-[CardGatewayMapper](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/mappers/gateway/v1/CardGatewayMapper.java)
+[CardGatewayMapper](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/mappers/gateway/CardGatewayMapper.java)
 
 ```java
 CardGatewayDTO toDTO(CardGateway cardGateway);
@@ -3215,7 +3240,7 @@ CardGateway toEntity(CardGatewayDTO cardGatewayDTO);
 
 ### CardProviderMapper
 
-[CardProviderMapper](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/mappers/provider/v1/CardProviderMapper.java)
+[CardProviderMapper](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/mappers/provider/CardProviderMapper.java)
 
 ```java
 CardProviderDTO toDTO (CardProvider cardProvider);
@@ -3224,7 +3249,7 @@ CardProvider toEntity (CardProviderDTO cardProviderDTO);
 
 ### CardAcquirerService
 
-[CardAcquirerService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/acquirer/v1/CardAcquirerService.java)
+[CardAcquirerService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/acquirer/CardAcquirerService.java)
 
 ```java
 Mono<PaginationResponse<CardAcquirerDTO>> listAcquirers(PaginationRequest paginationRequest);
@@ -3236,7 +3261,7 @@ Mono<Void> deleteAcquirer(UUID acquirerId);
 
 ### CardActivityService
 
-[CardActivityService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/activity/v1/CardActivityService.java)
+[CardActivityService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/activity/CardActivityService.java)
 
 ```java
 Mono<PaginationResponse<CardActivityDTO>> listActivities( UUID cardId, PaginationRequest paginationRequest );
@@ -3248,7 +3273,7 @@ Mono<Void> deleteActivity(UUID cardId, UUID activityId);
 
 ### CardBalanceService
 
-[CardBalanceService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/v1/CardBalanceService.java)
+[CardBalanceService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/CardBalanceService.java)
 
 ```java
 Mono<PaginationResponse<CardBalanceDTO>> listBalances( UUID cardId, PaginationRequest paginationRequest );
@@ -3260,7 +3285,7 @@ Mono<Void> deleteBalance(UUID cardId, UUID balanceId);
 
 ### BINService
 
-[BINService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/bin/v1/BINService.java)
+[BINService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/bin/BINService.java)
 
 ```java
 Mono<PaginationResponse<BINDTO>> listBINs(PaginationRequest paginationRequest);
@@ -3273,7 +3298,7 @@ Mono<Void> deleteBIN(UUID binId);
 
 ### CardService
 
-[CardService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardService.java)
+[CardService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/CardService.java)
 
 ```java
 Mono<PaginationResponse<CardDTO>> filterCards(FilterRequest<CardDTO> filterRequest);
@@ -3285,16 +3310,24 @@ Mono<Void> deleteCard(UUID cardId);
 
 ### CardActivationPolicy
 
-[CardActivationPolicy](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationPolicy.java)
+[CardActivationPolicy](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationPolicy.java)
 
 ```java
 Mono<AuthorizedScope> authorize(UUID cardId);
 record AuthorizedScope(UUID tenantId, UUID actorId, UUID partyId, UUID accountId, OffsetDateTime expiresAt);
 ```
 
+### CardActivationService
+
+[CardActivationService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationService.java)
+
+```java
+Mono<CardActivationReceipt> activate(UUID cardId, UUID actionId, CardActivationRequest request);
+```
+
 ### CardIssuerPort
 
-[CardIssuerPort](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardIssuerPort.java)
+[CardIssuerPort](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardIssuerPort.java)
 
 ```java
 Mono<Observation> observeActivation(Binding binding, UUID actionId);
@@ -3304,7 +3337,7 @@ record Observation(UUID actionId, UUID tenantId, String adapterId, String instru
 
 ### CardConfigurationService
 
-[CardConfigurationService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/configuration/v1/CardConfigurationService.java)
+[CardConfigurationService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/configuration/CardConfigurationService.java)
 
 ```java
 Mono<PaginationResponse<CardConfigurationDTO>> listConfigurations(UUID cardId, PaginationRequest paginationRequest);
@@ -3316,7 +3349,7 @@ Mono<Void> deleteConfiguration(UUID cardId, UUID configId);
 
 ### CardDisputeService
 
-[CardDisputeService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/v1/CardDisputeService.java)
+[CardDisputeService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/CardDisputeService.java)
 
 ```java
 Mono<PaginationResponse<CardDisputeDTO>> listDisputes( UUID cardId, PaginationRequest paginationRequest );
@@ -3328,7 +3361,7 @@ Mono<Void> deleteDispute(UUID cardId, UUID disputeId);
 
 ### CardEnrollmentService
 
-[CardEnrollmentService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/v1/CardEnrollmentService.java)
+[CardEnrollmentService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/CardEnrollmentService.java)
 
 ```java
 Mono<PaginationResponse<CardEnrollmentDTO>> listEnrollments( UUID cardId, PaginationRequest paginationRequest );
@@ -3340,7 +3373,7 @@ Mono<Void> deleteEnrollment(UUID cardId, UUID enrollmentId);
 
 ### CardGatewayService
 
-[CardGatewayService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/gateway/v1/CardGatewayService.java)
+[CardGatewayService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/gateway/CardGatewayService.java)
 
 ```java
 Mono<PaginationResponse<CardGatewayDTO>> listGateways(PaginationRequest paginationRequest);
@@ -3352,7 +3385,7 @@ Mono<Void> deleteGateway(UUID gatewayId);
 
 ### CardInterestService
 
-[CardInterestService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/interest/v1/CardInterestService.java)
+[CardInterestService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/interest/CardInterestService.java)
 
 ```java
 Mono<PaginationResponse<CardInterestDTO>> listInterests( UUID cardId, PaginationRequest paginationRequest );
@@ -3364,7 +3397,7 @@ Mono<Void> deleteInterest(UUID cardId, UUID interestId);
 
 ### IssuerService
 
-[IssuerService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/issuer/v1/IssuerService.java)
+[IssuerService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/issuer/IssuerService.java)
 
 ```java
 Mono<PaginationResponse<IssuerDTO>> listIssuers(PaginationRequest paginationRequest);
@@ -3376,7 +3409,7 @@ Mono<Void> deleteIssuer(UUID issuerId);
 
 ### CardLimitService
 
-[CardLimitService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/limit/v1/CardLimitService.java)
+[CardLimitService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/limit/CardLimitService.java)
 
 ```java
 Mono<PaginationResponse<CardLimitDTO>> listLimits(UUID cardId, PaginationRequest paginationRequest);
@@ -3388,7 +3421,7 @@ Mono<Void> deleteLimit(UUID cardId, UUID limitId);
 
 ### CardMerchantService
 
-[CardMerchantService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/merchant/v1/CardMerchantService.java)
+[CardMerchantService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/merchant/CardMerchantService.java)
 
 ```java
 Mono<PaginationResponse<CardMerchantDTO>> listMerchants(PaginationRequest paginationRequest);
@@ -3400,7 +3433,7 @@ Mono<Void> deleteMerchant(UUID merchantId);
 
 ### CardNetworkService
 
-[CardNetworkService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/network/v1/CardNetworkService.java)
+[CardNetworkService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/network/CardNetworkService.java)
 
 ```java
 Mono<PaginationResponse<CardNetworkDTO>> listNetworks(PaginationRequest paginationRequest);
@@ -3412,7 +3445,7 @@ Mono<Void> deleteNetwork(UUID networkId);
 
 ### CardPaymentService
 
-[CardPaymentService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/payment/v1/CardPaymentService.java)
+[CardPaymentService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/payment/CardPaymentService.java)
 
 ```java
 Mono<PaginationResponse<CardPaymentDTO>> listPayments( UUID cardId, PaginationRequest paginationRequest );
@@ -3424,7 +3457,7 @@ Mono<Void> deletePayment(UUID cardId, UUID paymentId);
 
 ### PhysicalCardService
 
-[PhysicalCardService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/physical/v1/PhysicalCardService.java)
+[PhysicalCardService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/physical/PhysicalCardService.java)
 
 ```java
 Mono<PaginationResponse<PhysicalCardDTO>> listPhysicalCards( UUID cardId, PaginationRequest paginationRequest );
@@ -3436,7 +3469,7 @@ Mono<Void> deletePhysicalCard(UUID cardId, UUID physicalCardId);
 
 ### CardProgramService
 
-[CardProgramService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/program/v1/CardProgramService.java)
+[CardProgramService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/program/CardProgramService.java)
 
 ```java
 Mono<PaginationResponse<CardProgramDTO>> listPrograms(PaginationRequest paginationRequest);
@@ -3448,7 +3481,7 @@ Mono<Void> deleteProgram(UUID programId);
 
 ### CardPromotionService
 
-[CardPromotionService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/promotion/v1/CardPromotionService.java)
+[CardPromotionService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/promotion/CardPromotionService.java)
 
 ```java
 Mono<PaginationResponse<CardPromotionDTO>> listPromotions( UUID cardId, PaginationRequest paginationRequest );
@@ -3460,7 +3493,7 @@ Mono<Void> deletePromotion(UUID cardId, UUID promotionId);
 
 ### CardProviderService
 
-[CardProviderService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/provider/v1/CardProviderService.java)
+[CardProviderService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/provider/CardProviderService.java)
 
 ```java
 Mono<PaginationResponse<CardProviderDTO>> listProviders(UUID cardId, PaginationRequest paginationRequest);
@@ -3472,7 +3505,7 @@ Mono<Void> deleteProvider(UUID cardId, UUID providerId);
 
 ### CardSecurityService
 
-[CardSecurityService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/v1/CardSecurityService.java)
+[CardSecurityService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/CardSecurityService.java)
 
 ```java
 Mono<PaginationResponse<CardSecurityDTO>> listSecuritySettings( UUID cardId, PaginationRequest paginationRequest );
@@ -3484,7 +3517,7 @@ Mono<Void> deleteSecuritySetting(UUID cardId, UUID securityId);
 
 ### CardTerminalService
 
-[CardTerminalService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/terminal/v1/CardTerminalService.java)
+[CardTerminalService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/terminal/CardTerminalService.java)
 
 ```java
 Mono<PaginationResponse<CardTerminalDTO>> listTerminals(PaginationRequest paginationRequest);
@@ -3496,7 +3529,7 @@ Mono<Void> deleteTerminal(UUID terminalId);
 
 ### CardTransactionService
 
-[CardTransactionService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/transaction/v1/CardTransactionService.java)
+[CardTransactionService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/transaction/CardTransactionService.java)
 
 ```java
 Mono<PaginationResponse<CardTransactionDTO>> listTransactions(UUID cardId, PaginationRequest paginationRequest);
@@ -3509,7 +3542,7 @@ Mono<Void> deleteTransaction(UUID cardId, UUID transactionId);
 
 ### VirtualCardService
 
-[VirtualCardService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/virtual/v1/VirtualCardService.java)
+[VirtualCardService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/virtual/VirtualCardService.java)
 
 ```java
 Mono<PaginationResponse<VirtualCardDTO>> listVirtualCards(UUID cardId, PaginationRequest paginationRequest);
@@ -3521,7 +3554,7 @@ Mono<Void> deleteVirtualCard(UUID cardId, UUID virtualCardId);
 
 ### CardGatewayRepository
 
-[CardGatewayRepository](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/repositories/gateway/v1/CardGatewayRepository.java)
+[CardGatewayRepository](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/repositories/gateway/CardGatewayRepository.java)
 
 ```java
 Mono<CardGateway> findByGatewayId(UUID gatewayId);
@@ -3551,7 +3584,7 @@ Flux<CardGateway> findBySdkAvailableTrue();
 
 ### CardProviderRepository
 
-[CardProviderRepository](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/repositories/provider/v1/CardProviderRepository.java)
+[CardProviderRepository](../../core-banking-cards-models/src/main/java/io/fireflysoftware/core/banking/cards/models/repositories/provider/CardProviderRepository.java)
 
 ```java
 Flux<CardProvider> findByCardId(UUID cardId, Pageable pageable);
@@ -3582,45 +3615,45 @@ Values below come from source placeholders. Plain YAML values and configuration-
 
 | Declaration or failure site | Source |
 | --- | --- |
-| `new RuntimeException("CardActivity not found for the specified card."));` | [CardActivityServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/activity/v1/CardActivityServiceImpl.java) |
-| `new RuntimeException("CardActivity not found for the specified card."));` | [CardActivityServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/activity/v1/CardActivityServiceImpl.java) |
-| `new RuntimeException("CardActivity not found for the specified card."));` | [CardActivityServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/activity/v1/CardActivityServiceImpl.java) |
-| `new RuntimeException("CardBalance not found for the specified card."));` | [CardBalanceServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/v1/CardBalanceServiceImpl.java) |
-| `new RuntimeException("CardBalance not found for the specified card."));` | [CardBalanceServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/v1/CardBalanceServiceImpl.java) |
-| `new RuntimeException("CardBalance not found for the specified card."));` | [CardBalanceServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/v1/CardBalanceServiceImpl.java) |
-| `new ResponseStatusException(HttpStatus.CONFLICT,` | [CardServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceImpl.java) |
-| `new IllegalStateException(` | [CardServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceImpl.java) |
-| `new ResponseStatusException(HttpStatus.CONFLICT,` | [CardServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceImpl.java) |
-| `new ResponseStatusException(HttpStatus.BAD_REQUEST,` | [CardServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceImpl.java) |
-| `new IllegalStateException(` | [CardServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceImpl.java) |
-| `new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,` | [CardActivationService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationService.java) |
-| `new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid activation request"));` | [CardActivationService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationService.java) |
-| `new ResponseStatusException(` | [CardActivationService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationService.java) |
-| `HttpStatus.FORBIDDEN` | [CardActivationService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationService.java) |
-| `new IllegalStateException("SHA-256 unavailable");` | [CardActivationService](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationService.java) |
-| `new ResponseStatusException(HttpStatus.CONFLICT, "Activation is not permitted")));` | [CardActivationStore](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationStore.java) |
-| `new ResponseStatusException(HttpStatus.CONFLICT, "Activation is not permitted");` | [CardActivationStore](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationStore.java) |
-| `new ResponseStatusException(HttpStatus.CONFLICT, "Activation is not permitted");` | [CardActivationStore](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationStore.java) |
-| `new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Activation persistence is unavailable");` | [CardActivationStore](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/activation/CardActivationStore.java) |
-| `new RuntimeException("CardDispute not found for the specified card."));` | [CardDisputeServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/v1/CardDisputeServiceImpl.java) |
-| `new RuntimeException("CardDispute not found for the specified card."));` | [CardDisputeServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/v1/CardDisputeServiceImpl.java) |
-| `new RuntimeException("CardDispute not found for the specified card."));` | [CardDisputeServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/v1/CardDisputeServiceImpl.java) |
-| `new RuntimeException("CardEnrollment not found for the specified card."));` | [CardEnrollmentServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/v1/CardEnrollmentServiceImpl.java) |
-| `new RuntimeException("CardEnrollment not found for the specified card."));` | [CardEnrollmentServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/v1/CardEnrollmentServiceImpl.java) |
-| `new RuntimeException("CardEnrollment not found for the specified card."));` | [CardEnrollmentServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/v1/CardEnrollmentServiceImpl.java) |
-| `new RuntimeException("CardInterest not found for the specified card."));` | [CardInterestServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/interest/v1/CardInterestServiceImpl.java) |
-| `new RuntimeException("CardInterest not found for the specified card."));` | [CardInterestServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/interest/v1/CardInterestServiceImpl.java) |
-| `new RuntimeException("CardInterest not found for the specified card."));` | [CardInterestServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/interest/v1/CardInterestServiceImpl.java) |
-| `new RuntimeException("CardPayment not found for the specified card."));` | [CardPaymentServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/payment/v1/CardPaymentServiceImpl.java) |
-| `new RuntimeException("CardPayment not found for the specified card."));` | [CardPaymentServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/payment/v1/CardPaymentServiceImpl.java) |
-| `new RuntimeException("CardPayment not found for the specified card."));` | [CardPaymentServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/payment/v1/CardPaymentServiceImpl.java) |
-| `new RuntimeException("CardPromotion not found for the specified card."));` | [CardPromotionServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/promotion/v1/CardPromotionServiceImpl.java) |
-| `new RuntimeException("CardPromotion not found for the specified card."));` | [CardPromotionServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/promotion/v1/CardPromotionServiceImpl.java) |
-| `new RuntimeException("CardPromotion not found for the specified card."));` | [CardPromotionServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/promotion/v1/CardPromotionServiceImpl.java) |
-| `new RuntimeException("Error saving CardSecurity: " + throwable.getMessage())));` | [CardSecurityServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/v1/CardSecurityServiceImpl.java) |
-| `new RuntimeException("CardSecurity not found for the specified card."));` | [CardSecurityServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/v1/CardSecurityServiceImpl.java) |
-| `new RuntimeException("CardSecurity not found for the specified card."));` | [CardSecurityServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/v1/CardSecurityServiceImpl.java) |
-| `new RuntimeException("CardSecurity not found for the specified card."));` | [CardSecurityServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/v1/CardSecurityServiceImpl.java) |
+| `new RuntimeException("CardActivity not found for the specified card."));` | [CardActivityServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/activity/CardActivityServiceImpl.java) |
+| `new RuntimeException("CardActivity not found for the specified card."));` | [CardActivityServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/activity/CardActivityServiceImpl.java) |
+| `new RuntimeException("CardActivity not found for the specified card."));` | [CardActivityServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/activity/CardActivityServiceImpl.java) |
+| `new RuntimeException("CardBalance not found for the specified card."));` | [CardBalanceServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/CardBalanceServiceImpl.java) |
+| `new RuntimeException("CardBalance not found for the specified card."));` | [CardBalanceServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/CardBalanceServiceImpl.java) |
+| `new RuntimeException("CardBalance not found for the specified card."));` | [CardBalanceServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/balance/CardBalanceServiceImpl.java) |
+| `new ResponseStatusException(HttpStatus.CONFLICT,` | [CardServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/CardServiceImpl.java) |
+| `new IllegalStateException(` | [CardServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/CardServiceImpl.java) |
+| `new ResponseStatusException(HttpStatus.CONFLICT,` | [CardServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/CardServiceImpl.java) |
+| `new ResponseStatusException(HttpStatus.BAD_REQUEST,` | [CardServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/CardServiceImpl.java) |
+| `new IllegalStateException(` | [CardServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/CardServiceImpl.java) |
+| `new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,` | [CardActivationServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationServiceImpl.java) |
+| `new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid activation request"));` | [CardActivationServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationServiceImpl.java) |
+| `new ResponseStatusException(` | [CardActivationServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationServiceImpl.java) |
+| `HttpStatus.FORBIDDEN` | [CardActivationServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationServiceImpl.java) |
+| `new IllegalStateException("SHA-256 unavailable");` | [CardActivationServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationServiceImpl.java) |
+| `new ResponseStatusException(HttpStatus.CONFLICT, "Activation is not permitted")));` | [CardActivationStore](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationStore.java) |
+| `new ResponseStatusException(HttpStatus.CONFLICT, "Activation is not permitted");` | [CardActivationStore](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationStore.java) |
+| `new ResponseStatusException(HttpStatus.CONFLICT, "Activation is not permitted");` | [CardActivationStore](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationStore.java) |
+| `new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Activation persistence is unavailable");` | [CardActivationStore](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/card/activation/CardActivationStore.java) |
+| `new RuntimeException("CardDispute not found for the specified card."));` | [CardDisputeServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/CardDisputeServiceImpl.java) |
+| `new RuntimeException("CardDispute not found for the specified card."));` | [CardDisputeServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/CardDisputeServiceImpl.java) |
+| `new RuntimeException("CardDispute not found for the specified card."));` | [CardDisputeServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/dispute/CardDisputeServiceImpl.java) |
+| `new RuntimeException("CardEnrollment not found for the specified card."));` | [CardEnrollmentServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/CardEnrollmentServiceImpl.java) |
+| `new RuntimeException("CardEnrollment not found for the specified card."));` | [CardEnrollmentServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/CardEnrollmentServiceImpl.java) |
+| `new RuntimeException("CardEnrollment not found for the specified card."));` | [CardEnrollmentServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/CardEnrollmentServiceImpl.java) |
+| `new RuntimeException("CardInterest not found for the specified card."));` | [CardInterestServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/interest/CardInterestServiceImpl.java) |
+| `new RuntimeException("CardInterest not found for the specified card."));` | [CardInterestServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/interest/CardInterestServiceImpl.java) |
+| `new RuntimeException("CardInterest not found for the specified card."));` | [CardInterestServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/interest/CardInterestServiceImpl.java) |
+| `new RuntimeException("CardPayment not found for the specified card."));` | [CardPaymentServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/payment/CardPaymentServiceImpl.java) |
+| `new RuntimeException("CardPayment not found for the specified card."));` | [CardPaymentServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/payment/CardPaymentServiceImpl.java) |
+| `new RuntimeException("CardPayment not found for the specified card."));` | [CardPaymentServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/payment/CardPaymentServiceImpl.java) |
+| `new RuntimeException("CardPromotion not found for the specified card."));` | [CardPromotionServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/promotion/CardPromotionServiceImpl.java) |
+| `new RuntimeException("CardPromotion not found for the specified card."));` | [CardPromotionServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/promotion/CardPromotionServiceImpl.java) |
+| `new RuntimeException("CardPromotion not found for the specified card."));` | [CardPromotionServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/promotion/CardPromotionServiceImpl.java) |
+| `new RuntimeException("Error saving CardSecurity: " + throwable.getMessage())));` | [CardSecurityServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/CardSecurityServiceImpl.java) |
+| `new RuntimeException("CardSecurity not found for the specified card."));` | [CardSecurityServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/CardSecurityServiceImpl.java) |
+| `new RuntimeException("CardSecurity not found for the specified card."));` | [CardSecurityServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/CardSecurityServiceImpl.java) |
+| `new RuntimeException("CardSecurity not found for the specified card."));` | [CardSecurityServiceImpl](../../core-banking-cards-core/src/main/java/io/fireflysoftware/core/banking/cards/core/services/security/CardSecurityServiceImpl.java) |
 
 ## Build and dependencies
 
@@ -3724,36 +3757,38 @@ Coordinates: `io.fireflysoftware:core-banking-cards:26.10.6`. Parent: `io.firefl
 
 ## Test sources
 
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/architecture/CardRepositoryArchitectureTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/architecture/CardRepositoryArchitectureTest.java)
 - [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/README.md](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/README.md)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/acquirer/v1/CardAcquirerServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/acquirer/v1/CardAcquirerServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/balance/v1/CardBalanceServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/balance/v1/CardBalanceServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/bin/v1/BINServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/bin/v1/BINServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationCrudTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationCrudTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationDatabaseTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardActivationServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataBoundaryTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataBoundaryTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataDatabaseTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardSensitiveDataDatabaseTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/v1/CardServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/configuration/v1/CardConfigurationServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/configuration/v1/CardConfigurationServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/dispute/v1/CardDisputeServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/dispute/v1/CardDisputeServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/v1/CardEnrollmentServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/v1/CardEnrollmentServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/gateway/v1/CardGatewayServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/gateway/v1/CardGatewayServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/interest/v1/CardInterestServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/interest/v1/CardInterestServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/issuer/v1/IssuerServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/issuer/v1/IssuerServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/limit/v1/CardLimitServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/limit/v1/CardLimitServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/merchant/v1/CardMerchantServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/merchant/v1/CardMerchantServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/network/v1/CardNetworkServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/network/v1/CardNetworkServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/payment/v1/CardPaymentServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/payment/v1/CardPaymentServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/physical/v1/PhysicalCardServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/physical/v1/PhysicalCardServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/program/v1/CardProgramServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/program/v1/CardProgramServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/promotion/v1/CardPromotionServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/promotion/v1/CardPromotionServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/provider/v1/CardProviderServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/provider/v1/CardProviderServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/security/v1/CardSecurityServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/security/v1/CardSecurityServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/terminal/v1/CardTerminalServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/terminal/v1/CardTerminalServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/transaction/v1/CardTransactionServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/transaction/v1/CardTransactionServiceTest.java)
-- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/virtual/v1/VirtualCardServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/virtual/v1/VirtualCardServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/acquirer/CardAcquirerServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/acquirer/CardAcquirerServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/balance/CardBalanceServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/balance/CardBalanceServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/bin/BINServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/bin/BINServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardActivationCrudTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardActivationCrudTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardActivationDatabaseTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardActivationDatabaseTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardActivationServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardActivationServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardSensitiveDataBoundaryTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardSensitiveDataBoundaryTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardSensitiveDataDatabaseTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardSensitiveDataDatabaseTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/card/CardServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/configuration/CardConfigurationServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/configuration/CardConfigurationServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/dispute/CardDisputeServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/dispute/CardDisputeServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/CardEnrollmentServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/enrollment/CardEnrollmentServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/gateway/CardGatewayServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/gateway/CardGatewayServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/interest/CardInterestServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/interest/CardInterestServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/issuer/IssuerServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/issuer/IssuerServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/limit/CardLimitServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/limit/CardLimitServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/merchant/CardMerchantServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/merchant/CardMerchantServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/network/CardNetworkServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/network/CardNetworkServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/payment/CardPaymentServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/payment/CardPaymentServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/physical/PhysicalCardServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/physical/PhysicalCardServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/program/CardProgramServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/program/CardProgramServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/promotion/CardPromotionServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/promotion/CardPromotionServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/provider/CardProviderServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/provider/CardProviderServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/security/CardSecurityServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/security/CardSecurityServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/terminal/CardTerminalServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/terminal/CardTerminalServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/transaction/CardTransactionServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/transaction/CardTransactionServiceTest.java)
+- [core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/virtual/VirtualCardServiceTest.java](../../core-banking-cards-core/src/test/java/io/fireflysoftware/core/banking/cards/core/services/virtual/VirtualCardServiceTest.java)
 - [core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardActivationRuntimeIT.java](../../core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardActivationRuntimeIT.java)
 - [core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardAuthenticationDataRuntimeIT.java](../../core-banking-cards-sdk/src/test/java/io/fireflysoftware/qualification/cards/CardAuthenticationDataRuntimeIT.java)
+- [core-banking-cards-web/src/test/java/io/fireflysoftware/core/banking/cards/web/CardServiceWiringTest.java](../../core-banking-cards-web/src/test/java/io/fireflysoftware/core/banking/cards/web/CardServiceWiringTest.java)
 - [core-banking-cards-web/src/test/java/io/fireflysoftware/core/banking/cards/web/openapi/OpenApiGenApplication.java](../../core-banking-cards-web/src/test/java/io/fireflysoftware/core/banking/cards/web/openapi/OpenApiGenApplication.java)
 
 ## CI definitions
